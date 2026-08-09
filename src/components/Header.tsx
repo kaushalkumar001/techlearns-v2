@@ -71,13 +71,13 @@ export default function Header() {
         {/* Desktop Nav Links */}
         <nav style={{ display: "flex", gap: "20px", alignItems: "center" }} className="desktop-only">
           <Link href="/" className="nav-link">Home</Link>
-          <Link href="/programs" className="nav-link">Programs</Link>
-          <Link href="/cel" className="nav-link">CEL Philosophy</Link>
-          <Link href="/skillos" className="nav-link">SkillOS</Link>
-          <Link href="/passport" className="nav-link">Skill Passport</Link>
-          <Link href="/fsl" className="nav-link">FSL League</Link>
-          <Link href="/stories" className="nav-link">Stories</Link>
-          <Link href="/mentors" className="nav-link">Mentors</Link>
+          <Link href="/programs" className="nav-link">Academics</Link>
+          <Link href="/cel" className="nav-link">Our Pedagogy</Link>
+          <Link href="/skillos" className="nav-link">SkillOS Lab</Link>
+          <Link href="/passport" className="nav-link">Credentials</Link>
+          <Link href="/fsl" className="nav-link">Skill Leagues</Link>
+          <Link href="/stories" className="nav-link">Student Outcomes</Link>
+          <Link href="/mentors" className="nav-link">Faculty & Mentors</Link>
           
           {/* Theme Alternator Button */}
           <button 
@@ -209,13 +209,13 @@ export default function Header() {
           }}
         >
           <Link href="/" onClick={() => setIsOpen(false)} style={{ fontSize: "18px", fontWeight: 600 }}>Home</Link>
-          <Link href="/programs" onClick={() => setIsOpen(false)} style={{ fontSize: "18px", fontWeight: 600 }}>Programs</Link>
-          <Link href="/cel" onClick={() => setIsOpen(false)} style={{ fontSize: "18px", fontWeight: 600 }}>CEL Philosophy</Link>
-          <Link href="/skillos" onClick={() => setIsOpen(false)} style={{ fontSize: "18px", fontWeight: 600 }}>SkillOS</Link>
-          <Link href="/passport" onClick={() => setIsOpen(false)} style={{ fontSize: "18px", fontWeight: 600 }}>Skill Passport</Link>
-          <Link href="/fsl" onClick={() => setIsOpen(false)} style={{ fontSize: "18px", fontWeight: 600 }}>FSL League</Link>
-          <Link href="/stories" onClick={() => setIsOpen(false)} style={{ fontSize: "18px", fontWeight: 600 }}>Stories</Link>
-          <Link href="/mentors" onClick={() => setIsOpen(false)} style={{ fontSize: "18px", fontWeight: 600 }}>Mentors</Link>
+          <Link href="/programs" onClick={() => setIsOpen(false)} style={{ fontSize: "18px", fontWeight: 600 }}>Academics</Link>
+          <Link href="/cel" onClick={() => setIsOpen(false)} style={{ fontSize: "18px", fontWeight: 600 }}>Our Pedagogy</Link>
+          <Link href="/skillos" onClick={() => setIsOpen(false)} style={{ fontSize: "18px", fontWeight: 600 }}>SkillOS Lab</Link>
+          <Link href="/passport" onClick={() => setIsOpen(false)} style={{ fontSize: "18px", fontWeight: 600 }}>Credentials</Link>
+          <Link href="/fsl" onClick={() => setIsOpen(false)} style={{ fontSize: "18px", fontWeight: 600 }}>Skill Leagues</Link>
+          <Link href="/stories" onClick={() => setIsOpen(false)} style={{ fontSize: "18px", fontWeight: 600 }}>Student Outcomes</Link>
+          <Link href="/mentors" onClick={() => setIsOpen(false)} style={{ fontSize: "18px", fontWeight: 600 }}>Faculty & Mentors</Link>
           <Link 
             href="/contact" 
             onClick={() => setIsOpen(false)} 

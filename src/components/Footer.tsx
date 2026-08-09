@@ -61,16 +61,16 @@ export default function Footer() {
             <h3 style={{ color: "#FFFFFF", fontSize: "18px", marginBottom: "25px", fontFamily: "var(--font-headings)" }}>Ecosystem</h3>
             <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: "12px", fontSize: "14px" }}>
               <li>
-                <Link href="/cel" className="footer-link">CEL Philosophy</Link>
+                <Link href="/cel" className="footer-link">Our Pedagogy</Link>
               </li>
               <li>
-                <Link href="/skillos" className="footer-link">SkillOS Platform</Link>
+                <Link href="/skillos" className="footer-link">SkillOS Lab</Link>
               </li>
               <li>
-                <Link href="/passport" className="footer-link">Skill Passport Proof</Link>
+                <Link href="/passport" className="footer-link">Credentials</Link>
               </li>
               <li>
-                <Link href="/fsl" className="footer-link">Future Skills League</Link>
+                <Link href="/fsl" className="footer-link">Skill Leagues</Link>
               </li>
             </ul>
           </div>
@@ -102,10 +102,10 @@ export default function Footer() {
             <h3 style={{ color: "#FFFFFF", fontSize: "18px", marginBottom: "25px", fontFamily: "var(--font-headings)" }}>Quick Links</h3>
             <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: "12px", fontSize: "14px" }}>
               <li>
-                <Link href="/stories" className="footer-link">Success Stories</Link>
+                <Link href="/stories" className="footer-link">Student Outcomes</Link>
               </li>
               <li>
-                <Link href="/mentors" className="footer-link">Distinguished Mentors</Link>
+                <Link href="/mentors" className="footer-link">Faculty & Mentors</Link>
               </li>
               <li>
                 <Link href="/partners" className="footer-link">Industry Partners</Link>
