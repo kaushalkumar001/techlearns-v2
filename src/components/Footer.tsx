@@ -61,7 +61,7 @@ export default function Footer() {
             <h3 style={{ color: "#FFFFFF", fontSize: "18px", marginBottom: "25px", fontFamily: "var(--font-headings)" }}>Ecosystem</h3>
             <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: "12px", fontSize: "14px" }}>
               <li>
-                <Link href="/cel" className="footer-link">Our Pedagogy</Link>
+                <Link href="/cel" className="footer-link">Pedagogy</Link>
               </li>
               <li>
                 <Link href="/skillos" className="footer-link">SkillOS Lab</Link>
@@ -102,10 +102,10 @@ export default function Footer() {
             <h3 style={{ color: "#FFFFFF", fontSize: "18px", marginBottom: "25px", fontFamily: "var(--font-headings)" }}>Quick Links</h3>
             <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: "12px", fontSize: "14px" }}>
               <li>
-                <Link href="/stories" className="footer-link">Student Outcomes</Link>
+                <Link href="/stories" className="footer-link">Outcomes</Link>
               </li>
               <li>
-                <Link href="/mentors" className="footer-link">Faculty & Mentors</Link>
+                <Link href="/mentors" className="footer-link">Faculty</Link>
               </li>
               <li>
                 <Link href="/partners" className="footer-link">Industry Partners</Link>

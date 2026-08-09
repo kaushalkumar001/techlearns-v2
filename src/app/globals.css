@@ -250,14 +250,18 @@ a {
 
 /* Responsive Grid Containers */
 .container {
-  width: 100%;
-  max-width: 1200px;
+  width: 80%;
+  max-width: 1600px;
   margin: 0 auto;
   padding: 0 24px;
 }
 
 /* Responsive visibility utilities */
 @media (max-width: 991px) {
+  .container {
+    width: 92%;
+    padding: 0 16px;
+  }
   .desktop-only { display: none !important; }
   .mobile-only { display: block !important; }
   button.mobile-only { display: flex !important; }
@@ -292,7 +296,7 @@ a {
 /* Nav Link styles */
 .nav-link {
   font-weight: 500;
-  font-size: 15px;
+  font-size: 13.5px;
   color: var(--foreground-muted);
   position: relative;
   padding: 6px 0;
