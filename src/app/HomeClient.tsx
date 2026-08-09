@@ -154,25 +154,25 @@ export default function HomeClient() {
                   animationDelay: "0.05s"
                 }}
               >
-                ⚡ Don't just learn technology. Experience how the industry builds it.
+                ⚡ India's premier experience-based technical academy.
               </span>
               
               <h1 className="fade-in-up" style={{ fontSize: "56px", lineHeight: "1.1", fontWeight: 900, color: "var(--foreground)", animationDelay: "0.15s" }}>
-                Build Like a <br />
-                <span className="text-gradient-purple">Software Company.</span> <br />
-                Learn Like Never Before.
+                The Modern <br />
+                <span className="text-gradient-purple">Technical University</span> <br />
+                for Software Engineers.
               </h1>
               
               <p className="fade-in-up" style={{ fontSize: "18px", color: "var(--foreground-muted)", lineHeight: "1.65", animationDelay: "0.25s" }}>
-                Techlearns is India's Corporate Experience Learning ecosystem where students learn, build real products, work in agile teams, compete in national challenges, and graduate with a verified Skill Passport—not just a certificate.
+                Earn verified engineering credentials, build production-grade systems, and master advanced architectures under the guidance of top-tier industry educators.
               </p>
               
               <div className="fade-in-up" style={{ display: "flex", gap: "16px", flexWrap: "wrap", marginTop: "10px", animationDelay: "0.35s" }}>
                 <Link href="/programs" className="glow-btn-primary">
-                  Explore Programs
+                  Explore Academics
                 </Link>
                 <a href="#contact" className="glow-btn-secondary">
-                  Experience a Demo Sprint
+                  Experience a Live Lab
                 </a>
               </div>
             </div>
