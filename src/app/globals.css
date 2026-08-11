@@ -112,13 +112,15 @@ a {
   border: 1px solid var(--border-color);
   border-radius: 16px;
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform-style: preserve-3d;
+  perspective: 1000px;
 }
 
 .glass-card:hover {
-  border-color: rgba(203, 108, 230, 0.35);
-  box-shadow: 0 12px 40px 0 rgba(140, 82, 255, 0.15);
-  transform: translateY(-4px);
+  border-color: rgba(203, 108, 230, 0.5);
+  box-shadow: 0 20px 40px rgba(140, 82, 255, 0.25), 0 0 30px rgba(203, 108, 230, 0.15);
+  transform: translateY(-8px) scale(1.02) rotateX(3deg) rotateY(-3deg);
 }
 
 .glass-nav {
@@ -435,8 +437,8 @@ body.light-theme .glass-card {
 }
 
 body.light-theme .glass-card:hover {
-  border-color: rgba(91, 45, 145, 0.35);
-  box-shadow: 0 12px 40px 0 rgba(91, 45, 145, 0.08);
+  border-color: rgba(91, 45, 145, 0.4);
+  box-shadow: 0 20px 40px rgba(91, 45, 145, 0.12), 0 0 20px rgba(203, 108, 230, 0.08);
 }
 
 body.light-theme .text-gradient {
@@ -514,4 +516,53 @@ body.light-theme .footer-link {
 
 body.light-theme .footer-link:hover {
   color: var(--primary-purple) !important;
+}
+
+/* Navigation Dropdown */
+.dropdown-container {
+  position: relative;
+  display: inline-block;
+}
+.dropdown-trigger {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  padding: 8px 0;
+  min-width: 160px;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+}
+.dropdown-item {
+  display: block;
+  padding: 8px 16px;
+  color: var(--foreground-muted);
+  font-size: 13.5px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+.dropdown-item:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--foreground);
+}
+.dropdown-container:hover .dropdown-menu {
+  display: block;
+}
+body.light-theme .dropdown-menu {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  background-color: var(--card-bg);
+}
+body.light-theme .dropdown-item:hover {
+  background-color: rgba(0, 0, 0, 0.05);
 }
