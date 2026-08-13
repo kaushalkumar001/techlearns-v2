@@ -4,22 +4,37 @@ import Footer from "@/components/Footer";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Verified Skill Passport",
-  description: "The cryptographic proof-of-work profile that replaces traditional resumes. Audit actual candidate commit ledgers and reviews.",
-  alternates: {
-    canonical: "https://techlearns.com/passport"
-  },
+  title: "Certifications & Credentials | Techlearns Credential Stack",
+  description: "Official external certifications, verified Techlearns credentials, and experience-based badges — layered into one evidence record.",
+  alternates: { canonical: "https://techlearns.com/passport" },
   openGraph: {
-    title: "Verified Skill Passport | TechLearns Academy",
-    description: "The cryptographic proof-of-work profile that replaces traditional resumes. Audit actual candidate commit ledgers and reviews.",
+    title: "Certifications & Credentials | Techlearns",
+    description: "A credential stack you can actually defend.",
     url: "https://techlearns.com/passport"
   }
 };
 
-const verifiedProjects = [
-  { name: "Distributed High-Frequency Trading Matcher", lang: "Rust / gRPC", hash: "sha256:d8c0...4f1e", status: "Verified Audit Pass", reviewer: "Staff Architect (Google)" },
-  { name: "Multi-Tenant Collaborative Rich Text Canvas", lang: "TypeScript / Redis / WebSockets", hash: "sha256:f48a...92b0", status: "Verified Audit Pass", reviewer: "Tech Lead (Meta)" },
-  { name: "Kubernetes Auto-Scaler for Video Transcoding", lang: "Go / Terraform / AWS", hash: "sha256:a12e...63cf", status: "Verified Audit Pass", reviewer: "SRE Manager (Netflix)" }
+const externalPathways = [
+  { org: "Microsoft", desc: "Certifications and Applied Skills — role-based validated credentials" },
+  { org: "Google", desc: "Career Certificates / AI Essentials / AI Professional / Cybersecurity pathways" },
+  { org: "AWS", desc: "Role-based certifications: Cloud Practitioner, AI Practitioner, and more" },
+  { org: "Cisco", desc: "Networking and cybersecurity pathways" },
+  { org: "FutureSkills Prime / SSC nasscom", desc: "Emerging-technology assessments" }
+];
+
+const techllearnsCredentials = [
+  { name: "Techlearns Course Completion", desc: "Confirms you completed the program — every enrolled learner receives this." },
+  { name: "Techlearns Skill Distinction", desc: "Awarded only after performance thresholds and portfolio defense are met. Not given to everyone." },
+  { name: "Corporate Experience Readiness Badge", desc: "Based on project execution, teamwork, communication and operating discipline — not just technical scores." },
+  { name: "Skill Passport", desc: "Your dynamic evidence record with verified links, assessment history, project artifacts and readiness indicators." }
+];
+
+const experienceCredentials = [
+  { name: "Live Project / Client Brief Badge", desc: "Awarded for completing a real-world or employer-contributed project brief." },
+  { name: "Hackathon / Competition Badge", desc: "Finalist or winner recognition from FSL competitions and challenge events." },
+  { name: "Industry Mentor Review Badge", desc: "Verified mentor feedback on your technical output, communication and improvement." },
+  { name: "Internship / Apprenticeship Evidence", desc: "Documented record of real-world work experience as part of the program." },
+  { name: "Community Leadership Badge", desc: "Earned through peer mentoring, study group leadership or community contribution." }
 ];
 
 export default function PassportPage() {
@@ -27,101 +42,100 @@ export default function PassportPage() {
     <>
       <Header />
       <main style={{ paddingTop: "120px" }}>
-        <div className="container">
-          
-          {/* Header */}
-          <div style={{ textAlign: "center", marginBottom: "60px" }}>
-            <span style={{ color: "#CB6CE6", fontSize: "12px", fontWeight: 700, fontFamily: "monospace", letterSpacing: "0.1em" }}>EVIDENCE-BASED RECRUITING</span>
-            <h1 style={{ fontSize: "44px", color: "var(--foreground)", marginTop: "8px" }}>Verified Skill Passport</h1>
-            <p style={{ color: "var(--foreground-muted)", maxWidth: "600px", margin: "12px auto 0", fontSize: "16px" }}>
-              A blockchain-verified candidate profile containing real-world project links, code history audits, and mentor ratings.
+
+        {/* Hero */}
+        <section style={{ padding: "0 0 80px" }}>
+          <div className="container" style={{ textAlign: "center" }}>
+            <span style={{ color: "#CB6CE6", fontSize: "12px", fontWeight: 700, fontFamily: "monospace", letterSpacing: "0.1em", textTransform: "uppercase" }}>Credentials & Certifications</span>
+            <h1 style={{ fontSize: "52px", color: "var(--foreground)", marginTop: "12px", marginBottom: "20px", lineHeight: "1.15" }}>
+              A credential stack you<br />
+              <span style={{ color: "#CB6CE6" }}>can actually defend</span>
+            </h1>
+            <p style={{ color: "var(--foreground-muted)", maxWidth: "620px", margin: "0 auto", fontSize: "18px", lineHeight: "1.7" }}>
+              Official external certifications, verified Techlearns credentials, and experience-based badges — layered into one evidence record.
             </p>
           </div>
+        </section>
 
-          {/* Profile Card Mockup */}
-          <div className="glass-card" style={{ padding: "40px", maxWidth: "800px", margin: "0 auto 60px", borderColor: "var(--secondary-magenta)", background: "var(--card-bg)" }}>
-            
-            {/* Top row */}
-            <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "20px", borderBottom: "1px solid var(--border-color)", paddingBottom: "25px", marginBottom: "25px" }}>
-              <div style={{ display: "flex", gap: "20px", alignItems: "center" }}>
-                <div style={{ width: "80px", height: "80px", borderRadius: "50%", background: "linear-gradient(135deg, var(--primary-purple) 0%, var(--secondary-magenta) 100%)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "28px", fontWeight: 700, color: "#FFFFFF" }}>SP</div>
-                <div>
-                  <h2 style={{ fontSize: "28px", color: "var(--foreground)", marginBottom: "4px" }}>Saahil Paul</h2>
-                  <div style={{ display: "flex", gap: "8px", alignItems: "center", fontSize: "13px" }}>
-                    <span style={{ color: "var(--foreground-muted)" }}>Full Stack Software Engineer</span>
-                    <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#27C93F" }}></span>
-                    <span style={{ color: "#27C93F", fontWeight: 600 }}>TLET Qualifier - Cohort AI-2026A</span>
+        {/* Layer A — External */}
+        <section style={{ padding: "80px 0", background: "rgba(91, 45, 145, 0.04)", borderTop: "1px solid var(--border-color)", borderBottom: "1px solid var(--border-color)" }}>
+          <div className="container">
+            <div style={{ marginBottom: "48px" }}>
+              <span style={{ fontSize: "12px", color: "#CB6CE6", fontWeight: 700, fontFamily: "monospace", letterSpacing: "0.1em" }}>LAYER A</span>
+              <h2 style={{ fontSize: "32px", color: "var(--foreground)", fontWeight: 800, marginTop: "8px" }}>Official External Credential Pathways</h2>
+              <p style={{ color: "var(--foreground-muted)", fontSize: "16px", marginTop: "10px", maxWidth: "680px" }}>
+                We help you prepare for recognized industry pathways. <em>Techlearns prepares learners for these credentials. We do not claim official partner status unless authorized in writing by the issuing organization.</em>
+              </p>
+            </div>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "20px" }}>
+              {externalPathways.map((p, i) => (
+                <div key={i} className="glass-card" style={{ padding: "28px" }}>
+                  <h3 style={{ fontSize: "18px", color: "var(--foreground)", marginBottom: "8px", fontWeight: 700 }}>{p.org}</h3>
+                  <p style={{ fontSize: "14px", color: "var(--foreground-muted)", lineHeight: "1.6" }}>{p.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Layer B — Techlearns */}
+        <section style={{ padding: "80px 0" }}>
+          <div className="container">
+            <div style={{ marginBottom: "48px" }}>
+              <span style={{ fontSize: "12px", color: "#CB6CE6", fontWeight: 700, fontFamily: "monospace", letterSpacing: "0.1em" }}>LAYER B</span>
+              <h2 style={{ fontSize: "32px", color: "var(--foreground)", fontWeight: 800, marginTop: "8px" }}>Techlearns Verified Skill Credentials</h2>
+            </div>
+            <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+              {techllearnsCredentials.map((c, i) => (
+                <div key={i} className="glass-card" style={{ padding: "32px", display: "flex", gap: "24px", alignItems: "flex-start" }}>
+                  <div style={{ width: "40px", height: "40px", borderRadius: "8px", background: "rgba(203,108,230,0.15)", border: "1px solid rgba(203,108,230,0.3)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, fontSize: "18px" }}>
+                    {i === 0 ? "📜" : i === 1 ? "⭐" : i === 2 ? "🏅" : "💳"}
+                  </div>
+                  <div>
+                    <h3 style={{ fontSize: "18px", color: "var(--foreground)", marginBottom: "8px", fontWeight: 700 }}>{c.name}</h3>
+                    <p style={{ fontSize: "14px", color: "var(--foreground-muted)", lineHeight: "1.65" }}>{c.desc}</p>
                   </div>
                 </div>
-              </div>
-              <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", justifyContent: "center" }}>
-                <span style={{ fontSize: "11px", color: "var(--foreground-muted-extra)", letterSpacing: "0.15em", fontFamily: "monospace" }}>SKILL PASSPORT STATUS</span>
-                <span style={{ fontSize: "12px", background: "rgba(39, 201, 63, 0.15)", color: "#27C93F", padding: "4px 12px", borderRadius: "20px", fontWeight: 650, marginTop: "4px" }}>PLACEMENT READY</span>
-              </div>
-            </div>
-
-            {/* Middle Stats Grid */}
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "20px", borderBottom: "1px solid var(--border-color)", paddingBottom: "25px", marginBottom: "25px", textAlign: "center" }}>
-              <div>
-                <span style={{ fontSize: "11px", color: "var(--foreground-muted-extra)", display: "block", marginBottom: "6px" }}>VERIFIED SKILL SCORE</span>
-                <strong style={{ fontSize: "28px", color: "#CB6CE6" }}>92.5%</strong>
-              </div>
-              <div>
-                <span style={{ fontSize: "11px", color: "var(--foreground-muted-extra)", display: "block", marginBottom: "6px" }}>AGILE TICKETS SHIPPED</span>
-                <strong style={{ fontSize: "24px", color: "var(--foreground)" }}>8 Systems</strong>
-              </div>
-              <div>
-                <span style={{ fontSize: "11px", color: "var(--foreground-muted-extra)", display: "block", marginBottom: "6px" }}>HACKATHON WINS</span>
-                <strong style={{ fontSize: "24px", color: "var(--foreground)" }}>6 Podiums</strong>
-              </div>
-              <div>
-                <span style={{ fontSize: "11px", color: "var(--foreground-muted-extra)", display: "block", marginBottom: "6px" }}>COMMUNICATION INDEX</span>
-                <strong style={{ fontSize: "24px", color: "var(--foreground)" }}>9.2 / 10</strong>
-              </div>
-            </div>
-
-            {/* Bottom Section - Code evidence log */}
-            <div>
-              <h3 style={{ fontSize: "18px", color: "var(--foreground)", marginBottom: "16px" }}>Verified Repository Audit Trail</h3>
-              <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-                {verifiedProjects.map((p, idx) => (
-                  <div key={idx} style={{ padding: "16px", border: "1px solid var(--border-color)", background: "rgba(255,255,255,0.01)", borderRadius: "8px", fontSize: "13px" }}>
-                    <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "6px" }}>
-                      <strong style={{ color: "var(--foreground)" }}>{p.name}</strong>
-                      <span style={{ color: "#27C93F", fontFamily: "monospace" }}>{p.status}</span>
-                    </div>
-                    <div style={{ display: "flex", justifyContent: "space-between", fontSize: "11px", color: "var(--foreground-muted-extra)" }}>
-                      <span>Stack: {p.lang}</span>
-                      <span>Reviewer: {p.reviewer}</span>
-                    </div>
-                    <div style={{ fontSize: "11px", color: "var(--foreground-muted-extra)", marginTop: "6px", fontFamily: "monospace", display: "flex", gap: "4px" }}>
-                      <span>Commit SHA:</span>
-                      <span style={{ color: "var(--secondary-magenta)" }}>{p.hash}</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-          </div>
-
-          {/* Recruiter view highlights */}
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "24px", marginBottom: "60px" }}>
-            <div className="glass-card" style={{ padding: "30px" }}>
-              <h3 style={{ fontSize: "18px", color: "var(--foreground)", marginBottom: "10px" }}>Proof over Claims</h3>
-              <p style={{ fontSize: "14px", color: "var(--foreground-muted)" }}>Resumes claim skills. The Skill Passport displays real-world execution telemetry and PR approval histories.</p>
-            </div>
-            <div className="glass-card" style={{ padding: "30px" }}>
-              <h3 style={{ fontSize: "18px", color: "var(--foreground)", marginBottom: "10px" }}>FAANG Audited</h3>
-              <p style={{ fontSize: "14px", color: "var(--foreground-muted)" }}>Every milestone capstone is audited by senior technical architects from Google, Meta, and Netflix.</p>
-            </div>
-            <div className="glass-card" style={{ padding: "30px" }}>
-              <h3 style={{ fontSize: "18px", color: "var(--foreground)", marginBottom: "10px" }}>Direct Hiring Link</h3>
-              <p style={{ fontSize: "14px", color: "var(--foreground-muted)" }}>Share your Skill Passport URL directly with recruitment agencies to qualify instantly for interview slots.</p>
+              ))}
             </div>
           </div>
+        </section>
 
-        </div>
+        {/* Layer C — Experience */}
+        <section style={{ padding: "80px 0", background: "rgba(91, 45, 145, 0.04)", borderTop: "1px solid var(--border-color)", borderBottom: "1px solid var(--border-color)" }}>
+          <div className="container">
+            <div style={{ marginBottom: "48px" }}>
+              <span style={{ fontSize: "12px", color: "#CB6CE6", fontWeight: 700, fontFamily: "monospace", letterSpacing: "0.1em" }}>LAYER C</span>
+              <h2 style={{ fontSize: "32px", color: "var(--foreground)", fontWeight: 800, marginTop: "8px" }}>Experience Credentials</h2>
+              <p style={{ color: "var(--foreground-muted)", fontSize: "16px", marginTop: "10px" }}>Earned through doing — not completing.</p>
+            </div>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "20px" }}>
+              {experienceCredentials.map((c, i) => (
+                <div key={i} className="glass-card" style={{ padding: "28px", borderLeft: "3px solid #CB6CE6" }}>
+                  <h3 style={{ fontSize: "17px", color: "var(--foreground)", marginBottom: "8px", fontWeight: 700 }}>{c.name}</h3>
+                  <p style={{ fontSize: "14px", color: "var(--foreground-muted)", lineHeight: "1.6" }}>{c.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* CTA */}
+        <section style={{ padding: "80px 0 100px" }}>
+          <div className="container">
+            <div className="glass-card" style={{ padding: "60px 40px", textAlign: "center", border: "1px dashed var(--secondary-magenta)", background: "rgba(203, 108, 230, 0.03)" }}>
+              <h2 style={{ fontSize: "36px", color: "var(--foreground)", marginBottom: "16px" }}>See Credential Pathways by Program →</h2>
+              <p style={{ color: "var(--foreground-muted)", maxWidth: "500px", margin: "0 auto 36px", fontSize: "16px" }}>
+                Every program includes a recommended credential pathway. Talk to an advisor to understand what you'll walk away with.
+              </p>
+              <div style={{ display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap" }}>
+                <Link href="/programs" className="glow-btn-primary">View Programs</Link>
+                <Link href="/contact" className="glow-btn-secondary">Talk to an Advisor</Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
       </main>
       <Footer />
     </>

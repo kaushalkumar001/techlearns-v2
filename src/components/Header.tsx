@@ -69,13 +69,19 @@ export default function Header() {
         </Link>
 
         {/* Desktop Nav Links */}
-        <nav style={{ display: "flex", gap: "16px", alignItems: "center" }} className="desktop-only">
-          <Link href="/" className="nav-link">Home</Link>
-          <Link href="/programs" className="nav-link">Academics</Link>
-          <Link href="/cel" className="nav-link">Pedagogy</Link>
-          <Link href="/skillos" className="nav-link">SkillOS Lab</Link>
-          <Link href="/stories" className="nav-link">Outcomes</Link>
-          <Link href="/mentors" className="nav-link">Faculty</Link>
+        <nav style={{ display: "flex", gap: "14px", alignItems: "center" }} className="desktop-only">
+          <Link href="/programs" className="nav-link" style={{ fontSize: "13px", fontWeight: 500 }}>Programs</Link>
+          <Link href="/cel" className="nav-link" style={{ fontSize: "13px", fontWeight: 500 }}>Corporate Experience Learning</Link>
+          <Link href="/skillos" className="nav-link" style={{ fontSize: "13px", fontWeight: 500 }}>SkillOS</Link>
+          <Link href="/fsl" className="nav-link" style={{ fontSize: "13px", fontWeight: 500 }}>Competitions</Link>
+          <Link href="/passport" className="nav-link" style={{ fontSize: "13px", fontWeight: 500 }}>Certifications</Link>
+          <Link href="/partners" className="nav-link" style={{ fontSize: "13px", fontWeight: 500 }}>Partnerships</Link>
+          <Link href="/about" className="nav-link" style={{ fontSize: "13px", fontWeight: 500 }}>About</Link>
+          
+          <div style={{ width: "1px", height: "16px", background: "var(--border-color)", margin: "0 4px" }}></div>
+          
+          {/* Utility links / quick access */}
+          <Link href="/blog" className="nav-link" style={{ fontSize: "11px", opacity: 0.8 }}>Blog</Link>
           
           {/* Theme Alternator Button */}
           <button 
@@ -84,8 +90,8 @@ export default function Header() {
               background: "rgba(255, 255, 255, 0.08)",
               border: "1px solid rgba(255, 255, 255, 0.15)",
               borderRadius: "50%",
-              width: "36px",
-              height: "36px",
+              width: "32px",
+              height: "32px",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -98,8 +104,7 @@ export default function Header() {
             aria-label="Toggle Theme"
           >
             {theme === "dark" ? (
-              // Sun Icon
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <circle cx="12" cy="12" r="5"></circle>
                 <line x1="12" y1="1" x2="12" y2="3"></line>
                 <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -111,20 +116,21 @@ export default function Header() {
                 <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
               </svg>
             ) : (
-              // Moon Icon
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
               </svg>
             )}
           </button>
 
-          <Link href="/contact" className="glow-btn-primary" style={{ padding: "10px 20px", fontSize: "14px" }}>
-            Apply Now
+          <Link href="/skillos" className="nav-link" style={{ fontSize: "13px", fontWeight: 500 }}>Log In</Link>
+
+          <Link href="/contact" className="glow-btn-primary" style={{ padding: "8px 16px", fontSize: "13px", whiteSpace: "nowrap" }}>
+            Book Free Career Diagnostic
           </Link>
         </nav>
 
         {/* Mobile Controls */}
-        <div className="mobile-only" style={{ display: "flex", gap: "12px", alignItems: "center" }}>
+        <div className="mobile-only mobile-flex" style={{ display: "flex", gap: "12px", alignItems: "center" }}>
           
           {/* Theme Alternator Mobile Button */}
           <button 
@@ -188,40 +194,24 @@ export default function Header() {
       </div>
 
       {/* Mobile Menu Drawer */}
-      {isOpen && (
-        <div 
-          className="mobile-drawer"
-          style={{
-            position: "fixed",
-            top: 0,
-            right: 0,
-            bottom: 0,
-            left: 0,
-            backgroundColor: "var(--background)",
-            zIndex: 1050,
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            gap: "20px"
-          }}
+      <div className={`mobile-drawer ${isOpen ? "open" : ""}`}>
+        <Link href="/programs" onClick={() => setIsOpen(false)} style={{ fontSize: "18px", fontWeight: 600 }}>Programs</Link>
+        <Link href="/cel" onClick={() => setIsOpen(false)} style={{ fontSize: "18px", fontWeight: 600 }}>Corporate Experience Learning</Link>
+        <Link href="/skillos" onClick={() => setIsOpen(false)} style={{ fontSize: "18px", fontWeight: 600 }}>SkillOS</Link>
+        <Link href="/fsl" onClick={() => setIsOpen(false)} style={{ fontSize: "18px", fontWeight: 600 }}>Competitions</Link>
+        <Link href="/passport" onClick={() => setIsOpen(false)} style={{ fontSize: "18px", fontWeight: 600 }}>Certifications</Link>
+        <Link href="/partners" onClick={() => setIsOpen(false)} style={{ fontSize: "18px", fontWeight: 600 }}>Partnerships</Link>
+        <Link href="/about" onClick={() => setIsOpen(false)} style={{ fontSize: "18px", fontWeight: 600 }}>About</Link>
+        <Link href="/blog" onClick={() => setIsOpen(false)} style={{ fontSize: "18px", fontWeight: 600 }}>Blog / Skill Report</Link>
+        <Link 
+          href="/contact" 
+          onClick={() => setIsOpen(false)} 
+          className="glow-btn-primary" 
+          style={{ marginTop: "12px", width: "80%", justifyContent: "center" }}
         >
-          <Link href="/" onClick={() => setIsOpen(false)} style={{ fontSize: "18px", fontWeight: 600 }}>Home</Link>
-          <Link href="/programs" onClick={() => setIsOpen(false)} style={{ fontSize: "18px", fontWeight: 600 }}>Academics</Link>
-          <Link href="/cel" onClick={() => setIsOpen(false)} style={{ fontSize: "18px", fontWeight: 600 }}>Pedagogy</Link>
-          <Link href="/skillos" onClick={() => setIsOpen(false)} style={{ fontSize: "18px", fontWeight: 600 }}>SkillOS Lab</Link>
-          <Link href="/stories" onClick={() => setIsOpen(false)} style={{ fontSize: "18px", fontWeight: 600 }}>Outcomes</Link>
-          <Link href="/mentors" onClick={() => setIsOpen(false)} style={{ fontSize: "18px", fontWeight: 600 }}>Faculty</Link>
-          <Link 
-            href="/contact" 
-            onClick={() => setIsOpen(false)} 
-            className="glow-btn-primary" 
-            style={{ marginTop: "12px", width: "80%", justifyContent: "center" }}
-          >
-            Apply Now
-          </Link>
-        </div>
-      )}
+          Book Free Career Diagnostic
+        </Link>
+      </div>
     </header>
   );
 }

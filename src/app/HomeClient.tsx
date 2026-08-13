@@ -5,101 +5,218 @@ import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
+// SVG Circular Sector Path Generator Helper
+const getArcPath = (x: number, y: number, radius: number, innerRadius: number, startAngle: number, endAngle: number) => {
+  const startAngleRad = (startAngle * Math.PI) / 180;
+  const endAngleRad = (endAngle * Math.PI) / 180;
+  
+  const x1_outer = x + radius * Math.cos(startAngleRad);
+  const y1_outer = y + radius * Math.sin(startAngleRad);
+  const x2_outer = x + radius * Math.cos(endAngleRad);
+  const y2_outer = y + radius * Math.sin(endAngleRad);
+  
+  const x1_inner = x + innerRadius * Math.cos(startAngleRad);
+  const y1_inner = y + innerRadius * Math.sin(startAngleRad);
+  const x2_inner = x + innerRadius * Math.cos(endAngleRad);
+  const y2_inner = y + innerRadius * Math.sin(endAngleRad);
+  
+  const largeArcFlag = endAngle - startAngle > 180 ? 1 : 0;
+  
+  return `M ${x1_inner} ${y1_inner} L ${x1_outer} ${y1_outer} A ${radius} ${radius} 0 ${largeArcFlag} 1 ${x2_outer} ${y2_outer} L ${x2_inner} ${y2_inner} A ${innerRadius} ${innerRadius} 0 ${largeArcFlag} 0 ${x1_inner} ${y1_inner} Z`;
+};
+
+// Chessboard Stats data matching Screenshot 1
+const powerhouseStats = [
+  { val: "30+", label: "Years of Legacy" },
+  { val: "20K+", label: "Global Students" },
+  { val: "120+", label: "Countries Presence" },
+  { val: "40+", label: "Franchisees PAN India" },
+  { val: "No.1", label: "AI-Powered Experience Platform" },
+  { val: "11+", label: "Copyrighted Learning Frameworks" },
+  { val: "1200+", label: "Lab and Practice Drills" },
+  { val: "280+", label: "Empanelled Industry Instructors" },
+  { val: "250+", label: "Dedicated Support Team" },
+  { val: "40+", label: "Industry Advisory Mentors" },
+  { val: "60+", label: "Active Placement Partners" },
+  { val: "50+", label: "Institutional Partnerships" }
+];
+
+// WHY CEL Wheel slices data matching Screenshot 2
+const whyCelSlices = [
+  {
+    num: "01",
+    label: "Best in Class",
+    sublabel: "Industry Instructors",
+    color: "#D97706", // Orange
+    title: "Best in Class Industry Instructors",
+    desc: "Learn from engineering leads and architects who build production systems at scale, bringing real-world blueprints directly into the classroom."
+  },
+  {
+    num: "02",
+    label: "Techlearns-backed",
+    sublabel: "Ecosystem",
+    color: "#65A30D", // Lime/Green
+    title: "Backed by the Techlearns Enterprise Network",
+    desc: "Gain immediate leverage from a learning platform co-designed with engineering leaders and enterprise partners across the technology landscape."
+  },
+  {
+    num: "03",
+    label: "Hiring commitment",
+    sublabel: "Before Admission",
+    color: "#B91C1C", // Red
+    title: "Pre-Hired Model & Employer Commitment",
+    desc: "Qualify through the Techlearns Entrance Test (TLET) to secure placement pipelines and employer interest before diving into intensive engineering sprints."
+  },
+  {
+    num: "04",
+    label: "Industry-aligned",
+    sublabel: "Curriculum & Pedagogy",
+    color: "#1D4ED8", // Blue
+    title: "Corporate Workflow Curricula",
+    desc: "No static slides. Sprints, GitHub PR reviews, code standards, CI tests, and documentation gates are baked into your daily schedule."
+  },
+  {
+    num: "05",
+    label: "Niche",
+    sublabel: "Tech Domains Focused",
+    color: "#7C3AED", // Purple
+    title: "Specialised High-Demand Tech Tracks",
+    desc: "Focus on AI Engineering, Cloud Platform Engineering, MLOps, Cybersecurity SOC operations, and Modern Analytics rather than generic code paths."
+  },
+  {
+    num: "06",
+    label: "AI-Enabled",
+    sublabel: "Adaptive Practice",
+    color: "#0F766E", // Teal
+    title: "Telemetry-Driven Adaptive SkillOS",
+    desc: "Our practice engine adapts labs, drills and quizzes based on your active code quality telemetry, helping you isolate and close skill gaps faster."
+  },
+  {
+    num: "07",
+    label: "Hyper-personalised",
+    sublabel: "Learning Experience",
+    color: "#BE185D", // Pink
+    title: "Individual Skill Pathways & Mentor Allocation",
+    desc: "Get assigned your own industry practitioner for PR review gates, helping you review architecture trade-offs and code structure weekly."
+  },
+  {
+    num: "08",
+    label: "Early exposure",
+    sublabel: "Corporate Culture",
+    color: "#C2410C", // Red-Orange
+    title: "Engineering Team Ritual Immersion",
+    desc: "Operate in structured stand-ups, retro reviews, and cross-functional incident simulations to acquire the soft execution habits of real engineering leads."
+  }
+];
+
 // Data Structure definitions
 const celStages = [
-  { name: "ENTRANCE", title: "Milestone 01: Qualify TLET Entrance Test", desc: "Pass the TechLearns Entrance Test (TLET) to assess analytical thinking, core logic, and technical aptitude.", task: "TLET Exam & Analytical Diagnostics" },
-  { name: "GATEWAY", title: "Milestone 02: Corporate Gateway", desc: "Secure your pass to Cyber Hub, Gurugram (or remote gateway) for physical/hybrid onboarding and immersion.", task: "DLF Cyber City Onboarding" },
-  { name: "SELECTION", title: "Milestone 03: Hiring Drive Selection", desc: "Showcase your portfolio and coding skills to top-tier technology recruiters and engineering leads during active selection sprints.", task: "Hiring Drives & Recruiter Sprints" },
-  { name: "CONFIRM", title: "Milestone 04: Pre-Placement Offer (PPO)", desc: "Secure a formal, legally backed Pre-Placement Offer Letter containing your compensation and role parameters before core training begins.", task: "PPO Verification & Career Security" },
-  { name: "LAUNCH", title: "Milestone 05: Experiential Tech Training", desc: "Undergo 6-12 months of rigorous AI-enabled software engineering training, working in agile sprints to ship real code.", task: "Core Engineering & Production Deployments" }
+  { name: "Assess", title: "01. Assess", desc: "Diagnostic assessment, career intent, baseline capability and role fit.", task: "Diagnostic & Goal Mapping" },
+  { name: "Learn", title: "02. Learn", desc: "Live instruction, guided modules and core concept reviews.", task: "Live Cohort Instruction" },
+  { name: "Practise", title: "03. Practise", desc: "Daily labs, drills, quizzes, database setup, and AI-assisted practice loops.", task: "Daily Hands-on Drills" },
+  { name: "Build", title: "04. Build", desc: "Mini-projects, team projects, capstone products, and production-grade architectures.", task: "Artifact Production" },
+  { name: "Operate", title: "05. Operate", desc: "Stand-ups, sprints, tickets, pull request reviews, and public demos.", task: "Agile Work Simulation" },
+  { name: "Experience", title: "06. Experience", desc: "Expert talks, industry visits, job shadowing, mentor reviews, and internships.", task: "Employer Engagements" },
+  { name: "Compete", title: "07. Compete", desc: "Hackathons, CTFs, datathons, cloud architecture challenges, and demo days.", task: "FSL Season Challenges" },
+  { name: "Validate", title: "08. Validate & Launch", desc: "Skill Passport cryptographic auditing, credential preparation, mock hiring, and recruiter showcase launch.", task: "Career Readiness & Launch" }
 ];
 
 const celWorkflows = [
-  { title: "Sprint Planning", desc: "Define backlog items, assign tickets, and estimate story points like a professional engineering crew.", icon: "📋" },
-  { title: "Daily Standup", desc: "Sync development updates, report blockers, and align day-to-day milestones in 15-minute syncs.", icon: "⏰" },
-  { title: "Git Workflow", desc: "Create feature branches, perform rebase operations, and merge PRs following strict team standards.", icon: "🌿" },
-  { title: "Peer Review", desc: "Conduct syntax audits, comment on design architectures, and request approvals before deployment.", icon: "👁️" },
-  { title: "Demo Day", desc: "Present live working builds to external technical experts, detailing engineering constraints and metrics.", icon: "🚀" },
-  { title: "Industry Review", desc: "Recieve code audits from engineering leaders at Google, Meta, and Netflix to verify passport skills.", icon: "👔" }
+  { title: "Stand-up & Sprint Planning", desc: "Daily stand-up updates, backlog prioritisation, story-point estimation and role allocation in structured Scrum sprints.", icon: "📋" },
+  { title: "Build Cycle & Version Control", desc: "Branch discipline, code reviews, documentation, QA testing and PR merges following engineering team standards.", icon: "🌿" },
+  { title: "Review Gate", desc: "Mentor, code, design and data reviews with clear rubrics and mandatory revision requirements before advancement.", icon: "👁️" },
+  { title: "Demo Day", desc: "Present live working products to a mixed technical and business jury — external experts, mentors, and industry partners.", icon: "🚀" },
+  { title: "Incident Simulation", desc: "Debug, recover, communicate and document under time pressure — mirroring on-call engineering responsibilities.", icon: "⚡" },
+  { title: "Retrospective", desc: "Structured reflection on what worked, what failed, root-cause analysis, and documented improvement commitments.", icon: "🔁" }
 ];
 
 const skillOSTabs = [
-  { id: "practice", label: "Practice Engine", title: "Continuous Interactive Coding", desc: "Execute automated code challenges verified against unit tests. Monitor performance benchmarks, runtime memory, and clean formatting styles in real-time." },
-  { id: "projects", label: "Real Projects", title: "Agile Workspace Dashboard", desc: "Claim unresolved system tickets directly on a mock Jira dashboard. Write code locally, commit to GitHub, and see tests validate on deploy hooks." },
-  { id: "competitions", label: "League CTFs", title: "Future Skills League Hub", desc: "Compete in national buildathons, optimize data algorithms, and attempt security capture-the-flags to push your name up the live leaderboards." },
-  { id: "mentor", label: "Code Reviews", title: "Asynchronous Mentor Feedback", desc: "Review comments left on your Pull Requests by engineering leaders, showing precisely where to improve modular architecture and readability." },
-  { id: "analytics", label: "Skill Passport Analytics", title: "Engineering Competency Heatmap", desc: "Visualize an interactive graph tracking Git activity, deployment velocity, communication scores, system design competency, and coding test metrics." },
-  { id: "career", label: "Recruiter Board", title: "Verified Placement Channels", desc: "Authorize hiring corporations to search your verified portfolio, check your code history, review project architecture documents, and request interviews." }
+  { id: "practice", label: "Practice Engine", title: "Daily Interactive Labs", desc: "Daily coding labs, SQL challenges, cloud drills, quizzes, AI-assisted practice and case-based exercises verified against unit tests and performance benchmarks." },
+  { id: "projects", label: "Live Projects", title: "Corporate Project Board", desc: "Claim real project briefs and live challenge tickets on a sprint board. Submit code to GitHub, get automated CI checks, and receive external jury feedback at review gates." },
+  { id: "competitions", label: "FSL Competitions", title: "Future Skills League Hub", desc: "Compete in national AI buildathons, data science challenges, cybersecurity CTFs and cloud architecture sprints. League standings are shared with partner recruiters." },
+  { id: "mentor", label: "Mentor Reviews", title: "Asynchronous Mentor Feedback", desc: "Structured, rubric-based review comments on your Pull Requests from industry practitioners — showing precisely where to improve technical depth, communication and code quality." },
+  { id: "analytics", label: "Skill Passport", title: "Engineering Competency Dashboard", desc: "A dynamic evidence profile tracking baseline-to-outcome skill growth, practice consistency, project artifacts, competition results, mentor reviews and credential readiness." },
+  { id: "career", label: "Recruiter Showcase", title: "Consent-Based Employer Discovery", desc: "Authorise hiring companies to browse your verified Skill Passport — including project links, Git history, peer-review logs, competition standings and interview readiness indicators." }
 ];
 
 const programsList = [
-  { title: "Generative AI Engineering", duration: "6 Months", salary: "₹18 - ₹45 LPA", projects: 12, capstone: "Multi-Agent Workflow Orchestrator", challenge: "FSL AI Buildathon" },
-  { title: "AI-Enabled Full Stack", duration: "12 Months", salary: "₹12 - ₹30 LPA", projects: 8, capstone: "Real-time Collaborative SaaS Editor", challenge: "National Full Stack Hackathon" },
-  { title: "Cloud Platform & DevOps", duration: "6 Months", salary: "₹14 - ₹35 LPA", projects: 10, capstone: "Kubernetes Auto-scaling Pipeline", challenge: "DevOps CTF Challenge" },
-  { title: "Cybersecurity & Networks", duration: "8 Months", salary: "₹10 - ₹28 LPA", projects: 14, capstone: "Distributed Intrusion Detection Engine", challenge: "FSL Cyber CTF Finals" },
-  { title: "Data Analytics & Engineering", duration: "6 Months", salary: "₹9 - ₹24 LPA", projects: 9, capstone: "Real-Time Ad-Tech Stream Analytics", challenge: "FSL Datathon" },
-  { title: "MLOps Engineering", duration: "8 Months", salary: "₹15 - ₹40 LPA", projects: 11, capstone: "Real-time LLM Guardrail Monitoring", challenge: "FSL MLOps Hackathon" }
+  { title: "Generative AI & Agentic AI Engineering", duration: "5-6 Months", salary: "₹18 - ₹45 LPA", projects: 5, capstone: "Team-built AI Product with External Jury Defense", challenge: "AI Buildathon" },
+  { title: "Full-Stack Software Engineering with AI", duration: "6-9 Months", salary: "₹12 - ₹30 LPA", projects: 4, capstone: "Production SaaS App with System Design & Security", challenge: "Hackathon / Product Sprint" },
+  { title: "Data Analytics + BI + GenAI", duration: "4-6 Months", salary: "₹9 - ₹24 LPA", projects: 3, capstone: "Executive Business Insight Memo & Jury Presentation", challenge: "Datathon Challenge" },
+  { title: "Cybersecurity & SOC Analyst", duration: "6 Months", salary: "₹10 - ₹28 LPA", projects: 4, capstone: "Incident Report, CTF Evidence & Security Lab Portfolio", challenge: "Capture-the-Flag (CTF)" },
+  { title: "Cloud, DevOps & Platform Engineering", duration: "6 Months", salary: "₹14 - ₹35 LPA", projects: 4, capstone: "Deployed System Architecture & Incident Simulation", challenge: "Cloud Architecture Challenge" },
+  { title: "Data Science, ML & MLOps", duration: "6-9 Months", salary: "₹15 - ₹40 LPA", projects: 4, capstone: "Production ML Pipeline with Model Monitoring & Guardrails", challenge: "Bug Bash / Debug Derby" },
+  { title: "Data Engineering & Modern Analytics", duration: "6 Months", salary: "₹11 - ₹32 LPA", projects: 4, capstone: "Real-Time Data Pipeline with Governance Framework", challenge: "API Integration Challenge" }
 ];
 
 const leaderboardData = [
-  { rank: 1, name: "Saahil Paul", score: 2940, batch: "AI-2026A", badge: "Grandmaster" },
-  { rank: 2, name: "Anya Sharma", score: 2810, batch: "FS-2026B", badge: "Master" },
-  { rank: 3, name: "Kabir Roy", score: 2750, batch: "DO-2026A", badge: "Master" },
-  { rank: 4, name: "Tanvi Sen", score: 2680, batch: "AI-2026A", badge: "Expert" }
+  { rank: 1, name: "Saahil Paul", score: 2940, batch: "GenAI-2026A", badge: "Grandmaster" },
+  { rank: 2, name: "Anya Sharma", score: 2810, batch: "FullStack-2026B", badge: "Master" },
+  { rank: 3, name: "Kabir Roy", score: 2750, batch: "Cloud-2026A", badge: "Master" },
+  { rank: 4, name: "Tanvi Sen", score: 2680, batch: "GenAI-2026A", badge: "Expert" }
 ];
 
 const recruiterCandidates = [
-  { name: "Saahil Paul", role: "Full Stack Engineer", score: "92%", commits: "482 commits", ready: "Placement Ready", stack: "Next.js, Python, Redis" },
-  { name: "Anya Sharma", role: "AI & ML Specialist", score: "94%", commits: "620 commits", ready: "Placement Ready", stack: "PyTorch, FastAPI, Docker" },
-  { name: "Kabir Roy", role: "DevOps Architect", score: "90%", commits: "394 commits", ready: "Interview Stage", stack: "Terraform, Kubernetes, GitHub Actions" }
+  { name: "Saahil Paul", role: "Generative AI Engineer", score: "92%", commits: "482 commits", ready: "Placement Ready", stack: "Python, LangChain, FastAPI, Docker" },
+  { name: "Anya Sharma", role: "Full-Stack Engineer", score: "94%", commits: "620 commits", ready: "Placement Ready", stack: "Next.js, Node.js, PostgreSQL, AWS" },
+  { name: "Kabir Roy", role: "Cloud & DevOps Engineer", score: "90%", commits: "394 commits", ready: "Interview Stage", stack: "Terraform, Kubernetes, GitHub Actions, GCP" }
 ];
 
 const successStoriesList = [
   {
     name: "Rohan Das",
-    role: "Software Engineer at AWS",
-    before: "Struggling graduate watching recorded videos",
-    projects: "Built high-frequency order match trading engine",
-    competitions: "Ranked 3rd in Future Skills League",
-    offer: "Joined AWS at ₹28 LPA package",
+    role: "Generative AI Engineer",
+    before: "Computer Science graduate with no practical AI project experience",
+    projects: "Built a production RAG system and multi-agent workflow for a fintech brief",
+    competitions: "Ranked 3rd in Techlearns Future Skills League — AI Buildathon Season",
+    offer: "Secured a role at a Series B AI startup at ₹28 LPA",
     avatarBg: "linear-gradient(135deg, #FF9900, #FF5500)"
   },
   {
     name: "Nikita Kapoor",
-    role: "AI Engineer at Microsoft",
-    before: "Non-CS background doing traditional courses",
-    projects: "Created autonomous multimodal document parser",
-    competitions: "Won AI Buildathon 2025",
-    offer: "Joined Microsoft AI Group at ₹34 LPA",
+    role: "Data Analyst & BI Specialist",
+    before: "Commerce graduate who had never written a line of SQL before TechLearns",
+    projects: "Developed a full Power BI dashboard and executive insight memo for a real client brief",
+    competitions: "Won the Techlearns Datathon 2025 — Jury awarded top evidence portfolio",
+    offer: "Joined a leading analytics consultancy at ₹16 LPA",
     avatarBg: "linear-gradient(135deg, #00A4EF, #0078D7)"
   }
 ];
 
 const faqsList = [
   {
-    question: "How is Techlearns different from platforms like Scaler or traditional bootcamps?",
-    answer: "Traditional bootcamps function like 'Netflix for courses'—you watch videos, do exercises, and get a certificate. Techlearns functions like joining a software company. You get assigned actual system tickets, work in agile development teams with standups, compete in the national Future Skills League, and graduate with a verified Skill Passport showing audit-proof evidence of your coding, collaboration, and deployment skills."
+    question: "What is Corporate Experience Learning (CEL) and how is it different?",
+    answer: "CEL is TechLearns' core pedagogy. Instead of watching video lectures, you operate inside a simulated corporate team — claiming Jira tickets, committing code, attending daily stand-ups, doing sprint planning, presenting at demo days and receiving review-gate feedback from mentors. The blueprint defines it as an eight-stage flywheel: Assess, Learn, Practise, Build, Operate, Experience, Compete, Validate. You never spend too long in 'learn' mode without building something real."
   },
   {
-    question: "What does the 'Pre-Hired First, Then Trained' model mean?",
-    answer: "It means selected candidates receive a formal Pre-Placement Offer Letter (PPO) containing clear role, location, and salary parameters before their core technical training begins. You secure your career outcome first, and then undergo focused, mentor-led training to master the exact technology stack required by your hiring employer."
+    question: "How is TechLearns different from Scaler, upGrad, or traditional bootcamps?",
+    answer: "Traditional platforms give you content and a certificate. TechLearns gives you a Corporate Experience journey. The key differences are: the TEEE pedagogical model (personalised to your role target), an AI-first daily tooling culture (Copilot, Cursor, Claude), the Future Skills League competition ecosystem, structured offline industry visits, and a Cryptographic Skill Passport that shows recruiters verifiable evidence — not just a completion badge."
   },
   {
-    question: "What is the Skill Passport and how is it evaluated?",
-    answer: "The Skill Passport is a cryptographic, verified candidate profile that replaces traditional resume resumes. It maps actual code verification links, Git commit records, peer review logs, team-project scores, and hackathon standing data directly to a single shareable profile. Employers don't just see a certificate; they audit the real history of everything you built."
+    question: "What is the Techlearns Skill Passport?",
+    answer: "The Skill Passport is your dynamic evidence profile at graduation. It contains your role target, verified skill scores, practice consistency data, portfolio project links, Git commit history, competition results, mentor review feedback, presentation performance, external credential readiness and internship evidence. It replaces the traditional resume for technical roles by showing what you can actually do — not just what courses you completed."
   },
   {
-    question: "Do I get an internship or pre-placement offer before the program?",
-    answer: "Yes, candidates qualifying our entrance exams are eligible for early pre-placement letters (PPOs) from our network of 200+ partner companies. You lock in your hire parameters first, then undergo specialized training aligned with the hiring company's technology stack."
+    question: "What credentials and certifications do I get?",
+    answer: "TechLearns uses a three-layer credential stack. Layer A: official external pathways from Microsoft (Applied Skills), Google (Career Certificates), AWS, and Cisco where you qualify. Layer B: Techlearns-issued credentials — Course Completion, Skill Distinction (awarded only after performance thresholds), and the Corporate Experience Readiness Badge. Layer C: experience credentials — Live Project badge, FSL Hackathon badge, Industry Mentor Review badge, and Internship evidence."
   },
   {
-    question: "What happens if I fail the TLET Entrance Test?",
-    answer: "If you fail, you can access our free prep tracks containing core logical frameworks, syntax exercises, and programming fundamentals. You are welcome to re-attempt the TLET exam in 30 days."
+    question: "What is the Future Skills League (FSL)?",
+    answer: "FSL is TechLearns' national competition ecosystem — a recurring season of AI buildathons, cybersecurity CTFs, datathons, cloud architecture challenges and demo days. Competitions are curriculum milestones, not optional add-ons. League standings are shared directly with partner recruiters. Winning or placing in the FSL is concrete, verifiable proof of performance under pressure — which is exactly what employers want to see."
+  },
+  {
+    question: "What is the 30-50-20 learning mix?",
+    answer: "Every flagship program follows an intentional design ratio: approximately 30% guided concepts and demonstrations, 50% applied practice and project work, and 20% industry exposure, competitions, reviews and career evidence. Theory never dominates. You are always building, reviewing, competing or presenting."
+  },
+  {
+    question: "Who are the typical learners at TechLearns?",
+    answer: "TechLearns is designed for students, recent graduates, early-career professionals, and career switchers who want to transition into high-demand tech roles in AI engineering, full-stack development, data analytics, cloud & DevOps, cybersecurity or data science. Programs range from 4 weeks (AI Foundations) to 9 months (Full-Stack with AI or ML & MLOps) based on depth required."
   }
 ];
 
 export default function HomeClient() {
   const [activeCel, setActiveCel] = useState(0);
+  const [activeWhyCelSlice, setActiveWhyCelSlice] = useState(0);
   const [activeSkillOSTab, setActiveSkillOSTab] = useState("analytics");
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
   const [recruiterSearch, setRecruiterSearch] = useState("");
@@ -146,34 +263,43 @@ export default function HomeClient() {
                   color: "var(--secondary-magenta)",
                   padding: "6px 14px",
                   borderRadius: "20px",
-                  fontSize: "12px",
-                  fontWeight: 650,
-                  letterSpacing: "0.05em",
+                  fontSize: "11px",
+                  fontWeight: 700,
+                  letterSpacing: "0.1em",
                   textTransform: "uppercase",
-                  fontFamily: "monospace",
+                  fontFamily: "var(--font-headings)",
                   animationDelay: "0.05s"
                 }}
               >
-                ⚡ Cohort 2026 Admissions Open
+                ⚡ A NEXT-GENERATION CORPORATE EXPERIENCE LEARNING ECOSYSTEM
               </span>
               
               <h1 className="fade-in-up" style={{ fontSize: "56px", lineHeight: "1.1", fontWeight: 900, color: "var(--foreground)", animationDelay: "0.15s" }}>
-                India's 1st <br />
-                <span className="text-gradient-purple">Pre-Hired School</span> <br />
-                for Software Engineers.
+                Learning technology<br />
+                <span className="text-gradient-purple">isn't enough.</span><br />
+                Experience how it's built.
               </h1>
               
               <p className="fade-in-up" style={{ fontSize: "18px", color: "var(--foreground-muted)", lineHeight: "1.65", animationDelay: "0.25s" }}>
-                At TechLearns Academy, you get pre-hired first, then trained. Powered by Industry Titans, Defined by Performance. Get a guaranteed placement letter before your course begins.
+                Techlearns turns technology learning into a measurable corporate experience journey — combining current skills, real work practices, industry exposure, live projects, competitions and a digital Skill Passport, in one integrated ecosystem.
+              </p>
+
+              <p className="fade-in-up" style={{ fontSize: "14px", color: "var(--foreground-muted)", letterSpacing: "0.08em", fontWeight: 700, textTransform: "uppercase", animationDelay: "0.3s" }}>
+                Learn. Experience. Build. Compete. Prove. Lead.
               </p>
               
-              <div className="fade-in-up" style={{ display: "flex", gap: "16px", flexWrap: "wrap", marginTop: "10px", animationDelay: "0.35s" }}>
-                <Link href="/programs" className="glow-btn-primary">
-                  Explore Academics
-                </Link>
-                <a href="#contact" className="glow-btn-secondary">
-                  Experience a Live Lab
-                </a>
+              <div className="fade-in-up" style={{ display: "flex", flexDirection: "column", gap: "12px", animationDelay: "0.35s" }}>
+                <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
+                  <Link href="/programs" className="glow-btn-primary">
+                    Explore Flagship Programs
+                  </Link>
+                  <Link href="/cel" className="glow-btn-secondary" style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                    See How Corporate Experience Learning Works →
+                  </Link>
+                </div>
+                <span style={{ fontSize: "12px", color: "var(--foreground-muted-extra)" }}>
+                  Free diagnostic assessment · No commitment · Get a personalised role-fit map in minutes
+                </span>
               </div>
             </div>
 
@@ -197,43 +323,50 @@ export default function HomeClient() {
               >
                 <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
                   <span style={{ fontSize: "11px", color: "var(--secondary-magenta)", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase" }}>
-                    Admissions Portfolio
+                    Techlearns CEL Ecosystem
                   </span>
                   <h2 style={{ fontSize: "28px", fontWeight: 800, color: "var(--foreground)", lineHeight: "1.3", margin: 0 }}>
-                    Start Your Journey <br />
-                    With <span className="text-gradient-purple">TechLearns</span>
+                    Stop collecting certificates.<br />
+                    Start building <span className="text-gradient-purple">proof.</span>
                   </h2>
                   <p style={{ fontSize: "14px", color: "var(--foreground-muted)", lineHeight: "1.5", margin: "8px 0 0 0" }}>
-                    Qualify for a unique 6 to 12 Months AI-Enabled Experiential Software Engineering Program. Get hired by top technology companies first, then undergo structured, mentor-led training.
+                    A completion certificate doesn't prove you can perform. Techlearns replaces "I finished a course" with "here's what I can do — and here's the evidence."
                   </p>
                 </div>
 
                 <div style={{ display: "flex", flexDirection: "column", gap: "12px", borderTop: "1px solid var(--border-color)", borderBottom: "1px solid var(--border-color)", padding: "20px 0" }}>
                   <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-                    <div style={{ fontSize: "24px" }}>🎓</div>
+                    <div style={{ fontSize: "24px" }}>🎯</div>
                     <div>
-                      <div style={{ fontSize: "13px", fontWeight: 650, color: "var(--foreground)" }}>Entrance Qualification</div>
-                      <div style={{ fontSize: "12px", color: "var(--foreground-muted)" }}>TLET Admission Test</div>
+                      <div style={{ fontSize: "13px", fontWeight: 650, color: "var(--foreground)" }}>Diagnostic Assessment</div>
+                      <div style={{ fontSize: "12px", color: "var(--foreground-muted)" }}>Skill baseline, role fit & career mapping</div>
                     </div>
                   </div>
                   <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
                     <div style={{ fontSize: "24px" }}>🏢</div>
                     <div>
-                      <div style={{ fontSize: "13px", fontWeight: 650, color: "var(--foreground)" }}>Corporate Gateway</div>
-                      <div style={{ fontSize: "12px", color: "var(--foreground-muted)" }}>DLF Cyber City, Gurugram & Remote</div>
+                      <div style={{ fontSize: "13px", fontWeight: 650, color: "var(--foreground)" }}>Corporate Work Rituals</div>
+                      <div style={{ fontSize: "12px", color: "var(--foreground-muted)" }}>Stand-ups, sprints, reviews, demo days</div>
                     </div>
                   </div>
                   <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-                    <div style={{ fontSize: "24px" }}>🎫</div>
+                    <div style={{ fontSize: "24px" }}>🏆</div>
                     <div>
-                      <div style={{ fontSize: "13px", fontWeight: 650, color: "var(--foreground)" }}>Global Recognition</div>
-                      <div style={{ fontSize: "12px", color: "var(--foreground-muted)" }}>Verified Skill Passport</div>
+                      <div style={{ fontSize: "13px", fontWeight: 650, color: "var(--foreground)" }}>Future Skills League</div>
+                      <div style={{ fontSize: "12px", color: "var(--foreground-muted)" }}>Hackathons, CTFs, buildathons & datathons</div>
+                    </div>
+                  </div>
+                  <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+                    <div style={{ fontSize: "24px" }}>💳</div>
+                    <div>
+                      <div style={{ fontSize: "13px", fontWeight: 650, color: "var(--foreground)" }}>Verified Skill Passport</div>
+                      <div style={{ fontSize: "12px", color: "var(--foreground-muted)" }}>Evidence profile — not just a certificate</div>
                     </div>
                   </div>
                 </div>
 
                 <a href="#contact" className="glow-btn-primary" style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "100%", padding: "14px 20px" }}>
-                  Download Syllabus & Dossier
+                  Book Free Career Diagnostic
                 </a>
               </div>
             </div>
@@ -241,95 +374,47 @@ export default function HomeClient() {
           </div>
         </section>
 
-        {/* 2. PROBLEM SECTION */}
+        {/* 2. THE SHIFT / PROBLEM STATEMENT BAND */}
         <section id="problem" style={{ padding: "100px 0 80px", background: "rgba(255, 255, 255, 0.015)", borderTop: "1px solid var(--border-color)", borderBottom: "1px solid var(--border-color)" }}>
           <div className="container">
             
             <div style={{ textAlign: "center", marginBottom: "60px" }}>
-              <h2 className="fade-in-up" style={{ fontSize: "36px", marginBottom: "16px", color: "var(--foreground)" }}>Why Most Students Still Struggle After Completing Courses</h2>
-              <p className="fade-in-up" style={{ color: "var(--foreground-muted)", maxWidth: "650px", margin: "0 auto", animationDelay: "0.1s" }}>
-                Generic tutorials make you feel like you are learning. But the moment you face real code repositories, everything breaks.
+              <span style={{ fontSize: "11px", color: "#CB6CE6", fontWeight: 700, fontFamily: "monospace", letterSpacing: "0.15em", textTransform: "uppercase" }}>
+                WHY WE EXIST
+              </span>
+              <h2 className="fade-in-up" style={{ fontSize: "36px", fontWeight: 800, marginTop: "12px", marginBottom: "16px", color: "var(--foreground)" }}>
+                A certificate has never proven that someone can perform.
+              </h2>
+              <p className="fade-in-up" style={{ color: "var(--foreground-muted)", maxWidth: "800px", margin: "0 auto", fontSize: "16px", lineHeight: "1.7", animationDelay: "0.1s" }}>
+                Most learning platforms measure what you watched. Techlearns measures what you can do. We built Corporate Experience Learning because content without context, projects without operating discipline, and certificates without proof don't survive contact with a real job.
               </p>
             </div>
 
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "24px", marginBottom: "60px" }}>
-              <div className="glass-card fade-in-up" style={{ padding: "30px", borderLeft: "4px solid #FF5F56", animationDelay: "0.1s" }}>
-                <h3 style={{ fontSize: "18px", color: "var(--foreground)", marginBottom: "10px" }}>❌ Passive Watching</h3>
-                <p style={{ fontSize: "14px", color: "var(--foreground-muted)" }}>Watched 300 hours of video lectures. Felt comfortable, but never designed custom database schemas or cloud runtimes from scratch.</p>
-              </div>
-              <div className="glass-card fade-in-up" style={{ padding: "30px", borderLeft: "4px solid #FF5F56", animationDelay: "0.2s" }}>
-                <h3 style={{ fontSize: "18px", color: "var(--foreground)", marginBottom: "10px" }}>❌ Ad-Hoc Assignments</h3>
-                <p style={{ fontSize: "14px", color: "var(--foreground-muted)" }}>Completed toy assignments on simplified sandboxes. Never solved git merge conflicts or integrated API gateways.</p>
-              </div>
-              <div className="glass-card fade-in-up" style={{ padding: "30px", borderLeft: "4px solid #FF5F56", animationDelay: "0.3s" }}>
-                <h3 style={{ fontSize: "18px", color: "var(--foreground)", marginBottom: "10px" }}>❌ Certificate Fallacy</h3>
-                <p style={{ fontSize: "14px", color: "var(--foreground-muted)" }}>Received visual certificate badges. Have no verifiable proof-of-work link, commits ledger, or peer reviews to show recruiters.</p>
-              </div>
-            </div>
-
-            <div className="glass-card fade-in-up" style={{ padding: "40px", textAlign: "center", border: "1px dashed var(--secondary-magenta)", background: "rgba(203, 108, 230, 0.03)", animationDelay: "0.4s" }}>
-              <h3 style={{ fontSize: "28px", color: "var(--foreground)", marginBottom: "12px", fontWeight: 800 }}>
-                The Industry Doesn't Hire <span style={{ color: "#CB6CE6" }}>Certificates.</span>
-              </h3>
-              <p style={{ fontSize: "24px", color: "var(--foreground)", fontWeight: 700 }}>
-                It Hires <span className="text-gradient-purple">Evidence.</span>
-              </p>
-            </div>
-
-          </div>
-        </section>
-
-        {/* 3. WHAT MAKES TECHLEARNS DIFFERENT */}
-        <section id="comparison" style={{ padding: "100px 0 80px" }}>
-          <div className="container">
-            
-            <div style={{ textAlign: "center", marginBottom: "60px" }}>
-              <h2 className="fade-in-up" style={{ fontSize: "36px", marginBottom: "16px", color: "var(--foreground)" }}>Traditional Platforms vs. <span style={{ color: "#CB6CE6" }}>TechLearns</span></h2>
-              <p className="fade-in-up" style={{ color: "var(--foreground-muted)", maxWidth: "600px", margin: "0 auto", animationDelay: "0.1s" }}>
-                How TechLearns Academy transforms learning from passive consumer tutorials to professional builder sprints.
-              </p>
-            </div>
-
-            <div className="overflowX: auto fade-in-up" style={{ animationDelay: "0.2s" }}>
-              <table style={{ width: "100%", borderCollapse: "collapse", minWidth: "650px" }}>
+            {/* Before/After Micro-Comparison Table */}
+            <div className="glass-card fade-in-up" style={{ padding: "30px", overflowX: "auto", animationDelay: "0.2s" }}>
+              <table style={{ width: "100%", borderCollapse: "collapse", minWidth: "600px" }}>
                 <thead>
-                  <tr>
-                    <th style={{ padding: "20px", textAlign: "left" }}>Learning Dimensions</th>
-                    <th style={{ padding: "20px", textAlign: "left" }}>Traditional Platforms</th>
-                    <th style={{ padding: "20px", textAlign: "left" }}>TechLearns Academy</th>
+                  <tr style={{ borderBottom: "2px solid var(--border-color)" }}>
+                    <th style={{ padding: "16px", textAlign: "left", color: "var(--foreground-muted-extra)", fontSize: "12px", fontWeight: 700, letterSpacing: "0.05em", width: "50%" }}>MOST LEARNING PLATFORMS</th>
+                    <th style={{ padding: "16px", textAlign: "left", color: "#CB6CE6", fontSize: "12px", fontWeight: 700, letterSpacing: "0.05em", width: "50%" }}>TECHLEARNS</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td style={{ padding: "20px", fontWeight: 600 }}>Core Paradigm</td>
-                    <td style={{ padding: "20px" }}>Learn &amp; Watch videos</td>
-                    <td style={{ padding: "20px", fontWeight: 600, color: "var(--primary-purple-bright)" }}>Learn + Build Real Systems</td>
-                  </tr>
-                  <tr>
-                    <td style={{ padding: "20px", fontWeight: 600 }}>Problem Focus</td>
-                    <td style={{ padding: "20px" }}>Academic toy assignments</td>
-                    <td style={{ padding: "20px", fontWeight: 600, color: "var(--primary-purple-bright)" }}>Real-World Business Tickets</td>
-                  </tr>
-                  <tr>
-                    <td style={{ padding: "20px", fontWeight: 600 }}>Team Mechanics</td>
-                    <td style={{ padding: "20px" }}>Solo project building</td>
-                    <td style={{ padding: "20px", fontWeight: 600, color: "var(--primary-purple-bright)" }}>Agile Team Sprints (SCRUM)</td>
-                  </tr>
-                  <tr>
-                    <td style={{ padding: "20px", fontWeight: 600 }}>Outcome Proof</td>
-                    <td style={{ padding: "20px" }}>Unverified certificates</td>
-                    <td style={{ padding: "20px", fontWeight: 600, color: "var(--primary-purple-bright)" }}>Verified Skill Passport Dashboard</td>
-                  </tr>
-                  <tr>
-                    <td style={{ padding: "20px", fontWeight: 600 }}>Audit Trail</td>
-                    <td style={{ padding: "20px" }}>Recorded progress charts</td>
-                    <td style={{ padding: "20px", fontWeight: 600, color: "var(--primary-purple-bright)" }}>Verifiable Git History &amp; PR Reviews</td>
-                  </tr>
-                  <tr>
-                    <td style={{ padding: "20px", fontWeight: 600 }}>Interview Preparation</td>
-                    <td style={{ padding: "20px" }}>Static mock Q&amp;A sessions</td>
-                    <td style={{ padding: "20px", fontWeight: 600, color: "var(--primary-purple-bright)" }}>12-Month Experiential Corporate Workflow</td>
-                  </tr>
+                  {[
+                    ["Watching content", "Building and explaining"],
+                    ["Attendance tracked", "Growth tracked"],
+                    ["One final project", "Continuous evidence"],
+                    ["A guest lecture", "Structured industry experience"],
+                    ["Practising alone", "Team execution and feedback"],
+                    ["Certificate collection", "Credential + proof stack"],
+                    ["Interview prep at the end", "Career readiness from Week 1"],
+                    ['"I completed a course"', '"Here\'s what I can do, and here\'s the evidence"']
+                  ].map((row, idx) => (
+                    <tr key={idx} style={{ borderBottom: "1px solid var(--border-color)", background: idx % 2 === 0 ? "rgba(255,255,255,0.01)" : "transparent" }}>
+                      <td style={{ padding: "14px 16px", fontSize: "14px", color: "var(--foreground-muted)" }}>❌ {row[0]}</td>
+                      <td style={{ padding: "14px 16px", fontSize: "14px", color: "var(--foreground)", fontWeight: 600 }}>🚀 {row[1]}</td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
@@ -337,804 +422,878 @@ export default function HomeClient() {
           </div>
         </section>
 
-        {/* 4. CORPORATE EXPERIENCE LEARNING (CEL) */}
-        <section id="cel" style={{ padding: "100px 0 80px", position: "relative", background: "rgba(91, 45, 145, 0.03)", borderTop: "1px solid var(--border-color)", borderBottom: "1px solid var(--border-color)" }}>
+        {/* 4. THE POWERHOUSE BEHIND TECHLEARNS (Redesigned matching Screenshot 1) */}
+        <section id="why-now" style={{ padding: "100px 0 80px", background: "rgba(91, 45, 145, 0.03)", borderTop: "1px solid var(--border-color)", borderBottom: "1px solid var(--border-color)" }}>
           <div className="container">
-            
-            <div style={{ textAlign: "center", marginBottom: "65px" }}>
-              <h2 className="fade-in-up" style={{ fontSize: "36px", marginBottom: "16px", color: "var(--foreground)" }}>Corporate Experience Learning (CEL)</h2>
-              <p className="fade-in-up" style={{ color: "var(--foreground-muted)", maxWidth: "600px", margin: "0 auto", animationDelay: "0.1s" }}>
-                Our 9-step learning pipeline simulates a tech enterprise. Click through the timeline blocks to inspect details.
-              </p>
-            </div>
-
-            {/* Clickable horizontal timeline */}
-            <div 
-              className="fade-in-up"
-              style={{ 
-                display: "flex", 
-                justifyContent: "space-between", 
-                alignItems: "center", 
-                flexWrap: "wrap", 
-                gap: "10px", 
-                marginBottom: "40px",
-                borderBottom: "1px solid var(--border-color)",
-                paddingBottom: "20px",
-                animationDelay: "0.2s"
-              }}
-            >
-              {celStages.map((stage, i) => (
-                <button
-                  key={i}
-                  onClick={() => setActiveCel(i)}
-                  style={{
-                    background: activeCel === i ? "linear-gradient(135deg, var(--primary-purple) 0%, var(--primary-purple-light) 100%)" : "transparent",
-                    color: activeCel === i ? "#FFFFFF" : "var(--foreground-muted)",
-                    border: activeCel === i ? "none" : "1px solid var(--border-color)",
-                    padding: "8px 16px",
-                    borderRadius: "20px",
-                    fontSize: "12px",
-                    fontWeight: 700,
-                    cursor: "pointer",
-                    transition: "all 0.3s ease",
-                    fontFamily: "monospace"
-                  }}
-                >
-                  {stage.name}
-                </button>
-              ))}
-            </div>
-
-            {/* Active Stage Detail card */}
-            <div className="glass-card fade-in-up" style={{ padding: "40px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "40px", alignItems: "center", animationDelay: "0.3s" }}>
-              <div>
-                <span style={{ fontSize: "11px", color: "#CB6CE6", fontWeight: 700, fontFamily: "monospace", letterSpacing: "0.1em" }}>ACTIVE PIPELINE STEP</span>
-                <h3 style={{ fontSize: "28px", color: "var(--foreground)", margin: "8px 0 16px" }}>{celStages[activeCel].title}</h3>
-                <p style={{ fontSize: "15px", lineHeight: "1.7", color: "var(--foreground-muted)", marginBottom: "20px" }}>{celStages[activeCel].desc}</p>
-                <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-                  <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#27C93F" }}></span>
-                  <span style={{ fontSize: "13px", fontWeight: 600, color: "var(--foreground)", fontFamily: "monospace" }}>Current Focus: {celStages[activeCel].task}</span>
-                </div>
-              </div>
-              <div 
-                className="glass-card" 
-                style={{ 
-                  padding: "24px", 
-                  background: "rgba(0,0,0,0.1)", 
-                  border: "1px solid var(--border-color)",
-                  fontFamily: "monospace",
-                  fontSize: "12px",
-                  lineHeight: "1.7"
-                }}
-              >
-                <span style={{ color: "#CB6CE6" }}>$ curl -H "Authorization: Bearer passport_token" \</span><br />
-                <span style={{ paddingLeft: "16px" }}>https://api.techlearns.com/v1/cel/verify</span><br /><br />
-                <span style={{ color: "var(--foreground-muted)" }}>&#123;</span><br />
-                <span style={{ paddingLeft: "16px", color: "var(--foreground-muted)" }}>"stage": "{celStages[activeCel].name}",</span><br />
-                <span style={{ paddingLeft: "16px", color: "var(--foreground-muted)" }}>"status": "VERIFIED_COMPLETED",</span><br />
-                <span style={{ paddingLeft: "16px", color: "var(--foreground-muted)" }}>"metricScore": 92.5,</span><br />
-                <span style={{ paddingLeft: "16px", color: "var(--foreground-muted)" }}>"gitRepository": "github.com/techlearns/cel-pipeline-verification"</span><br />
-                <span style={{ color: "var(--foreground-muted)" }}>&#125;</span>
-              </div>
-            </div>
-
-            {/* Clickable workflow list */}
-            <div style={{ marginTop: "60px", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "24px" }}>
-              {celWorkflows.map((work, idx) => (
-                <div className="glass-card fade-in-up" key={idx} style={{ padding: "24px", display: "flex", gap: "16px", animationDelay: `${0.05 * idx}s` }}>
-                  <span style={{ fontSize: "28px" }}>{work.icon}</span>
-                  <div>
-                    <h4 style={{ fontSize: "16px", color: "var(--foreground)", marginBottom: "6px" }}>{work.title}</h4>
-                    <p style={{ fontSize: "13px", color: "var(--foreground-muted)", lineHeight: "1.5" }}>{work.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-          </div>
-        </section>
-
-        {/* 5. INSIDE TECHLEARNS */}
-        <section id="inside" style={{ padding: "100px 0 80px" }}>
-          <div className="container">
-            
             <div style={{ textAlign: "center", marginBottom: "60px" }}>
-              <h2 className="fade-in-up" style={{ fontSize: "36px", marginBottom: "16px", color: "var(--foreground)" }}>Inside Techlearns Ecosystem</h2>
-              <p className="fade-in-up" style={{ color: "var(--foreground-muted)", maxWidth: "600px", margin: "0 auto", animationDelay: "0.1s" }}>
-                We've built an environment engineered to mimic real developer roles. You aren't doing courses; you are coding systems.
-              </p>
-            </div>
-
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "24px" }}>
-              
-              <div className="glass-card fade-in-up" style={{ padding: "30px", animationDelay: "0.1s" }}>
-                <span style={{ fontSize: "24px", display: "block", marginBottom: "16px" }}>🎫</span>
-                <h3 style={{ fontSize: "18px", color: "var(--foreground)", marginBottom: "10px" }}>Corporate Simulations</h3>
-                <p style={{ fontSize: "14px", color: "var(--foreground-muted)", lineHeight: "1.6" }}>Students don't solve abstract, academic coding questions. They claim unresolved Jira tickets, build APIs, and fix real system codebases.</p>
-              </div>
-
-              <div className="glass-card fade-in-up" style={{ padding: "30px", animationDelay: "0.2s" }}>
-                <span style={{ fontSize: "24px", display: "block", marginBottom: "16px" }}>👥</span>
-                <h3 style={{ fontSize: "18px", color: "var(--foreground)", marginBottom: "10px" }}>Industry Mentorship</h3>
-                <p style={{ fontSize: "14px", color: "var(--foreground-muted)", lineHeight: "1.6" }}>Receive detailed, asynchronous code reviews on your Pull Requests directly from engineering leads at Google, Meta, and Microsoft.</p>
-              </div>
-
-              <div className="glass-card fade-in-up" style={{ padding: "30px", animationDelay: "0.3s" }}>
-                <span style={{ fontSize: "24px", display: "block", marginBottom: "16px" }}>🏆</span>
-                <h3 style={{ fontSize: "18px", color: "var(--foreground)", marginBottom: "10px" }}>Mandatory Hackathons</h3>
-                <p style={{ fontSize: "14px", color: "var(--foreground-muted)", lineHeight: "1.6" }}>Participate in monthly sprint challenges, CTF security events, and AI agent optimization leagues. Prove your skills under pressure.</p>
-              </div>
-
-              <div className="glass-card fade-in-up" style={{ padding: "30px", animationDelay: "0.15s" }}>
-                <span style={{ fontSize: "24px", display: "block", marginBottom: "16px" }}>🤖</span>
-                <h3 style={{ fontSize: "18px", color: "var(--foreground)", marginBottom: "10px" }}>AI Integration Practice</h3>
-                <p style={{ fontSize: "14px", color: "var(--foreground-muted)", lineHeight: "1.6" }}>Leverage AI-assisted coding assistants daily. Learn the modern engineering skill of prompt workflows and agent orchestration.</p>
-              </div>
-
-              <div className="glass-card fade-in-up" style={{ padding: "30px", animationDelay: "0.25s" }}>
-                <span style={{ fontSize: "24px", display: "block", marginBottom: "16px" }}>🛠️</span>
-                <h3 style={{ fontSize: "18px", color: "var(--foreground)", marginBottom: "10px" }}>Agile Agile Teams</h3>
-                <p style={{ fontSize: "14px", color: "var(--foreground-muted)", lineHeight: "1.6" }}>Every cohort is divided into agile sprint groups. Experience Scrum planning, daily code standups, and peer review dynamics.</p>
-              </div>
-
-              <div className="glass-card fade-in-up" style={{ padding: "30px", animationDelay: "0.35s" }}>
-                <span style={{ fontSize: "24px", display: "block", marginBottom: "16px" }}>💳</span>
-                <h3 style={{ fontSize: "18px", color: "var(--foreground)", marginBottom: "10px" }}>Verified Skill Passport</h3>
-                <p style={{ fontSize: "14px", color: "var(--foreground-muted)", lineHeight: "1.6" }}>Your entire activity history, Git logs, and peer comments are compiled into a shareable credential profile verified on the blockchain.</p>
-              </div>
-
-            </div>
-
-          </div>
-        </section>
-
-        {/* 6. SKILL PASSPORT SHOWCASE */}
-        <section id="passport" style={{ padding: "100px 0 80px", position: "relative", background: "rgba(255, 255, 255, 0.015)", borderTop: "1px solid var(--border-color)", borderBottom: "1px solid var(--border-color)" }}>
-          <div className="container" style={{ display: "grid", gridTemplateColumns: "1fr 1.2fr", gap: "60px", alignItems: "center" }}>
-            
-            <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-              <span style={{ color: "#CB6CE6", fontSize: "12px", fontWeight: 700, fontFamily: "monospace", letterSpacing: "0.1em" }}>YOUR DEVELOPER IDENTITY</span>
-              <h2 style={{ fontSize: "36px", color: "var(--foreground)" }}>The Skill Passport</h2>
-              <p style={{ color: "var(--foreground-muted)", fontSize: "16px", lineHeight: "1.7" }}>
-                Our strongest feature. The Skill Passport functions as an audit-ready digital profile tracking real code evidence, deployment velocity, and communication ratings. 
-              </p>
-              <p style={{ color: "var(--foreground-muted)", fontSize: "15px", lineHeight: "1.7" }}>
-                Instead of a PDF certificate, send hiring managers a direct link to your Skill Passport to let them review your actual repository history.
-              </p>
-              <div style={{ marginTop: "10px" }}>
-                <Link href="/passport" className="glow-btn-primary">
-                  View Recruiter Dashboard View
-                </Link>
-              </div>
-            </div>
-
-            {/* Mock Passport Profile Card replaced with the generated 3D image */}
-            <div className="fade-in-up" style={{ display: "flex", justifyContent: "center" }}>
-              <div 
-                className="glass-card"
-                style={{
-                  width: "100%",
-                  maxWidth: "460px",
-                  padding: "16px",
-                  borderColor: "rgba(203, 108, 230, 0.2)",
-                  position: "relative",
-                  background: "rgba(0,0,0,0.2)",
-                  borderRadius: "20px",
-                  overflow: "hidden"
-                }}
-              >
-                <img 
-                  src="/skill_passport_card.png" 
-                  alt="Verified Skill Passport cryptographic card"
-                  style={{ width: "100%", height: "auto", borderRadius: "12px", objectFit: "contain", display: "block" }}
-                />
-              </div>
-            </div>
-
-          </div>
-        </section>
-
-        {/* 7. SKILLOS DASHBOARD PREVIEW */}
-        <section id="skillos" style={{ padding: "100px 0 80px" }}>
-          <div className="container">
-            
-            <div style={{ textAlign: "center", marginBottom: "60px" }}>
-              <h2 className="fade-in-up" style={{ fontSize: "36px", marginBottom: "16px", color: "var(--foreground)" }}>Powered by <span style={{ color: "#CB6CE6" }}>SkillOS</span></h2>
-              <p className="fade-in-up" style={{ color: "var(--foreground-muted)", maxWidth: "600px", margin: "0 auto", animationDelay: "0.1s" }}>
-                Instead of simple video lecture portals, SkillOS is our unified workspace tracking practice, peer logs, and real-time analytics.
-              </p>
-            </div>
-
-            {/* Dashboard Tabs Selector */}
-            <div className="glass-card fade-in-up" style={{ padding: "30px", animationDelay: "0.2s" }}>
-              <div 
-                style={{ 
-                  display: "flex", 
-                  borderBottom: "1px solid var(--border-color)", 
-                  paddingBottom: "15px", 
-                  gap: "10px", 
-                  overflowX: "auto" 
-                }}
-              >
-                {skillOSTabs.map((tab) => (
-                  <button
-                    key={tab.id}
-                    onClick={() => setActiveSkillOSTab(tab.id)}
-                    style={{
-                      background: activeSkillOSTab === tab.id ? "rgba(91, 45, 145, 0.15)" : "transparent",
-                      color: activeSkillOSTab === tab.id ? "var(--secondary-magenta)" : "var(--foreground-muted)",
-                      border: "none",
-                      borderBottom: activeSkillOSTab === tab.id ? "2px solid var(--secondary-magenta)" : "none",
-                      padding: "8px 16px",
-                      fontSize: "13px",
-                      fontWeight: 600,
-                      cursor: "pointer",
-                      whiteSpace: "nowrap",
-                      transition: "all 0.3s ease"
-                    }}
-                  >
-                    {tab.label}
-                  </button>
-                ))}
-              </div>
-
-              {/* Active Tab Screen Content */}
-              {(() => {
-                const currentTab = skillOSTabs.find(t => t.id === activeSkillOSTab) || skillOSTabs[4];
-                return (
-                  <div style={{ display: "grid", gridTemplateColumns: "1.2fr 0.8fr", gap: "40px", marginTop: "30px", alignItems: "center" }}>
-                    <div>
-                      <h3 style={{ fontSize: "22px", color: "var(--foreground)", marginBottom: "12px" }}>{currentTab.title}</h3>
-                      <p style={{ fontSize: "14px", lineHeight: "1.7", color: "var(--foreground-muted)" }}>{currentTab.desc}</p>
-                      
-                      <div style={{ marginTop: "24px" }}>
-                        <Link href="/skillos" className="glow-btn-secondary">
-                          Launch Platform Showcase
-                        </Link>
-                      </div>
-                    </div>
-                    
-                    <div 
-                      className="glass-card" 
-                      style={{ 
-                        padding: "10px", 
-                        background: "rgba(0,0,0,0.15)", 
-                        border: "1px solid var(--border-color)",
-                        overflow: "hidden"
-                      }}
-                    >
-                      <img 
-                        src="/skillos_dashboard_mockup.png" 
-                        alt="SkillOS Workspace Mockup"
-                        style={{ width: "100%", height: "auto", borderRadius: "8px", objectFit: "contain", display: "block" }}
-                      />
-                    </div>
-                  </div>
-                );
-              })()}
-            </div>
-
-          </div>
-        </section>
-
-        {/* 8. PROGRAMS SECTION */}
-        <section id="programs" style={{ padding: "100px 0 80px", background: "rgba(91, 45, 145, 0.03)", borderTop: "1px solid var(--border-color)", borderBottom: "1px solid var(--border-color)" }}>
-          <div className="container">
-            
-            <div style={{ textAlign: "center", marginBottom: "60px" }}>
-              <h2 className="fade-in-up" style={{ fontSize: "36px", marginBottom: "16px", color: "var(--foreground)" }}>Our Learning Tracks</h2>
-              <p className="fade-in-up" style={{ color: "var(--foreground-muted)", maxWidth: "600px", margin: "0 auto", animationDelay: "0.1s" }}>
-                Select a pathway aligned with your career goals. Lock in target hiring company profiles beforehand.
-              </p>
-            </div>
-
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "24px" }}>
-              {programsList.map((prog, index) => (
-                <div key={index} className="glass-card fade-in-up" style={{ padding: "30px", display: "flex", flexDirection: "column", gap: "20px", animationDelay: `${0.05 * index}s` }}>
-                  <div>
-                    <span style={{ fontSize: "11px", color: "var(--secondary-magenta)", fontWeight: 700, letterSpacing: "0.1em", display: "block", marginBottom: "4px" }}>EXPERIENCE JOURNEY</span>
-                    <h3 style={{ fontSize: "20px", color: "var(--foreground)" }}>{prog.title}</h3>
-                  </div>
-
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px", fontSize: "13px", borderTop: "1px solid var(--border-color)", borderBottom: "1px solid var(--border-color)", padding: "16px 0" }}>
-                    <div>
-                      <span style={{ color: "var(--foreground-muted-extra)", display: "block" }}>DURATION</span>
-                      <strong style={{ color: "var(--foreground)" }}>{prog.duration}</strong>
-                    </div>
-                    <div>
-                      <span style={{ color: "var(--foreground-muted-extra)", display: "block" }}>AVG. SALARY RANGE</span>
-                      <strong style={{ color: "var(--foreground)" }}>{prog.salary}</strong>
-                    </div>
-                    <div>
-                      <span style={{ color: "var(--foreground-muted-extra)", display: "block" }}>PROJECTS</span>
-                      <strong style={{ color: "var(--foreground)" }}>{prog.projects} Tickets</strong>
-                    </div>
-                    <div>
-                      <span style={{ color: "var(--foreground-muted-extra)", display: "block" }}>CHALLENGE</span>
-                      <strong style={{ color: "var(--foreground)" }}>{prog.challenge}</strong>
-                    </div>
-                  </div>
-
-                  <div>
-                    <span style={{ color: "var(--foreground-muted-extra)", display: "block", fontSize: "11px", marginBottom: "4px" }}>CAPSTONE SYSTEM</span>
-                    <strong style={{ fontSize: "13px", color: "var(--foreground)" }}>{prog.capstone}</strong>
-                  </div>
-
-                  <div style={{ marginTop: "10px" }}>
-                    <Link href="/programs" className="glow-btn-secondary" style={{ width: "100%", justifyContent: "center" }}>
-                      View Pathway Details
-                    </Link>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-          </div>
-        </section>
-
-        {/* 9. CORPORATE WORKFLOW VISUALIZER */}
-        <section id="workflow" style={{ padding: "100px 0 80px" }}>
-          <div className="container">
-            
-            <div style={{ textAlign: "center", marginBottom: "60px" }}>
-              <h2 className="fade-in-up" style={{ fontSize: "36px", marginBottom: "16px", color: "var(--foreground)" }}>The Corporate Workflow</h2>
-              <p className="fade-in-up" style={{ color: "var(--foreground-muted)", maxWidth: "600px", margin: "0 auto", animationDelay: "0.1s" }}>
-                This is exactly how high-growth tech companies build and deploy. You'll master this pipeline on day one.
-              </p>
-            </div>
-
-            {/* Visual Flow diagram mock */}
-            <div className="glass-card fade-in-up" style={{ padding: "40px", animationDelay: "0.2s" }}>
-              <div 
-                style={{ 
-                  display: "flex", 
-                  justifyContent: "space-between", 
-                  alignItems: "center", 
-                  flexWrap: "wrap", 
-                  gap: "20px",
-                  textAlign: "center"
-                }}
-              >
-                {[
-                  { step: "1. Jira Ticket", icon: "🎫", desc: "Claims Task" },
-                  { step: "2. Sprint Sync", icon: "🔄", desc: "Agile Planning" },
-                  { step: "3. Git Commit", icon: "💻", desc: "Local Code" },
-                  { step: "4. Code Review", icon: "👁️", desc: "PR Review" },
-                  { step: "5. CI/CD Pipeline", icon: "🛠️", desc: "Docker & AWS" },
-                  { step: "6. Deployment", icon: "🚀", desc: "Production Live" }
-                ].map((wf, idx) => (
-                  <div key={idx} style={{ display: "flex", flexDirection: "column", gap: "10px", flex: 1, minWidth: "130px" }}>
-                    <span style={{ fontSize: "32px" }}>{wf.icon}</span>
-                    <strong style={{ fontSize: "14px", color: "var(--foreground)" }}>{wf.step}</strong>
-                    <span style={{ fontSize: "11px", color: "var(--foreground-muted-extra)" }}>{wf.desc}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-          </div>
-        </section>
-
-        {/* 10. COMPETITIONS (FUTURE SKILLS LEAGUE) */}
-        <section id="fsl" style={{ padding: "100px 0 80px", background: "rgba(255, 255, 255, 0.015)", borderTop: "1px solid var(--border-color)", borderBottom: "1px solid var(--border-color)" }}>
-          <div className="container" style={{ display: "grid", gridTemplateColumns: "1.1fr 0.9fr", gap: "60px", alignItems: "center" }}>
-            
-            <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
-              <span style={{ color: "#CB6CE6", fontSize: "12px", fontWeight: 700, fontFamily: "monospace", letterSpacing: "0.1em" }}>FUTURE SKILLS LEAGUE</span>
-              <h2 style={{ fontSize: "36px", color: "var(--foreground)" }}>Compete in National Challenges</h2>
-              <p style={{ color: "var(--foreground-muted)", fontSize: "16px", lineHeight: "1.7" }}>
-                Join the Future Skills League (FSL), a national coding tournament system featuring monthly AI buildathons, capture-the-flags (CTFs), datathons, and algorithmic optimization sprints.
-              </p>
-              <p style={{ color: "var(--foreground-muted)", fontSize: "15px", lineHeight: "1.7" }}>
-                Score points by building optimized architectures and climbing the league ranks to showcase verified standing stats directly to FAANG recruiting panels.
-              </p>
-              <div style={{ marginTop: "10px" }}>
-                <Link href="/fsl" className="glow-btn-primary">
-                  View League Standing Rules
-                </Link>
-              </div>
-            </div>
-
-            {/* FSL Trophy Widget replaced with generated 3D render */}
-            <div className="fade-in-up" style={{ display: "flex", justifyContent: "center", animationDelay: "0.2s" }}>
-              <div 
-                className="glass-card"
-                style={{
-                  width: "100%",
-                  maxWidth: "420px",
-                  padding: "16px",
-                  borderColor: "rgba(203, 108, 230, 0.2)",
-                  background: "rgba(0,0,0,0.2)",
-                  borderRadius: "20px",
-                  overflow: "hidden"
-                }}
-              >
-                <img 
-                  src="/fsl_league_trophy.png" 
-                  alt="Future Skills League National Trophy"
-                  style={{ width: "100%", height: "auto", borderRadius: "12px", objectFit: "contain", display: "block" }}
-                />
-              </div>
-            </div>
-
-          </div>
-        </section>
-
-        {/* 11. LEARNER JOURNEY TIMELINE */}
-        <section id="journey" style={{ padding: "100px 0 80px" }}>
-          <div className="container">
-            
-            <div style={{ textAlign: "center", marginBottom: "60px" }}>
-              <h2 className="fade-in-up" style={{ fontSize: "36px", marginBottom: "16px", color: "var(--foreground)" }}>The Candidate Journey</h2>
-              <p className="fade-in-up" style={{ color: "var(--foreground-muted)", maxWidth: "600px", margin: "0 auto", animationDelay: "0.1s" }}>
-                Follow the milestone roadmap that transforms you from logical thinking candidates to hired engineers.
-              </p>
-            </div>
-
-            <div style={{ display: "flex", flexDirection: "column", gap: "20px", maxWidth: "800px", margin: "0 auto" }}>
-              {[
-                { title: "1. Admission & TLET Validation", desc: "Register, qualify the Analytical Aptitude Assessment, and claim your initial candidate ticket." },
-                { title: "2. Sprint Pre-Work Preparation", desc: "Complete asynchronous syntax modules and prepare branch structures in GitHub." },
-                { title: "3. Live Standups & Mentor Reviews", desc: "Undergo 12 months of high-intensity experiential coding sprints, daily code reviews, and deployments." },
-                { title: "4. Future Skills League Hackathons", desc: "Compete in monthly coding optimization CTFs to push score metrics on your Skill Passport." },
-                { title: "5. Recruiter Showcase & Launch", desc: "Hiring managers audit your code logs, issue credentials, and transition you into corporate placement slots." }
-              ].map((jour, index) => (
-                <div key={index} className="glass-card fade-in-up" style={{ padding: "24px", display: "flex", gap: "20px", alignItems: "flex-start", animationDelay: `${0.05 * index}s` }}>
-                  <div style={{ width: "32px", height: "32px", borderRadius: "50%", background: "var(--primary-purple)", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 700, color: "#FFFFFF", fontSize: "14px" }}>
-                    {index + 1}
-                  </div>
-                  <div>
-                    <h3 style={{ fontSize: "16px", color: "var(--foreground)", marginBottom: "6px" }}>{jour.title}</h3>
-                    <p style={{ fontSize: "13px", color: "var(--foreground-muted)" }}>{jour.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-          </div>
-        </section>
-
-        {/* 12. EMPLOYER SECTION (RECRUITER DASHBOARD MOCK) */}
-        <section id="employers" style={{ padding: "100px 0 80px", position: "relative", background: "rgba(91, 45, 145, 0.03)", borderTop: "1px solid var(--border-color)", borderBottom: "1px solid var(--border-color)" }}>
-          <div className="container" style={{ display: "grid", gridTemplateColumns: "0.9fr 1.1fr", gap: "60px", alignItems: "center" }}>
-            
-            <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-              <span style={{ color: "#CB6CE6", fontSize: "12px", fontWeight: 700, fontFamily: "monospace", letterSpacing: "0.1em" }}>EMPLOYER CHANNELS</span>
-              <h2 style={{ fontSize: "36px", color: "var(--foreground)" }}>No Resumes. Just Auditable Code.</h2>
-              <p style={{ color: "var(--foreground-muted)", fontSize: "16px", lineHeight: "1.7" }}>
-                Hiring managers are tired of generalized certificates. Our Employer Dashboard lets companies filter profiles based on real-time commit volume, reviewer logs, and communication parameters.
-              </p>
-              <div style={{ marginTop: "10px" }}>
-                <Link href="/partners" className="glow-btn-primary">
-                  Review Employer Partnership Panel
-                </Link>
-              </div>
-            </div>
-
-            {/* Recruiter Console Mockup */}
-            <div className="fade-in-up" style={{ display: "flex", justifyContent: "center", animationDelay: "0.2s" }}>
-              <div 
-                className="glass-card"
-                style={{
-                  width: "100%",
-                  maxWidth: "480px",
-                  padding: "24px",
-                  borderColor: "var(--border-color)",
-                  background: "var(--card-bg)"
-                }}
-              >
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
-                  <span style={{ fontSize: "13px", fontWeight: 700, fontFamily: "monospace" }}>[RECRUITER_PORTAL]</span>
-                  <input 
-                    type="text" 
-                    placeholder="Search by tech stack..." 
-                    value={recruiterSearch}
-                    onChange={(e) => setRecruiterSearch(e.target.value)}
-                    style={{
-                      background: "rgba(255,255,255,0.05)",
-                      border: "1px solid var(--border-color)",
-                      borderRadius: "4px",
-                      padding: "4px 8px",
-                      fontSize: "11px",
-                      color: "var(--foreground)",
-                      width: "160px"
-                    }}
-                  />
-                </div>
-
-                <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-                  {recruiterCandidates
-                    .filter(c => c.stack.toLowerCase().includes(recruiterSearch.toLowerCase()) || recruiterSearch === "")
-                    .map((cand, idx) => (
-                      <div 
-                        key={idx}
-                        style={{
-                          padding: "12px",
-                          border: "1px solid var(--border-color)",
-                          background: "rgba(255,255,255,0.02)",
-                          borderRadius: "8px",
-                          fontSize: "12px"
-                        }}
-                      >
-                        <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "6px" }}>
-                          <strong style={{ color: "var(--foreground)" }}>{cand.name}</strong>
-                          <span style={{ color: "#27C93F", fontSize: "11px" }}>{cand.ready}</span>
-                        </div>
-                        <div style={{ color: "var(--foreground-muted-extra)", fontSize: "11px", marginBottom: "6px" }}>{cand.role} | {cand.stack}</div>
-                        <div style={{ display: "flex", justifyContent: "space-between", fontSize: "11px", borderTop: "1px solid rgba(255,255,255,0.04)", paddingTop: "6px" }}>
-                          <span>Skill Score: <strong style={{ color: "#CB6CE6" }}>{cand.score}</strong></span>
-                          <span>{cand.commits}</span>
-                        </div>
-                      </div>
-                    ))}
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </section>
-
-        {/* 13. SUCCESS STORIES TIMELINE */}
-        <section id="stories" style={{ padding: "100px 0 80px" }}>
-          <div className="container">
-            
-            <div style={{ textAlign: "center", marginBottom: "60px" }}>
-              <h2 className="fade-in-up" style={{ fontSize: "36px", marginBottom: "16px", color: "var(--foreground)" }}>Proven Career Transitions</h2>
-              <p className="fade-in-up" style={{ color: "var(--foreground-muted)", maxWidth: "600px", margin: "0 auto", animationDelay: "0.1s" }}>
-                Verify actual candidate pathways tracing their logical journey from course watchers to AWS &amp; Microsoft engineering leads.
-              </p>
-            </div>
-
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))", gap: "30px" }}>
-              {successStoriesList.map((story, i) => (
-                <div key={i} className="glass-card fade-in-up" style={{ padding: "30px", animationDelay: `${0.1 * i}s` }}>
-                  <div style={{ display: "flex", gap: "14px", alignItems: "center", marginBottom: "20px" }}>
-                    <div style={{ width: "48px", height: "48px", borderRadius: "50%", background: story.avatarBg, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "16px", fontWeight: 700, color: "#FFFFFF" }}>{story.name.split(" ").map(n => n[0]).join("")}</div>
-                    <div>
-                      <h4 style={{ fontSize: "16px", color: "var(--foreground)", marginBottom: "2px" }}>{story.name}</h4>
-                      <span style={{ fontSize: "12px", color: "var(--foreground-muted-extra)" }}>{story.role}</span>
-                    </div>
-                  </div>
-
-                  <div style={{ display: "flex", flexDirection: "column", gap: "12px", fontSize: "13px" }}>
-                    <div style={{ display: "flex", justifyContent: "space-between" }}>
-                      <span style={{ color: "var(--foreground-muted-extra)" }}>Before</span>
-                      <strong style={{ color: "var(--foreground)" }}>{story.before}</strong>
-                    </div>
-                    <div style={{ display: "flex", justifyContent: "space-between" }}>
-                      <span style={{ color: "var(--foreground-muted-extra)" }}>Capstone</span>
-                      <strong style={{ color: "var(--foreground)", textAlign: "right", maxWidth: "200px" }}>{story.projects}</strong>
-                    </div>
-                    <div style={{ display: "flex", justifyContent: "space-between" }}>
-                      <span style={{ color: "var(--foreground-muted-extra)" }}>FSL Standing</span>
-                      <strong style={{ color: "var(--foreground)" }}>{story.competitions}</strong>
-                    </div>
-                    <div style={{ display: "flex", justifyContent: "space-between", borderTop: "1px solid var(--border-color)", paddingTop: "12px", marginTop: "4px" }}>
-                      <span style={{ color: "var(--secondary-magenta)", fontWeight: 600 }}>Launch Offer</span>
-                      <strong style={{ color: "#27C93F" }}>{story.offer}</strong>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div style={{ textAlign: "center", marginTop: "40px" }}>
-              <Link href="/stories" className="glow-btn-secondary">
-                View All Verification Timelines
-              </Link>
-            </div>
-
-          </div>
-        </section>
-
-        {/* 14. INDUSTRY PARTNERS */}
-        <section id="partners" style={{ padding: "80px 0", background: "rgba(255, 255, 255, 0.015)", borderTop: "1px solid var(--border-color)" }}>
-          <div className="container">
-            <div style={{ textAlign: "center", marginBottom: "40px" }}>
-              <span style={{ fontSize: "12px", color: "var(--foreground-muted-extra)", letterSpacing: "0.2em", fontWeight: 700, textTransform: "uppercase" }}>TARGET CORPORATE HIRING PARTNERS</span>
-            </div>
-            
-            <div 
-              style={{ 
-                display: "flex", 
-                justifyContent: "center", 
-                alignItems: "center", 
-                flexWrap: "wrap", 
-                gap: "40px",
-                opacity: 0.65
-              }}
-            >
-              {["Microsoft", "AWS", "Google", "Cisco", "NASSCOM"].map((logo, idx) => (
-                <div 
-                  key={idx}
-                  style={{
-                    fontSize: "20px",
-                    fontWeight: 700,
-                    color: "var(--foreground)",
-                    fontFamily: "var(--font-headings)",
-                    letterSpacing: "-0.04em"
-                  }}
-                >
-                  {logo}
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* STATS COUNTER GRID */}
-        <section id="stats" style={{ padding: "80px 0", background: "rgba(91, 45, 145, 0.03)", borderTop: "1px solid var(--border-color)", borderBottom: "1px solid var(--border-color)" }}>
-          <div className="container">
-            <div style={{ textAlign: "center", marginBottom: "50px" }}>
-              <span style={{ fontSize: "11px", color: "#CB6CE6", fontWeight: 700, fontFamily: "monospace", letterSpacing: "0.1em", textTransform: "uppercase" }}>
-                Academy Scale & Impact
+              <span style={{ fontSize: "11px", color: "var(--secondary-magenta)", fontWeight: 700, fontFamily: "monospace", letterSpacing: "0.15em", textTransform: "uppercase" }}>
+                THE POWERHOUSE BEHIND TECHLEARNS
               </span>
-              <h2 style={{ fontSize: "36px", fontWeight: 800, color: "var(--foreground)", marginTop: "8px" }}>
-                Why TechLearns is Trusted by Global Innovators
+              <h2 style={{ fontSize: "36px", fontWeight: 800, color: "var(--foreground)", marginTop: "12px", marginBottom: "16px" }}>
+                India's Premium Experience Learning Infrastructure
               </h2>
-              <p style={{ fontSize: "16px", color: "var(--foreground-muted)", maxWidth: "600px", margin: "12px auto 0" }}>
-                See why our experience-first, pre-hired learning journey is designed for the high-performing engineering teams of tomorrow.
+              <p style={{ color: "var(--foreground-muted)", maxWidth: "800px", margin: "0 auto 40px", fontSize: "16px", lineHeight: "1.7" }}>
+                Scale, trust and pedigree. We combine traditional academic scale with modern corporate operating environments to train candidates for the actual workflows of top global teams.
               </p>
             </div>
 
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "24px" }}>
-              <div className="glass-card" style={{ padding: "30px 24px", textAlign: "center", display: "flex", flexDirection: "column", gap: "8px" }}>
-                <h3 style={{ fontSize: "36px", fontWeight: 900, color: "#CB6CE6", margin: 0 }}>30+</h3>
-                <strong style={{ fontSize: "14px", color: "var(--foreground)" }}>Combined Legacy Years</strong>
-                <span style={{ fontSize: "12px", color: "var(--foreground-muted)" }}>of elite engineering leadership</span>
-              </div>
-              <div className="glass-card" style={{ padding: "30px 24px", textAlign: "center", display: "flex", flexDirection: "column", gap: "8px" }}>
-                <h3 style={{ fontSize: "36px", fontWeight: 900, color: "#CB6CE6", margin: 0 }}>20K+</h3>
-                <strong style={{ fontSize: "14px", color: "var(--foreground)" }}>Global Students & Alumni</strong>
-                <span style={{ fontSize: "12px", color: "var(--foreground-muted)" }}>learning & shipping production code</span>
-              </div>
-              <div className="glass-card" style={{ padding: "30px 24px", textAlign: "center", display: "flex", flexDirection: "column", gap: "8px" }}>
-                <h3 style={{ fontSize: "36px", fontWeight: 900, color: "#CB6CE6", margin: 0 }}>60+</h3>
-                <strong style={{ fontSize: "14px", color: "var(--foreground)" }}>Placement & Hiring Partners</strong>
-                <span style={{ fontSize: "12px", color: "var(--foreground-muted)" }}>providing pre-placement offers</span>
-              </div>
-              <div className="glass-card" style={{ padding: "30px 24px", textAlign: "center", display: "flex", flexDirection: "column", gap: "8px" }}>
-                <h3 style={{ fontSize: "36px", fontWeight: 900, color: "#CB6CE6", margin: 0 }}>40+</h3>
-                <strong style={{ fontSize: "14px", color: "var(--foreground)" }}>Distinguished Mentors</strong>
-                <span style={{ fontSize: "12px", color: "var(--foreground-muted)" }}>from Google, Microsoft, & Meta</span>
-              </div>
-              <div className="glass-card" style={{ padding: "30px 24px", textAlign: "center", display: "flex", flexDirection: "column", gap: "8px" }}>
-                <h3 style={{ fontSize: "36px", fontWeight: 900, color: "#CB6CE6", margin: 0 }}>4.8★</h3>
-                <strong style={{ fontSize: "14px", color: "var(--foreground)" }}>Google Rating</strong>
-                <span style={{ fontSize: "12px", color: "var(--foreground-muted)" }}>backed by 800+ developer reviews</span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* 15. COMMUNITY */}
-        <section id="community" style={{ padding: "100px 0 80px", background: "rgba(91, 45, 145, 0.03)", borderTop: "1px solid var(--border-color)", borderBottom: "1px solid var(--border-color)" }}>
-          <div className="container">
-            
-            <div style={{ textAlign: "center", marginBottom: "60px" }}>
-              <h2 className="fade-in-up" style={{ fontSize: "36px", marginBottom: "16px", color: "var(--foreground)" }}>Our Active Community</h2>
-              <p className="fade-in-up" style={{ color: "var(--foreground-muted)", maxWidth: "600px", margin: "0 auto", animationDelay: "0.1s" }}>
-                Participate in dynamic programming sprints, office visits, national code hackathons, and demo events.
-              </p>
-            </div>
-
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "24px" }}>
-              <div className="glass-card fade-in-up" style={{ padding: "24px", animationDelay: "0.1s" }}>
-                <span style={{ fontSize: "28px", display: "block", marginBottom: "12px" }}>💻</span>
-                <strong style={{ fontSize: "16px", color: "var(--foreground)", display: "block", marginBottom: "6px" }}>Monthly Sprints</strong>
-                <p style={{ fontSize: "13px", color: "var(--foreground-muted)" }}>Active build sessions where engineering cohorts ship production features side-by-side.</p>
-              </div>
-              <div className="glass-card fade-in-up" style={{ padding: "24px", animationDelay: "0.2s" }}>
-                <span style={{ fontSize: "28px", display: "block", marginBottom: "12px" }}>🏢</span>
-                <strong style={{ fontSize: "16px", color: "var(--foreground)", display: "block", marginBottom: "6px" }}>Office Visits</strong>
-                <p style={{ fontSize: "13px", color: "var(--foreground-muted)" }}>Regular technical study trips to our corporate partner headquarters to meet core product managers.</p>
-              </div>
-              <div className="glass-card fade-in-up" style={{ padding: "24px", animationDelay: "0.3s" }}>
-                <span style={{ fontSize: "28px", display: "block", marginBottom: "12px" }}>📡</span>
-                <strong style={{ fontSize: "16px", color: "var(--foreground)", display: "block", marginBottom: "6px" }}>Demo Days</strong>
-                <p style={{ fontSize: "13px", color: "var(--foreground-muted)" }}>Present caps and system architectures directly before external corporate jury experts.</p>
-              </div>
-            </div>
-
-          </div>
-        </section>
-
-        {/* 16. PRICING */}
-        <section id="pricing" style={{ padding: "100px 0 80px" }}>
-          <div className="container">
-            
-            <div style={{ textAlign: "center", marginBottom: "60px" }}>
-              <h2 className="fade-in-up" style={{ fontSize: "36px", marginBottom: "16px", color: "var(--foreground)" }}>Select Your Journey</h2>
-              <p className="fade-in-up" style={{ color: "var(--foreground-muted)", maxWidth: "600px", margin: "0 auto", animationDelay: "0.1s" }}>
-                Don't buy video courses. Join a company-like learning ecosystem.
-              </p>
-            </div>
-
-            <div style={{ display: "flex", justifyContent: "center" }}>
-              <div 
-                className="glass-card fade-in-up" 
-                style={{ 
-                  width: "100%", 
-                  maxWidth: "500px", 
-                  padding: "40px",
-                  border: "2px solid var(--secondary-magenta)",
-                  boxShadow: "0 12px 40px rgba(203, 108, 230, 0.1)"
-                }}
-              >
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "20px" }}>
-                  <div>
-                    <span style={{ fontSize: "11px", color: "#CB6CE6", fontWeight: 700, letterSpacing: "0.1em", display: "block", marginBottom: "4px" }}>FLAGSHIP TRACK</span>
-                    <h3 style={{ fontSize: "24px", color: "var(--foreground)" }}>AI &amp; Software Engineering Journey</h3>
-                  </div>
-                  <span style={{ fontSize: "12px", background: "rgba(203, 108, 230, 0.15)", color: "var(--secondary-magenta)", padding: "4px 10px", borderRadius: "20px", fontWeight: 600 }}>TLET Qualifier</span>
-                </div>
-
-                <p style={{ fontSize: "14px", color: "var(--foreground-muted)", marginBottom: "30px", lineHeight: "1.6" }}>
-                  A comprehensive, high-intensity 12-month program. Fully verified on SkillOS. Features PPO eligibility, live mentor PR reviews, FSL hackathons, and cryptographic Skill Passport verification.
-                </p>
-
-                <ul style={{ display: "flex", flexDirection: "column", gap: "12px", listStyle: "none", padding: 0, margin: "0 0 40px", fontSize: "14px" }}>
-                  <li>🚀 12 Months Corporate Experience Simulator</li>
-                  <li>💻 Verified Skill Passport Credentials</li>
-                  <li>👁️ PR Reviews from FAANG Engineers</li>
-                  <li>🏆 Access to Future Skills League Tournaments</li>
-                  <li>💼 Pre-Placement Offer (PPO) Eligibility</li>
-                </ul>
-
-                <a href="#contact" className="glow-btn-primary" style={{ width: "100%", justifyContent: "center" }}>
-                  Apply for Admissions
-                </a>
-              </div>
-            </div>
-
-          </div>
-        </section>
-
-        {/* 17. FAQ ACCORDION */}
-        <section id="faq" style={{ padding: "100px 0 80px", background: "rgba(255, 255, 255, 0.015)", borderTop: "1px solid var(--border-color)", borderBottom: "1px solid var(--border-color)" }}>
-          <div className="container">
-            
-            <div style={{ textAlign: "center", marginBottom: "60px" }}>
-              <h2 className="fade-in-up" style={{ fontSize: "36px", marginBottom: "16px", color: "var(--foreground)" }}>Frequently Asked Questions</h2>
-              <p className="fade-in-up" style={{ color: "var(--foreground-muted)", maxWidth: "600px", margin: "0 auto", animationDelay: "0.1s" }}>
-                Get clear answers regarding the admissions track, Skill Passport verification, and placement rules.
-              </p>
-            </div>
-
-            <div style={{ maxWidth: "800px", margin: "0 auto", display: "flex", flexDirection: "column", gap: "16px" }}>
-              {faqsList.map((faq, index) => {
-                const isActive = activeFaq === index;
+            {/* Chessboard alternating grid matching Screenshot 1 colors */}
+            <div style={{ 
+              display: "grid", 
+              gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", 
+              gap: "20px", 
+              marginBottom: "40px" 
+            }}>
+              {powerhouseStats.map((stat, idx) => {
+                const row = Math.floor(idx / 4);
+                const col = idx % 4;
+                const isPlum = (row + col) % 2 === 1;
+                const bg = isPlum ? "#7E3B68" : "#1B1E36";
                 return (
                   <div 
-                    key={index}
-                    className="glass-card fade-in-up" 
+                    key={idx} 
                     style={{ 
-                      padding: "20px", 
-                      cursor: "pointer", 
-                      borderColor: isActive ? "rgba(203, 108, 230, 0.4)" : "var(--border-color)",
-                      background: isActive ? "rgba(44, 10, 113, 0.25)" : "var(--card-bg)",
-                      animationDelay: `${0.05 * index}s`
+                      backgroundColor: bg,
+                      padding: "36px 24px",
+                      textAlign: "center",
+                      borderRadius: "8px",
+                      boxShadow: "0 4px 14px rgba(0, 0, 0, 0.15)",
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      minHeight: "180px",
+                      border: "1px solid rgba(255, 255, 255, 0.05)"
                     }}
-                    onClick={() => setActiveFaq(isActive ? null : index)}
                   >
-                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                      <h4 style={{ fontSize: "16px", color: "var(--foreground)", fontWeight: 600 }}>{faq.question}</h4>
-                      <span style={{ fontSize: "20px", color: "#CB6CE6", transition: "transform 0.3s", transform: isActive ? "rotate(45deg)" : "none" }}>+</span>
-                    </div>
-                    {isActive && (
-                      <p style={{ marginTop: "12px", fontSize: "14px", lineHeight: "1.6", color: "var(--foreground-muted)" }}>
-                        {faq.answer}
-                      </p>
-                    )}
+                    <h3 style={{ fontSize: "40px", fontWeight: 900, color: "#FFFFFF", margin: "0 0 10px", fontFamily: "var(--font-headings)" }}>
+                      {stat.val}
+                    </h3>
+                    <p style={{ fontSize: "13px", color: "rgba(255, 255, 255, 0.85)", fontWeight: 600, margin: 0, lineHeight: "1.4" }}>
+                      {stat.label}
+                    </p>
                   </div>
                 );
               })}
             </div>
 
+            <div style={{ textAlign: "center" }}>
+              <p style={{ fontSize: "15px", color: "var(--foreground-muted)", marginBottom: "16px" }}>
+                Techlearns operates continuously across these dimensions to match the structural shifting of engineering skills.
+              </p>
+              <Link href="/blog" style={{ color: "var(--secondary-magenta)", fontWeight: 650, fontSize: "14px", textDecoration: "none" }} className="hover-underline">
+                Read our latest quarterly Skill & Practice Report →
+              </Link>
+            </div>
           </div>
         </section>
 
-        {/* 18. CTA ADMISSIONS SECTION */}
+        {/* 5. WHAT MAKES TECHLEARNS DIFFERENT */}
+        <section id="difference" style={{ padding: "100px 0 80px" }}>
+          <div className="container">
+            <div style={{ textAlign: "center", marginBottom: "60px" }}>
+              <span style={{ fontSize: "11px", color: "#CB6CE6", fontWeight: 700, fontFamily: "monospace", letterSpacing: "0.15em", textTransform: "uppercase" }}>
+                THE TECHLEARNS DIFFERENCE
+              </span>
+              <h2 className="fade-in-up" style={{ fontSize: "36px", fontWeight: 800, marginTop: "12px", marginBottom: "16px", color: "var(--foreground)" }}>
+                Five things you won't find in a typical course
+              </h2>
+            </div>
+
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "24px" }}>
+              <div className="glass-card fade-in-up" style={{ padding: "30px", borderTop: "3px solid #CB6CE6", animationDelay: "0.1s" }}>
+                <span style={{ fontSize: "28px", display: "block", marginBottom: "16px" }}>🏢</span>
+                <h3 style={{ fontSize: "18px", color: "var(--foreground)", marginBottom: "10px", fontWeight: 700 }}>Corporate Work Rituals Embedded in Every Course</h3>
+                <p style={{ fontSize: "14px", color: "var(--foreground-muted)", lineHeight: "1.6" }}>
+                  Stand-ups, sprint planning, tickets, code and design reviews, documentation, quality gates, demos and retrospectives aren't case studies you read about — they're how you'll actually work, every week.
+                </p>
+              </div>
+
+              <div className="glass-card fade-in-up" style={{ padding: "30px", borderTop: "3px solid #CB6CE6", animationDelay: "0.2s" }}>
+                <span style={{ fontSize: "28px", display: "block", marginBottom: "16px" }}>🤝</span>
+                <h3 style={{ fontSize: "18px", color: "var(--foreground)", marginBottom: "10px", fontWeight: 700 }}>Mandatory Industry Exposure</h3>
+                <p style={{ fontSize: "14px", color: "var(--foreground-muted)", lineHeight: "1.6" }}>
+                  Expert sessions, workplace visits, employer challenge briefs, project reviews, internships and recruiter interactions are scheduled curriculum milestones, not optional events bolted onto the syllabus.
+                </p>
+              </div>
+
+              <div className="glass-card fade-in-up" style={{ padding: "30px", borderTop: "3px solid #CB6CE6", animationDelay: "0.3s" }}>
+                <span style={{ fontSize: "28px", display: "block", marginBottom: "16px" }}>🏆</span>
+                <h3 style={{ fontSize: "18px", color: "var(--foreground)", marginBottom: "10px", fontWeight: 700 }}>Competition as Pedagogy</h3>
+                <p style={{ fontSize: "14px", color: "var(--foreground-muted)", lineHeight: "1.6" }}>
+                  Hackathons, AI buildathons, datathons, cybersecurity CTFs, cloud challenges, bug bashes and demo days are built directly into your learning calendar — because pressure, deadlines and public proof build capability faster than passive study.
+                </p>
+              </div>
+
+              <div className="glass-card fade-in-up" style={{ padding: "30px", borderTop: "3px solid #CB6CE6", animationDelay: "0.15s" }}>
+                <span style={{ fontSize: "28px", display: "block", marginBottom: "16px" }}>💳</span>
+                <h3 style={{ fontSize: "18px", color: "var(--foreground)", marginBottom: "10px", fontWeight: 700 }}>One Skill → One Proof</h3>
+                <p style={{ fontSize: "14px", color: "var(--foreground-muted)", lineHeight: "1.6" }}>
+                  Every important competency you learn generates an artifact, assessment, review, or verified performance record — all captured inside your Skill Passport.
+                </p>
+              </div>
+
+              <div className="glass-card fade-in-up" style={{ padding: "30px", borderTop: "3px solid #CB6CE6", animationDelay: "0.25s" }}>
+                <span style={{ fontSize: "28px", display: "block", marginBottom: "16px" }}>🤖</span>
+                <h3 style={{ fontSize: "18px", color: "var(--foreground)", marginBottom: "10px", fontWeight: 700 }}>Human Mentorship + AI-Supported Practice</h3>
+                <p style={{ fontSize: "14px", color: "var(--foreground-muted)", lineHeight: "1.6" }}>
+                  An AI Learning Coach powers personalised practice and feedback loops. Human mentors keep the judgment, accountability, and career guidance — where it belongs.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 6. INTERACTIVE CIRCULAR SELECTOR WHEEL (Methodology Teaser - Redesigned matching Screenshot 2) */}
+        <section id="cel" style={{ padding: "100px 0 80px", position: "relative", background: "rgba(91, 45, 145, 0.02)", borderTop: "1px solid var(--border-color)", borderBottom: "1px solid var(--border-color)" }}>
+          <div className="container">
+            
+            <div style={{ textAlign: "center", marginBottom: "60px" }}>
+              <span style={{ fontSize: "11px", color: "var(--secondary-magenta)", fontWeight: 700, fontFamily: "monospace", letterSpacing: "0.15em", textTransform: "uppercase" }}>
+                WHY TECHLEARNS CEL SYSTEM?
+              </span>
+              <h2 style={{ fontSize: "36px", fontWeight: 800, marginTop: "12px", marginBottom: "16px", color: "var(--foreground)" }}>
+                Built by Industry Leaders to Shape Future Engineers
+              </h2>
+              <p style={{ color: "var(--foreground-muted)", maxWidth: "700px", margin: "0 auto", fontSize: "16px", lineHeight: "1.7" }}>
+                An operating system for your capability — clicking any of the 8 segments reveals how we bridge the gap between academic theory and real-world corporate expectations.
+              </p>
+            </div>
+
+            {/* Circular selector grid layout */}
+            <div className="grid-split" style={{ 
+              gap: "50px", 
+              alignItems: "center" 
+            }}>
+              
+              {/* Left Column: Interactive Circle Wheel */}
+              <div style={{ display: "flex", justifyContent: "center", alignItems: "center", position: "relative", minHeight: "420px", width: "100%" }}>
+                <svg width="100%" height="auto" viewBox="0 0 400 400" style={{ transform: "rotate(0deg)", maxWidth: "400px" }}>
+                  {/* Outer circle outline */}
+                  <circle cx="200" cy="200" r="162" fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="1" />
+                  <circle cx="200" cy="200" r="158" fill="none" stroke="rgba(255,255,255,0.03)" strokeWidth="1" />
+                  
+                  {/* Render 8 slices */}
+                  {whyCelSlices.map((slice, i) => {
+                    const startAngle = i * 45 - 90 - 22.5;
+                    const endAngle = (i + 1) * 45 - 90 - 22.5;
+                    const pathD = getArcPath(200, 200, 155, 75, startAngle, endAngle);
+                    
+                    const midAngle = startAngle + 22.5;
+                    const textX = 200 + 115 * Math.cos((midAngle * Math.PI) / 180);
+                    const textY = 200 + 115 * Math.sin((midAngle * Math.PI) / 180);
+                    
+                    const isActive = activeWhyCelSlice === i;
+                    
+                    return (
+                      <g key={i} style={{ cursor: "pointer" }} onClick={() => setActiveWhyCelSlice(i)}>
+                        {/* Slice path */}
+                        <path 
+                          d={pathD} 
+                          fill={slice.color}
+                          opacity={isActive ? 0.95 : 0.4}
+                          stroke="#0B0F19"
+                          strokeWidth="2"
+                          style={{
+                            transition: "all 0.3s ease",
+                            transform: isActive ? "scale(1.02) translate(-4px, -4px)" : "scale(1)",
+                            transformOrigin: "200px 200px"
+                          }}
+                        />
+                        {/* Slice Label/Text inside */}
+                        <text 
+                          x={textX} 
+                          y={textY} 
+                          fill="var(--wheel-slice-text-color)" 
+                          fontSize="9" 
+                          fontWeight="700"
+                          textAnchor="middle"
+                          style={{ pointerEvents: "none" }}
+                        >
+                          {slice.num}
+                        </text>
+                      </g>
+                    );
+                  })}
+                  
+                  {/* Center Circle matching Screenshot 2 */}
+                  <circle cx="200" cy="200" r="70" fill="var(--wheel-center-bg)" stroke="var(--border-color)" strokeWidth="2" />
+                  <text x="200" y="185" textAnchor="middle" fill="var(--foreground-muted)" fontSize="9" fontWeight="bold" letterSpacing="0.05em">WHY</text>
+                  <text x="200" y="202" textAnchor="middle" fill="var(--wheel-text-color)" fontSize="11" fontWeight="bold">Techlearns</text>
+                  <text x="200" y="217" textAnchor="middle" fill="var(--secondary-magenta)" fontSize="9" fontWeight="bold">CEL SYSTEM?</text>
+                </svg>
+              </div>
+
+              {/* Right Column: Active Slice details card */}
+              <div 
+                className="glass-card" 
+                style={{ 
+                  padding: "40px 30px", 
+                  borderLeft: `4px solid ${whyCelSlices[activeWhyCelSlice].color}`,
+                  background: "var(--wheel-card-bg)",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "18px",
+                  boxShadow: "0 10px 30px rgba(0,0,0,0.1)"
+                }}
+              >
+                <div>
+                  <span style={{ fontSize: "11px", color: whyCelSlices[activeWhyCelSlice].color, fontWeight: 700, fontFamily: "monospace", letterSpacing: "0.1em" }}>
+                    STAGE {whyCelSlices[activeWhyCelSlice].num} / 08
+                  </span>
+                  <h3 style={{ fontSize: "24px", color: "var(--wheel-card-text)", marginTop: "6px", fontWeight: 800 }}>
+                    {whyCelSlices[activeWhyCelSlice].title}
+                  </h3>
+                </div>
+                <p style={{ fontSize: "15px", lineHeight: "1.7", color: "var(--foreground-muted)", margin: 0 }}>
+                  {whyCelSlices[activeWhyCelSlice].desc}
+                </p>
+                <div style={{ display: "flex", gap: "10px", alignItems: "center", borderTop: "1px solid var(--wheel-card-border-top)", paddingTop: "16px", marginTop: "6px" }}>
+                  <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: whyCelSlices[activeWhyCelSlice].color }}></span>
+                  <span style={{ fontSize: "12px", color: "var(--wheel-card-muted)", fontFamily: "monospace" }}>
+                    Status: Active Operational Standard
+                  </span>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </section>
+
+        {/* 6.5 PATHWAY TO YOUR SUCCESS TIMELINE (Redesigned matching Screenshot 3) */}
+        <section id="pathway" style={{ padding: "100px 0 80px", background: "transparent" }}>
+          <div className="container">
+            
+            <div style={{ textAlign: "center", marginBottom: "60px" }}>
+              <span style={{ fontSize: "11px", color: "var(--secondary-magenta)", fontWeight: 700, fontFamily: "monospace", letterSpacing: "0.15em", textTransform: "uppercase" }}>
+                YOUR ENGINEERING PIPELINE
+              </span>
+              <h2 style={{ fontSize: "36px", fontWeight: 800, marginTop: "12px", marginBottom: "16px", color: "var(--foreground)" }}>
+                Pathway to <span className="text-gradient-purple">Your Success</span>
+              </h2>
+              <p style={{ color: "var(--foreground-muted)", maxWidth: "700px", margin: "0 auto", fontSize: "16px", lineHeight: "1.7" }}>
+                Five structural milestones that take you from logical orientation to an active corporate software engineering launch.
+              </p>
+            </div>
+
+            {/* Interactive Timeline matching Screenshot 3 */}
+            <div style={{ position: "relative", maxWidth: "1000px", margin: "0 auto" }}>
+              
+              {/* Central vertical dashed line */}
+              <div style={{ 
+                position: "absolute", 
+                left: "50%", 
+                top: "20px", 
+                bottom: "40px", 
+                width: "2px", 
+                borderLeft: "2px dashed rgba(148, 163, 184, 0.15)",
+                transform: "translateX(-50%)",
+                zIndex: 0
+              }} className="desktop-only"></div>
+
+              {/* Timeline Steps */}
+              <div style={{ display: "flex", flexDirection: "column", gap: "60px", position: "relative", zIndex: 1 }}>
+                
+                {/* Step 1 */}
+                <div className="timeline-row">
+                  <div style={{ width: "45%", display: "flex", justifyContent: "flex-end" }} className="desktop-only">
+                    <div style={{ 
+                      backgroundColor: "#5B2D91", 
+                      padding: "20px 24px", 
+                      borderRadius: "8px", 
+                      boxShadow: "0 8px 20px rgba(91, 45, 145, 0.25)",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "12px",
+                      color: "#FFFFFF",
+                      minWidth: "280px"
+                    }}>
+                      <span style={{ fontSize: "20px" }}>📄</span>
+                      <strong style={{ fontSize: "14px", fontWeight: 700 }}>Qualify TLET Entrance Exam</strong>
+                    </div>
+                  </div>
+                  <div className="timeline-circle" style={{ 
+                    width: "48px", 
+                    height: "48px", 
+                    borderRadius: "50%", 
+                    background: "#5B2D91", 
+                    color: "#FFFFFF",
+                    display: "flex", 
+                    alignItems: "center", 
+                    justifyContent: "center", 
+                    fontWeight: 800,
+                    fontSize: "16px",
+                    boxShadow: "0 0 0 8px rgba(91, 45, 145, 0.15)",
+                    margin: "0 auto 20px"
+                  }}>1</div>
+                  <div className="timeline-content" style={{ paddingLeft: "20px" }}>
+                    <span style={{ fontSize: "11px", color: "var(--secondary-magenta)", fontWeight: 700, textTransform: "uppercase", display: "block", marginBottom: "4px" }}>Entrance Milestone</span>
+                    <h4 style={{ fontSize: "18px", fontWeight: 700, color: "#FFFFFF", marginBottom: "8px" }}>Qualify TLET Entrance Exam</h4>
+                    <p style={{ fontSize: "14px", color: "var(--foreground-muted)", lineHeight: "1.5", margin: 0 }}>
+                      The first step towards your dream engineering career begins with formal qualification of the Techlearns Entrance Test.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Step 2 */}
+                <div className="timeline-row" style={{ flexDirection: "row-reverse" }}>
+                  <div style={{ width: "45%", display: "flex", justifyContent: "flex-start" }} className="desktop-only">
+                    <div style={{ 
+                      backgroundColor: "#7E3B68", 
+                      padding: "20px 24px", 
+                      borderRadius: "8px", 
+                      boxShadow: "0 8px 20px rgba(126, 59, 104, 0.25)",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "12px",
+                      color: "#FFFFFF",
+                      minWidth: "280px"
+                    }}>
+                      <span style={{ fontSize: "20px" }}>🎟️</span>
+                      <strong style={{ fontSize: "14px", fontWeight: 700 }}>Get the Ticket to Virtual Cyber Hub</strong>
+                    </div>
+                  </div>
+                  <div className="timeline-circle" style={{ 
+                    width: "48px", 
+                    height: "48px", 
+                    borderRadius: "50%", 
+                    background: "#7E3B68", 
+                    color: "#FFFFFF",
+                    display: "flex", 
+                    alignItems: "center", 
+                    justifyContent: "center", 
+                    fontWeight: 800,
+                    fontSize: "16px",
+                    boxShadow: "0 0 0 8px rgba(126, 59, 104, 0.15)",
+                    margin: "0 auto 20px"
+                  }}>2</div>
+                  <div className="timeline-content" style={{ paddingRight: "20px", textAlign: "right" }}>
+                    <span style={{ fontSize: "11px", color: "var(--secondary-magenta)", fontWeight: 700, textTransform: "uppercase", display: "block", marginBottom: "4px" }}>Corporate Gateway</span>
+                    <h4 style={{ fontSize: "18px", fontWeight: 700, color: "#FFFFFF", marginBottom: "8px" }}>Get the Ticket to Virtual Cyber Hub</h4>
+                    <p style={{ fontSize: "14px", color: "var(--foreground-muted)", lineHeight: "1.5", margin: 0 }}>
+                      Secure your pass to India's most prestigious virtual developer district and get assigned your initial repository trackers.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Step 3 */}
+                <div className="timeline-row">
+                  <div style={{ width: "45%", display: "flex", justifyContent: "flex-end" }} className="desktop-only">
+                    <div style={{ 
+                      backgroundColor: "#D97706", 
+                      padding: "20px 24px", 
+                      borderRadius: "8px", 
+                      boxShadow: "0 8px 20px rgba(217, 119, 6, 0.25)",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "12px",
+                      color: "#FFFFFF",
+                      minWidth: "280px"
+                    }}>
+                      <span style={{ fontSize: "20px" }}>👥</span>
+                      <strong style={{ fontSize: "14px", fontWeight: 700 }}>Be Part of Hiring Drive</strong>
+                    </div>
+                  </div>
+                  <div className="timeline-circle" style={{ 
+                    width: "48px", 
+                    height: "48px", 
+                    borderRadius: "50%", 
+                    background: "#D97706", 
+                    color: "#FFFFFF",
+                    display: "flex", 
+                    alignItems: "center", 
+                    justifyContent: "center", 
+                    fontWeight: 800,
+                    fontSize: "16px",
+                    boxShadow: "0 0 0 8px rgba(217, 119, 6, 0.15)",
+                    margin: "0 auto 20px"
+                  }}>3</div>
+                  <div className="timeline-content" style={{ paddingLeft: "20px" }}>
+                    <span style={{ fontSize: "11px", color: "var(--secondary-magenta)", fontWeight: 700, textTransform: "uppercase", display: "block", marginBottom: "4px" }}>Selection Phase</span>
+                    <h4 style={{ fontSize: "18px", fontWeight: 700, color: "#FFFFFF", marginBottom: "8px" }}>Be Part of Hiring Drive</h4>
+                    <p style={{ fontSize: "14px", color: "var(--foreground-muted)", lineHeight: "1.5", margin: 0 }}>
+                      Showcase your initial baseline scores and diagnostic reports to top-tier technical recruiters and industry sponsors.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Step 4 */}
+                <div className="timeline-row" style={{ flexDirection: "row-reverse" }}>
+                  <div style={{ width: "45%", display: "flex", justifyContent: "flex-start" }} className="desktop-only">
+                    <div style={{ 
+                      backgroundColor: "#1B1E36", 
+                      padding: "20px 24px", 
+                      borderRadius: "8px", 
+                      boxShadow: "0 8px 20px rgba(27, 30, 54, 0.25)",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "12px",
+                      color: "#FFFFFF",
+                      minWidth: "280px"
+                    }}>
+                      <span style={{ fontSize: "20px" }}>📄</span>
+                      <strong style={{ fontSize: "14px", fontWeight: 700 }}>Get Pre-Placement Offer Letter</strong>
+                    </div>
+                  </div>
+                  <div className="timeline-circle" style={{ 
+                    width: "48px", 
+                    height: "48px", 
+                    borderRadius: "50%", 
+                    background: "#1B1E36", 
+                    color: "#FFFFFF",
+                    display: "flex", 
+                    alignItems: "center", 
+                    justifyContent: "center", 
+                    fontWeight: 800,
+                    fontSize: "16px",
+                    boxShadow: "0 0 0 8px rgba(27, 30, 54, 0.15)",
+                    margin: "0 auto 20px"
+                  }}>4</div>
+                  <div className="timeline-content" style={{ paddingRight: "20px", textAlign: "right" }}>
+                    <span style={{ fontSize: "11px", color: "var(--secondary-magenta)", fontWeight: 700, textTransform: "uppercase", display: "block", marginBottom: "4px" }}>Confirmation</span>
+                    <h4 style={{ fontSize: "18px", fontWeight: 700, color: "#FFFFFF", marginBottom: "8px" }}>Get the Pre-Placement Offer Letter</h4>
+                    <p style={{ fontSize: "14px", color: "var(--foreground-muted)", lineHeight: "1.5", margin: 0 }}>
+                      Validate your logical eligibility milestones with a formal intent of employment before kicking off your tech domain sprints.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Step 5 */}
+                <div className="timeline-row">
+                  <div style={{ width: "45%", display: "flex", justifyContent: "flex-end" }} className="desktop-only">
+                    <div style={{ 
+                      backgroundColor: "#C2410C", 
+                      padding: "20px 24px", 
+                      borderRadius: "8px", 
+                      boxShadow: "0 8px 20px rgba(194, 65, 12, 0.25)",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "12px",
+                      color: "#FFFFFF",
+                      minWidth: "280px"
+                    }}>
+                      <span style={{ fontSize: "20px" }}>🎓</span>
+                      <strong style={{ fontSize: "14px", fontWeight: 700 }}>Start Experiential Learning</strong>
+                    </div>
+                  </div>
+                  <div className="timeline-circle" style={{ 
+                    width: "48px", 
+                    height: "48px", 
+                    borderRadius: "50%", 
+                    background: "#C2410C", 
+                    color: "#FFFFFF",
+                    display: "flex", 
+                    alignItems: "center", 
+                    justifyContent: "center", 
+                    fontWeight: 800,
+                    fontSize: "16px",
+                    boxShadow: "0 0 0 8px rgba(194, 65, 12, 0.15)",
+                    margin: "0 auto 20px"
+                  }}>5</div>
+                  <div className="timeline-content" style={{ paddingLeft: "20px" }}>
+                    <span style={{ fontSize: "11px", color: "var(--secondary-magenta)", fontWeight: 700, textTransform: "uppercase", display: "block", marginBottom: "4px" }}>Career Launch</span>
+                    <h4 style={{ fontSize: "18px", fontWeight: 700, color: "#FFFFFF", marginBottom: "8px" }}>Start Your Experiential Learning</h4>
+                    <p style={{ fontSize: "14px", color: "var(--foreground-muted)", lineHeight: "1.5", margin: 0 }}>
+                      Bridge the final gap between theory and code, operating in team sprints, review gates, and Future Skills League seasons.
+                    </p>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+        </section>
+
+        {/* 7. FLAGSHIP PROGRAMS */}
+        <section id="programs" style={{ padding: "100px 0 80px", background: "rgba(91, 45, 145, 0.03)", borderTop: "1px solid var(--border-color)", borderBottom: "1px solid var(--border-color)" }}>
+          <div className="container">
+            <div style={{ textAlign: "center", marginBottom: "60px" }}>
+              <span style={{ fontSize: "11px", color: "#CB6CE6", fontWeight: 700, fontFamily: "monospace", letterSpacing: "0.15em", textTransform: "uppercase" }}>
+                WHERE TO START
+              </span>
+              <h2 className="fade-in-up" style={{ fontSize: "36px", fontWeight: 800, marginTop: "12px", marginBottom: "16px", color: "var(--foreground)" }}>
+                Career tracks built around where demand is actually moving
+              </h2>
+              <p className="fade-in-up" style={{ color: "var(--foreground-muted)", maxWidth: "700px", margin: "0 auto", fontSize: "16px", lineHeight: "1.7" }}>
+                AI plus execution. Every program pairs current curriculum with corporate practice, real projects, industry exposure and competition.
+              </p>
+            </div>
+
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "24px", marginBottom: "40px" }}>
+              {[
+                { name: "AI Foundations & Productivity", dur: "4–6 weeks", tags: ["AI Literacy", "Prompting", "Workflow Design", "Responsible Use"] },
+                { name: "Generative AI & Agentic AI Engineering", dur: "5–6 months", tags: ["Python", "APIs", "RAG", "Agents", "LLMOps", "Deployment"] },
+                { name: "Full-Stack Software Engineering with AI", dur: "6–9 months", tags: ["DSA", "Frontend", "Backend", "Cloud", "AI-assisted engineering"] },
+                { name: "Data Analytics + BI + GenAI", dur: "4–6 months", tags: ["SQL", "Python", "Power BI", "Statistics", "Data Storytelling"] },
+                { name: "Cybersecurity & SOC Analyst", dur: "6 months", tags: ["Networking", "SIEM", "Threat Detection", "Incident Response"] },
+                { name: "Cloud, DevOps & Platform Engineering", dur: "6 months", tags: ["Containers", "CI/CD", "IaC", "Observability", "Reliability"] },
+                { name: "Data Science, ML & MLOps", dur: "6–9 months", tags: ["ML", "Deep learning", "GenAI", "Model operations"] },
+                { name: "Data Engineering & Modern Analytics", dur: "6 months", tags: ["Pipelines", "Warehouses", "Orchestration", "Governance"] }
+              ].map((prog, idx) => (
+                <div key={idx} className="glass-card fade-in-up" style={{ padding: "28px", display: "flex", flexDirection: "column", gap: "16px", justifyContent: "space-between" }}>
+                  <div>
+                    <span style={{ fontSize: "12px", color: "var(--foreground-muted-extra)", fontWeight: 600 }}>⏱ {prog.dur}</span>
+                    <h3 style={{ fontSize: "18px", color: "var(--foreground)", marginTop: "8px", marginBottom: "12px", fontWeight: 700 }}>{prog.name}</h3>
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}>
+                      {prog.tags.map((t, i) => (
+                        <span key={i} style={{ fontSize: "10px", background: "rgba(203, 108, 230, 0.12)", color: "var(--secondary-magenta)", padding: "2px 8px", borderRadius: "4px", fontWeight: 500 }}>
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <Link href={`/programs`} style={{ color: "#CB6CE6", fontSize: "13px", fontWeight: 650, textDecoration: "none", display: "inline-block", marginTop: "8px" }}>
+                    View Program →
+                  </Link>
+                </div>
+              ))}
+            </div>
+
+            <div style={{ textAlign: "center" }}>
+              <Link href="/programs" className="glow-btn-primary">
+                Compare All Programs →
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* 8. TECHLEARNS SKILLOS TEASER */}
+        <section id="skillos" style={{ padding: "100px 0 80px" }}>
+          <div className="container">
+            <div className="grid-split" style={{ gap: "60px", alignItems: "center" }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+                <span style={{ fontSize: "11px", color: "#CB6CE6", fontWeight: 700, fontFamily: "monospace", letterSpacing: "0.15em", textTransform: "uppercase" }}>
+                  THE PLATFORM
+                </span>
+                <h2 style={{ fontSize: "36px", fontWeight: 800, color: "var(--foreground)" }}>
+                  Not an LMS. An operating system for your capability.
+                </h2>
+                <p style={{ color: "var(--foreground-muted)", fontSize: "16px", lineHeight: "1.7" }}>
+                  A standard LMS manages content. Techlearns SkillOS manages what you can actually do. Every assignment, lab, project, competition, review and milestone leaves measurable evidence — feeding directly into your Skill Passport.
+                </p>
+
+                <div className="grid-2col" style={{ gap: "16px", marginTop: "10px" }}>
+                  {[
+                    { title: "Role Skill Graph", desc: "See exactly what a role requires and where you stand" },
+                    { title: "Practice Engine", desc: "Coding, SQL, cloud and security labs with instant feedback" },
+                    { title: "Corporate Simulation", desc: "Sprint boards, tickets, review gates, demo records" },
+                    { title: "Competition Engine", desc: "Challenges, leaderboards, judging, certificates" },
+                    { title: "AI Learning Coach", desc: "Personalised practice suggestions and revision plans" },
+                    { title: "Skill Passport", desc: "Your verified, shareable evidence record" }
+                  ].map((feat, i) => (
+                    <div key={i} style={{ borderLeft: "2px solid #CB6CE6", paddingLeft: "12px" }}>
+                      <strong style={{ fontSize: "14px", color: "var(--foreground)", display: "block", marginBottom: "4px" }}>{feat.title}</strong>
+                      <span style={{ fontSize: "12px", color: "var(--foreground-muted)", lineHeight: "1.4" }}>{feat.desc}</span>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Dashboard philosophy callout */}
+                <div style={{ background: "rgba(91, 45, 145, 0.1)", borderLeft: "3px solid #CB6CE6", padding: "16px", marginTop: "12px", borderRadius: "4px" }}>
+                  <p style={{ fontSize: "13px", color: "var(--foreground)", margin: 0, lineHeight: "1.5" }}>
+                    📊 <strong>Dashboard philosophy:</strong> We show skill mastery trend, practice consistency, and evidence quality — not hours watched or passive logins. Growth is the metric. Not vanity.
+                  </p>
+                </div>
+
+                <div style={{ marginTop: "10px" }}>
+                  <Link href="/skillos" className="glow-btn-primary">
+                    Explore SkillOS →
+                  </Link>
+                </div>
+              </div>
+
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <div 
+                  className="glass-card" 
+                  style={{ 
+                    padding: "16px", 
+                    background: "rgba(0,0,0,0.2)", 
+                    border: "1px solid var(--border-color)",
+                    borderRadius: "20px"
+                  }}
+                >
+                  <img 
+                    src="/skillos_dashboard_mockup.png" 
+                    alt="SkillOS Workspace Interface" 
+                    style={{ width: "100%", height: "auto", borderRadius: "12px", display: "block" }}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 9. COMPETITIONS & CHALLENGE ECOSYSTEM */}
+        <section id="competitions" style={{ padding: "100px 0 80px", background: "rgba(91, 45, 145, 0.03)", borderTop: "1px solid var(--border-color)", borderBottom: "1px solid var(--border-color)" }}>
+          <div className="container">
+            <div className="grid-split" style={{ gap: "60px", alignItems: "center" }}>
+              
+              <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+                <span style={{ fontSize: "11px", color: "#CB6CE6", fontWeight: 700, fontFamily: "monospace", letterSpacing: "0.15em", textTransform: "uppercase" }}>
+                  LEARN BY COMPETING
+                </span>
+                <h2 style={{ fontSize: "36px", fontWeight: 800, color: "var(--foreground)" }}>
+                  Compete while you learn — it's not optional here
+                </h2>
+                <p style={{ color: "var(--foreground-muted)", fontSize: "16px", lineHeight: "1.7" }}>
+                  Hackathons, CTFs, datathons, cloud architecture challenges and demo days are part of your calendar from day one. Pressure, deadlines, and a public audience build skills faster than passive study ever will.
+                </p>
+
+                {/* Format chips tag cloud */}
+                <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", margin: "10px 0" }}>
+                  {[
+                    "AI Agent Buildathon", "Hackathon / Product Sprint", "Datathon", "Cybersecurity CTF",
+                    "SOC Incident Simulation", "Cloud Architecture Challenge", "Bug Bash", "API Integration Challenge",
+                    "UI/UX Designathon", "Automation Challenge", "Open Source Sprint", "Demo Day / Pitch Arena"
+                  ].map((chip, i) => (
+                    <span key={i} style={{ fontSize: "12px", background: "rgba(255, 255, 255, 0.04)", border: "1px solid var(--border-color)", color: "var(--foreground-muted)", padding: "6px 12px", borderRadius: "20px" }}>
+                      {chip}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Signature event callout */}
+                <div style={{ background: "rgba(203, 108, 230, 0.06)", border: "1px dashed var(--secondary-magenta)", padding: "20px", borderRadius: "8px" }}>
+                  <strong style={{ color: "#CB6CE6", fontSize: "14px", display: "block", marginBottom: "4px" }}>🏆 Techlearns Future Skills League</strong>
+                  <p style={{ fontSize: "13px", color: "var(--foreground-muted)", margin: 0, lineHeight: "1.5" }}>
+                    Our annual, season-based competition with regional qualifiers and a national finale, open to partner colleges and industry-sponsored challenge statements.
+                  </p>
+                </div>
+
+                <div style={{ marginTop: "10px" }}>
+                  <Link href="/fsl" className="glow-btn-primary">
+                    See Upcoming Challenges →
+                  </Link>
+                </div>
+              </div>
+
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <div 
+                  className="glass-card" 
+                  style={{ 
+                    padding: "16px", 
+                    background: "rgba(0,0,0,0.2)", 
+                    border: "1px solid var(--border-color)",
+                    borderRadius: "20px"
+                  }}
+                >
+                  <img 
+                    src="/fsl_league_trophy.png" 
+                    alt="Future Skills League Trophy" 
+                    style={{ width: "100%", height: "auto", borderRadius: "12px", display: "block" }}
+                  />
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+
+
+        {/* 10. SKILL PASSPORT / PROOF SHOWCASE */}
+        <section id="proof" style={{ padding: "100px 0 80px" }}>
+          <div className="container">
+            <div className="grid-split" style={{ gap: "60px", alignItems: "center" }}>
+              
+              <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+                <span style={{ fontSize: "11px", color: "var(--secondary-magenta)", fontWeight: 700, fontFamily: "monospace", letterSpacing: "0.15em", textTransform: "uppercase" }}>
+                  EVIDENCE SHOWCASE
+                </span>
+                <h2 style={{ fontSize: "36px", fontWeight: 800, color: "var(--foreground)" }}>
+                  Skill Passport: your dynamic proof profiles
+                </h2>
+                <p style={{ color: "var(--foreground-muted)", fontSize: "16px", lineHeight: "1.7" }}>
+                  A static resume lists claims. A Techlearns Skill Passport houses proof logs. It compiles role targets, verified practice consistency scores, project repository integrations, mentor code reviews, and certification checks.
+                </p>
+
+                {/* Audit and compliance notice */}
+                <div style={{ background: "rgba(255, 153, 0, 0.05)", border: "1px dashed rgba(255, 153, 0, 0.2)", padding: "20px", borderRadius: "8px" }}>
+                  <strong style={{ color: "#FF9900", fontSize: "13px", display: "block", marginBottom: "4px" }}>⚖️ Regulatory Compliance & Verification Audit</strong>
+                  <p style={{ fontSize: "12px", color: "var(--foreground-muted)", margin: 0, lineHeight: "1.5" }}>
+                    In accordance with transparency codes, learner placements and practice metrics are subject to annual internal audits. Student data indicators reflect verified SkillOS telemetry. Fabricated metrics are strictly prohibited.
+                  </p>
+                </div>
+
+                <div style={{ marginTop: "10px" }}>
+                  <Link href="/passport" className="glow-btn-primary">
+                    See Passport Structure →
+                  </Link>
+                </div>
+              </div>
+
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <div className="glass-card" style={{ padding: "16px", background: "rgba(0,0,0,0.2)", border: "1px solid var(--border-color)", borderRadius: "20px" }}>
+                  <img 
+                    src="/skill_passport_card.png" 
+                    alt="Cryptographic Skill Passport Smart Card Illustration" 
+                    style={{ width: "100%", height: "auto", borderRadius: "12px", display: "block" }}
+                  />
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        {/* 11. CREDENTIAL STACK TEASER */}
+        <section id="credentials" style={{ padding: "100px 0 80px", background: "rgba(91, 45, 145, 0.02)", borderTop: "1px solid var(--border-color)", borderBottom: "1px solid var(--border-color)" }}>
+          <div className="container">
+            <div style={{ textAlign: "center", marginBottom: "50px" }}>
+              <span style={{ fontSize: "11px", color: "var(--secondary-magenta)", fontWeight: 700, fontFamily: "monospace", letterSpacing: "0.15em", textTransform: "uppercase" }}>
+                CREDENTIAL SYSTEM
+              </span>
+              <h2 style={{ fontSize: "36px", fontWeight: 800, marginTop: "12px", marginBottom: "16px", color: "var(--foreground)" }}>
+                A Three-Layer Credential Stack
+              </h2>
+              <p style={{ color: "var(--foreground-muted)", maxWidth: "700px", margin: "0 auto", fontSize: "16px", lineHeight: "1.7" }}>
+                Every milestone achieved leaves a permanent telemetry trail, structured across international pathways and practice credentials.
+              </p>
+            </div>
+
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "24px" }}>
+              <div className="glass-card" style={{ padding: "30px", borderTop: "3px solid #5B2D91" }}>
+                <span style={{ fontSize: "12px", color: "#5B2D91", fontWeight: 700, fontFamily: "monospace" }}>LAYER A</span>
+                <h3 style={{ fontSize: "20px", color: "#FFFFFF", margin: "10px 0" }}>External Credentials</h3>
+                <p style={{ fontSize: "14px", color: "var(--foreground-muted)", lineHeight: "1.6" }}>
+                  Qualify for official industry standards where relevant, including Microsoft Applied Skills, Google Career Certificates, and AWS cloud competencies.
+                </p>
+              </div>
+              <div className="glass-card" style={{ padding: "30px", borderTop: "3px solid #7C3AED" }}>
+                <span style={{ fontSize: "12px", color: "#7C3AED", fontWeight: 700, fontFamily: "monospace" }}>LAYER B</span>
+                <h3 style={{ fontSize: "20px", color: "#FFFFFF", margin: "10px 0" }}>Verified Competency</h3>
+                <p style={{ fontSize: "14px", color: "var(--foreground-muted)", lineHeight: "1.6" }}>
+                  Techlearns completion certificates, combined with high-performance Skill Distinction Badges awarded only to candidates meeting practice standards.
+                </p>
+              </div>
+              <div className="glass-card" style={{ padding: "30px", borderTop: "3px solid #8B5CF6" }}>
+                <span style={{ fontSize: "12px", color: "#8B5CF6", fontWeight: 700, fontFamily: "monospace" }}>LAYER C</span>
+                <h3 style={{ fontSize: "20px", color: "#FFFFFF", margin: "10px 0" }}>Experience Badging</h3>
+                <p style={{ fontSize: "14px", color: "var(--foreground-muted)", lineHeight: "1.6" }}>
+                  Earn verified telemetry logs for successful Live Projects, Future Skills League challenge wins, mentor review milestones, and internship roles.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 12. WHO TECHLEARNS IS FOR */}
+        <section id="audience" style={{ padding: "100px 0 80px" }}>
+          <div className="container">
+            <div style={{ textAlign: "center", marginBottom: "60px" }}>
+              <span style={{ fontSize: "11px", color: "var(--secondary-magenta)", fontWeight: 700, fontFamily: "monospace", letterSpacing: "0.15em", textTransform: "uppercase" }}>
+                TARGET AUDIENCE
+              </span>
+              <h2 style={{ fontSize: "36px", fontWeight: 800, marginTop: "12px", marginBottom: "16px", color: "var(--foreground)" }}>
+                Tailored pathways for every background
+              </h2>
+            </div>
+
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "24px" }}>
+              {[
+                { name: "Students", role: "Start early, build portfolios, and earn corporate readiness credentials before graduation.", href: "/programs" },
+                { name: "Switchers", role: "Transition into tech roles via rigorous labs, live projects, and dedicated placement drives.", href: "/programs" },
+                { name: "Professionals", role: "Level up into AI engineering, MLOps, or Cloud Architecture with flexible, advanced modules.", href: "/programs" },
+                { name: "Colleges", role: "Plug-and-play CEL programs, SkillOS telemetry platforms, and FSL qualifiers for your campus.", href: "/partners" },
+                { name: "Employers", role: "Hire vetted, project-ready talent with complete visibility into commit histories and skill scores.", href: "/partners" }
+              ].map((aud, idx) => (
+                <div key={idx} className="glass-card" style={{ padding: "28px", display: "flex", flexDirection: "column", gap: "16px", justifyContent: "space-between" }}>
+                  <div>
+                    <h3 style={{ fontSize: "20px", color: "#FFFFFF", fontWeight: 700 }}>{aud.name}</h3>
+                    <p style={{ fontSize: "14px", color: "var(--foreground-muted)", marginTop: "10px", lineHeight: "1.5" }}>{aud.role}</p>
+                  </div>
+                  <Link href={aud.href} style={{ color: "var(--secondary-magenta)", fontSize: "13px", fontWeight: 650 }}>
+                    Learn More →
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 13. TRUST & GOVERNANCE BAND */}
+        <section id="trust" style={{ padding: "60px 0", background: "rgba(91, 45, 145, 0.05)", borderTop: "1px solid var(--border-color)", borderBottom: "1px solid var(--border-color)", textAlign: "center" }}>
+          <div className="container">
+            <h3 style={{ fontSize: "20px", fontWeight: 700, color: "#FFFFFF", marginBottom: "12px" }}>Our Quality & Transparency Pledge</h3>
+            <p style={{ color: "var(--foreground-muted)", maxWidth: "700px", margin: "0 auto", fontSize: "14px", lineHeight: "1.6" }}>
+              We believe in demonstrable capabilities. Every curriculum is updated quarterly to match industrial shifts. All telemetry dashboard scores reflect actual practice attempts. We maintain complete separation between learning analytics and recruiter matching to preserve grading integrity.
+            </p>
+          </div>
+        </section>
+
+        {/* 14. CONTENT HUB TEASER */}
+        <section id="content-hub" style={{ padding: "100px 0 80px" }}>
+          <div className="container">
+            <div className="grid-split" style={{ gap: "60px", alignItems: "center" }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+                <span style={{ fontSize: "11px", color: "var(--secondary-magenta)", fontWeight: 700, fontFamily: "monospace", letterSpacing: "0.15em", textTransform: "uppercase" }}>
+                  SKILL REPORT
+                </span>
+                <h2 style={{ fontSize: "36px", fontWeight: 800, color: "var(--foreground)" }}>
+                  Quarterly Skill Reports & Technical Blog
+                </h2>
+                <p style={{ color: "var(--foreground-muted)", fontSize: "16px", lineHeight: "1.7" }}>
+                  Read our continuous analysis of developer skill gaps, emerging AI architectures, SOC analyst operations, and placement telemetry metrics. We write for engineers and hiring managers who value facts over hype.
+                </p>
+                <div style={{ marginTop: "10px" }}>
+                  <Link href="/blog" className="glow-btn-primary">
+                    Browse the Skill Report Hub →
+                  </Link>
+                </div>
+              </div>
+              <div className="glass-card" style={{ padding: "30px", background: "var(--card-bg)", border: "1px solid var(--border-color)" }}>
+                <h4 style={{ fontSize: "18px", color: "var(--foreground)", marginBottom: "12px", fontWeight: 700 }}>Featured Article</h4>
+                <span style={{ fontSize: "11px", color: "var(--secondary-magenta)", fontWeight: 650, fontFamily: "monospace" }}>AI & AGENTIC ENGINEERING</span>
+                <h3 style={{ fontSize: "20px", color: "var(--foreground)", margin: "8px 0 12px" }}>The Fall of the Code Monkey: Why practice engines must focus on logic verification</h3>
+                <p style={{ fontSize: "13px", color: "var(--foreground-muted)", lineHeight: "1.5" }}>
+                  Why copy-pasting code is a career dead-end in the age of generative models, and how to build verifiable evidence of debugging capability.
+                </p>
+                <Link href="/blog" style={{ color: "var(--secondary-magenta)", fontSize: "13px", fontWeight: 650, display: "inline-block", marginTop: "10px" }}>Read Article →</Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 15. FAQ ACCORDION */}
+        <section id="faq" style={{ padding: "100px 0 80px", background: "rgba(91, 45, 145, 0.02)", borderTop: "1px solid var(--border-color)", borderBottom: "1px solid var(--border-color)" }}>
+          <div className="container">
+            <div style={{ textAlign: "center", marginBottom: "60px" }}>
+              <span style={{ fontSize: "11px", color: "var(--secondary-magenta)", fontWeight: 700, fontFamily: "monospace", letterSpacing: "0.15em", textTransform: "uppercase" }}>
+                QUESTIONS & ANSWERS
+              </span>
+              <h2 style={{ fontSize: "36px", fontWeight: 800, marginTop: "12px", marginBottom: "16px", color: "var(--foreground)" }}>
+                Frequently Asked Questions
+              </h2>
+            </div>
+
+            <div style={{ maxWidth: "800px", margin: "0 auto", display: "flex", flexDirection: "column", gap: "16px" }}>
+              {faqsList.map((faq, idx) => (
+                <div 
+                  key={idx} 
+                  className="glass-card" 
+                  style={{ 
+                    padding: "20px 24px", 
+                    cursor: "pointer"
+                  }}
+                  onClick={() => setActiveFaq(activeFaq === idx ? null : idx)}
+                >
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                    <h3 style={{ fontSize: "16px", fontWeight: 700, color: "var(--foreground)", margin: 0 }}>{faq.question}</h3>
+                    <span style={{ fontSize: "18px", color: "var(--secondary-magenta)" }}>{activeFaq === idx ? "−" : "+"}</span>
+                  </div>
+                  {activeFaq === idx && (
+                    <p style={{ fontSize: "14px", color: "var(--foreground-muted)", marginTop: "12px", lineHeight: "1.6", margin: "12px 0 0 0" }}>
+                      {faq.answer}
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
         <section id="contact" style={{ padding: "100px 0", position: "relative" }}>
           <div className="container">
             <div 
@@ -1142,14 +1301,25 @@ export default function HomeClient() {
               style={{ 
                 padding: "60px 40px", 
                 textAlign: "center", 
-                background: "linear-gradient(135deg, rgba(91, 45, 145, 0.15) 0%, rgba(44, 10, 113, 0.15) 100%)",
+                background: "var(--contact-card-bg)",
                 border: "1px solid var(--border-color)"
               }}
             >
-              <h2 style={{ fontSize: "40px", color: "var(--foreground)", marginBottom: "16px" }}>Start Your Corporate Experience.</h2>
-              <p style={{ color: "var(--foreground-muted)", maxWidth: "600px", margin: "0 auto 40px", fontSize: "16px", lineHeight: "1.6" }}>
-                Submit your initial details to qualify for the next cohort admissions. Our technical counseling team will sync back in 24 hours.
+              <div style={{ marginBottom: "24px" }}>
+                <p style={{ fontSize: "12px", color: "var(--secondary-magenta)", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", fontFamily: "monospace", marginBottom: "16px" }}>THE TECHLEARNS MANIFESTO</p>
+                <p style={{ color: "var(--foreground-muted)", maxWidth: "700px", margin: "0 auto", fontSize: "15px", lineHeight: "1.8", fontStyle: "italic" }}>
+                  We believe talent is everywhere, but meaningful exposure is not. We believe a learner should experience the discipline of real work before the first job. We believe skills become valuable when they are practised, challenged, reviewed and proven. And we believe India can build a generation that does not merely hold certificates — it can build, solve, communicate, compete and lead.
+                </p>
+              </div>
+              <h2 style={{ fontSize: "40px", color: "var(--foreground)", marginBottom: "16px" }}>Stop collecting certificates.<br /><span className="text-gradient-purple">Start building proof.</span></h2>
+              <p style={{ color: "var(--foreground-muted)", maxWidth: "600px", margin: "0 auto 20px", fontSize: "16px", lineHeight: "1.6" }}>
+                Take a free diagnostic assessment and get a personalised role-fit map in minutes.
               </p>
+              <div style={{ display: "flex", justifyContent: "center", gap: "16px", marginBottom: "30px", flexWrap: "wrap" }}>
+                <span style={{ fontSize: "12px", color: "var(--foreground-muted-extra)" }}>
+                  No spam. No obligation. Just a clear starting point.
+                </span>
+              </div>
 
               {formSubmitted ? (
                 <div style={{ padding: "20px", display: "flex", flexDirection: "column", gap: "12px", alignItems: "center" }}>
@@ -1158,7 +1328,7 @@ export default function HomeClient() {
                   <p style={{ fontSize: "14px", color: "var(--foreground-muted)" }}>Please verify your email inbox for initial analytical prep trackers.</p>
                 </div>
               ) : (
-                <form onSubmit={handleFormSubmit} style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "16px", maxWidth: "900px", margin: "0 auto", textAlign: "left" }}>
+                <form onSubmit={handleFormSubmit} className="grid-3col" style={{ gap: "16px", maxWidth: "900px", margin: "0 auto", textAlign: "left" }}>
                   <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
                     <label style={{ fontSize: "11px", fontWeight: 700, color: "var(--foreground-muted)" }}>FULL NAME</label>
                     <input 
@@ -1167,7 +1337,14 @@ export default function HomeClient() {
                       value={formData.name} 
                       onChange={handleInputChange} 
                       required 
-                      style={{ padding: "10px 14px", borderRadius: "6px", fontSize: "13px" }}
+                      style={{ 
+                        padding: "10px 14px", 
+                        borderRadius: "6px", 
+                        fontSize: "13px",
+                        background: "rgba(255, 255, 255, 0.05)",
+                        border: "1px solid var(--border-color)",
+                        color: "var(--foreground)"
+                      }}
                     />
                   </div>
                   <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
@@ -1178,7 +1355,14 @@ export default function HomeClient() {
                       value={formData.email} 
                       onChange={handleInputChange} 
                       required 
-                      style={{ padding: "10px 14px", borderRadius: "6px", fontSize: "13px" }}
+                      style={{ 
+                        padding: "10px 14px", 
+                        borderRadius: "6px", 
+                        fontSize: "13px",
+                        background: "rgba(255, 255, 255, 0.05)",
+                        border: "1px solid var(--border-color)",
+                        color: "var(--foreground)"
+                      }}
                     />
                   </div>
                   <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
@@ -1187,17 +1371,33 @@ export default function HomeClient() {
                       name="track" 
                       value={formData.track} 
                       onChange={handleInputChange}
-                      style={{ padding: "10px 14px", borderRadius: "6px", fontSize: "13px" }}
+                      style={{ 
+                        padding: "10px 14px", 
+                        borderRadius: "6px", 
+                        fontSize: "13px",
+                        background: "rgba(255, 255, 255, 0.05)",
+                        border: "1px solid var(--border-color)",
+                        color: "var(--foreground)"
+                      }}
                     >
-                      <option>Generative AI Engineering</option>
-                      <option>AI-Enabled Full Stack</option>
-                      <option>Cloud Platform &amp; DevOps</option>
-                      <option>Cybersecurity &amp; Networks</option>
+                      <option>Generative AI & Agentic AI Engineering</option>
+                      <option>Full-Stack Software Engineering with AI</option>
+                      <option>Data Analytics + BI + GenAI</option>
+                      <option>Cybersecurity & SOC Analyst</option>
+                      <option>Cloud, DevOps & Platform Engineering</option>
+                      <option>Data Science, ML & MLOps</option>
+                      <option>Data Engineering & Modern Analytics</option>
+                      <option>AI Foundations & Productivity (Short-form)</option>
                     </select>
                   </div>
-                  <button type="submit" className="glow-btn-primary" style={{ gridColumn: "1 / -1", justifyContent: "center", padding: "14px", marginTop: "10px" }}>
-                    Start Your Corporate Experience
-                  </button>
+                  <div style={{ gridColumn: "1 / -1", display: "flex", flexDirection: "column", alignItems: "center", gap: "12px", marginTop: "10px" }}>
+                    <button type="submit" className="glow-btn-primary" style={{ width: "100%", justifyContent: "center", padding: "14px" }}>
+                      Book Your Free Career Diagnostic
+                    </button>
+                    <Link href="/contact" style={{ color: "#CB6CE6", fontSize: "14px", fontWeight: 600, textDecoration: "none" }} className="hover-underline">
+                      Talk to a Program Advisor →
+                    </Link>
+                  </div>
                 </form>
               )}
             </div>

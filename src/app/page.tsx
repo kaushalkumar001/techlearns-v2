@@ -2,14 +2,14 @@ import type { Metadata } from "next";
 import HomeClient from "./HomeClient";
 
 export const metadata: Metadata = {
-  title: "TechLearns Academy | The Modern Technical University for Software Engineers",
-  description: "Earn verified engineering credentials, build production-grade systems, and master advanced architectures under the guidance of top-tier industry educators.",
+  title: "Techlearns | Corporate Experience Learning Ecosystem for AI, Data, Cloud & Cybersecurity",
+  description: "Techlearns is a next-generation Corporate Experience Learning ecosystem. Learn technology, experience how industry builds, work on live projects, compete, and graduate with a verified Skill Passport — not just a certificate.",
   alternates: {
     canonical: "https://techlearns.com"
   },
   openGraph: {
-    title: "TechLearns Academy | The Modern Technical University for Software Engineers",
-    description: "Earn verified engineering credentials, build production-grade systems, and master advanced architectures under the guidance of top-tier industry educators.",
+    title: "Learning technology isn't enough. Experience how it's built.",
+    description: "Techlearns is a next-generation Corporate Experience Learning ecosystem. Learn technology, experience how industry builds, work on live projects, compete, and graduate with a verified Skill Passport — not just a certificate.",
     url: "https://techlearns.com",
     type: "website",
   }

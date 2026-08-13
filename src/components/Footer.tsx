@@ -29,121 +29,62 @@ export default function Footer() {
       }}
     >
       <div className="container">
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "40px", marginBottom: "60px" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: "30px", marginBottom: "60px" }}>
           
-          {/* About Section */}
-          <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-            <Link href="/" style={{ display: "flex", alignItems: "center", textDecoration: "none" }}>
-              <img 
-                src={logoSrc} 
-                alt="TechLearns Academy Logo" 
-                style={{ height: "40px", width: "auto", objectFit: "contain", transition: "all 0.3s ease" }}
-              />
-            </Link>
-            <p style={{ fontSize: "14px", lineHeight: "1.7", color: "rgba(255, 255, 255, 0.7)" }}>
-              Empowering the next generation of developers, innovators, and technology leaders through practical, industry-ready education. Experience how the corporate world builds products.
-            </p>
-            <div style={{ display: "flex", flexDirection: "column", gap: "10px", fontSize: "14px" }}>
-              <div>
-                <strong style={{ color: "#FFFFFF" }}>Phone:</strong> +123-456-7890
-              </div>
-              <div>
-                <strong style={{ color: "#FFFFFF" }}>Email:</strong> contact@techlearns.com
-              </div>
-              <div>
-                <strong style={{ color: "#FFFFFF" }}>Location:</strong> TechLearns Tower, Cyber Hub, India
-              </div>
-            </div>
-          </div>
-
-          {/* Philosophy / Features */}
+          {/* Column 1 — Techlearns */}
           <div>
-            <h3 style={{ color: "#FFFFFF", fontSize: "18px", marginBottom: "25px", fontFamily: "var(--font-headings)" }}>Ecosystem</h3>
-            <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: "12px", fontSize: "14px" }}>
-              <li>
-                <Link href="/cel" className="footer-link">Pedagogy</Link>
-              </li>
-              <li>
-                <Link href="/skillos" className="footer-link">SkillOS Lab</Link>
-              </li>
-              <li>
-                <Link href="/passport" className="footer-link">Credentials</Link>
-              </li>
-              <li>
-                <Link href="/fsl" className="footer-link">Skill Leagues</Link>
-              </li>
+            <h3 style={{ color: "#FFFFFF", fontSize: "16px", marginBottom: "20px", fontFamily: "var(--font-headings)" }}>Techlearns</h3>
+            <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: "10px", fontSize: "13px" }}>
+              <li><Link href="/about" className="footer-link">About Us</Link></li>
+              <li><Link href="/cel" className="footer-link">Corporate Experience Learning</Link></li>
+              <li><Link href="/skillos" className="footer-link">SkillOS</Link></li>
+              <li><Link href="/about" className="footer-link">Trust & Quality Policy</Link></li>
+              <li><Link href="/contact" className="footer-link">Careers at Techlearns</Link></li>
             </ul>
           </div>
 
-          {/* Programs Catalog */}
+          {/* Column 2 — Programs */}
           <div>
-            <h3 style={{ color: "#FFFFFF", fontSize: "18px", marginBottom: "25px", fontFamily: "var(--font-headings)" }}>Programs</h3>
-            <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: "12px", fontSize: "14px" }}>
-              <li>
-                <Link href="/programs" className="footer-link">Generative AI Engineering</Link>
-              </li>
-              <li>
-                <Link href="/programs" className="footer-link">Full Stack Development</Link>
-              </li>
-              <li>
-                <Link href="/programs" className="footer-link">Cybersecurity Track</Link>
-              </li>
-              <li>
-                <Link href="/programs" className="footer-link">Cloud Platform Engineering</Link>
-              </li>
-              <li>
-                <Link href="/programs" className="footer-link">Data Analytics &amp; MLOps</Link>
-              </li>
+            <h3 style={{ color: "#FFFFFF", fontSize: "16px", marginBottom: "20px", fontFamily: "var(--font-headings)" }}>Programs</h3>
+            <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: "10px", fontSize: "13px" }}>
+              <li><Link href="/programs" className="footer-link">Generative AI & Agentic AI Engineering</Link></li>
+              <li><Link href="/programs" className="footer-link">Full-Stack Software Engineering with AI</Link></li>
+              <li><Link href="/programs" className="footer-link">Data Analytics + BI + GenAI</Link></li>
+              <li><Link href="/programs" className="footer-link">Cybersecurity & SOC Analyst</Link></li>
+              <li><Link href="/programs" className="footer-link">Cloud, DevOps & Platform Engineering</Link></li>
+              <li><Link href="/programs" className="footer-link">View All Programs</Link></li>
             </ul>
           </div>
 
-          {/* Corporate / Community */}
+          {/* Column 3 — Ecosystem */}
           <div>
-            <h3 style={{ color: "#FFFFFF", fontSize: "18px", marginBottom: "25px", fontFamily: "var(--font-headings)" }}>Quick Links</h3>
-            <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: "12px", fontSize: "14px" }}>
-              <li>
-                <Link href="/stories" className="footer-link">Outcomes</Link>
-              </li>
-              <li>
-                <Link href="/mentors" className="footer-link">Faculty</Link>
-              </li>
-              <li>
-                <Link href="/partners" className="footer-link">Industry Partners</Link>
-              </li>
-              <li>
-                <Link href="/careers" className="footer-link">Careers</Link>
-              </li>
-              <li>
-                <Link href="/blog" className="footer-link">Research &amp; Blogs</Link>
-              </li>
+            <h3 style={{ color: "#FFFFFF", fontSize: "16px", marginBottom: "20px", fontFamily: "var(--font-headings)" }}>Ecosystem</h3>
+            <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: "10px", fontSize: "13px" }}>
+              <li><Link href="/fsl" className="footer-link">Competitions & Future Skills League</Link></li>
+              <li><Link href="/passport" className="footer-link">Certifications & Credentials</Link></li>
+              <li><Link href="/passport" className="footer-link">Skill Passport</Link></li>
+              <li><Link href="/blog" className="footer-link">Skill Report / Blog</Link></li>
             </ul>
           </div>
 
-          {/* Newsletter Subscription */}
+          {/* Column 4 — Partnerships */}
           <div>
-            <h3 style={{ color: "#FFFFFF", fontSize: "18px", marginBottom: "25px", fontFamily: "var(--font-headings)" }}>Newsletter</h3>
-            <p style={{ fontSize: "14px", lineHeight: "1.7", marginBottom: "18px", color: "rgba(255, 255, 255, 0.7)" }}>
-              Subscribe to get latest updates, curriculum releases, and placement announcements.
-            </p>
-            <form onSubmit={(e) => e.preventDefault()} style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-              <input 
-                type="email" 
-                placeholder="Your email address" 
-                required 
-                style={{
-                  background: "rgba(255, 255, 255, 0.05)",
-                  border: "1px solid rgba(203, 108, 230, 0.2)",
-                  color: "#FFFFFF",
-                  padding: "12px 16px",
-                  borderRadius: "6px",
-                  fontSize: "14px",
-                  outline: "none"
-                }}
-              />
-              <button type="submit" className="glow-btn-primary" style={{ justifyContent: "center", padding: "12px" }}>
-                Subscribe
-              </button>
-            </form>
+            <h3 style={{ color: "#FFFFFF", fontSize: "16px", marginBottom: "20px", fontFamily: "var(--font-headings)" }}>Partnerships</h3>
+            <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: "10px", fontSize: "13px" }}>
+              <li><Link href="/contact" className="footer-link">For Colleges</Link></li>
+              <li><Link href="/partners" className="footer-link">For Employers</Link></li>
+              <li><Link href="/partners" className="footer-link">Industry Skill Council</Link></li>
+              <li><Link href="/partners" className="footer-link">Challenge Bank</Link></li>
+            </ul>
+          </div>
+
+          {/* Column 5 — Get in Touch */}
+          <div>
+            <h3 style={{ color: "#FFFFFF", fontSize: "16px", marginBottom: "20px", fontFamily: "var(--font-headings)" }}>Get in Touch</h3>
+            <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: "10px", fontSize: "13px" }}>
+              <li><Link href="/contact" className="footer-link">Book a Diagnostic</Link></li>
+              <li><Link href="/contact" className="footer-link">Contact Us</Link></li>
+            </ul>
           </div>
 
         </div>
@@ -162,12 +103,15 @@ export default function Footer() {
             color: "rgba(255, 255, 255, 0.5)"
           }}
         >
-          <p>© 2026 TechLearns Academy. All rights reserved.</p>
-          <p style={{ fontSize: "11px" }}>
-            Disclaimer: All placement opportunities are subject to qualifying the TechLearns Entrance Test (TLET) and completing the coursework successfully.
+          <p>© Techlearns. Corporate Experience Learning | Learn. Experience. Build. Lead.</p>
+          <p style={{ fontSize: "11px", display: "flex", gap: "10px", flexWrap: "wrap", justifyContent: "center" }}>
+            <Link href="/about" className="footer-link" style={{ textDecoration: "none" }}>Privacy Policy</Link> · 
+            <Link href="/about" className="footer-link" style={{ textDecoration: "none" }}>Terms</Link> · 
+            <Link href="/about" className="footer-link" style={{ textDecoration: "none" }}>Refund Policy</Link> · 
+            <Link href="/about" className="footer-link" style={{ textDecoration: "none" }}>Claims & Outcomes Disclosure</Link>
           </p>
-        </div>
       </div>
-    </footer>
+    </div>
+  </footer>
   );
 }
