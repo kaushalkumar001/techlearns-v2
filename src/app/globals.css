@@ -681,3 +681,315 @@ body.light-theme .dropdown-menu {
 body.light-theme .dropdown-item:hover {
   background-color: rgba(0, 0, 0, 0.05);
 }
+
+/* ==========================================================================
+   NEW LANDING PAGE REDESIGN STYLES (MATCHING SCREENSHOT DESIGN SYSTEM)
+   ========================================================================== */
+
+/* Modern Light Theme Defaults for Landing Page */
+.landing-page-container {
+  background-color: #FAFAFD;
+  color: #0F172A;
+  font-family: var(--font-poppins), sans-serif;
+  overflow-x: hidden;
+}
+
+/* Pill Badges */
+.badge-purple-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #F3E8FF;
+  color: #7C3AED;
+  border: 1px solid #E9D5FF;
+  padding: 6px 16px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.badge-green-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #DCFCE7;
+  color: #15803D;
+  border: 1px solid #BBF7D0;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.badge-blue-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #E0F2FE;
+  color: #0369A1;
+  border: 1px solid #BAE6FD;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* Section Headings */
+.landing-heading {
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 38px;
+  font-weight: 800;
+  color: #0F172A;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.landing-heading .highlight-purple {
+  color: #6D28D9;
+  background: linear-gradient(135deg, #7C3AED 0%, #6D28D9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.landing-subheading {
+  font-size: 15px;
+  color: #64748B;
+  margin-top: 10px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+/* Elevated Light Cards */
+.card-light-shadow {
+  background: #FFFFFF;
+  border: 1px solid #EDE9FE;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px -10px rgba(124, 58, 237, 0.06);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-light-shadow:hover {
+  border-color: #C4B5FD;
+  box-shadow: 0 20px 45px -12px rgba(109, 40, 217, 0.15);
+  transform: translateY(-4px);
+}
+
+/* Primary Action Buttons */
+.btn-purple-primary {
+  background: linear-gradient(135deg, #6D28D9 0%, #5B21B6 100%);
+  color: #FFFFFF !important;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 8px 24px -6px rgba(109, 40, 217, 0.4);
+  transition: all 0.25s ease;
+}
+
+.btn-purple-primary:hover {
+  background: linear-gradient(135deg, #7C3AED 0%, #6D28D9 100%);
+  box-shadow: 0 12px 30px -4px rgba(109, 40, 217, 0.55);
+  transform: translateY(-2px);
+}
+
+.btn-purple-secondary {
+  background: #F3E8FF;
+  color: #6D28D9 !important;
+  border: 1px solid #DDD6FE;
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.25s ease;
+}
+
+.btn-purple-secondary:hover {
+  background: #EDE9FE;
+  border-color: #C4B5FD;
+  transform: translateY(-2px);
+}
+
+/* FAQ Accordion Styling */
+.faq-tab-btn {
+  width: 100%;
+  text-align: left;
+  padding: 14px 18px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  border: 1px solid transparent;
+  background: transparent;
+  color: #475569;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.2s ease;
+}
+
+.faq-tab-btn.active {
+  background: #6D28D9;
+  color: #FFFFFF;
+  font-weight: 600;
+  box-shadow: 0 4px 14px rgba(109, 40, 217, 0.3);
+}
+
+.faq-accordion-item {
+  background: #FFFFFF;
+  border: 1px solid #EDE9FE;
+  border-radius: 14px;
+  margin-bottom: 12px;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.faq-accordion-item.open {
+  border-color: #A78BFA;
+  box-shadow: 0 6px 20px -5px rgba(109, 40, 217, 0.1);
+}
+
+.faq-question-bar {
+  width: 100%;
+  padding: 18px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: none;
+  border: none;
+  font-size: 15px;
+  font-weight: 600;
+  color: #1E293B;
+  cursor: pointer;
+  text-align: left;
+}
+
+.faq-answer-body {
+  padding: 0 24px 20px 24px;
+  font-size: 14px;
+  color: #64748B;
+  line-height: 1.6;
+}
+
+/* Interactive 5 Steps Timeline */
+.step-node-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 18px;
+  border-radius: 16px;
+  border: 1px solid #EDE9FE;
+  background: #FFFFFF;
+  margin-bottom: 14px;
+  transition: all 0.3s ease;
+}
+
+.step-node-item.active-step {
+  border-color: #7C3AED;
+  background: #FAF5FF;
+  box-shadow: 0 8px 24px -6px rgba(124, 58, 237, 0.15);
+}
+
+.step-number-badge {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #F3E8FF;
+  color: #6D28D9;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 15px;
+}
+
+.step-node-item.active-step .step-number-badge {
+  background: #6D28D9;
+  color: #FFFFFF;
+}
+
+/* Banner Gradients */
+.purple-banner-gradient {
+  background: linear-gradient(135deg, #4C1D95 0%, #6D28D9 50%, #7C3AED 100%);
+  color: #FFFFFF;
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow: 0 16px 36px -10px rgba(109, 40, 217, 0.35);
+}
+
+/* Mentor Cards (Dark Purple with Quote Icon & Company Badge) */
+.mentor-card-dark {
+  background: #230E4A;
+  border: 1px solid rgba(167, 139, 250, 0.2);
+  border-radius: 20px;
+  padding: 24px;
+  color: #FFFFFF;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(35, 14, 74, 0.4);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mentor-card-dark:hover {
+  transform: translateY(-4px);
+  border-color: #A78BFA;
+  box-shadow: 0 18px 40px rgba(109, 40, 217, 0.4);
+}
+
+.mentor-quote-icon {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 28px;
+  opacity: 0.3;
+  color: #C084FC;
+}
+
+/* Alumni Cards (Clean white with CTC stats & brand logo) */
+.alumni-card-styled {
+  background: #FFFFFF;
+  border: 1px solid #EDE9FE;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 8px 24px -6px rgba(124, 58, 237, 0.08);
+  transition: all 0.3s ease;
+}
+
+.alumni-card-styled:hover {
+  border-color: #A78BFA;
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px -8px rgba(109, 40, 217, 0.15);
+}
+
+/* 5 Steps Vertical Line Connector */
+.steps-timeline-wrapper {
+  position: relative;
+  padding-left: 20px;
+}
+
+.steps-timeline-wrapper::before {
+  content: "";
+  position: absolute;
+  left: 36px;
+  top: 30px;
+  bottom: 30px;
+  width: 3px;
+  background: #E9D5FF;
+  z-index: 0;
+}
+
+
