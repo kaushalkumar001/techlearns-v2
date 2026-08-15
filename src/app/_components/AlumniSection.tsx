@@ -4,7 +4,7 @@ const alumniData = [
   {
     name: "Shubham Rane",
     role: "Product Analyst",
-    photo: "/crops/alumni_1.png",
+    photo: "/images/alumni_shubham.jpg",
     company: "cult.fit",
     companyColor: "#111827",
     before: "Fresher",
@@ -13,7 +13,7 @@ const alumniData = [
   {
     name: "Megha Chouhan",
     role: "Data Analyst",
-    photo: "/crops/alumni_2.png",
+    photo: "/images/alumni_megha.jpg",
     company: "ROCKET LEARNING",
     companyColor: "#1D4ED8",
     before: "Research Analyst",
@@ -22,7 +22,7 @@ const alumniData = [
   {
     name: "Mansi Mishra",
     role: "MIS Executive",
-    photo: "/crops/alumni_3.png",
+    photo: "/images/alumni_mansi.jpg",
     company: "IndiGo",
     companyColor: "#1E3A8A",
     before: "HR Consultant",
@@ -31,7 +31,7 @@ const alumniData = [
   {
     name: "Yash Kumar",
     role: "Product Analyst Intern",
-    photo: "/crops/alumni_4.png",
+    photo: "/images/alumni_yash.jpg",
     company: "Spinny",
     companyColor: "#E11D48",
     before: "Fresher",
@@ -87,7 +87,7 @@ export default function AlumniSection() {
               }}
             >
               {/* Photo */}
-              <div style={{ height: "160px", overflow: "hidden", background: "#F1F5F9" }}>
+              <div style={{ height: "180px", overflow: "hidden", background: "#F1F5F9" }}>
                 <img 
                   src={item.photo} 
                   alt={item.name} 
