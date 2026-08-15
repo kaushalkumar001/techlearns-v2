@@ -6,7 +6,7 @@ const awardsData = [
     org: "Elets Technomedia",
     year: "2024",
     desc: "Recognized for outstanding contribution to education technology and digital transformation in learning.",
-    photo: "/crops/award_1.png",
+    photo: "/images/award_summit_2024.jpg",
     icon: "🏆"
   },
   {
@@ -14,7 +14,7 @@ const awardsData = [
     org: "Elets Technomedia",
     year: "2023",
     desc: "Honored for leadership in advancing quality education through technology and innovation.",
-    photo: "/crops/award_2.png",
+    photo: "/images/award_leadership_2023.jpg",
     icon: "🏅"
   },
   {
@@ -22,7 +22,7 @@ const awardsData = [
     org: "Brand Empower",
     year: "2022",
     desc: "Awarded for excellence in education, mentorship and building future-ready learning solutions.",
-    photo: "/crops/award_3.png",
+    photo: "/images/award_indian_2022.jpg",
     icon: "⭐"
   },
   {
@@ -30,7 +30,7 @@ const awardsData = [
     org: "Education Today",
     year: "2021",
     desc: "Recognized for dedication towards academic excellence and student empowerment.",
-    photo: "/crops/award_4.png",
+    photo: "/images/award_national_2021.jpg",
     icon: "📜"
   }
 ];
@@ -70,7 +70,7 @@ export default function AwardsSection() {
               }}
             >
               {/* Photo */}
-              <div style={{ position: "relative", height: "180px", background: "#F1F5F9" }}>
+              <div style={{ position: "relative", height: "190px", background: "#F1F5F9" }}>
                 <img 
                   src={award.photo} 
                   alt={award.title} 

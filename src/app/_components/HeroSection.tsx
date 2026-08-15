@@ -54,7 +54,7 @@ export default function HeroSection() {
 
           </div>
 
-          {/* Right Column: Rounded White Card with Floating Tech Icons & Student */}
+          {/* Right Column: Rounded White Card with Student */}
           <div style={{ background: "#FFFFFF", borderRadius: "28px", padding: "36px", boxShadow: "0 20px 50px rgba(109, 40, 217, 0.08)", border: "1px solid #EDE9FE", position: "relative", overflow: "hidden" }}>
             
             <div style={{ display: "grid", gridTemplateColumns: "1.1fr 0.9fr", gap: "20px", alignItems: "center" }}>
@@ -95,13 +95,13 @@ export default function HeroSection() {
                 </button>
               </div>
 
-              {/* Student Image with Floating Tech Badges */}
+              {/* Student Image with Card Frame */}
               <div style={{ position: "relative", textAlign: "center" }}>
-                <div style={{ width: "100%", height: "340px", position: "relative", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <div style={{ width: "100%", height: "340px", position: "relative", borderRadius: "20px", overflow: "hidden", boxShadow: "0 10px 25px rgba(109, 40, 217, 0.12)" }}>
                   <img 
-                    src="/crops/hero_student.png" 
+                    src="/images/hero_student.jpg" 
                     alt="TechLearns Student" 
-                    style={{ width: "100%", height: "100%", objectFit: "contain", position: "relative", zIndex: 2 }} 
+                    style={{ width: "100%", height: "100%", objectFit: "cover" }} 
                   />
                 </div>
               </div>
