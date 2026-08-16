@@ -1,21 +1,9 @@
 import type { Metadata } from "next";
-import { Montserrat, Poppins, Inter } from "next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 
-const montserrat = Montserrat({
-  variable: "--font-montserrat",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
-});
-
-const poppins = Poppins({
-  variable: "--font-poppins",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
-});
-
-const inter = Inter({
-  variable: "--font-inter",
+const plusJakartaSans = Plus_Jakarta_Sans({
+  variable: "--font-plus-jakarta",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700", "800"],
 });
@@ -72,8 +60,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${montserrat.variable} ${poppins.variable} ${inter.variable}`}>
-      <body>{children}</body>
+    <html lang="en" className={`${plusJakartaSans.variable} ${plusJakartaSans.className}`}>
+      <body className={plusJakartaSans.className}>{children}</body>
     </html>
   );
 }

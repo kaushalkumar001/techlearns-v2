@@ -33,7 +33,7 @@ export default function SkillOSClient() {
     <>
       <Header />
       <main style={{ paddingTop: "120px" }}>
-        
+
         {/* Hero Section */}
         <section style={{ padding: "0 0 60px" }}>
           <div className="container" style={{ textAlign: "center" }}>
@@ -68,11 +68,11 @@ export default function SkillOSClient() {
               </div>
 
               {/* Simulated Terminal */}
-              <div 
-                className="glass-card" 
-                style={{ 
-                  padding: "24px", 
-                  backgroundColor: "rgba(0,0,0,0.4)", 
+              <div
+                className="glass-card"
+                style={{
+                  padding: "24px",
+                  backgroundColor: "rgba(0,0,0,0.4)",
                   borderColor: "var(--border-color)",
                   fontFamily: "monospace",
                   fontSize: "12px",
@@ -94,11 +94,11 @@ export default function SkillOSClient() {
 
                 <form onSubmit={handleRunCommand} style={{ display: "flex", gap: "10px", borderTop: "1px solid var(--border-color)", paddingTop: "10px" }}>
                   <span style={{ color: "#CB6CE6" }}>$</span>
-                  <input 
-                    type="text" 
-                    value={userInput} 
+                  <input
+                    type="text"
+                    value={userInput}
                     onChange={(e) => setUserInput(e.target.value)}
-                    placeholder="Type npm test or git status..." 
+                    placeholder="Type npm test or git status..."
                     style={{
                       background: "transparent",
                       border: "none",

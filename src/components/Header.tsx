@@ -16,7 +16,7 @@ export default function Header() {
     const isLight = savedTheme === "light";
     document.body.classList.toggle("light-theme", isLight);
     setLogoSrc(isLight ? "/techlearns logo.png" : "/techlearns logo white.png");
-    
+
     // Dispatch initial change event
     window.dispatchEvent(new Event("themeChanged"));
 
@@ -40,16 +40,15 @@ export default function Header() {
     const isLight = newTheme === "light";
     document.body.classList.toggle("light-theme", isLight);
     setLogoSrc(isLight ? "/techlearns logo.png" : "/techlearns logo white.png");
-    
+
     // Notify Footer and other listener components
     window.dispatchEvent(new Event("themeChanged"));
   };
 
   return (
-    <header 
-      className={`glass-nav glass-nav-scroll ${
-        isScrolled ? "scrolled" : ""
-      }`}
+    <header
+      className={`glass-nav glass-nav-scroll ${isScrolled ? "scrolled" : ""
+        }`}
       style={{
         padding: isScrolled ? "12px 0" : "20px 0",
         transition: "all 0.3s ease",
@@ -58,12 +57,12 @@ export default function Header() {
       }}
     >
       <div className="container" style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        
+
         {/* Brand Logo */}
         <Link href="/" style={{ display: "flex", alignItems: "center", textDecoration: "none" }}>
-          <img 
-            src={logoSrc} 
-            alt="TechLearns Academy Logo" 
+          <img
+            src={logoSrc}
+            alt="TechLearns Academy Logo"
             style={{ height: "32px", width: "auto", objectFit: "contain", transition: "all 0.3s ease" }}
           />
         </Link>
@@ -77,14 +76,14 @@ export default function Header() {
           <Link href="/passport" className="nav-link" style={{ fontSize: "13px", fontWeight: 500 }}>Certifications</Link>
           <Link href="/partners" className="nav-link" style={{ fontSize: "13px", fontWeight: 500 }}>Partnerships</Link>
           <Link href="/about" className="nav-link" style={{ fontSize: "13px", fontWeight: 500 }}>About</Link>
-          
+
           <div style={{ width: "1px", height: "16px", background: "var(--border-color)", margin: "0 4px" }}></div>
-          
+
           {/* Utility links / quick access */}
           <Link href="/blog" className="nav-link" style={{ fontSize: "11px", opacity: 0.8 }}>Blog</Link>
-          
+
           {/* Theme Alternator Button */}
-          <button 
+          <button
             onClick={toggleTheme}
             style={{
               background: "rgba(255, 255, 255, 0.08)",
@@ -131,9 +130,9 @@ export default function Header() {
 
         {/* Mobile Controls */}
         <div className="mobile-only mobile-flex" style={{ display: "flex", gap: "12px", alignItems: "center" }}>
-          
+
           {/* Theme Alternator Mobile Button */}
-          <button 
+          <button
             onClick={toggleTheme}
             style={{
               background: "rgba(255, 255, 255, 0.08)",
@@ -172,7 +171,7 @@ export default function Header() {
           </button>
 
           {/* Burger Menu Trigger */}
-          <button 
+          <button
             onClick={() => setIsOpen(!isOpen)}
             style={{
               background: "none",
@@ -203,10 +202,10 @@ export default function Header() {
         <Link href="/partners" onClick={() => setIsOpen(false)} style={{ fontSize: "18px", fontWeight: 600 }}>Partnerships</Link>
         <Link href="/about" onClick={() => setIsOpen(false)} style={{ fontSize: "18px", fontWeight: 600 }}>About</Link>
         <Link href="/blog" onClick={() => setIsOpen(false)} style={{ fontSize: "18px", fontWeight: 600 }}>Blog / Skill Report</Link>
-        <Link 
-          href="/contact" 
-          onClick={() => setIsOpen(false)} 
-          className="glow-btn-primary" 
+        <Link
+          href="/contact"
+          onClick={() => setIsOpen(false)}
+          className="glow-btn-primary"
           style={{ marginTop: "12px", width: "80%", justifyContent: "center" }}
         >
           Book Free Career Diagnostic

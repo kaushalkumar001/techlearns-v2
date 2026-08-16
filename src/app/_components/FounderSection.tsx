@@ -1,159 +1,278 @@
 "use client";
 
+import React from "react";
+import { ArrowUpRight } from "lucide-react";
+
 export default function FounderSection() {
+  const founderPillars = [
+    { icon: "🚀", title: "Visionary Leader" },
+    { icon: "🏆", title: "Seasoned Entrepreneur" },
+    { icon: "👤", title: "Mentor & Guide" },
+    { icon: "💡", title: "Industry Expert" },
+    { icon: "🎓", title: "Educationist" },
+  ];
+
   return (
-    <section style={{ padding: "80px 0", background: "#FFFFFF" }}>
-      <div className="container" style={{ maxWidth: "1240px", margin: "0 auto", padding: "0 24px" }}>
-        
-        {/* Header */}
-        <div style={{ textAlign: "center", marginBottom: "50px" }}>
-          <div style={{ fontSize: "12px", fontWeight: "700", color: "#6D28D9", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "6px" }}>
-            FOUNDER
+    <section id="founder" style={{ padding: "64px 0 88px", background: "#FFFFFF", position: "relative" }}>
+      <div className="container" style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px" }}>
+
+        {/* Main Hero Card matching uploaded reference image & TechLearns color theme */}
+        <div
+          style={{
+            background: "linear-gradient(135deg, #F8F5FD 0%, #F1ECFA 50%, #E9E1F7 100%)",
+            borderRadius: "40px",
+            border: "1px solid #EDE9FE",
+            boxShadow: "0 25px 60px rgba(91, 46, 145, 0.08)",
+            position: "relative",
+            overflow: "hidden",
+            display: "grid",
+            gridTemplateColumns: "1.15fr 0.85fr",
+            minHeight: "540px",
+            alignItems: "stretch"
+          }}
+          className="grid-2col"
+        >
+
+          {/* Left Column: Typography, Bio, CTA Buttons, Metrics */}
+          <div style={{ padding: "60px 48px 60px 60px", zIndex: 5, display: "flex", flexDirection: "column", justifyContent: "center" }}>
+
+            {/* Pill Tag */}
+            <div style={{ marginBottom: "14px" }}>
+              <span style={{ display: "inline-flex", alignItems: "center", gap: "6px", background: "#EDE9FE", color: "#5B2E91", padding: "5px 14px", borderRadius: "9999px", fontSize: "11.5px", fontWeight: "800", letterSpacing: "0.08em", textTransform: "uppercase" }}>
+                FOUNDER & VISIONARY
+              </span>
+            </div>
+
+            {/* Main Headline */}
+            <h2
+              style={{
+                fontFamily: "var(--font-montserrat), sans-serif",
+                fontSize: "48px",
+                fontWeight: "800",
+                color: "#0B1F3A",
+                lineHeight: "1.14",
+                letterSpacing: "-0.03em",
+                margin: "0 0 10px"
+              }}
+            >
+              Educating Minds<br />
+              <span style={{ background: "linear-gradient(135deg, #7A42BE 0%, #5B2E91 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+                Empowering Careers
+              </span>
+            </h2>
+
+            {/* Subtitle / Bio Paragraph */}
+            <p
+              style={{
+                fontSize: "15.5px",
+                color: "#475569",
+                lineHeight: "1.65",
+                maxWidth: "460px",
+                margin: "18px 0 32px",
+                fontWeight: "400"
+              }}
+            >
+              “My mission is to bridge the gap between learning and real-world success by empowering students with industry-relevant skills, mentorship, and corporate experience.”
+            </p>
+
+            {/* CTA Buttons Row */}
+            <div style={{ display: "flex", alignItems: "center", gap: "14px", marginBottom: "40px", flexWrap: "wrap" }}>
+              <a
+                href="#programs"
+                style={{
+                  background: "linear-gradient(135deg, #7A42BE 0%, #5B2E91 100%)",
+                  color: "#FFFFFF",
+                  padding: "13px 28px",
+                  borderRadius: "14px",
+                  fontSize: "14px",
+                  fontWeight: "700",
+                  textDecoration: "none",
+                  boxShadow: "0 10px 24px rgba(91, 46, 145, 0.35)",
+                  transition: "all 0.2s ease",
+                  display: "inline-flex",
+                  alignItems: "center"
+                }}
+              >
+                View Vision
+              </a>
+
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  background: "#FFFFFF",
+                  color: "#5B2E91",
+                  border: "1px solid #DDD6FE",
+                  padding: "13px 24px",
+                  borderRadius: "14px",
+                  fontSize: "14px",
+                  fontWeight: "700",
+                  textDecoration: "none",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "8px",
+                  boxShadow: "0 4px 12px rgba(91, 46, 145, 0.06)",
+                  transition: "all 0.2s ease"
+                }}
+              >
+                <span style={{ background: "#0A66C2", color: "#FFFFFF", padding: "1px 5px", borderRadius: "3px", fontSize: "11px", fontWeight: "bold" }}>in</span>
+                Connect on LinkedIn
+              </a>
+            </div>
+
+            {/* 3 Metric Stats Row */}
+            <div style={{ display: "flex", alignItems: "center", gap: "36px", borderTop: "1px solid rgba(221, 214, 254, 0.6)", paddingTop: "26px" }}>
+              <div>
+                <div style={{ fontFamily: "var(--font-montserrat), sans-serif", fontSize: "34px", fontWeight: "900", color: "#5B2E91", lineHeight: "1" }}>
+                  10K+
+                </div>
+                <div style={{ fontSize: "12.5px", color: "#64748B", marginTop: "6px", fontWeight: "600" }}>
+                  Students Mentored
+                </div>
+              </div>
+
+              <div style={{ width: "1px", height: "36px", background: "#DDD6FE" }} />
+
+              <div>
+                <div style={{ fontFamily: "var(--font-montserrat), sans-serif", fontSize: "34px", fontWeight: "900", color: "#0B1F3A", lineHeight: "1" }}>
+                  15+
+                </div>
+                <div style={{ fontSize: "12.5px", color: "#64748B", marginTop: "6px", fontWeight: "600" }}>
+                  Years Experience
+                </div>
+              </div>
+
+              <div style={{ width: "1px", height: "36px", background: "#DDD6FE" }} />
+
+              <div>
+                <div style={{ fontFamily: "var(--font-montserrat), sans-serif", fontSize: "34px", fontWeight: "900", color: "#5B2E91", lineHeight: "1" }}>
+                  5+
+                </div>
+                <div style={{ fontSize: "12.5px", color: "#64748B", marginTop: "6px", fontWeight: "600" }}>
+                  Ventures Scaled
+                </div>
+              </div>
+            </div>
+
           </div>
-          <div style={{ width: "32px", height: "3px", background: "#6D28D9", borderRadius: "2px", margin: "0 auto 14px" }}></div>
-          
-          <h2 style={{ fontFamily: "var(--font-montserrat), sans-serif", fontSize: "38px", fontWeight: "800", color: "#111827", letterSpacing: "-0.02em", marginBottom: "8px" }}>
-            Meet Our <span style={{ color: "#6D28D9" }}>Founder</span>
-          </h2>
-          <p style={{ fontSize: "15px", color: "#6B7280" }}>
-            Visionary Leader. Tech Entrepreneur. Educationist.
-          </p>
+
+          {/* Right Column: Founder Photo & Floating Glassmorphic Badge */}
+          <div
+            style={{
+              position: "relative",
+              height: "100%",
+              minHeight: "520px",
+              display: "flex",
+              alignItems: "flex-end",
+              justifyContent: "center",
+              overflow: "hidden"
+            }}
+          >
+            {/* Founder Photo */}
+            <img
+              src="/crops/founder_ankur.png"
+              alt="Ankur Gill - Founder & CEO"
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                objectPosition: "center 12%",
+                display: "block",
+                zIndex: 2
+              }}
+            />
+
+            {/* Floating Glassmorphic Card on bottom right */}
+            <div
+              style={{
+                position: "absolute",
+                bottom: "28px",
+                right: "24px",
+                background: "rgba(11, 31, 58, 0.85)",
+                backdropFilter: "blur(20px)",
+                WebkitBackdropFilter: "blur(20px)",
+                border: "1px solid rgba(221, 214, 254, 0.25)",
+                borderRadius: "22px",
+                padding: "20px 22px",
+                color: "#FFFFFF",
+                boxShadow: "0 25px 50px rgba(11, 31, 58, 0.35)",
+                display: "flex",
+                alignItems: "center",
+                gap: "18px",
+                zIndex: 10,
+                maxWidth: "330px"
+              }}
+            >
+              <div>
+                <div style={{ fontSize: "11px", fontWeight: "800", color: "#DDD6FE", letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: "2px" }}>
+                  Founder & CEO
+                </div>
+                <div style={{ fontSize: "17px", fontWeight: "800", color: "#FFFFFF", marginBottom: "4px" }}>
+                  Ankur Gill
+                </div>
+                <div style={{ fontSize: "12px", color: "#E2E8F0", lineHeight: "1.4" }}>
+                  Building India&apos;s premier corporate experience learning ecosystem.
+                </div>
+              </div>
+
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  width: "46px",
+                  height: "46px",
+                  borderRadius: "14px",
+                  background: "linear-gradient(135deg, #7A42BE 0%, #5B2E91 100%)",
+                  color: "#FFFFFF",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  flexShrink: 0,
+                  textDecoration: "none",
+                  boxShadow: "0 6px 16px rgba(91, 46, 145, 0.4)",
+                  transition: "transform 0.2s ease"
+                }}
+              >
+                <ArrowUpRight style={{ width: "22px", height: "22px", strokeWidth: 2.5 }} />
+              </a>
+            </div>
+
+          </div>
+
         </div>
 
-        {/* 2-Column Founder Feature */}
-        <div style={{ display: "grid", gridTemplateColumns: "0.8fr 1.2fr", gap: "40px", alignItems: "center", marginBottom: "40px" }}>
-          
-          {/* Left Founder Photo Card */}
-          <div style={{ borderRadius: "24px", overflow: "hidden", boxShadow: "0 12px 35px rgba(0,0,0,0.06)", border: "1px solid #EDE9FE", background: "#FFFFFF" }}>
-            <div style={{ height: "360px", background: "#F1F5F9", overflow: "hidden" }}>
-              <img 
-                src="/crops/founder_ankur.png" 
-                alt="Ankur Gill - Founder & CEO" 
-                style={{ width: "100%", height: "100%", objectFit: "cover" }} 
-              />
+        {/* Bottom Horizontal Strip: 4 Founder Pillars matching the reference layout */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            flexWrap: "wrap",
+            gap: "28px",
+            marginTop: "44px",
+            padding: "0 16px"
+          }}
+        >
+          {founderPillars.map((item, idx) => (
+            <div
+              key={idx}
+              style={{
+                fontFamily: "var(--font-montserrat), sans-serif",
+                fontSize: "17px",
+                fontWeight: 800,
+                color: "#0B1F3A",
+                letterSpacing: "-0.01em",
+                display: "flex",
+                alignItems: "center",
+                gap: "10px"
+              }}
+            >
+              <span style={{ fontSize: "22px", lineHeight: "1" }}>{item.icon}</span>
+              {item.title}
             </div>
-            <div style={{ background: "#6D28D9", padding: "20px", color: "#FFFFFF", textAlign: "left" }}>
-              <h3 style={{ fontSize: "20px", fontWeight: "800", marginBottom: "2px" }}>
-                Ankur Gill
-              </h3>
-              <div style={{ fontSize: "12.5px", color: "#DDD6FE" }}>
-                Founder & CEO, TechLearns Academy
-              </div>
-            </div>
-          </div>
-
-          {/* Right Founder Story & 4 Feature Pillars */}
-          <div>
-            
-            {/* Quote */}
-            <div style={{ background: "#FAF8FF", borderLeft: "4px solid #6D28D9", padding: "18px 24px", borderRadius: "0 16px 16px 0", marginBottom: "28px" }}>
-              <p style={{ fontSize: "14px", color: "#1E1B4B", lineHeight: "1.6", fontStyle: "italic", fontWeight: "500" }}>
-                <span style={{ color: "#6D28D9", fontSize: "20px", fontWeight: "bold", marginRight: "6px" }}>“</span>
-                My mission is to bridge the gap between learning and real-world success by empowering students with industry-relevant skills, mentorship, and the right opportunities.
-                <span style={{ color: "#6D28D9", fontSize: "20px", fontWeight: "bold", marginLeft: "6px" }}>”</span>
-              </p>
-            </div>
-
-            {/* 4 Feature Items */}
-            <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-              
-              <div style={{ display: "flex", alignItems: "flex-start", gap: "16px" }}>
-                <div style={{ width: "38px", height: "38px", borderRadius: "10px", background: "#F5F3FF", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "18px", color: "#7C3AED", flexShrink: 0 }}>
-                  🏆
-                </div>
-                <div>
-                  <h4 style={{ fontSize: "15px", fontWeight: "800", color: "#111827", marginBottom: "2px" }}>
-                    Seasoned Entrepreneur
-                  </h4>
-                  <p style={{ fontSize: "13px", color: "#64748B", lineHeight: "1.4" }}>
-                    Successfully built and scaled multiple ventures in technology and digital solutions.
-                  </p>
-                </div>
-              </div>
-
-              <div style={{ display: "flex", alignItems: "flex-start", gap: "16px" }}>
-                <div style={{ width: "38px", height: "38px", borderRadius: "10px", background: "#F5F3FF", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "18px", color: "#7C3AED", flexShrink: 0 }}>
-                  👤
-                </div>
-                <div>
-                  <h4 style={{ fontSize: "15px", fontWeight: "800", color: "#111827", marginBottom: "2px" }}>
-                    Mentor & Guide
-                  </h4>
-                  <p style={{ fontSize: "13px", color: "#64748B", lineHeight: "1.4" }}>
-                    Mentored thousands of students and professionals to achieve their career goals.
-                  </p>
-                </div>
-              </div>
-
-              <div style={{ display: "flex", alignItems: "flex-start", gap: "16px" }}>
-                <div style={{ width: "38px", height: "38px", borderRadius: "10px", background: "#F5F3FF", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "18px", color: "#7C3AED", flexShrink: 0 }}>
-                  💡
-                </div>
-                <div>
-                  <h4 style={{ fontSize: "15px", fontWeight: "800", color: "#111827", marginBottom: "2px" }}>
-                    Industry Expert
-                  </h4>
-                  <p style={{ fontSize: "13px", color: "#64748B", lineHeight: "1.4" }}>
-                    Deep expertise in Full Stack Development, AI, and emerging technologies.
-                  </p>
-                </div>
-              </div>
-
-              <div style={{ display: "flex", alignItems: "flex-start", gap: "16px" }}>
-                <div style={{ width: "38px", height: "38px", borderRadius: "10px", background: "#F5F3FF", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "18px", color: "#7C3AED", flexShrink: 0 }}>
-                  🎓
-                </div>
-                <div>
-                  <h4 style={{ fontSize: "15px", fontWeight: "800", color: "#111827", marginBottom: "2px" }}>
-                    Educationist
-                  </h4>
-                  <p style={{ fontSize: "13px", color: "#64748B", lineHeight: "1.4" }}>
-                    Passionate about transforming education and creating future-ready professionals.
-                  </p>
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-        {/* Bottom 4 Metric Pills Card */}
-        <div style={{ background: "#FFFFFF", border: "1px solid #EDE9FE", borderRadius: "20px", padding: "20px 32px", boxShadow: "0 4px 20px rgba(0,0,0,0.02)", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "20px", alignItems: "center" }}>
-          
-          <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
-            <span style={{ fontSize: "24px" }}>👥</span>
-            <div>
-              <div style={{ fontSize: "18px", fontWeight: "900", color: "#1E1B4B" }}>10K+</div>
-              <div style={{ fontSize: "12px", color: "#64748B", fontWeight: "600" }}>Students Mentored</div>
-            </div>
-          </div>
-
-          <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
-            <span style={{ fontSize: "24px" }}>💼</span>
-            <div>
-              <div style={{ fontSize: "18px", fontWeight: "900", color: "#1E1B4B" }}>15+</div>
-              <div style={{ fontSize: "12px", color: "#64748B", fontWeight: "600" }}>Years of Experience</div>
-            </div>
-          </div>
-
-          <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
-            <span style={{ fontSize: "24px" }}>🏢</span>
-            <div>
-              <div style={{ fontSize: "18px", fontWeight: "900", color: "#1E1B4B" }}>5+</div>
-              <div style={{ fontSize: "12px", color: "#64748B", fontWeight: "600" }}>Successful Ventures</div>
-            </div>
-          </div>
-
-          <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
-            <span style={{ fontSize: "24px" }}>🎯</span>
-            <div>
-              <div style={{ fontSize: "18px", fontWeight: "900", color: "#1E1B4B" }}>1 Mission</div>
-              <div style={{ fontSize: "12px", color: "#64748B", fontWeight: "600" }}>Empowering Careers</div>
-            </div>
-          </div>
-
+          ))}
         </div>
 
       </div>

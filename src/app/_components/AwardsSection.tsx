@@ -32,23 +32,40 @@ const awardsData = [
     desc: "Recognized for dedication towards academic excellence and student empowerment.",
     photo: "/images/award_national_2021.jpg",
     icon: "📜"
+  },
+  {
+    title: "Excellence in Education & Innovation Award",
+    org: "Education Excellence Forum",
+    year: "2020",
+    desc: "Recognized for driving innovation in education and creating impactful technology-enabled learning experiences.",
+    photo: "/images/award_innovation_2020.jpg",
+    icon: "💡"
+  },
+  {
+    title: "Emerging Education Leader Award",
+    org: "National Education Network",
+    year: "2019",
+    desc: "Honored for inspiring students and educators through leadership, mentorship and future-focused education initiatives.",
+    photo: "/images/award_emerging_leader_2019.jpg",
+    icon: "🚀"
   }
 ];
 
 export default function AwardsSection() {
   return (
-    <section style={{ padding: "80px 0", background: "#FFFFFF" }}>
+    <section style={{ padding: "48px 0", background: "#FFFFFF" }}>
       <div className="container" style={{ maxWidth: "1240px", margin: "0 auto", padding: "0 24px" }}>
-        
+
         {/* Header */}
         <div style={{ textAlign: "center", marginBottom: "50px" }}>
-          <div style={{ display: "inline-flex", alignItems: "center", gap: "6px", fontSize: "12px", fontWeight: "700", color: "#6D28D9", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "6px" }}>
-            <span>🏆</span> AWARDS & RECOGNITION
+          <div style={{ fontSize: "12px", fontWeight: "700", color: "#5B2E91", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "6px" }}>
+            AWARDS & RECOGNITION
           </div>
-          <h2 style={{ fontFamily: "var(--font-montserrat), sans-serif", fontSize: "38px", fontWeight: "800", color: "#111827", letterSpacing: "-0.02em", marginBottom: "8px" }}>
-            Celebrating <span style={{ color: "#6D28D9" }}>Leadership & Excellence</span>
+          <div style={{ width: "32px", height: "3px", background: "#5B2E91", borderRadius: "2px", margin: "0 auto 16px" }}></div>
+
+          <h2 style={{ fontFamily: "var(--font-montserrat), sans-serif", fontSize: "38px", fontWeight: "800", color: "#0B1F3A", letterSpacing: "-0.02em", marginBottom: "8px" }}>
+            Celebrating <span style={{ color: "#5B2E91" }}>Leadership & Excellence</span>
           </h2>
-          <div style={{ width: "36px", height: "3px", background: "#6D28D9", borderRadius: "2px", margin: "0 auto 14px" }}></div>
           <p style={{ fontSize: "15px", color: "#6B7280" }}>
             Recognitions that reflect our commitment to innovation, education and meaningful impact.
           </p>
@@ -57,13 +74,13 @@ export default function AwardsSection() {
         {/* 4 Award Cards Grid */}
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "22px", marginBottom: "40px" }}>
           {awardsData.map((award, idx) => (
-            <div 
-              key={idx} 
-              style={{ 
-                background: "#FFFFFF", 
-                borderRadius: "20px", 
-                overflow: "hidden", 
-                border: "1px solid #EDE9FE", 
+            <div
+              key={idx}
+              style={{
+                background: "#FFFFFF",
+                borderRadius: "20px",
+                overflow: "hidden",
+                border: "1px solid #EDE9FE",
                 boxShadow: "0 8px 24px rgba(0,0,0,0.03)",
                 display: "flex",
                 flexDirection: "column"
@@ -71,12 +88,12 @@ export default function AwardsSection() {
             >
               {/* Photo */}
               <div style={{ position: "relative", height: "190px", background: "#F1F5F9" }}>
-                <img 
-                  src={award.photo} 
-                  alt={award.title} 
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }} 
+                <img
+                  src={award.photo}
+                  alt={award.title}
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
                 />
-                
+
                 {/* Floating Award Icon Circle */}
                 <div style={{ position: "absolute", bottom: "-16px", left: "16px", width: "36px", height: "36px", borderRadius: "50%", background: "#6D28D9", color: "#FFFFFF", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "16px", boxShadow: "0 4px 10px rgba(109,40,217,0.3)" }}>
                   {award.icon}
@@ -104,27 +121,6 @@ export default function AwardsSection() {
               </div>
             </div>
           ))}
-        </div>
-
-        {/* Bottom Recognition Banner */}
-        <div style={{ background: "#FAF8FF", border: "1px solid #EDE9FE", borderRadius: "20px", padding: "24px 36px", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "20px" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: "18px" }}>
-            <div style={{ width: "52px", height: "52px", borderRadius: "16px", background: "#6D28D9", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "24px", color: "#FFFFFF", flexShrink: 0 }}>
-              🛡️
-            </div>
-            <div>
-              <h4 style={{ fontSize: "16px", fontWeight: "800", color: "#1E1B4B", marginBottom: "3px" }}>
-                Recognized for Excellence. Driven by Impact.
-              </h4>
-              <p style={{ fontSize: "13.5px", color: "#64748B" }}>
-                These milestones inspire us to continue our mission of empowering learners and transforming careers across the globe.
-              </p>
-            </div>
-          </div>
-
-          <div style={{ fontSize: "36px", color: "#6D28D9" }}>
-            🏆
-          </div>
         </div>
 
       </div>

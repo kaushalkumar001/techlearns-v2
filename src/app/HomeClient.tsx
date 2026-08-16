@@ -22,13 +22,13 @@ export default function HomeClient() {
 
       <main style={{ paddingTop: "72px" }}>
         <HeroSection />
+        <HiringPartnersSection />
         <OfferingsSection />
         <WhyTechLearnsSection />
         <EnvironmentSection />
         <StepsSection />
         <MentorsSection />
         <AlumniSection />
-        <HiringPartnersSection />
         <FounderSection />
         <AwardsSection />
         <FAQSection />

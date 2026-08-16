@@ -20,7 +20,7 @@ export default function PartnersClient() {
     <>
       <Header />
       <main style={{ paddingTop: "120px" }}>
-        
+
         {/* Hero Section */}
         <section style={{ padding: "0 0 80px" }}>
           <div className="container" style={{ textAlign: "center" }}>
@@ -58,13 +58,13 @@ export default function PartnersClient() {
                   <h3 style={{ fontSize: "20px", color: "var(--foreground)", marginBottom: "4px" }}>Verified Candidates Console</h3>
                   <p style={{ fontSize: "13px", color: "var(--foreground-muted)" }}>Simulate filtering our live talent pool based on verified evidence metrics.</p>
                 </div>
-                
+
                 <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
                   <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
                     <label style={{ fontSize: "10px", fontWeight: 700, color: "var(--foreground-muted-extra)", fontFamily: "monospace" }}>FILTER BY STACK</label>
-                    <input 
-                      type="text" 
-                      placeholder="e.g. Python, Redis" 
+                    <input
+                      type="text"
+                      placeholder="e.g. Python, Redis"
                       value={filterStack}
                       onChange={(e) => setFilterStack(e.target.value)}
                       style={{ padding: "6px 12px", borderRadius: "4px", fontSize: "12px", background: "rgba(255,255,255,0.05)", border: "1px solid var(--border-color)", color: "var(--foreground)" }}
@@ -72,10 +72,10 @@ export default function PartnersClient() {
                   </div>
                   <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
                     <label style={{ fontSize: "10px", fontWeight: 700, color: "var(--foreground-muted-extra)", fontFamily: "monospace" }}>MIN SKILL SCORE ({minScore}%)</label>
-                    <input 
-                      type="range" 
-                      min={85} 
-                      max={95} 
+                    <input
+                      type="range"
+                      min={85}
+                      max={95}
                       value={minScore}
                       onChange={(e) => setMinScore(Number(e.target.value))}
                       style={{ width: "130px", accentColor: "#CB6CE6" }}

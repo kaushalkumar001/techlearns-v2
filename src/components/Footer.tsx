@@ -18,7 +18,7 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer 
+    <footer
       style={{
         background: "linear-gradient(180deg, rgba(11, 31, 58, 0.5) 0%, rgba(44, 10, 113, 0.3) 100%)",
         borderTop: "1px solid rgba(203, 108, 230, 0.15)",
@@ -30,7 +30,7 @@ export default function Footer() {
     >
       <div className="container">
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: "30px", marginBottom: "60px" }}>
-          
+
           {/* Column 1 — Techlearns */}
           <div>
             <h3 style={{ color: "#FFFFFF", fontSize: "16px", marginBottom: "20px", fontFamily: "var(--font-headings)" }}>Techlearns</h3>
@@ -90,7 +90,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Banner */}
-        <div 
+        <div
           style={{
             borderTop: "1px solid rgba(255, 255, 255, 0.1)",
             paddingTop: "30px",
@@ -105,13 +105,13 @@ export default function Footer() {
         >
           <p>© Techlearns. Corporate Experience Learning | Learn. Experience. Build. Lead.</p>
           <p style={{ fontSize: "11px", display: "flex", gap: "10px", flexWrap: "wrap", justifyContent: "center" }}>
-            <Link href="/about" className="footer-link" style={{ textDecoration: "none" }}>Privacy Policy</Link> · 
-            <Link href="/about" className="footer-link" style={{ textDecoration: "none" }}>Terms</Link> · 
-            <Link href="/about" className="footer-link" style={{ textDecoration: "none" }}>Refund Policy</Link> · 
+            <Link href="/about" className="footer-link" style={{ textDecoration: "none" }}>Privacy Policy</Link> ·
+            <Link href="/about" className="footer-link" style={{ textDecoration: "none" }}>Terms</Link> ·
+            <Link href="/about" className="footer-link" style={{ textDecoration: "none" }}>Refund Policy</Link> ·
             <Link href="/about" className="footer-link" style={{ textDecoration: "none" }}>Claims & Outcomes Disclosure</Link>
           </p>
+        </div>
       </div>
-    </div>
-  </footer>
+    </footer>
   );
 }

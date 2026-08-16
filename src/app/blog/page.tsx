@@ -46,7 +46,7 @@ export default function BlogPage() {
     <>
       <Header />
       <main style={{ paddingTop: "120px" }}>
-        
+
         {/* Hero Section */}
         <section style={{ padding: "0 0 60px" }}>
           <div className="container" style={{ textAlign: "center" }}>
@@ -103,7 +103,7 @@ export default function BlogPage() {
                     <span style={{ color: "#CB6CE6", fontWeight: 700, fontFamily: "monospace", textTransform: "uppercase" }}>{art.category}</span>
                     <span style={{ color: "var(--foreground-muted-extra)" }}>{art.date}</span>
                   </div>
-                  
+
                   <div>
                     <h3 style={{ fontSize: "18px", color: "var(--foreground)", marginBottom: "8px", lineHeight: "1.4", fontWeight: 700 }}>{art.title}</h3>
                     <p style={{ fontSize: "13.5px", color: "var(--foreground-muted)", lineHeight: "1.6" }}>{art.summary}</p>
@@ -129,7 +129,7 @@ export default function BlogPage() {
               <p style={{ color: "var(--foreground-muted)", maxWidth: "500px", margin: "0 auto 30px", fontSize: "16px" }}>
                 Get the latest insights on skill gaps, engineering job roles, and platform releases directly to your inbox.
               </p>
-              
+
               <NewsletterForm />
             </div>
           </div>

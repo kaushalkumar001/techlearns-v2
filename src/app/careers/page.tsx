@@ -27,7 +27,7 @@ export default function CareersPage() {
     <>
       <Header />
       <main style={{ paddingTop: "120px" }}>
-        
+
         {/* Careers Hub Section */}
         <section style={{ padding: "0 0 60px" }}>
           <div className="container" style={{ textAlign: "center" }}>

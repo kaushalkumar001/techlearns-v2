@@ -30,7 +30,7 @@ export default function ContactClient() {
       <Header />
       <main style={{ paddingTop: "120px" }}>
         <div className="container" style={{ maxWidth: "800px" }}>
-          
+
           {/* Header */}
           <div style={{ textAlign: "center", marginBottom: "50px" }}>
             <span style={{ color: "#CB6CE6", fontSize: "12px", fontWeight: 700, fontFamily: "monospace", letterSpacing: "0.15em", textTransform: "uppercase" }}>
@@ -62,43 +62,43 @@ export default function ContactClient() {
                 <form onSubmit={handleFormSubmit} style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
                   <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
                     <label style={{ fontSize: "11px", fontWeight: 700, color: "var(--foreground-muted)" }}>FULL NAME</label>
-                    <input 
-                      type="text" 
-                      name="name" 
-                      value={formData.name} 
-                      onChange={handleInputChange} 
-                      required 
+                    <input
+                      type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      required
                       style={{ padding: "10px 14px", borderRadius: "6px", fontSize: "13px" }}
                     />
                   </div>
                   <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
                     <label style={{ fontSize: "11px", fontWeight: 700, color: "var(--foreground-muted)" }}>EMAIL ADDRESS</label>
-                    <input 
-                      type="email" 
-                      name="email" 
-                      value={formData.email} 
-                      onChange={handleInputChange} 
-                      required 
+                    <input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      required
                       style={{ padding: "10px 14px", borderRadius: "6px", fontSize: "13px" }}
                     />
                   </div>
                   <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
                     <label style={{ fontSize: "11px", fontWeight: 700, color: "var(--foreground-muted)" }}>PHONE NUMBER</label>
-                    <input 
-                      type="tel" 
-                      name="phone" 
-                      value={formData.phone} 
-                      onChange={handleInputChange} 
-                      required 
+                    <input
+                      type="tel"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      required
                       style={{ padding: "10px 14px", borderRadius: "6px", fontSize: "13px" }}
                     />
                   </div>
 
                   <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
                     <label style={{ fontSize: "11px", fontWeight: 700, color: "var(--foreground-muted)" }}>I AM A:</label>
-                    <select 
-                      name="userType" 
-                      value={formData.userType} 
+                    <select
+                      name="userType"
+                      value={formData.userType}
                       onChange={handleInputChange}
                       style={{ padding: "10px 14px", borderRadius: "6px", fontSize: "13px" }}
                     >
@@ -111,9 +111,9 @@ export default function ContactClient() {
 
                   <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
                     <label style={{ fontSize: "11px", fontWeight: 700, color: "var(--foreground-muted)" }}>AREA OF INTEREST</label>
-                    <select 
-                      name="interest" 
-                      value={formData.interest} 
+                    <select
+                      name="interest"
+                      value={formData.interest}
                       onChange={handleInputChange}
                       style={{ padding: "10px 14px", borderRadius: "6px", fontSize: "13px" }}
                     >
@@ -126,10 +126,10 @@ export default function ContactClient() {
 
                   <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
                     <label style={{ fontSize: "11px", fontWeight: 700, color: "var(--foreground-muted)" }}>MESSAGE (OPTIONAL)</label>
-                    <textarea 
-                      name="message" 
-                      value={formData.message} 
-                      onChange={handleInputChange} 
+                    <textarea
+                      name="message"
+                      value={formData.message}
+                      onChange={handleInputChange}
                       rows={3}
                       style={{ padding: "10px 14px", borderRadius: "6px", fontSize: "13px" }}
                     />
