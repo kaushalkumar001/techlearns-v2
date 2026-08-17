@@ -41,7 +41,7 @@ export default function StepsSection() {
       <div style={{ maxWidth: "1080px", margin: "0 auto", padding: "0 24px", position: "relative" }}>
 
         {/* Header matching brand color theme */}
-        <div style={{ textAlign: "center", maxWidth: "600px", margin: "0 auto 24px" }}>
+        <div style={{ textAlign: "center", maxWidth: "600px", margin: "0 auto 12px" }}>
           <h2 style={{ fontFamily: "var(--font-montserrat), sans-serif", fontSize: "36px", fontWeight: "800", color: "#0B1F3A", lineHeight: "1.3", margin: 0, letterSpacing: "-0.02em" }}>
             You care about your <span style={{ color: "#5B2E91" }}>brain.</span>
             <br />
@@ -78,7 +78,7 @@ export default function StepsSection() {
         </svg>
 
         {/* 3 Step Rows matching img1 pixel-perfectly */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "28px", position: "relative", zIndex: 5 }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: "8px", position: "relative", zIndex: 5 }}>
           {stepsData.map((step, idx) => {
             const isEven = idx === 1; // Step 2 has image on left, text on right
 

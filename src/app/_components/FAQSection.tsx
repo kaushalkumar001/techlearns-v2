@@ -33,7 +33,7 @@ export default function FAQSection() {
   };
 
   return (
-    <section id="faq" style={{ padding: "80px 0 100px", background: "#FFFFFF" }}>
+    <section id="faq" style={{ padding: "48px 0 60px", background: "#FFFFFF" }}>
       <div style={{ maxWidth: "1160px", margin: "0 auto", padding: "0 24px" }}>
 
         {/* 2-Column Layout matching reference image */}

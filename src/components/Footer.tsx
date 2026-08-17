@@ -1,115 +1,398 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Link from "next/link";
 
 export default function Footer() {
-  const [logoSrc, setLogoSrc] = useState("/techlearns logo white.png");
-
-  useEffect(() => {
-    const handleThemeChange = () => {
-      const isLight = document.body.classList.contains("light-theme");
-      setLogoSrc(isLight ? "/techlearns logo.png" : "/techlearns logo white.png");
-    };
-
-    handleThemeChange(); // Run initial check
-    window.addEventListener("themeChanged", handleThemeChange);
-    return () => window.removeEventListener("themeChanged", handleThemeChange);
-  }, []);
-
   return (
     <footer
       style={{
-        background: "linear-gradient(180deg, rgba(11, 31, 58, 0.5) 0%, rgba(44, 10, 113, 0.3) 100%)",
-        borderTop: "1px solid rgba(203, 108, 230, 0.15)",
-        padding: "80px 0 30px",
-        marginTop: "100px",
-        color: "#c5c5cf",
-        transition: "all 0.3s ease"
+        background: "#F6F7F9",
+        borderTop: "1px solid #E2E8F0",
+        color: "#374151"
       }}
     >
-      <div className="container">
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: "30px", marginBottom: "60px" }}>
-
-          {/* Column 1 — Techlearns */}
+      {/* Main footer content */}
+      <div
+        style={{
+          maxWidth: "1280px",
+          margin: "0 auto",
+          padding: "48px 32px 36px"
+        }}
+      >
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1.6fr 1fr 1fr 1fr",
+            gap: "40px",
+            alignItems: "flex-start"
+          }}
+        >
+          {/* Column 1 — Logo + Description + Contact */}
           <div>
-            <h3 style={{ color: "#FFFFFF", fontSize: "16px", marginBottom: "20px", fontFamily: "var(--font-headings)" }}>Techlearns</h3>
-            <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: "10px", fontSize: "13px" }}>
-              <li><Link href="/about" className="footer-link">About Us</Link></li>
-              <li><Link href="/cel" className="footer-link">Corporate Experience Learning</Link></li>
-              <li><Link href="/skillos" className="footer-link">SkillOS</Link></li>
-              <li><Link href="/about" className="footer-link">Trust & Quality Policy</Link></li>
-              <li><Link href="/contact" className="footer-link">Careers at Techlearns</Link></li>
-            </ul>
+            {/* Logo */}
+            <div style={{ marginBottom: "16px" }}>
+              <img
+                src="/techlearns logo.png"
+                alt="Techlearns"
+                style={{ height: "36px", objectFit: "contain" }}
+              />
+            </div>
+
+            {/* Description */}
+            <p
+              style={{
+                fontSize: "13px",
+                color: "#4B5563",
+                lineHeight: "1.7",
+                marginBottom: "20px",
+                maxWidth: "300px"
+              }}
+            >
+              India&apos;s Corporate Experience Learning (CEL) ecosystem. Train with
+              live work practices, sprint ticket execution, pull request reviews,
+              and verified Skill Passports.
+            </p>
+
+            {/* Address */}
+            <div
+              style={{
+                display: "flex",
+                alignItems: "flex-start",
+                gap: "8px",
+                marginBottom: "10px"
+              }}
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#5B2E91"
+                strokeWidth="2"
+                style={{ flexShrink: 0, marginTop: "2px" }}
+              >
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+              <span style={{ fontSize: "12.5px", color: "#4B5563", lineHeight: "1.6" }}>
+                Avior Corporate Park, 425, Lal Bahadur Shastri Marg, Mulund West, Mumbai,
+                Maharashtra 400080
+              </span>
+            </div>
+
+            {/* Email */}
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+                marginBottom: "8px"
+              }}
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#5B2E91"
+                strokeWidth="2"
+                style={{ flexShrink: 0 }}
+              >
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                <polyline points="22,6 12,13 2,6" />
+              </svg>
+              <a
+                href="mailto:info@techlearns.in"
+                style={{ fontSize: "12.5px", color: "#4B5563", textDecoration: "none" }}
+              >
+                info@techlearns.in
+              </a>
+            </div>
+
+            {/* Phone */}
+            <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#5B2E91"
+                strokeWidth="2"
+                style={{ flexShrink: 0 }}
+              >
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.78a16 16 0 0 0 7.28 7.28l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 17z" />
+              </svg>
+              <span style={{ fontSize: "12.5px", color: "#4B5563" }}>
+                +91 76200 92712 / +91 75060 70698
+              </span>
+            </div>
           </div>
 
           {/* Column 2 — Programs */}
           <div>
-            <h3 style={{ color: "#FFFFFF", fontSize: "16px", marginBottom: "20px", fontFamily: "var(--font-headings)" }}>Programs</h3>
-            <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: "10px", fontSize: "13px" }}>
-              <li><Link href="/programs" className="footer-link">Generative AI & Agentic AI Engineering</Link></li>
-              <li><Link href="/programs" className="footer-link">Full-Stack Software Engineering with AI</Link></li>
-              <li><Link href="/programs" className="footer-link">Data Analytics + BI + GenAI</Link></li>
-              <li><Link href="/programs" className="footer-link">Cybersecurity & SOC Analyst</Link></li>
-              <li><Link href="/programs" className="footer-link">Cloud, DevOps & Platform Engineering</Link></li>
-              <li><Link href="/programs" className="footer-link">View All Programs</Link></li>
+            <h4
+              style={{
+                fontSize: "12px",
+                fontWeight: "800",
+                letterSpacing: "0.08em",
+                textTransform: "uppercase",
+                color: "#0B1F3A",
+                marginBottom: "16px"
+              }}
+            >
+              PROGRAMS
+            </h4>
+            <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: "10px" }}>
+              {[
+                { label: "Generative AI Engineering", href: "/programs" },
+                { label: "Full-Stack Software Eng", href: "/programs" },
+                { label: "Cloud & DevOps SRE", href: "/programs" },
+                { label: "Cybersecurity & Defense", href: "/programs" },
+                { label: "Data Engineering", href: "/programs" },
+                { label: "AI Foundations", href: "/programs" }
+              ].map(({ label, href }) => (
+                <li key={label}>
+                  <Link
+                    href={href}
+                    style={{ fontSize: "13px", color: "#4B5563", textDecoration: "none" }}
+                    onMouseEnter={e => ((e.target as HTMLElement).style.color = "#5B2E91")}
+                    onMouseLeave={e => ((e.target as HTMLElement).style.color = "#4B5563")}
+                  >
+                    {label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* Column 3 — Ecosystem */}
           <div>
-            <h3 style={{ color: "#FFFFFF", fontSize: "16px", marginBottom: "20px", fontFamily: "var(--font-headings)" }}>Ecosystem</h3>
-            <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: "10px", fontSize: "13px" }}>
-              <li><Link href="/fsl" className="footer-link">Competitions & Future Skills League</Link></li>
-              <li><Link href="/passport" className="footer-link">Certifications & Credentials</Link></li>
-              <li><Link href="/passport" className="footer-link">Skill Passport</Link></li>
-              <li><Link href="/blog" className="footer-link">Skill Report / Blog</Link></li>
+            <h4
+              style={{
+                fontSize: "12px",
+                fontWeight: "800",
+                letterSpacing: "0.08em",
+                textTransform: "uppercase",
+                color: "#0B1F3A",
+                marginBottom: "16px"
+              }}
+            >
+              ECOSYSTEM
+            </h4>
+            <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: "10px" }}>
+              {[
+                { label: "CEL Wheel System", href: "/cel" },
+                { label: "5-Step Engineering Pipeline", href: "/cel" },
+                { label: "Future Skills League (FSL)", href: "/fsl" },
+                { label: "Skill Passport Verification", href: "/passport" },
+                { label: "Institutional Tie-ups", href: "/partners" },
+                { label: "Entrance Test (TLET)", href: "/contact" }
+              ].map(({ label, href }) => (
+                <li key={label}>
+                  <Link
+                    href={href}
+                    style={{ fontSize: "13px", color: "#4B5563", textDecoration: "none" }}
+                    onMouseEnter={e => ((e.target as HTMLElement).style.color = "#5B2E91")}
+                    onMouseLeave={e => ((e.target as HTMLElement).style.color = "#4B5563")}
+                  >
+                    {label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Column 4 — Partnerships */}
+          {/* Column 4 — Connect */}
           <div>
-            <h3 style={{ color: "#FFFFFF", fontSize: "16px", marginBottom: "20px", fontFamily: "var(--font-headings)" }}>Partnerships</h3>
-            <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: "10px", fontSize: "13px" }}>
-              <li><Link href="/contact" className="footer-link">For Colleges</Link></li>
-              <li><Link href="/partners" className="footer-link">For Employers</Link></li>
-              <li><Link href="/partners" className="footer-link">Industry Skill Council</Link></li>
-              <li><Link href="/partners" className="footer-link">Challenge Bank</Link></li>
-            </ul>
-          </div>
+            <h4
+              style={{
+                fontSize: "12px",
+                fontWeight: "800",
+                letterSpacing: "0.08em",
+                textTransform: "uppercase",
+                color: "#0B1F3A",
+                marginBottom: "16px"
+              }}
+            >
+              CONNECT
+            </h4>
 
-          {/* Column 5 — Get in Touch */}
-          <div>
-            <h3 style={{ color: "#FFFFFF", fontSize: "16px", marginBottom: "20px", fontFamily: "var(--font-headings)" }}>Get in Touch</h3>
-            <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: "10px", fontSize: "13px" }}>
-              <li><Link href="/contact" className="footer-link">Book a Diagnostic</Link></li>
-              <li><Link href="/contact" className="footer-link">Contact Us</Link></li>
-            </ul>
-          </div>
+            {/* Social Icons */}
+            <div style={{ display: "flex", gap: "10px", marginBottom: "24px" }}>
+              {/* LinkedIn */}
+              <a
+                href="https://linkedin.com/company/techlearns"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  width: "36px",
+                  height: "36px",
+                  borderRadius: "8px",
+                  background: "#FFFFFF",
+                  border: "1px solid #E2E8F0",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  color: "#0B1F3A",
+                  transition: "all 0.2s ease",
+                  textDecoration: "none"
+                }}
+                onMouseEnter={e => {
+                  (e.currentTarget as HTMLElement).style.background = "#5B2E91";
+                  (e.currentTarget as HTMLElement).style.borderColor = "#5B2E91";
+                  (e.currentTarget as HTMLElement).style.color = "#FFFFFF";
+                }}
+                onMouseLeave={e => {
+                  (e.currentTarget as HTMLElement).style.background = "#FFFFFF";
+                  (e.currentTarget as HTMLElement).style.borderColor = "#E2E8F0";
+                  (e.currentTarget as HTMLElement).style.color = "#0B1F3A";
+                }}
+              >
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                  <rect x="2" y="9" width="4" height="12" />
+                  <circle cx="4" cy="4" r="2" />
+                </svg>
+              </a>
 
+              {/* X / Twitter */}
+              <a
+                href="https://x.com/techlearns"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  width: "36px",
+                  height: "36px",
+                  borderRadius: "8px",
+                  background: "#FFFFFF",
+                  border: "1px solid #E2E8F0",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  color: "#0B1F3A",
+                  transition: "all 0.2s ease",
+                  textDecoration: "none"
+                }}
+                onMouseEnter={e => {
+                  (e.currentTarget as HTMLElement).style.background = "#0B1F3A";
+                  (e.currentTarget as HTMLElement).style.borderColor = "#0B1F3A";
+                  (e.currentTarget as HTMLElement).style.color = "#FFFFFF";
+                }}
+                onMouseLeave={e => {
+                  (e.currentTarget as HTMLElement).style.background = "#FFFFFF";
+                  (e.currentTarget as HTMLElement).style.borderColor = "#E2E8F0";
+                  (e.currentTarget as HTMLElement).style.color = "#0B1F3A";
+                }}
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.74l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                </svg>
+              </a>
+
+              {/* YouTube */}
+              <a
+                href="https://youtube.com/@techlearns"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  width: "36px",
+                  height: "36px",
+                  borderRadius: "8px",
+                  background: "#FFFFFF",
+                  border: "1px solid #E2E8F0",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  color: "#0B1F3A",
+                  transition: "all 0.2s ease",
+                  textDecoration: "none"
+                }}
+                onMouseEnter={e => {
+                  (e.currentTarget as HTMLElement).style.background = "#FF0000";
+                  (e.currentTarget as HTMLElement).style.borderColor = "#FF0000";
+                  (e.currentTarget as HTMLElement).style.color = "#FFFFFF";
+                }}
+                onMouseLeave={e => {
+                  (e.currentTarget as HTMLElement).style.background = "#FFFFFF";
+                  (e.currentTarget as HTMLElement).style.borderColor = "#E2E8F0";
+                  (e.currentTarget as HTMLElement).style.color = "#0B1F3A";
+                }}
+              >
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58a2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z" />
+                  <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="white" />
+                </svg>
+              </a>
+            </div>
+
+            {/* CTA Button */}
+            <Link
+              href="/contact"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                background: "#5B2E91",
+                color: "#FFFFFF",
+                padding: "12px 20px",
+                borderRadius: "10px",
+                fontSize: "13px",
+                fontWeight: "700",
+                textDecoration: "none",
+                whiteSpace: "nowrap",
+                boxShadow: "0 4px 14px rgba(91, 46, 145, 0.3)",
+                transition: "all 0.2s ease"
+              }}
+              onMouseEnter={e => {
+                (e.currentTarget as HTMLElement).style.background = "#4A2478";
+                (e.currentTarget as HTMLElement).style.transform = "translateY(-1px)";
+              }}
+              onMouseLeave={e => {
+                (e.currentTarget as HTMLElement).style.background = "#5B2E91";
+                (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
+              }}
+            >
+              Book Diagnostic Assessment
+            </Link>
+          </div>
         </div>
+      </div>
 
-        {/* Bottom Banner */}
+      {/* Bottom copyright bar */}
+      <div
+        style={{
+          borderTop: "1px solid #E2E8F0",
+          padding: "16px 32px"
+        }}
+      >
         <div
           style={{
-            borderTop: "1px solid rgba(255, 255, 255, 0.1)",
-            paddingTop: "30px",
+            maxWidth: "1280px",
+            margin: "0 auto",
             display: "flex",
-            flexDirection: "column",
+            justifyContent: "space-between",
             alignItems: "center",
-            gap: "10px",
-            textAlign: "center",
-            fontSize: "13px",
-            color: "rgba(255, 255, 255, 0.5)"
+            fontSize: "12.5px",
+            color: "#6B7280",
+            flexWrap: "wrap",
+            gap: "8px"
           }}
         >
-          <p>© Techlearns. Corporate Experience Learning | Learn. Experience. Build. Lead.</p>
-          <p style={{ fontSize: "11px", display: "flex", gap: "10px", flexWrap: "wrap", justifyContent: "center" }}>
-            <Link href="/about" className="footer-link" style={{ textDecoration: "none" }}>Privacy Policy</Link> ·
-            <Link href="/about" className="footer-link" style={{ textDecoration: "none" }}>Terms</Link> ·
-            <Link href="/about" className="footer-link" style={{ textDecoration: "none" }}>Refund Policy</Link> ·
-            <Link href="/about" className="footer-link" style={{ textDecoration: "none" }}>Claims & Outcomes Disclosure</Link>
-          </p>
+          <span>© 2026 Techlearns Academy. All rights reserved.</span>
+          <div style={{ display: "flex", gap: "24px" }}>
+            <Link href="/about" style={{ color: "#6B7280", textDecoration: "none" }}
+              onMouseEnter={e => ((e.target as HTMLElement).style.color = "#5B2E91")}
+              onMouseLeave={e => ((e.target as HTMLElement).style.color = "#6B7280")}
+            >Privacy Policy</Link>
+            <Link href="/about" style={{ color: "#6B7280", textDecoration: "none" }}
+              onMouseEnter={e => ((e.target as HTMLElement).style.color = "#5B2E91")}
+              onMouseLeave={e => ((e.target as HTMLElement).style.color = "#6B7280")}
+            >Terms of Service</Link>
+            <Link href="/about" style={{ color: "#6B7280", textDecoration: "none" }}
+              onMouseEnter={e => ((e.target as HTMLElement).style.color = "#5B2E91")}
+              onMouseLeave={e => ((e.target as HTMLElement).style.color = "#6B7280")}
+            >Security &amp; Compliance</Link>
+          </div>
         </div>
       </div>
     </footer>

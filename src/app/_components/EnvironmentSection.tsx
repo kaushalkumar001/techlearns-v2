@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function EnvironmentSection() {
   return (
-    <section style={{ padding: "56px 0", background: "#F8FAFC" }}>
+    <section style={{ padding: "36px 0", background: "#F8FAFC" }}>
       <div className="container" style={{ maxWidth: "1240px", margin: "0 auto", padding: "0 24px" }}>
 
         {/* Section Header with 01 Watermark Badge matching img2 */}

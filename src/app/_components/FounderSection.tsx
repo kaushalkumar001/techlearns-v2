@@ -13,7 +13,7 @@ export default function FounderSection() {
   ];
 
   return (
-    <section id="founder" style={{ padding: "64px 0 88px", background: "#FFFFFF", position: "relative" }}>
+    <section id="founder" style={{ padding: "40px 0 56px", background: "#FFFFFF", position: "relative" }}>
       <div className="container" style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px" }}>
 
         {/* Main Hero Card matching uploaded reference image & TechLearns color theme */}

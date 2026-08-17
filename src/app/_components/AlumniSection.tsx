@@ -109,7 +109,7 @@ export default function AlumniSection() {
   };
 
   return (
-    <section id="stories" style={{ padding: "64px 0 90px", background: "#FAFBFD", position: "relative", overflow: "hidden" }}>
+    <section id="stories" style={{ padding: "40px 0 56px", background: "#FAFBFD", position: "relative", overflow: "hidden" }}>
       <div className="container" style={{ maxWidth: "1180px", margin: "0 auto", padding: "0 24px" }}>
 
         {/* Centered Header matching screenshot */}
