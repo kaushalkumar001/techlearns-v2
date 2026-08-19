@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 const stepsData = [
   {
-    watermark: "1",
+    watermark: "01",
     titleLine1: "Share the Story of your Classroom",
     titleLine2: "with Families",
     description: "Hanky panky zonked David such a fibber vagabond, up the duff knackered chancer. Poor shaped young delinquent bevvy fanny around wind up he lost his!",
@@ -15,7 +15,7 @@ const stepsData = [
     imgSrc: "/images/steps/step1.png"
   },
   {
-    watermark: "2",
+    watermark: "02",
     titleLine1: "High Quality Service at the",
     titleLine2: "Best Value",
     description: "Hanky panky zonked David such a fibber vagabond, up the duff knackered chancer. Poor shaped young delinquent bevvy fanny around wind up he lost his!",
@@ -24,7 +24,34 @@ const stepsData = [
     imgSrc: "/images/steps/step2.png"
   },
   {
-    watermark: "3",
+    watermark: "03",
+    titleLine1: "Bring your School Community",
+    titleLine2: "Together",
+    description: "Hanky panky zonked David such a fibber vagabond, up the duff knackered chancer. Poor shaped young delinquent bevvy fanny around wind up he lost his!",
+    linkText: "Learn More →",
+    linkColor: "#5B2E91",
+    imgSrc: "/images/steps/step3.png"
+  }
+  , {
+    watermark: "03",
+    titleLine1: "Bring your School Community",
+    titleLine2: "Together",
+    description: "Hanky panky zonked David such a fibber vagabond, up the duff knackered chancer. Poor shaped young delinquent bevvy fanny around wind up he lost his!",
+    linkText: "Learn More →",
+    linkColor: "#5B2E91",
+    imgSrc: "/images/steps/step3.png"
+  },
+  {
+    watermark: "04",
+    titleLine1: "Bring your School Community",
+    titleLine2: "Together",
+    description: "Hanky panky zonked David such a fibber vagabond, up the duff knackered chancer. Poor shaped young delinquent bevvy fanny around wind up he lost his!",
+    linkText: "Learn More →",
+    linkColor: "#5B2E91",
+    imgSrc: "/images/steps/step3.png"
+  }
+  ,  {
+    watermark: "05",
     titleLine1: "Bring your School Community",
     titleLine2: "Together",
     description: "Hanky panky zonked David such a fibber vagabond, up the duff knackered chancer. Poor shaped young delinquent bevvy fanny around wind up he lost his!",
@@ -36,202 +63,200 @@ const stepsData = [
 
 export default function StepsSection() {
   return (
-    <section id="steps" style={{ padding: "24px 0 20px", background: "#FFFFFF", position: "relative", overflow: "hidden" }}>
+    <section
+      id="steps"
+      style={{
+        padding: "64px 0 48px",
+        background: "linear-gradient(180deg, #F0F4F9 0%, #F6F8FC 100%)",
+        position: "relative",
+        overflow: "hidden"
+      }}
+    >
+      <div style={{ maxWidth: "1140px", margin: "0 auto", padding: "0 24px", position: "relative" }}>
 
-      <div style={{ maxWidth: "1080px", margin: "0 auto", padding: "0 24px", position: "relative" }}>
-
-        {/* Header matching brand color theme */}
-        <div style={{ textAlign: "center", maxWidth: "600px", margin: "0 auto 12px" }}>
-          <h2 style={{ fontFamily: "var(--font-montserrat), sans-serif", fontSize: "36px", fontWeight: "800", color: "#0B1F3A", lineHeight: "1.3", margin: 0, letterSpacing: "-0.02em" }}>
+        {/* Top Header matching EnvironmentSection design */}
+        <motion.div
+          initial={{ opacity: 0, y: -15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          style={{ textAlign: "center", maxWidth: "680px", margin: "0 auto 48px" }}
+        >
+          <h2
+            style={{
+              fontFamily: "var(--font-montserrat), sans-serif",
+              fontSize: "38px",
+              fontWeight: "800",
+              color: "#0B1F3A",
+              lineHeight: "1.3",
+              margin: 0,
+              letterSpacing: "-0.02em"
+            }}
+          >
             You care about your <span style={{ color: "#5B2E91" }}>brain.</span>
             <br />
             <span style={{ background: "linear-gradient(135deg, #7A42BE 0%, #5B2E91 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
               We do, too.
             </span>
           </h2>
-        </div>
+        </motion.div>
 
-        {/* Vertical Curved Dotted Trail SVG Background */}
-        <svg
-          viewBox="0 0 100 1100"
-          preserveAspectRatio="none"
+        {/* Overlapping Glassmorphic Step Cards Layout */}
+        <div
           style={{
-            position: "absolute",
-            left: "50%",
-            top: "100px",
-            bottom: "60px",
-            width: "130px",
-            height: "calc(100% - 160px)",
-            transform: "translateX(-50%)",
-            zIndex: 1,
-            pointerEvents: "none"
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            gap: "40px 28px",
+            position: "relative",
+            zIndex: 5
           }}
-          className="desktop-only"
         >
-          <path
-            d="M 50,0 Q 85,180 50,360 Q 15,540 50,720 Q 85,900 50,1080"
-            fill="none"
-            stroke="#CBD5E1"
-            strokeWidth="2.5"
-            strokeDasharray="4 6"
-          />
-        </svg>
-
-        {/* 3 Step Rows matching img1 pixel-perfectly */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "8px", position: "relative", zIndex: 5 }}>
           {stepsData.map((step, idx) => {
-            const isEven = idx === 1; // Step 2 has image on left, text on right
-
             return (
               <motion.div
                 key={step.watermark}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 35 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.6, delay: idx * 0.12, ease: [0.16, 1, 0.3, 1] }}
+                whileHover={{ y: -6, transition: { duration: 0.25 } }}
                 style={{
-                  display: "grid",
-                  gridTemplateColumns: "1fr 1fr",
-                  gap: "64px",
-                  alignItems: "center",
-                  position: "relative"
+                  position: "relative",
+                  width: "100%",
+                  maxWidth: "340px",
+                  flex: "1 1 300px"
                 }}
-                className="grid-2col"
               >
-                {/* Center Watermark Number & Concentric Pink Dot Node */}
+                {/* Back Purple Box (Original website purple theme) */}
                 <div
                   style={{
                     position: "absolute",
-                    left: "50%",
-                    top: "50%",
-                    transform: "translate(-50%, -50%)",
-                    zIndex: 10,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    pointerEvents: "none"
+                    top: 0,
+                    left: 0,
+                    width: "125px",
+                    height: "115px",
+                    borderRadius: "24px",
+                    background: "linear-gradient(135deg, #7A42BE 0%, #5B2E91 100%)",
+                    boxShadow: "0 10px 25px rgba(91, 46, 145, 0.3)",
+                    zIndex: 1,
+                    padding: "14px 0 0 18px",
+                    boxSizing: "border-box"
                   }}
-                  className="desktop-only"
                 >
-                  {/* Giant Watermark Number */}
                   <span
                     style={{
                       fontFamily: "var(--font-montserrat), sans-serif",
-                      fontSize: "180px",
+                      fontSize: "30px",
                       fontWeight: "900",
-                      color: "#F1F5F9",
+                      color: "#FFFFFF",
                       lineHeight: "1",
-                      letterSpacing: "-0.07em",
-                      userSelect: "none"
+                      letterSpacing: "-0.03em"
                     }}
                   >
                     {step.watermark}
                   </span>
+                </div>
 
-                  {/* Concentric Node Circle with Pink Dot */}
-                  <div
+                {/* Front Frosted Glass Card */}
+                <div
+                  style={{
+                    position: "relative",
+                    zIndex: 2,
+                    marginTop: "36px",
+                    marginLeft: "40px",
+                    width: "calc(100% - 40px)",
+                    background: "rgba(255, 255, 255, 0.76)",
+                    backdropFilter: "blur(16px) saturate(180%)",
+                    WebkitBackdropFilter: "blur(16px) saturate(180%)",
+                    border: "1.5px solid rgba(255, 255, 255, 0.85)",
+                    borderRadius: "24px",
+                    boxShadow: "0 16px 36px -8px rgba(11, 31, 58, 0.08), 0 4px 12px rgba(0, 0, 0, 0.03)",
+                    padding: "28px 22px 24px",
+                    boxSizing: "border-box",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    textAlign: "center"
+                  }}
+                >
+                  {/* Card Title */}
+                  <h3
                     style={{
-                      position: "absolute",
-                      top: "50%",
-                      left: "50%",
-                      transform: "translate(-50%, -50%)",
-                      width: "22px",
-                      height: "22px",
-                      borderRadius: "50%",
-                      background: "#FFFFFF",
-                      border: "3px solid #EC4899",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      boxShadow: "0 0 0 5px rgba(236, 72, 153, 0.18)"
+                      fontFamily: "var(--font-montserrat), sans-serif",
+                      fontSize: "17px",
+                      fontWeight: "800",
+                      color: "#0B1F3A",
+                      lineHeight: "1.35",
+                      marginBottom: "12px",
+                      letterSpacing: "-0.01em"
                     }}
                   >
-                    <div style={{ width: "7px", height: "7px", borderRadius: "50%", background: "#EC4899" }} />
-                  </div>
-                </div>
+                    {step.titleLine1} {step.titleLine2}
+                  </h3>
 
-                {/* Left Side Column */}
-                <div>
-                  {isEven ? (
-                    /* Image for Step 2 (Left side) */
-                    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", paddingRight: "30px" }}>
-                      <img
-                        src={step.imgSrc}
-                        alt={step.titleLine1}
-                        style={{ width: "100%", height: "auto", maxWidth: "440px", objectFit: "contain" }}
-                      />
-                    </div>
-                  ) : (
-                    /* Text Content for Step 1 & Step 3 (Left side) */
-                    <div style={{ paddingRight: "30px" }}>
-                      <h3 style={{ fontFamily: "var(--font-montserrat), sans-serif", fontSize: "22px", fontWeight: "800", color: "#1E293B", marginBottom: "16px", lineHeight: "1.35", letterSpacing: "-0.01em" }}>
-                        {step.titleLine1}<br />{step.titleLine2}
-                      </h3>
-                      <p style={{ fontSize: "13.5px", color: "#788292", fontWeight: "400", lineHeight: "1.7", marginBottom: "24px", maxWidth: "380px" }}>
-                        {step.description}
-                      </p>
-                      <Link
-                        href="/contact"
-                        style={{
-                          display: "inline-flex",
-                          alignItems: "center",
-                          gap: "6px",
-                          fontSize: "13px",
-                          fontWeight: "700",
-                          color: step.linkColor,
-                          textDecoration: "none"
-                        }}
-                      >
-                        <span>{step.linkText}</span>
-                      </Link>
-                    </div>
-                  )}
-                </div>
+                  {/* Card Description */}
+                  <p
+                    style={{
+                      fontSize: "12.5px",
+                      color: "#475569",
+                      fontWeight: "400",
+                      lineHeight: "1.65",
+                      marginBottom: "20px",
+                      margin: "0 0 20px 0"
+                    }}
+                  >
+                    {step.description}
+                  </p>
 
-                {/* Right Side Column */}
-                <div>
-                  {isEven ? (
-                    /* Text Content for Step 2 (Right side) */
-                    <div style={{ paddingLeft: "60px" }}>
-                      <h3 style={{ fontFamily: "var(--font-montserrat), sans-serif", fontSize: "22px", fontWeight: "800", color: "#1E293B", marginBottom: "16px", lineHeight: "1.35", letterSpacing: "-0.01em" }}>
-                        {step.titleLine1}<br />{step.titleLine2}
-                      </h3>
-                      <p style={{ fontSize: "13.5px", color: "#788292", fontWeight: "400", lineHeight: "1.7", marginBottom: "24px", maxWidth: "380px" }}>
-                        {step.description}
-                      </p>
-                      <Link
-                        href="/contact"
-                        style={{
-                          display: "inline-flex",
-                          alignItems: "center",
-                          gap: "6px",
-                          fontSize: "13px",
-                          fontWeight: "700",
-                          color: step.linkColor,
-                          textDecoration: "none"
-                        }}
-                      >
-                        <span>{step.linkText}</span>
-                      </Link>
-                    </div>
-                  ) : (
-                    /* Image for Step 1 & Step 3 (Right side) */
-                    <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                      <img
-                        src={step.imgSrc}
-                        alt={step.titleLine1}
-                        style={{ width: "100%", height: "auto", maxWidth: "440px", objectFit: "contain" }}
-                      />
-                    </div>
-                  )}
+                  {/* Learn More Link */}
+                  <Link
+                    href="/contact"
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: "6px",
+                      fontSize: "13px",
+                      fontWeight: "700",
+                      color: step.linkColor || "#5B2E91",
+                      textDecoration: "none",
+                      marginTop: "auto",
+                      transition: "gap 0.2s ease"
+                    }}
+                  >
+                    <span>{step.linkText}</span>
+                  </Link>
                 </div>
-
               </motion.div>
             );
           })}
         </div>
 
+        {/* Bottom Line Divider with Brand Identifier (matching the image bottom) */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "20px",
+            marginTop: "60px"
+          }}
+        >
+          <div style={{ flex: 1, height: "1px", background: "linear-gradient(90deg, transparent 0%, #CBD5E1 100%)", maxWidth: "320px" }} />
+          <div style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "12.5px", fontWeight: "700", color: "#64748B" }}>
+            <span style={{ color: "#5B2E91", fontWeight: "800" }}>TechLearns</span>
+            <span style={{ opacity: 0.5 }}>•</span>
+            <span>Ecosystem</span>
+          </div>
+          <div style={{ flex: 1, height: "1px", background: "linear-gradient(90deg, #CBD5E1 0%, transparent 100%)", maxWidth: "320px" }} />
+        </motion.div>
+
       </div>
     </section>
   );
 }
+

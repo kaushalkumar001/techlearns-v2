@@ -10,10 +10,10 @@ import StepsSection from "./_components/StepsSection";
 import MentorsSection from "./_components/MentorsSection";
 import AlumniSection from "./_components/AlumniSection";
 import HiringPartnersSection from "./_components/HiringPartnersSection";
-import FounderSection from "./_components/FounderSection";
 import AwardsSection from "./_components/AwardsSection";
 import FAQSection from "./_components/FAQSection";
 import CTASection from "./_components/CTASection";
+import PartnersSection from "./_components/PartnersSection";
 
 export default function HomeClient() {
   return (
@@ -24,12 +24,12 @@ export default function HomeClient() {
         <HeroSection />
         <HiringPartnersSection />
         <OfferingsSection />
+        <PartnersSection />
         <WhyTechLearnsSection />
         <EnvironmentSection />
         <StepsSection />
         <MentorsSection />
         <AlumniSection />
-        <FounderSection />
         <AwardsSection />
         <FAQSection />
         <CTASection />

@@ -5,6 +5,7 @@ import AboutHero from "./_components/AboutHero";
 import AboutVisionMission from "./_components/AboutVisionMission";
 import AboutManifesto from "./_components/AboutManifesto";
 import AboutPositioning from "./_components/AboutPositioning";
+import FounderSection from "./_components/FounderSection";
 
 export const metadata: Metadata = {
   title: "About Techlearns | A Next-Generation Corporate Experience Learning Ecosystem",
@@ -25,6 +26,7 @@ export default function AboutPage() {
         <AboutHero />
         <AboutVisionMission />
         <AboutManifesto />
+        <FounderSection />
         <AboutPositioning />
       </main>
       <Footer />

@@ -1,13 +1,25 @@
 "use client";
 
-const awardsData = [
+import React, { useState, useEffect, useRef, useCallback } from "react";
+import { ChevronLeft, ChevronRight, Trophy, Award, Star, Scroll, Lightbulb, Rocket } from "lucide-react";
+
+interface AwardItem {
+  title: string;
+  org: string;
+  year: string;
+  desc: string;
+  photo: string;
+  badgeIcon: React.ReactNode;
+}
+
+const awardsData: AwardItem[] = [
   {
     title: "World Education Summit",
     org: "Elets Technomedia",
     year: "2024",
     desc: "Recognized for outstanding contribution to education technology and digital transformation in learning.",
     photo: "/images/award_summit_2024.jpg",
-    icon: "🏆"
+    badgeIcon: <Trophy size={20} color="#FFFFFF" />
   },
   {
     title: "Education Leadership Award",
@@ -15,7 +27,7 @@ const awardsData = [
     year: "2023",
     desc: "Honored for leadership in advancing quality education through technology and innovation.",
     photo: "/images/award_leadership_2023.jpg",
-    icon: "🏅"
+    badgeIcon: <Award size={20} color="#FFFFFF" />
   },
   {
     title: "Indian Education Award",
@@ -23,7 +35,7 @@ const awardsData = [
     year: "2022",
     desc: "Awarded for excellence in education, mentorship and building future-ready learning solutions.",
     photo: "/images/award_indian_2022.jpg",
-    icon: "⭐"
+    badgeIcon: <Star size={20} color="#FFFFFF" />
   },
   {
     title: "National Education Excellence Award",
@@ -31,15 +43,15 @@ const awardsData = [
     year: "2021",
     desc: "Recognized for dedication towards academic excellence and student empowerment.",
     photo: "/images/award_national_2021.jpg",
-    icon: "📜"
+    badgeIcon: <Scroll size={20} color="#FFFFFF" />
   },
   {
-    title: "Excellence in Education & Innovation Award",
+    title: "Excellence in Education & Innovation",
     org: "Education Excellence Forum",
     year: "2020",
     desc: "Recognized for driving innovation in education and creating impactful technology-enabled learning experiences.",
     photo: "/images/award_innovation_2020.jpg",
-    icon: "💡"
+    badgeIcon: <Lightbulb size={20} color="#FFFFFF" />
   },
   {
     title: "Emerging Education Leader Award",
@@ -47,80 +59,331 @@ const awardsData = [
     year: "2019",
     desc: "Honored for inspiring students and educators through leadership, mentorship and future-focused education initiatives.",
     photo: "/images/award_emerging_leader_2019.jpg",
-    icon: "🚀"
+    badgeIcon: <Rocket size={20} color="#FFFFFF" />
   }
 ];
 
 export default function AwardsSection() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const total = awardsData.length;
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
+
+  const nextSlide = useCallback(() => {
+    setActiveIndex((prev) => (prev + 1) % total);
+  }, [total]);
+
+  const prevSlide = useCallback(() => {
+    setActiveIndex((prev) => (prev - 1 + total) % total);
+  }, [total]);
+
+  useEffect(() => {
+    if (isPaused) return;
+    timerRef.current = setInterval(() => {
+      nextSlide();
+    }, 4500);
+
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, [isPaused, nextSlide]);
+
+  const getCardStyle = (index: number) => {
+    // Calculate circular offset relative to activeIndex (-2, -1, 0, 1, 2)
+    let diff = index - activeIndex;
+    if (diff > total / 2) diff -= total;
+    if (diff < -total / 2) diff += total;
+
+    const absDiff = Math.abs(diff);
+
+    // 3D Circular Positioning Variables
+    let translateX = diff * 260; // horizontal spacing on 3D ring
+    let translateZ = -absDiff * 180; // depth position on 3D ring
+    let rotateY = diff * -18; // 3D rotation angle
+    let scale = Math.max(0.72, 1 - absDiff * 0.15);
+    let opacity = 1 - absDiff * 0.35;
+    let zIndex = 10 - absDiff;
+
+    if (absDiff > 2) {
+      opacity = 0;
+      scale = 0.5;
+    }
+
+    return {
+      transform: `translate3d(${translateX}px, 0, ${translateZ}px) rotateY(${rotateY}deg) scale(${scale})`,
+      opacity: opacity,
+      zIndex: zIndex,
+      pointerEvents: (absDiff === 0 ? "auto" : "none") as React.CSSProperties["pointerEvents"]
+    };
+  };
+
   return (
-    <section style={{ padding: "48px 0", background: "#FFFFFF" }}>
-      <div className="container" style={{ maxWidth: "1240px", margin: "0 auto", padding: "0 24px" }}>
+    <section
+      style={{
+        padding: "80px 0 100px",
+        background: "#FAF9FC",
+        position: "relative",
+        overflow: "hidden"
+      }}
+    >
+      <div style={{ maxWidth: "1240px", margin: "0 auto", padding: "0 24px" }}>
 
-        {/* Header */}
+        {/* Section Header */}
         <div style={{ textAlign: "center", marginBottom: "50px" }}>
-          <div style={{ fontSize: "12px", fontWeight: "700", color: "#5B2E91", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "6px" }}>
-            AWARDS & RECOGNITION
+          <div
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              background: "#EDE9FE",
+              color: "#5B2E91",
+              fontSize: "12px",
+              fontWeight: "800",
+              padding: "5px 16px",
+              borderRadius: "9999px",
+              marginBottom: "16px",
+              letterSpacing: "0.08em"
+            }}
+          >
+            AWARDS &amp; RECOGNITION
           </div>
-          <div style={{ width: "32px", height: "3px", background: "#5B2E91", borderRadius: "2px", margin: "0 auto 16px" }}></div>
 
-          <h2 style={{ fontFamily: "var(--font-montserrat), sans-serif", fontSize: "38px", fontWeight: "800", color: "#0B1F3A", letterSpacing: "-0.02em", marginBottom: "8px" }}>
-            Celebrating <span style={{ color: "#5B2E91" }}>Leadership & Excellence</span>
+          <h2
+            style={{
+              fontFamily: "var(--font-montserrat), sans-serif",
+              fontSize: "44px",
+              fontWeight: "800",
+              color: "#0B1F3A",
+              letterSpacing: "-0.03em",
+              lineHeight: "1.15",
+              marginBottom: "14px"
+            }}
+          >
+            Celebrating{" "}
+            <span
+              style={{
+                background: "linear-gradient(135deg, #5B2E91 0%, #7A42BE 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent"
+              }}
+            >
+              Leadership &amp; Excellence
+            </span>
           </h2>
-          <p style={{ fontSize: "15px", color: "#6B7280" }}>
+
+          <div style={{ width: "48px", height: "4px", background: "#5B2E91", borderRadius: "2px", margin: "0 auto 16px" }} />
+
+          <p style={{ fontSize: "16px", color: "#64748B", maxWidth: "600px", margin: "0 auto", fontWeight: "500" }}>
             Recognitions that reflect our commitment to innovation, education and meaningful impact.
           </p>
         </div>
 
-        {/* 4 Award Cards Grid */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "22px", marginBottom: "40px" }}>
-          {awardsData.map((award, idx) => (
-            <div
-              key={idx}
-              style={{
-                background: "#FFFFFF",
-                borderRadius: "20px",
-                overflow: "hidden",
-                border: "1px solid #EDE9FE",
-                boxShadow: "0 8px 24px rgba(0,0,0,0.03)",
-                display: "flex",
-                flexDirection: "column"
-              }}
-            >
-              {/* Photo */}
-              <div style={{ position: "relative", height: "190px", background: "#F1F5F9" }}>
-                <img
-                  src={award.photo}
-                  alt={award.title}
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                />
+        {/* 3D Circular Gallery Stage */}
+        <div
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+          style={{
+            position: "relative",
+            height: "480px",
+            perspective: "1200px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            marginBottom: "30px"
+          }}
+        >
+          {awardsData.map((award, idx) => {
+            const style = getCardStyle(idx);
+            const isActive = idx === activeIndex;
 
-                {/* Floating Award Icon Circle */}
-                <div style={{ position: "absolute", bottom: "-16px", left: "16px", width: "36px", height: "36px", borderRadius: "50%", background: "#6D28D9", color: "#FFFFFF", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "16px", boxShadow: "0 4px 10px rgba(109,40,217,0.3)" }}>
-                  {award.icon}
+            return (
+              <div
+                key={idx}
+                onClick={() => setActiveIndex(idx)}
+                style={{
+                  position: "absolute",
+                  width: "360px",
+                  background: "#FFFFFF",
+                  borderRadius: "28px",
+                  border: isActive ? "2px solid #5B2E91" : "1.5px solid #EDE9FE",
+                  overflow: "hidden",
+                  transition: "transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.6s ease, border-color 0.3s ease",
+                  cursor: "pointer",
+                  willChange: "transform, opacity",
+                  ...style
+                }}
+              >
+                {/* Photo Header */}
+                <div style={{ position: "relative", height: "220px", background: "#F1F5F9", overflow: "hidden" }}>
+                  <img
+                    src={award.photo}
+                    alt={award.title}
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      transition: "transform 0.4s ease"
+                    }}
+                  />
+
+                  {/* Gradient Overlay */}
+                  <div
+                    style={{
+                      position: "absolute",
+                      inset: 0,
+                      background: "linear-gradient(to top, rgba(11, 31, 58, 0.6) 0%, transparent 60%)"
+                    }}
+                  />
+
+                  {/* Badge Icon Circle */}
+                  <div
+                    style={{
+                      position: "absolute",
+                      bottom: "-18px",
+                      left: "24px",
+                      width: "44px",
+                      height: "44px",
+                      borderRadius: "14px",
+                      background: "linear-gradient(135deg, #5B2E91 0%, #7A42BE 100%)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      border: "3px solid #FFFFFF"
+                    }}
+                  >
+                    {award.badgeIcon}
+                  </div>
+
+                  {/* Year Tag */}
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: "16px",
+                      right: "16px",
+                      background: "rgba(255, 255, 255, 0.95)",
+                      color: "#3A1B68",
+                      padding: "4px 12px",
+                      borderRadius: "9999px",
+                      fontSize: "12px",
+                      fontWeight: "800",
+                      letterSpacing: "0.04em"
+                    }}
+                  >
+                    {award.year}
+                  </div>
                 </div>
 
-                {/* Year Pill */}
-                <div style={{ position: "absolute", bottom: "10px", right: "12px", background: "rgba(255,255,255,0.9)", color: "#6D28D9", padding: "2px 8px", borderRadius: "6px", fontSize: "11px", fontWeight: "800" }}>
-                  {award.year}
-                </div>
-              </div>
-
-              {/* Text Body */}
-              <div style={{ padding: "28px 20px 20px", flex: 1, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-                <div>
-                  <h4 style={{ fontSize: "15.5px", fontWeight: "800", color: "#111827", marginBottom: "2px" }}>
-                    {award.title}
-                  </h4>
-                  <div style={{ fontSize: "12px", color: "#6D28D9", fontWeight: "600", marginBottom: "12px" }}>
+                {/* Text Body */}
+                <div style={{ padding: "30px 24px 26px" }}>
+                  <div style={{ fontSize: "12px", color: "#7A42BE", fontWeight: "800", textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: "4px" }}>
                     {award.org}
                   </div>
-                  <p style={{ fontSize: "12.5px", color: "#64748B", lineHeight: "1.5" }}>
+
+                  <h3
+                    style={{
+                      fontFamily: "var(--font-montserrat), sans-serif",
+                      fontSize: "19px",
+                      fontWeight: "800",
+                      color: "#0B1F3A",
+                      lineHeight: "1.3",
+                      marginBottom: "10px"
+                    }}
+                  >
+                    {award.title}
+                  </h3>
+
+                  <p style={{ fontSize: "13.5px", color: "#64748B", lineHeight: "1.55", margin: 0 }}>
                     {award.desc}
                   </p>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
+        </div>
+
+        {/* Circular Gallery Controls & Navigation */}
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "20px" }}>
+          {/* Previous Button */}
+          <button
+            onClick={prevSlide}
+            aria-label="Previous Award"
+            style={{
+              width: "46px",
+              height: "46px",
+              borderRadius: "50%",
+              background: "#FFFFFF",
+              border: "1.5px solid #EDE9FE",
+              color: "#3A1B68",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: "pointer",
+              transition: "all 0.2s ease"
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = "#3A1B68";
+              e.currentTarget.style.color = "#FFFFFF";
+              e.currentTarget.style.borderColor = "#3A1B68";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = "#FFFFFF";
+              e.currentTarget.style.color = "#3A1B68";
+              e.currentTarget.style.borderColor = "#EDE9FE";
+            }}
+          >
+            <ChevronLeft size={22} />
+          </button>
+
+          {/* Dots Indicator Track */}
+          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+            {awardsData.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setActiveIndex(idx)}
+                aria-label={`Go to slide ${idx + 1}`}
+                style={{
+                  width: idx === activeIndex ? "24px" : "8px",
+                  height: "8px",
+                  borderRadius: "9999px",
+                  background: idx === activeIndex ? "#5B2E91" : "#CBD5E1",
+                  border: "none",
+                  cursor: "pointer",
+                  transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
+                }}
+              />
+            ))}
+          </div>
+
+          {/* Next Button */}
+          <button
+            onClick={nextSlide}
+            aria-label="Next Award"
+            style={{
+              width: "46px",
+              height: "46px",
+              borderRadius: "50%",
+              background: "#FFFFFF",
+              border: "1.5px solid #EDE9FE",
+              color: "#3A1B68",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: "pointer",
+              transition: "all 0.2s ease"
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = "#3A1B68";
+              e.currentTarget.style.color = "#FFFFFF";
+              e.currentTarget.style.borderColor = "#3A1B68";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = "#FFFFFF";
+              e.currentTarget.style.color = "#3A1B68";
+              e.currentTarget.style.borderColor = "#EDE9FE";
+            }}
+          >
+            <ChevronRight size={22} />
+          </button>
         </div>
 
       </div>
