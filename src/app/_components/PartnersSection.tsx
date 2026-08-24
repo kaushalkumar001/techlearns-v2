@@ -529,13 +529,13 @@ export default function PartnersSection() {
               }}
             >
               A connected ecosystem that empowers learners, developers and professionals to learn, grow and build the future.
-            </p>
-
-            {/* Action Buttons Row */}
+            </p>            {/* Action Buttons Row */}
             <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
               <motion.a
                 href="#contact"
+                whileHover={{ scale: 1.05, boxShadow: "0 12px 30px rgba(58, 27, 104, 0.4)" }}
                 whileTap={{ scale: 0.97 }}
+                transition={{ type: "spring", stiffness: 400, damping: 25 }}
                 style={{
                   background: "#3A1B68",
                   color: "#FFFFFF",
@@ -553,10 +553,17 @@ export default function PartnersSection() {
                 }}
               >
                 <span>READ MORE</span>
-                <ArrowRight size={15} color="#FFFFFF" />
+                <motion.div
+                  whileHover={{ x: 4 }}
+                  transition={{ type: "spring", stiffness: 400 }}
+                >
+                  <ArrowRight size={15} color="#FFFFFF" />
+                </motion.div>
               </motion.a>
 
-              <div
+              <motion.div
+                whileHover={{ scale: 1.15, rotate: 90 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 style={{
                   width: "46px",
                   height: "46px",
@@ -566,16 +573,17 @@ export default function PartnersSection() {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  boxShadow: "0 2px 8px rgba(0,0,0,0.04)"
+                  boxShadow: "0 2px 8px rgba(0,0,0,0.04)",
+                  cursor: "pointer"
                 }}
               >
                 <div style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#3A1B68" }} />
-              </div>
+              </motion.div>
             </div>
           </motion.div>
         </div>
 
-        {/* Full-Bleed Infinite Horizontal Sliding Track Window (ZERO side padding so cards peek edge-to-edge) */}
+        {/* Full-Bleed Infinite Horizontal Sliding Track Window */}
         <div
           style={{
             position: "relative",
@@ -613,12 +621,17 @@ export default function PartnersSection() {
               const isActive = idx === trackIndex;
 
               return (
-                <div
+                <motion.div
                   key={`${cat.cloneKey}-${idx}`}
                   onClick={() => {
                     setIsTransitioning(true);
                     setTrackIndex(idx);
                   }}
+                  animate={{
+                    scale: isActive ? 1 : 0.98,
+                    opacity: isActive ? 1 : 0.78,
+                  }}
+                  transition={{ duration: 0.45 }}
                   style={{
                     width: "var(--card-width)",
                     height: "var(--card-height)",
@@ -634,15 +647,24 @@ export default function PartnersSection() {
                     border: isActive
                       ? "1px solid rgba(255, 255, 255, 0.16)"
                       : "1px solid rgba(255, 255, 255, 0.08)",
-                    opacity: isActive ? 1 : 0.78,
                     filter: isActive ? "none" : "brightness(0.75)",
-                    transition: "opacity 0.4s ease, filter 0.4s ease, box-shadow 0.4s ease",
-                    boxSizing: "border-box"
+                    transition: "filter 0.4s ease, box-shadow 0.4s ease",
+                    boxSizing: "border-box",
+                    cursor: isActive ? "default" : "pointer"
                   }}
                   className="carousel-slide-card"
                 >
-                  {/* Subtle Ambient Light Glow */}
-                  <div
+                  {/* Subtle Ambient Light Glow with Pulse Animation */}
+                  <motion.div
+                    animate={{
+                      scale: isActive ? [1, 1.2, 1] : 1,
+                      opacity: isActive ? [0.35, 0.65, 0.35] : 0.2
+                    }}
+                    transition={{
+                      duration: 6,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
                     style={{
                       position: "absolute",
                       bottom: "-25%",
@@ -656,7 +678,7 @@ export default function PartnersSection() {
                     }}
                   />
 
-                  {/* 2-Column Exact Layout Grid */}
+                  {/* 2-Column Layout Grid */}
                   <div
                     style={{
                       display: "grid",
@@ -672,7 +694,10 @@ export default function PartnersSection() {
                     {/* Left Column: Eyebrow, Title, Description, White Pill CTA & Partner Tags */}
                     <div style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
                       {/* Eyebrow Tag */}
-                      <div
+                      <motion.div
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.4, delay: 0.1 }}
                         style={{
                           fontSize: "12px",
                           fontWeight: "800",
@@ -683,7 +708,7 @@ export default function PartnersSection() {
                         }}
                       >
                         Step 0{cat.step} • {cat.tag}
-                      </div>
+                      </motion.div>
 
                       {/* Title */}
                       <h3
@@ -718,8 +743,9 @@ export default function PartnersSection() {
                       <div style={{ marginBottom: "22px" }}>
                         <motion.a
                           href="#contact"
-                          whileHover={{ scale: 1.03 }}
+                          whileHover={{ scale: 1.05, y: -2, boxShadow: "0 12px 28px rgba(0,0,0,0.25)" }}
                           whileTap={{ scale: 0.97 }}
+                          transition={{ type: "spring", stiffness: 400, damping: 25 }}
                           style={{
                             background: "#FFFFFF",
                             color: "#3A1B68",
@@ -736,16 +762,34 @@ export default function PartnersSection() {
                           }}
                         >
                           <span>Explore {cat.topTabs[0]} Track</span>
-                          <ArrowUpRight size={17} color="#3A1B68" strokeWidth={2.5} />
+                          <motion.span
+                            initial={{ x: 0, y: 0 }}
+                            whileHover={{ x: 3, y: -3 }}
+                            transition={{ type: "spring", stiffness: 400 }}
+                            style={{ display: "inline-flex" }}
+                          >
+                            <ArrowUpRight size={17} color="#3A1B68" strokeWidth={2.5} />
+                          </motion.span>
                         </motion.a>
                       </div>
 
-                      {/* Partner Technology Pills with Original Vector Logos */}
+                      {/* Partner Technology Pills with Motion */}
                       <div>
                         <div style={{ display: "flex", flexWrap: "wrap", gap: "6px 8px" }}>
-                          {cat.partners.map((partner) => (
-                            <span
+                          {cat.partners.map((partner, pIdx) => (
+                            <motion.span
                               key={partner}
+                              initial={{ opacity: 0, y: 8 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ duration: 0.3, delay: pIdx * 0.04 }}
+                              whileHover={{
+                                scale: 1.08,
+                                y: -2,
+                                backgroundColor: "rgba(255, 255, 255, 0.24)",
+                                borderColor: "rgba(255, 255, 255, 0.4)",
+                                boxShadow: "0 4px 12px rgba(0,0,0,0.2)"
+                              }}
+                              whileTap={{ scale: 0.96 }}
                               style={{
                                 background: "rgba(255, 255, 255, 0.12)",
                                 border: "1px solid rgba(255, 255, 255, 0.18)",
@@ -757,18 +801,20 @@ export default function PartnersSection() {
                                 backdropFilter: "blur(4px)",
                                 display: "inline-flex",
                                 alignItems: "center",
-                                gap: "6px"
+                                gap: "6px",
+                                cursor: "pointer",
+                                transition: "background 0.2s ease, border-color 0.2s ease"
                               }}
                             >
                               <PartnerLogo name={partner} size={15} />
                               <span>{partner}</span>
-                            </span>
+                            </motion.span>
                           ))}
                         </div>
                       </div>
                     </div>
 
-                    {/* Right Column: Cascading Layered Glass Cards (Positioned at Extreme Right of Main Div) */}
+                    {/* Right Column: Cascading Layered Floating Glass Cards */}
                     <div
                       style={{
                         position: "relative",
@@ -780,8 +826,11 @@ export default function PartnersSection() {
                       }}
                       className="stacked-cards-container"
                     >
-                      {/* Card 1 (Top Back Card: Microsoft - width 300px, extreme right) */}
-                      <div
+                      {/* Card 1 (Top Back Card) */}
+                      <motion.div
+                        animate={{ y: [0, -5, 0] }}
+                        transition={{ duration: 5.2, repeat: Infinity, ease: "easeInOut" }}
+                        whileHover={{ scale: 1.04, y: -10, zIndex: 10, filter: "brightness(1.1)" }}
                         style={{
                           position: "absolute",
                           top: "0px",
@@ -796,7 +845,9 @@ export default function PartnersSection() {
                           borderRight: "none",
                           padding: "12px 22px 12px 18px",
                           boxShadow: "0 10px 25px rgba(0,0,0,0.35)",
-                          zIndex: 1
+                          zIndex: 1,
+                          transition: "box-shadow 0.3s ease, border-color 0.3s ease",
+                          cursor: "pointer"
                         }}
                       >
                         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", paddingRight: "20px" }}>
@@ -811,10 +862,13 @@ export default function PartnersSection() {
                             <span>{cat.stackedCards[0].time}</span>
                           </div>
                         </div>
-                      </div>
+                      </motion.div>
 
-                      {/* Card 2 (Middle Card: Meta - width 335px, extends further left, extreme right) */}
-                      <div
+                      {/* Card 2 (Middle Card) */}
+                      <motion.div
+                        animate={{ y: [0, 5, 0] }}
+                        transition={{ duration: 4.6, repeat: Infinity, ease: "easeInOut", delay: 0.4 }}
+                        whileHover={{ scale: 1.04, y: -8, zIndex: 10, filter: "brightness(1.1)" }}
                         style={{
                           position: "absolute",
                           top: "36px",
@@ -829,7 +883,9 @@ export default function PartnersSection() {
                           borderRight: "none",
                           padding: "12px 22px 12px 18px",
                           boxShadow: "0 12px 30px rgba(0,0,0,0.4)",
-                          zIndex: 2
+                          zIndex: 2,
+                          transition: "box-shadow 0.3s ease, border-color 0.3s ease",
+                          cursor: "pointer"
                         }}
                       >
                         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", paddingRight: "20px" }}>
@@ -844,10 +900,13 @@ export default function PartnersSection() {
                             <span>{cat.stackedCards[1].time}</span>
                           </div>
                         </div>
-                      </div>
+                      </motion.div>
 
-                      {/* Card 3 (Front Card: Google - width 370px, extends furthest left, extreme right) */}
-                      <div
+                      {/* Card 3 (Front Card) */}
+                      <motion.div
+                        animate={{ y: [0, -4, 0] }}
+                        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
+                        whileHover={{ scale: 1.03, y: -6, zIndex: 10, boxShadow: "0 25px 55px rgba(0,0,0,0.65)" }}
                         style={{
                           position: "absolute",
                           top: "72px",
@@ -886,14 +945,15 @@ export default function PartnersSection() {
                         {/* Solid Black Action Button */}
                         <motion.a
                           href="#contact"
-                          whileHover={{ scale: 1.02 }}
-                          whileTap={{ scale: 0.98 }}
+                          whileHover={{ scale: 1.03, background: "#18181B", boxShadow: "0 8px 24px rgba(0,0,0,0.8)" }}
+                          whileTap={{ scale: 0.97 }}
+                          transition={{ type: "spring", stiffness: 400, damping: 25 }}
                           style={{
                             display: "block",
                             width: "100%",
                             padding: "11px",
                             background: "#000000",
-                            border: "1px solid rgba(255, 255, 255, 0.15)",
+                            border: "1px solid rgba(255, 255, 255, 0.2)",
                             borderRadius: "10px",
                             color: "#FFFFFF",
                             fontSize: "13px",
@@ -905,17 +965,17 @@ export default function PartnersSection() {
                         >
                           {cat.stackedCards[2].cta}
                         </motion.a>
-                      </div>
+                      </motion.div>
                     </div>
                   </div>
 
-                </div>
+                </motion.div>
               );
             })}
           </motion.div>
         </div>
 
-        {/* Newton School Navigation Controls */}
+        {/* Navigation Controls */}
         <div
           style={{
             display: "flex",
@@ -928,11 +988,12 @@ export default function PartnersSection() {
           {/* Left Arrow Button */}
           <motion.button
             onClick={handlePrev}
-            whileHover={{ scale: 1.08 }}
-            whileTap={{ scale: 0.92 }}
+            whileHover={{ scale: 1.15, backgroundColor: "#5B2E91", color: "#FFFFFF", boxShadow: "0 6px 16px rgba(91, 46, 145, 0.35)" }}
+            whileTap={{ scale: 0.9 }}
+            transition={{ type: "spring", stiffness: 400, damping: 20 }}
             style={{
-              width: "40px",
-              height: "40px",
+              width: "42px",
+              height: "42px",
               borderRadius: "50%",
               border: "1.5px solid #CBD5E1",
               background: "#FFFFFF",
@@ -941,7 +1002,8 @@ export default function PartnersSection() {
               justifyContent: "center",
               cursor: "pointer",
               boxShadow: "0 2px 8px rgba(0,0,0,0.04)",
-              color: "#3A1B68"
+              color: "#3A1B68",
+              transition: "border-color 0.2s ease"
             }}
             aria-label="Previous Slide"
           >
@@ -960,16 +1022,19 @@ export default function PartnersSection() {
                     setTrackIndex(cat.step + 1);
                   }}
                   animate={{
-                    width: isActive ? 28 : 8,
+                    width: isActive ? 30 : 8,
                     backgroundColor: isActive ? "#5B2E91" : "#CBD5E1"
                   }}
-                  transition={{ duration: 0.3 }}
+                  whileHover={{ scale: 1.25 }}
+                  whileTap={{ scale: 0.9 }}
+                  transition={{ type: "spring", stiffness: 350, damping: 25 }}
                   style={{
                     height: "8px",
                     borderRadius: "9999px",
                     border: "none",
                     padding: 0,
-                    cursor: "pointer"
+                    cursor: "pointer",
+                    boxShadow: isActive ? "0 2px 8px rgba(91, 46, 145, 0.4)" : "none"
                   }}
                   aria-label={`Go to step ${cat.step}`}
                 />
@@ -980,11 +1045,12 @@ export default function PartnersSection() {
           {/* Right Arrow Button */}
           <motion.button
             onClick={handleNext}
-            whileHover={{ scale: 1.08 }}
-            whileTap={{ scale: 0.92 }}
+            whileHover={{ scale: 1.15, backgroundColor: "#5B2E91", color: "#FFFFFF", boxShadow: "0 6px 16px rgba(91, 46, 145, 0.35)" }}
+            whileTap={{ scale: 0.9 }}
+            transition={{ type: "spring", stiffness: 400, damping: 20 }}
             style={{
-              width: "40px",
-              height: "40px",
+              width: "42px",
+              height: "42px",
               borderRadius: "50%",
               border: "1.5px solid #CBD5E1",
               background: "#FFFFFF",
@@ -993,7 +1059,8 @@ export default function PartnersSection() {
               justifyContent: "center",
               cursor: "pointer",
               boxShadow: "0 2px 8px rgba(0,0,0,0.04)",
-              color: "#3A1B68"
+              color: "#3A1B68",
+              transition: "border-color 0.2s ease"
             }}
             aria-label="Next Slide"
           >

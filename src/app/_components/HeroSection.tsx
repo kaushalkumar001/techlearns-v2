@@ -1,7 +1,8 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 // Crisp Inline Vector SVG Icons matching brand aesthetic
 const GraduationCapIcon = ({ color = "#5B2E91", size = 18 }) => (
@@ -41,12 +42,6 @@ const ShieldIcon = ({ color = "#5B2E91", size = 20 }) => (
   </svg>
 );
 
-const SparkleIcon = ({ color = "#5B2E91", size = 16 }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill={color} aria-hidden="true">
-    <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" />
-  </svg>
-);
-
 const BuildingIcon = ({ color = "#FFFFFF", size = 18 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
     <rect x="4" y="2" width="16" height="20" rx="2" ry="2" />
@@ -61,10 +56,133 @@ const HeartIcon = ({ color = "#FFFFFF", size = 18 }) => (
   </svg>
 );
 
+// Specific Icons for Course Stats Carousel
+const CodeIcon = ({ color = "#6D28D9", size = 18 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <polyline points="16 18 22 12 16 6" />
+    <polyline points="8 6 2 12 8 18" />
+  </svg>
+);
+
+const BarChartIcon = ({ color = "#0284C7", size = 18 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <line x1="12" y1="20" x2="12" y2="10" />
+    <line x1="18" y1="20" x2="18" y2="4" />
+    <line x1="6" y1="20" x2="6" y2="16" />
+  </svg>
+);
+
+const CpuIcon = ({ color = "#7C3AED", size = 18 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <rect x="4" y="4" width="16" height="16" rx="2" />
+    <rect x="9" y="9" width="6" height="6" />
+    <path d="M15 2v2M9 2v2M15 20v2M9 20v2M2 15h2M2 9h2M20 15h2M20 9h2" />
+  </svg>
+);
+
+const ShieldCheckIcon = ({ color = "#059669", size = 18 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+    <path d="M9 12l2 2 4-4" />
+  </svg>
+);
+
+const MegaphoneIcon = ({ color = "#D97706", size = 18 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M3 11l19-9-9 19-2-8-8-2z" />
+  </svg>
+);
+
+// Course Stats Data Array for Carousel (5 courses, showing 3 at a time)
+const COURSE_STATS = [
+  {
+    id: "fullstack",
+    title: "Full Stack Development",
+    stat: "12K+ Enrolled",
+    badge: "94% Placement",
+    iconColor: "#6D28D9",
+    iconBg: "#F3EEFF",
+    Icon: CodeIcon,
+    cardGradient: "linear-gradient(140deg, #8B5CF6 0%, #6D28D9 55%, #5B21B6 100%)",
+    glowColor: "rgba(109, 40, 217, 0.35)",
+    borderColor: "rgba(139, 92, 246, 0.35)"
+  },
+  {
+    id: "data-analyst",
+    title: "Data Analyst",
+    stat: "8.5K+ Enrolled",
+    badge: "High Demand",
+    iconColor: "#0284C7",
+    iconBg: "#E0F2FE",
+    Icon: BarChartIcon,
+    cardGradient: "linear-gradient(140deg, #38BDF8 0%, #0284C7 55%, #0369A1 100%)",
+    glowColor: "rgba(2, 132, 199, 0.35)",
+    borderColor: "rgba(56, 189, 248, 0.35)"
+  },
+  {
+    id: "data-science",
+    title: "Data Science & Algorithms",
+    stat: "15K+ Enrolled",
+    badge: "AI & ML Track",
+    iconColor: "#7C3AED",
+    iconBg: "#F3E8FF",
+    Icon: CpuIcon,
+    cardGradient: "linear-gradient(140deg, #A855F7 0%, #7C3AED 55%, #4C1D95 100%)",
+    glowColor: "rgba(124, 58, 237, 0.35)",
+    borderColor: "rgba(168, 85, 247, 0.35)"
+  },
+  {
+    id: "cybersecurity",
+    title: "Cybersecurity",
+    stat: "6.2K+ Enrolled",
+    badge: "Ethical Hacking",
+    iconColor: "#059669",
+    iconBg: "#D1FAE5",
+    Icon: ShieldCheckIcon,
+    cardGradient: "linear-gradient(140deg, #34D399 0%, #059669 55%, #047857 100%)",
+    glowColor: "rgba(5, 150, 105, 0.35)",
+    borderColor: "rgba(52, 211, 153, 0.35)"
+  },
+  {
+    id: "digital-marketing",
+    title: "Digital Marketing",
+    stat: "10K+ Enrolled",
+    badge: "Growth & SEO",
+    iconColor: "#D97706",
+    iconBg: "#FEF3C7",
+    Icon: MegaphoneIcon,
+    cardGradient: "linear-gradient(140deg, #FBBF24 0%, #D97706 55%, #92400E 100%)",
+    glowColor: "rgba(217, 119, 6, 0.35)",
+    borderColor: "rgba(251, 191, 36, 0.35)"
+  },
+];
+
 // Smooth Apple-like physics curve
 const smoothEasing = [0.16, 1, 0.3, 1] as const;
 
 export default function HeroSection() {
+  const [activeOffset, setActiveOffset] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveOffset((prev) => (prev + 1) % COURSE_STATS.length);
+    }, 3500);
+    return () => clearInterval(timer);
+  }, []);
+
+  // Pick 3 courses starting from activeOffset
+  const visibleCourses = [
+    COURSE_STATS[activeOffset % COURSE_STATS.length],
+    COURSE_STATS[(activeOffset + 1) % COURSE_STATS.length],
+    COURSE_STATS[(activeOffset + 2) % COURSE_STATS.length],
+  ];
+
+  const activeCourse = visibleCourses[0];
+
+  const CourseIcon0 = visibleCourses[0].Icon;
+  const CourseIcon1 = visibleCourses[1].Icon;
+  const CourseIcon2 = visibleCourses[2].Icon;
+
   return (
     <section
       aria-label="Hero Section"
@@ -169,11 +287,24 @@ export default function HeroSection() {
             className="hero-visual-stage"
           >
 
-            {/* Outer Translucent Glass Frame */}
-            <div className="hero-card-glass-border" />
+            {/* Outer Translucent Glass Frame with Dynamic Border */}
+            <motion.div
+              animate={{
+                borderColor: activeCourse.borderColor
+              }}
+              transition={{ duration: 0.8 }}
+              className="hero-card-glass-border"
+            />
 
-            {/* Solid Tilted Card with Student Cutout */}
-            <div className="hero-card-frame">
+            {/* Solid Tilted Card with Dynamic Course Background & Student Cutout */}
+            <motion.div
+              animate={{
+                background: activeCourse.cardGradient,
+                boxShadow: `0 25px 50px -12px ${activeCourse.glowColor}`
+              }}
+              transition={{ duration: 0.8 }}
+              className="hero-card-frame"
+            >
               {/* Subtle inner pattern */}
               <div
                 style={{
@@ -191,56 +322,120 @@ export default function HeroSection() {
                 alt="TechLearns Fellow Professional"
                 className="hero-student-img"
               />
-            </div>
+            </motion.div>
 
-            {/* Floating Card 1: Top Right - AI Powered */}
-            <motion.div
-              animate={{ y: [0, -6, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="hero-badge hero-badge-1"
-            >
-              <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "6px" }}>
-                <div style={{ width: "28px", height: "28px", borderRadius: "8px", background: "#F5F0FF", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                  <SparkleIcon color="#5B2E91" size={14} />
+            {/* Floating Course Badge 1: Top Right */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={visibleCourses[0].id + "-slot1"}
+                initial={{ opacity: 0, y: 10, scale: 0.94 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -10, scale: 0.94 }}
+                transition={{ duration: 0.45, ease: smoothEasing }}
+                className="hero-badge hero-badge-1"
+              >
+                <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                  <div style={{ width: "32px", height: "32px", borderRadius: "9px", background: visibleCourses[0].iconBg, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                    <CourseIcon0 color={visibleCourses[0].iconColor} size={17} />
+                  </div>
+                  <div style={{ minWidth: 0 }}>
+                    <div style={{ fontSize: "12px", fontWeight: "800", color: "#0B1F3A", lineHeight: "1.25", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                      {visibleCourses[0].title}
+                    </div>
+                    <div style={{ display: "flex", alignItems: "center", gap: "6px", marginTop: "3px" }}>
+                      <span style={{ fontSize: "10.5px", fontWeight: "700", color: visibleCourses[0].iconColor }}>
+                        {visibleCourses[0].stat}
+                      </span>
+                      <span style={{ fontSize: "9px", fontWeight: "600", background: "#F1F5F9", color: "#475569", padding: "1.5px 5px", borderRadius: "4px" }}>
+                        {visibleCourses[0].badge}
+                      </span>
+                    </div>
+                  </div>
                 </div>
-                <span style={{ fontSize: "13px", fontWeight: "800", color: "#0B1F3A" }}>AI Powered</span>
-              </div>
-              <div style={{ fontSize: "11px", color: "#64748B", fontWeight: "700", lineHeight: "1.3" }}>
-                Smarter Learning.<br />
-                <span style={{ color: "#64748B", fontWeight: "500" }}>Better Outcomes.</span>
-              </div>
-              <div style={{ width: "20px", height: "2.5px", background: "#5B2E91", borderRadius: "2px", marginTop: "6px" }} />
-            </motion.div>
+              </motion.div>
+            </AnimatePresence>
 
-            {/* Floating Card 2: Bottom Left - 10K+ Professionals */}
-            <motion.div
-              animate={{ y: [0, 6, 0] }}
-              transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut" }}
-              className="hero-badge hero-badge-2"
-            >
-              <div style={{ width: "36px", height: "36px", borderRadius: "10px", background: "#5B2E91", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 6px 14px rgba(91, 46, 145, 0.3)", flexShrink: 0 }}>
-                <UsersIcon color="#FFFFFF" size={18} />
-              </div>
-              <div>
-                <div style={{ fontSize: "16px", fontWeight: "800", color: "#0B1F3A", lineHeight: "1.1" }}>10K+</div>
-                <div style={{ fontSize: "10.5px", color: "#64748B", fontWeight: "500", marginTop: "2px", lineHeight: "1.2" }}>Professionals<br />Trained</div>
-              </div>
-            </motion.div>
+            {/* Floating Course Badge 2: Bottom Left */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={visibleCourses[1].id + "-slot2"}
+                initial={{ opacity: 0, y: 10, scale: 0.94 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -10, scale: 0.94 }}
+                transition={{ duration: 0.45, delay: 0.08, ease: smoothEasing }}
+                className="hero-badge hero-badge-2"
+              >
+                <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                  <div style={{ width: "32px", height: "32px", borderRadius: "9px", background: visibleCourses[1].iconBg, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                    <CourseIcon1 color={visibleCourses[1].iconColor} size={17} />
+                  </div>
+                  <div style={{ minWidth: 0 }}>
+                    <div style={{ fontSize: "12px", fontWeight: "800", color: "#0B1F3A", lineHeight: "1.25", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                      {visibleCourses[1].title}
+                    </div>
+                    <div style={{ display: "flex", alignItems: "center", gap: "6px", marginTop: "3px" }}>
+                      <span style={{ fontSize: "10.5px", fontWeight: "700", color: visibleCourses[1].iconColor }}>
+                        {visibleCourses[1].stat}
+                      </span>
+                      <span style={{ fontSize: "9px", fontWeight: "600", background: "#F1F5F9", color: "#475569", padding: "1.5px 5px", borderRadius: "4px" }}>
+                        {visibleCourses[1].badge}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
 
-            {/* Floating Card 3: Bottom Right - 95% Career Impact */}
-            <motion.div
-              animate={{ y: [0, -5, 0] }}
-              transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut" }}
-              className="hero-badge hero-badge-3"
-            >
-              <div style={{ width: "36px", height: "36px", borderRadius: "10px", background: "#F5F0FF", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                <TrendingUpIcon color="#5B2E91" size={18} />
-              </div>
-              <div>
-                <div style={{ fontSize: "16px", fontWeight: "800", color: "#0B1F3A", lineHeight: "1.1" }}>95%</div>
-                <div style={{ fontSize: "10.5px", color: "#64748B", fontWeight: "500", marginTop: "2px", lineHeight: "1.2" }}>Career Impact<br />Rate</div>
-              </div>
-            </motion.div>
+            {/* Floating Course Badge 3: Bottom Right */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={visibleCourses[2].id + "-slot3"}
+                initial={{ opacity: 0, y: 10, scale: 0.94 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -10, scale: 0.94 }}
+                transition={{ duration: 0.45, delay: 0.15, ease: smoothEasing }}
+                className="hero-badge hero-badge-3"
+              >
+                <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                  <div style={{ width: "32px", height: "32px", borderRadius: "9px", background: visibleCourses[2].iconBg, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                    <CourseIcon2 color={visibleCourses[2].iconColor} size={17} />
+                  </div>
+                  <div style={{ minWidth: 0 }}>
+                    <div style={{ fontSize: "12px", fontWeight: "800", color: "#0B1F3A", lineHeight: "1.25", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                      {visibleCourses[2].title}
+                    </div>
+                    <div style={{ display: "flex", alignItems: "center", gap: "6px", marginTop: "3px" }}>
+                      <span style={{ fontSize: "10.5px", fontWeight: "700", color: visibleCourses[2].iconColor }}>
+                        {visibleCourses[2].stat}
+                      </span>
+                      <span style={{ fontSize: "9px", fontWeight: "600", background: "#F1F5F9", color: "#475569", padding: "1.5px 5px", borderRadius: "4px" }}>
+                        {visibleCourses[2].badge}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Carousel Navigation Dots */}
+            <div className="hero-carousel-dots">
+              {COURSE_STATS.map((course, idx) => {
+                const isVisible = [
+                  activeOffset % COURSE_STATS.length,
+                  (activeOffset + 1) % COURSE_STATS.length,
+                  (activeOffset + 2) % COURSE_STATS.length
+                ].includes(idx);
+                return (
+                  <button
+                    key={course.id}
+                    onClick={() => setActiveOffset(idx)}
+                    title={`Show ${course.title}`}
+                    aria-label={`Carousel slide ${idx + 1}`}
+                    className={`hero-dot ${isVisible ? "hero-dot-active" : ""}`}
+                  />
+                );
+              })}
+            </div>
 
           </motion.div>
 
@@ -495,14 +690,13 @@ export default function HeroSection() {
           width: clamp(240px, 30vw, 340px);
           height: clamp(320px, 40vw, 440px);
           border-radius: 36px;
-          background: linear-gradient(140deg, #8B5CF6 0%, #6D28D9 55%, #5B21B6 100%);
-          box-shadow: 0 25px 50px -12px rgba(109, 40, 217, 0.35);
           transform: rotate(-10deg);
           overflow: hidden;
           z-index: 2;
           display: flex;
           align-items: flex-end;
           justify-content: center;
+          transition: background 0.8s ease, box-shadow 0.8s ease;
         }
 
         .hero-student-img {
@@ -519,34 +713,69 @@ export default function HeroSection() {
           position: absolute;
           z-index: 10;
           background: #FFFFFF;
-          border-radius: 18px;
-          box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
-          border: 1px solid #F1F5F9;
+          border-radius: 16px;
+          box-shadow: 0 16px 36px rgba(11, 31, 58, 0.1), 0 2px 6px rgba(0, 0, 0, 0.04);
+          border: 1px solid rgba(226, 232, 240, 0.9);
+          backdrop-filter: blur(8px);
+          transition: all 0.3s ease;
         }
 
         .hero-badge-1 {
-          top: 20px;
-          right: -10px;
-          padding: 16px 20px;
-          min-width: 165px;
+          top: 15px;
+          right: -25px;
+          padding: 12px 16px;
+          min-width: 200px;
+          max-width: 240px;
         }
 
         .hero-badge-2 {
-          bottom: 75px;
-          left: -25px;
-          padding: 14px 20px;
-          display: flex;
-          align-items: center;
-          gap: 14px;
+          bottom: 70px;
+          left: -35px;
+          padding: 12px 16px;
+          min-width: 195px;
+          max-width: 235px;
         }
 
         .hero-badge-3 {
-          bottom: 45px;
-          right: -10px;
-          padding: 14px 20px;
+          bottom: 35px;
+          right: -25px;
+          padding: 12px 16px;
+          min-width: 200px;
+          max-width: 240px;
+        }
+
+        .hero-carousel-dots {
+          position: absolute;
+          bottom: -16px;
+          left: 50%;
+          transform: translateX(-50%);
           display: flex;
           align-items: center;
-          gap: 14px;
+          gap: 6px;
+          z-index: 15;
+          background: rgba(255, 255, 255, 0.9);
+          padding: 5px 12px;
+          border-radius: 20px;
+          backdrop-filter: blur(8px);
+          box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+          border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+
+        .hero-dot {
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          background: #CBD5E1;
+          border: none;
+          cursor: pointer;
+          padding: 0;
+          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .hero-dot-active {
+          width: 18px;
+          border-radius: 4px;
+          background: #6D28D9;
         }
 
         .hero-feature-bar {
