@@ -511,182 +511,496 @@ export default function OfferingsSection() {
           </div>
         </motion.div>
 
-        {/* Programs Section */}
-        <section id="programs" style={{ padding: "80px 0", background: "rgba(248, 250, 252, 0.6)", position: "relative", marginTop: "64px", borderRadius: "24px" }}>
-
+        {/* Programs / Featured Courses Section matching CodeChef screenshot exactly */}
+        <section
+          id="programs"
+          style={{
+            position: "relative",
+            background: "#F8FAFC",
+            backgroundImage: `
+              linear-gradient(to right, rgba(203, 213, 225, 0.4) 1px, transparent 1px),
+              linear-gradient(to bottom, rgba(203, 213, 225, 0.4) 1px, transparent 1px)
+            `,
+            backgroundSize: "32px 32px",
+            padding: "70px 0 80px",
+            marginTop: "64px",
+            borderRadius: "24px",
+            overflow: "hidden"
+          }}
+        >
           <div className="container" style={{ maxWidth: "1380px", width: "100%", margin: "0 auto", padding: "0 24px", position: "relative", zIndex: 10 }}>
 
-            {/* Header & Navigation Arrow Controls */}
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "40px", gap: "24px", flexWrap: "wrap" }}>
-              <div style={{ textAlign: "left", maxWidth: "672px" }}>
+            {/* Header: Ribbons + Title + Subtitles matching website brand theme */}
+            <div style={{ textAlign: "center", marginBottom: "44px" }}>
 
-                {/* Eyebrow Tag */}
-                <div style={{ fontSize: "12px", fontWeight: "700", color: "#5B2E91", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "6px" }}>
-                  SELECT YOUR CAREER TRACK
-                </div>
-                <div style={{ width: "32px", height: "3px", background: "#5B2E91", borderRadius: "2px", marginBottom: "16px" }}></div>
+              {/* Ribbon Flag Flanked Title */}
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "10px", marginBottom: "16px" }}>
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" />
+                  <line x1="4" y1="22" x2="4" y2="15" />
+                </svg>
 
-                {/* Main Headline */}
-                <h2 style={{ fontFamily: "var(--font-montserrat), sans-serif", fontSize: "38px", fontWeight: "900", color: "#0B1F3A", letterSpacing: "-0.02em", lineHeight: "1.15", textTransform: "uppercase", margin: 0 }}>
-                  WHERE TO START <span style={{ color: "#5B2E91" }}>YOUR TECH JOURNEY?</span>
+                <h2 style={{ fontFamily: "var(--font-montserrat), sans-serif", fontSize: "36px", fontWeight: "800", color: "#0F172A", letterSpacing: "-0.02em", margin: 0 }}>
+                  Featured Courses
                 </h2>
 
-                <p style={{ fontSize: "14px", fontWeight: "600", color: "#64748B", marginTop: "12px", margin: "12px 0 0" }}>
-                  Choose from our industry-aligned corporate experience tracks designed by senior architects &amp; engineering leads.
-                </p>
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ transform: "scaleX(-1)" }}>
+                  <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" />
+                  <line x1="4" y1="22" x2="4" y2="15" />
+                </svg>
               </div>
 
-              {/* Carousel Navigation Arrow Controls */}
-              <div style={{ display: "flex", alignItems: "center", gap: "12px", flexShrink: 0 }}>
-                <button
-                  onClick={() => handleScroll('left')}
-                  className="carousel-arrow-btn"
-                  aria-label="Scroll left"
-                >
-                  <ChevronLeft style={{ width: "20px", height: "20px", strokeWidth: 2.5 }} />
-                </button>
+              {/* Subtitle Line 1 */}
+              <div style={{ fontSize: "15px", fontWeight: "700", color: "#8B5CF6", marginBottom: "6px" }}>
+                Courses That Actually Help You Land Internships and Jobs
+              </div>
 
-                <button
-                  onClick={() => handleScroll('right')}
-                  className="carousel-arrow-btn"
-                  aria-label="Scroll right"
-                >
-                  <ChevronRight style={{ width: "20px", height: "20px", strokeWidth: 2.5 }} />
-                </button>
+              {/* Subtitle Line 2 */}
+              <div style={{ fontSize: "13.5px", fontWeight: "500", color: "#64748B" }}>
+                From Python basics to 5-star CP prep – built for students, tested by recruiter
               </div>
             </div>
 
-            {/* Filter Tabs */}
-            <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap", marginBottom: "32px" }}>
-              {categories.map((cat) => (
-                <button
-                  key={cat}
-                  onClick={() => setActiveCategory(cat)}
-                  style={{
-                    padding: "10px 22px",
-                    borderRadius: "9999px",
-                    fontSize: "12px",
-                    fontWeight: "700",
-                    whiteSpace: "nowrap",
-                    cursor: "pointer",
-                    transition: "all 0.2s ease",
-                    border: activeCategory === cat ? "none" : "1px solid #E2E8F0",
-                    background: activeCategory === cat ? "#8B5CF6" : "#FFFFFF",
-                    color: activeCategory === cat ? "#FFFFFF" : "#334155",
-                    boxShadow: activeCategory === cat ? "0 4px 14px rgba(139, 92, 246, 0.25)" : "none"
-                  }}
-                >
-                  {cat}
-                </button>
-              ))}
-            </div>
+            {/* Main Carousel Stage with Edge Fade Mask & Nav Controls */}
+            <div style={{ position: "relative", maxWidth: "1320px", margin: "0 auto" }}>
 
-            {/* Smooth Horizontal Carousel Track with Arrow Navigation */}
-            <div
-              ref={scrollContainerRef}
-              style={{
-                display: "flex",
-                gap: "24px",
-                overflowX: "auto",
-                paddingBottom: "24px",
-                paddingTop: "8px",
-                scrollBehavior: "smooth",
-                scrollbarWidth: "none",
-                msOverflowStyle: "none"
-              }}
-            >
-              {filteredPrograms.map((program) => {
-                const tagList = program.tags || program.highlights || [];
-                const roleTitle = program.certification || program.role || 'Certified Professional';
+              {/* Left Side Fade Mask Overlay */}
+              <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: "60px", background: "linear-gradient(to right, #F8FAFC 0%, rgba(248,250,252,0) 100%)", zIndex: 20, pointerEvents: "none" }} />
+              
+              {/* Right Side Fade Mask Overlay */}
+              <div style={{ position: "absolute", right: 0, top: 0, bottom: 0, width: "60px", background: "linear-gradient(to left, #F8FAFC 0%, rgba(248,250,252,0) 100%)", zIndex: 20, pointerEvents: "none" }} />
 
-                return (
+              {/* Left Circular Arrow Nav Button */}
+              <button
+                onClick={() => handleScroll('left')}
+                style={{
+                  position: "absolute",
+                  left: "6px",
+                  top: "50%",
+                  transform: "translateY(-50%)",
+                  zIndex: 30,
+                  width: "42px",
+                  height: "42px",
+                  borderRadius: "50%",
+                  background: "#3B0764",
+                  border: "none",
+                  color: "#FFFFFF",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  cursor: "pointer",
+                  boxShadow: "0 6px 20px rgba(139, 92, 246, 0.35)",
+                  transition: "all 0.2s ease"
+                }}
+                aria-label="Previous Courses"
+              >
+                <ChevronLeft style={{ width: "22px", height: "22px", strokeWidth: 2.5 }} />
+              </button>
+
+              {/* Right Circular Arrow Nav Button */}
+              <button
+                onClick={() => handleScroll('right')}
+                style={{
+                  position: "absolute",
+                  right: "6px",
+                  top: "50%",
+                  transform: "translateY(-50%)",
+                  zIndex: 30,
+                  width: "42px",
+                  height: "42px",
+                  borderRadius: "50%",
+                  background: "#3B0764",
+                  border: "none",
+                  color: "#FFFFFF",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  cursor: "pointer",
+                  boxShadow: "0 6px 20px rgba(139, 92, 246, 0.35)",
+                  transition: "all 0.2s ease"
+                }}
+                aria-label="Next Courses"
+              >
+                <ChevronRight style={{ width: "22px", height: "22px", strokeWidth: 2.5 }} />
+              </button>
+
+              {/* Horizontal Scroll Track */}
+              <div
+                ref={scrollContainerRef}
+                style={{
+                  display: "flex",
+                  gap: "24px",
+                  overflowX: "auto",
+                  padding: "16px 24px 24px",
+                  scrollBehavior: "smooth",
+                  scrollbarWidth: "none",
+                  msOverflowStyle: "none"
+                }}
+              >
+                {[
+                  {
+                    id: "sql-data-analysis",
+                    bannerLines: ["SQL FOR DATA", "ANALYSIS"],
+                    bannerGradient: "linear-gradient(145deg, #047857 0%, #10B981 60%, #065F46 100%)",
+                    bannerPattern: "linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px)",
+                    iconType: "database",
+                    rating: "4.6 (150k+)",
+                    title: "SQL Roadmap for Data Analysis",
+                    description: "Learn SQL to analyse and manipulate large data with our real-world case studies-based practical...",
+                    coursesCount: "6 courses",
+                    learnersCount: "107k+ learners",
+                    imgUrl: "/images/course_man_brown.png"
+                  },
+                  {
+                    id: "js-problem-solving",
+                    bannerLines: ["JAVASCRIPT WITH", "PROBLEM SOLVING"],
+                    bannerGradient: "linear-gradient(145deg, #1E40AF 0%, #3B82F6 60%, #1D4ED8 100%)",
+                    bannerPattern: "linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px)",
+                    iconType: "js",
+                    rating: "4.6 (184k+)",
+                    title: "JavaScript with Beginner DSA",
+                    description: "Learn the fundamentals of JavaScript programming. Solve 500+ handpicked data...",
+                    coursesCount: "7 courses",
+                    learnersCount: "173k+ learners",
+                    imgUrl: "/images/course_man_tech_guy.png"
+                  },
+                  {
+                    id: "java-backend",
+                    bannerLines: ["JAVA BACKEND", "DEVELOPMENT"],
+                    bannerGradient: "linear-gradient(145deg, #881337 0%, #E11D48 60%, #4C0519 100%)",
+                    bannerPattern: "linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px)",
+                    iconType: "java",
+                    rating: "4.5 (270k+)",
+                    title: "Java Backend Developer",
+                    description: "Master Java for development with a focus on fundamentals, frameworks, databases and API...",
+                    coursesCount: "7 courses",
+                    learnersCount: "238k+ learners",
+                    imgUrl: "/images/course_woman_purple.png"
+                  },
+                  {
+                    id: "python-data-science",
+                    bannerLines: ["PYTHON FOR", "DATA SCIENCE"],
+                    bannerGradient: "linear-gradient(145deg, #B45309 0%, #F59E0B 60%, #78350F 100%)",
+                    bannerPattern: "linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px)",
+                    iconType: "python",
+                    rating: "4.7 (195k+)",
+                    title: "Python for Data Science & ML",
+                    description: "Master Python programming, Pandas, NumPy & Machine Learning algorithms for real-world projects...",
+                    coursesCount: "8 courses",
+                    learnersCount: "142k+ learners",
+                    imgUrl: "/images/course_woman_glasses.png"
+                  },
+                  {
+                    id: "fullstack-mern",
+                    bannerLines: ["FULL STACK", "DEVELOPMENT"],
+                    bannerGradient: "linear-gradient(145deg, #5B21B6 0%, #8B5CF6 60%, #4C1D95 100%)",
+                    bannerPattern: "linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px)",
+                    iconType: "code",
+                    rating: "4.8 (310k+)",
+                    title: "Full Stack MERN Developer",
+                    description: "Build scalable web apps with React, Node.js, Express, MongoDB and Next.js from scratch...",
+                    coursesCount: "9 courses",
+                    learnersCount: "280k+ learners",
+                    imgUrl: "/images/course_man_tech_guy.png"
+                  },
+                  {
+                    id: "cloud-devops",
+                    bannerLines: ["CLOUD & DEVOPS", "ENGINEERING"],
+                    bannerGradient: "linear-gradient(145deg, #0F766E 0%, #0D9488 60%, #115E59 100%)",
+                    bannerPattern: "linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px)",
+                    iconType: "cloud",
+                    rating: "4.6 (120k+)",
+                    title: "AWS Cloud & DevOps Architect",
+                    description: "Master AWS Cloud, Docker containers, Kubernetes orchestration, and automated CI/CD pipelines...",
+                    coursesCount: "6 courses",
+                    learnersCount: "115k+ learners",
+                    imgUrl: "/images/course_man_cloud_eng.png"
+                  }
+                ].map((course) => (
                   <motion.div
-                    key={program.id}
+                    key={course.id}
                     whileHover={{ y: -6 }}
                     style={{
-                      minWidth: "320px",
-                      maxWidth: "340px",
+                      minWidth: "360px",
+                      maxWidth: "368px",
                       flexShrink: 0,
                       background: "#FFFFFF",
-                      borderRadius: "20px",
-                      border: "1px solid rgba(226, 232, 240, 0.9)",
-                      padding: "24px",
-                      boxShadow: "0 10px 30px rgba(0, 0, 0, 0.04)",
+                      borderRadius: "16px",
+                      border: "1px solid #E2E8F0",
+                      boxShadow: "0 10px 30px rgba(0, 0, 0, 0.05)",
+                      overflow: "hidden",
                       display: "flex",
                       flexDirection: "column",
                       justifyContent: "space-between",
-                      transition: "all 0.2s ease"
+                      transition: "all 0.25s ease"
                     }}
                   >
-                    <div>
-                      {/* Card Top Pill Badge & Duration */}
-                      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "8px", marginBottom: "16px" }}>
-                        <span style={{ padding: "4px 12px", borderRadius: "9999px", background: "#F3E8FF", border: "1px solid #E9D5FF", fontSize: "10px", fontWeight: "800", color: "#8B5CF6", textTransform: "uppercase", letterSpacing: "0.05em" }}>
-                          {program.badge || program.category}
-                        </span>
-
-                        <span style={{ display: "flex", alignItems: "center", gap: "4px", fontSize: "11px", fontWeight: "700", color: "#64748B" }}>
-                          <Clock style={{ width: "14px", height: "14px", color: "#8B5CF6" }} />
-                          <span>{program.duration}</span>
-                        </span>
-                      </div>
-
-                      {/* Title */}
-                      <h3 style={{ fontSize: "18px", fontWeight: "900", color: "#0F1D38", lineHeight: "1.3", marginBottom: "12px" }}>
-                        {program.title}
-                      </h3>
-
-                      <p style={{ fontSize: "12px", color: "#64748B", fontWeight: "500", lineHeight: "1.6", marginBottom: "16px" }}>
-                        {program.description}
-                      </p>
-
-                      {/* Program Highlights/Tags */}
-                      <div style={{ display: "flex", flexWrap: "wrap", gap: "6px", paddingTop: "12px", borderTop: "1px solid #F1F5F9", marginBottom: "24px" }}>
-                        {tagList.slice(0, 4).map((t, i) => (
-                          <span key={i} style={{ display: "inline-flex", alignItems: "center", gap: "4px", fontSize: "11px", padding: "4px 10px", borderRadius: "6px", background: "#F8FAFC", color: "#334155", fontWeight: "600", border: "1px solid #E2E8F0" }}>
-                            <CheckCircle2 style={{ width: "12px", height: "12px", color: "#8B5CF6", flexShrink: 0 }} />
-                            <span>{t}</span>
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Bottom Action Area */}
-                    <div style={{ paddingTop: "16px", borderTop: "1px solid #F1F5F9", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "8px" }}>
-                      <div style={{ overflow: "hidden" }}>
-                        <span style={{ fontSize: "9px", fontWeight: "700", color: "#94A3B8", textTransform: "uppercase", letterSpacing: "0.05em", display: "block" }}>
-                          CERTIFICATION
-                        </span>
-                        <span style={{ fontSize: "11px", fontWeight: "800", color: "#0F1D38", display: "block", textOverflow: "ellipsis", overflow: "hidden", whiteSpace: "nowrap" }}>
-                          {roleTitle}
-                        </span>
-                      </div>
-
-                      <Link
-                        href="/contact"
+                    {/* Top Banner Section with Vibrant Gradient & Cutout Image (200px Height) */}
+                    <div
+                      style={{
+                        height: "200px",
+                        background: course.bannerGradient,
+                        position: "relative",
+                        overflow: "hidden",
+                        padding: "16px"
+                      }}
+                    >
+                      {/* Overlay Pattern */}
+                      <div
                         style={{
-                          display: "inline-flex",
+                          position: "absolute",
+                          inset: 0,
+                          backgroundImage: course.bannerPattern,
+                          backgroundSize: "20px 20px",
+                          pointerEvents: "none"
+                        }}
+                      />
+
+                      {/* Top Left Circle Badge with High-Visibility Official Tech Logos */}
+                      <div
+                        style={{
+                          width: "40px",
+                          height: "40px",
+                          borderRadius: "50%",
+                          background: "#FFFFFF",
+                          display: "flex",
                           alignItems: "center",
-                          gap: "6px",
-                          padding: "10px 14px",
-                          borderRadius: "12px",
-                          background: "#8B5CF6",
-                          color: "#FFFFFF",
-                          fontSize: "12px",
-                          fontWeight: "700",
-                          textDecoration: "none",
-                          boxShadow: "0 4px 12px rgba(139, 92, 246, 0.25)",
-                          flexShrink: 0
+                          justifyContent: "center",
+                          boxShadow: "0 4px 14px rgba(0,0,0,0.22)",
+                          position: "relative",
+                          zIndex: 3
                         }}
                       >
-                        <span>Explore</span>
-                        <ArrowRight style={{ width: "14px", height: "14px" }} />
-                      </Link>
+                        {course.iconType === "database" && (
+                          <svg width="26" height="26" viewBox="0 0 32 32" fill="none">
+                            <ellipse cx="16" cy="7" rx="12" ry="4" fill="#0284C7" />
+                            <ellipse cx="16" cy="7" rx="9" ry="2.2" fill="#38BDF8" />
+                            <path d="M4 7v6c0 2.2 5.4 4 12 4s12-1.8 12-4V7" fill="#0284C7" />
+                            <ellipse cx="16" cy="13" rx="12" ry="4" fill="#38BDF8" opacity="0.35" />
+                            <path d="M4 13v6c0 2.2 5.4 4 12 4s12-1.8 12-4v-6" fill="#0369A1" />
+                            <rect x="6" y="21" width="20" height="9" rx="3" fill="#0F172A" stroke="#38BDF8" strokeWidth="1" />
+                            <text x="16" y="28" fontSize="7.5" fontWeight="900" fill="#38BDF8" textAnchor="middle" fontFamily="sans-serif">SQL</text>
+                          </svg>
+                        )}
+                        {course.iconType === "js" && (
+                          <div style={{ width: "26px", height: "26px", background: "#F7DF1E", borderRadius: "5px", display: "flex", alignItems: "flex-end", justifyContent: "flex-end", padding: "0 2px 1px 0", boxSizing: "border-box", boxShadow: "0 2px 6px rgba(0,0,0,0.2)" }}>
+                            <span style={{ color: "#000000", fontWeight: "900", fontSize: "13px", fontFamily: "sans-serif", lineHeight: 1 }}>JS</span>
+                          </div>
+                        )}
+                        {course.iconType === "java" && (
+                          <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
+                            <path d="M11.5 24.5c4.5 0.5 8.5-0.5 11 0 0 0 1-1.5-1-2-3-0.5-7 0.5-10 2z" fill="#E76F00" />
+                            <path d="M10 21.5c4.5 0.5 8.5-0.5 11 0 0 0 1-1.5-1-2-3-0.5-7 0.5-10 2z" fill="#5382A1" />
+                            <path d="M14.5 16c2 1.5 4.5 1.5 6 0 0 0 1-1-1-1.5-2-0.5-4 0.5-5 1.5z" fill="#E76F00" />
+                            <path d="M16 11c1 1 2.5 1 3.5 0 0 0 0.5-0.5-0.5-1-1-0.5-2.5 0-3 1z" fill="#5382A1" />
+                            <path d="M10 28c5 1 12 1 15-2 0 0-1-0.5-3 0.5-3 1-8.5 1-12 1.5z" fill="#E76F00" />
+                          </svg>
+                        )}
+                        {course.iconType === "python" && (
+                          <svg width="24" height="24" viewBox="0 0 110 110">
+                            <path d="M51.8 0C24.3 0 26.2 11.9 26.2 11.9l.1 12.3h26.3v3.7H15.8S0 26.1 0 53.7c0 27.6 13.8 26.6 13.8 26.6h8.3v-11.7s-.5-13.8 13.8-13.8h26.4V28.5s.5-13.8-13.8-13.8h-16.7s-1-14.7 20-14.7zm-11.7 8.3c2.4 0 4.3 1.9 4.3 4.3s-1.9 4.3-4.3 4.3-4.3-1.9-4.3-4.3 1.9-4.3 4.3-4.3z" fill="#3776AB"/>
+                            <path d="M57.6 109.4c27.6 0 25.6-11.9 25.6-11.9l-.1-12.3H56.8v-3.7h36.8s15.8 1.8 15.8-25.8c0-27.6-13.8-26.6-13.8-26.6h-8.3v11.7s.5 13.8-13.8 13.8H47.1v26.3s-.5 13.8 13.8 13.8h16.7s1 14.7-20 14.7zm11.7-8.3c-2.4 0-4.3-1.9-4.3-4.3s1.9-4.3 4.3-4.3 4.3 1.9 4.3 4.3-1.9 4.3-4.3 4.3z" fill="#FFD43B"/>
+                          </svg>
+                        )}
+                        {course.iconType === "code" && (
+                          <svg width="24" height="24" viewBox="0 0 841.9 595.3" fill="none">
+                            <g stroke="#00D8FF" strokeWidth="32">
+                              <ellipse cx="420.9" cy="297.6" rx="140" ry="340" transform="rotate(30 420.9 297.6)"/>
+                              <ellipse cx="420.9" cy="297.6" rx="140" ry="340" transform="rotate(90 420.9 297.6)"/>
+                              <ellipse cx="420.9" cy="297.6" rx="140" ry="340" transform="rotate(150 420.9 297.6)"/>
+                            </g>
+                            <circle cx="420.9" cy="297.6" r="48" fill="#00D8FF"/>
+                          </svg>
+                        )}
+                        {course.iconType === "cloud" && (
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z" fill="#FF9900"/>
+                            <path d="M7 14l3-3 2 2 4-4" stroke="#FFFFFF" strokeWidth="2.2" strokeLinecap="round"/>
+                          </svg>
+                        )}
+                      </div>
+
+                      {/* Banner Text Title on Left (Stylized Chunky Slab Font matching CodeChef) */}
+                      <div
+                        style={{
+                          position: "absolute",
+                          left: "16px",
+                          bottom: "16px",
+                          width: "56%",
+                          zIndex: 3
+                        }}
+                      >
+                        {course.bannerLines.map((line, lIdx) => (
+                          <h4
+                            key={lIdx}
+                            style={{
+                              fontFamily: 'Rockwell, Georgia, var(--font-montserrat), sans-serif',
+                              fontSize: "15px",
+                              fontWeight: "900",
+                              color: "#FFFFFF",
+                              lineHeight: "1.2",
+                              letterSpacing: "0.01em",
+                              textTransform: "uppercase",
+                              margin: 0,
+                              textShadow: "0 2px 6px rgba(0,0,0,0.35)"
+                            }}
+                          >
+                            {line}
+                          </h4>
+                        ))}
+                      </div>
+
+                      {/* Radial Backlight Glow Behind Cutout for Eye-Catchy Contrast */}
+                      <div
+                        style={{
+                          position: "absolute",
+                          right: "-10px",
+                          top: "0",
+                          bottom: "0",
+                          width: "55%",
+                          background: "radial-gradient(circle at 70% 50%, rgba(255, 255, 255, 0.28) 0%, transparent 68%)",
+                          pointerEvents: "none",
+                          zIndex: 1
+                        }}
+                      />
+
+                      {/* Student Image Cutout Holding Laptop on Right Side (100% Transparent Background) */}
+                      <img
+                        src={course.imgUrl}
+                        alt={course.bannerLines.join(" ")}
+                        style={{
+                          position: "absolute",
+                          right: "-6px",
+                          bottom: "-2px",
+                          height: "98%",
+                          objectFit: "contain",
+                          zIndex: 2,
+                          filter: "drop-shadow(0 10px 20px rgba(0,0,0,0.38))",
+                          mixBlendMode: "normal"
+                        }}
+                      />
+                    </div>
+
+                    {/* Card Body Section matching screenshot details */}
+                    <div style={{ padding: "20px 22px 22px", display: "flex", flexDirection: "column", flexGrow: 1, justifyContent: "space-between" }}>
+                      <div>
+                        {/* Rating Pill */}
+                        <div style={{ marginBottom: "12px" }}>
+                          <span
+                            style={{
+                              display: "inline-flex",
+                              alignItems: "center",
+                              gap: "4px",
+                              padding: "4px 10px",
+                              borderRadius: "16px",
+                              background: "#F3E8FF",
+                              color: "#7C3AED",
+                              fontSize: "12px",
+                              fontWeight: "700",
+                              border: "1px solid #E9D5FF"
+                            }}
+                          >
+                            <span>★</span>
+                            <span>{course.rating}</span>
+                          </span>
+                        </div>
+
+                        {/* Course Title */}
+                        <h3
+                          style={{
+                            fontSize: "18px",
+                            fontWeight: "800",
+                            color: "#1E293B",
+                            lineHeight: "1.3",
+                            marginBottom: "8px"
+                          }}
+                        >
+                          {course.title}
+                        </h3>
+
+                        {/* Course Description */}
+                        <p
+                          style={{
+                            fontSize: "12.5px",
+                            color: "#64748B",
+                            lineHeight: "1.5",
+                            marginBottom: "18px",
+                            display: "-webkit-box",
+                            WebkitLineClamp: 2,
+                            WebkitBoxOrient: "vertical",
+                            overflow: "hidden"
+                          }}
+                        >
+                          {course.description}
+                        </p>
+
+                        {/* Meta Stats Row (Courses & Learners) */}
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "18px",
+                            marginBottom: "20px",
+                            fontSize: "13px",
+                            color: "#475569",
+                            fontWeight: "500"
+                          }}
+                        >
+                          <span style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                            <GraduationCapIcon size={16} color="#8B5CF6" />
+                            <span>{course.coursesCount}</span>
+                          </span>
+
+                          <span style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                            <UserIcon size={16} color="#8B5CF6" />
+                            <span>{course.learnersCount}</span>
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Enrol Now Full Width Button matching TechLearns Purple Website Brand Theme */}
+                      <motion.a
+                        href="#contact"
+                        whileHover={{ scale: 1.025, boxShadow: "0 8px 24px rgba(139, 92, 246, 0.4)" }}
+                        whileTap={{ scale: 0.98 }}
+                        style={{
+                          display: "block",
+                          width: "100%",
+                          padding: "12px",
+                          borderRadius: "10px",
+                          background: "linear-gradient(135deg, #8B5CF6 0%, #6D28D9 100%)",
+                          color: "#FFFFFF",
+                          fontSize: "14.5px",
+                          fontWeight: "700",
+                          textAlign: "center",
+                          textDecoration: "none",
+                          boxShadow: "0 6px 18px rgba(139, 92, 246, 0.3)",
+                          boxSizing: "border-box"
+                        }}
+                      >
+                        Enrol now
+                      </motion.a>
                     </div>
                   </motion.div>
-                );
-              })}
+                ))}
+              </div>
+
             </div>
+
+            {/* Bottom Subtext Note matching image */}
+            <p
+              style={{
+                textAlign: "center",
+                maxWidth: "760px",
+                margin: "44px auto 0",
+                fontSize: "13.5px",
+                color: "#64748B",
+                lineHeight: "1.65",
+                fontWeight: "500"
+              }}
+            >
+              Each course gives you a clear snapshot – Watch a quick preview, read a short description, see ratings, and check how many students are enrolled. Click “Enrol Now” to jump in, or browse all available courses
+            </p>
 
           </div>
         </section>

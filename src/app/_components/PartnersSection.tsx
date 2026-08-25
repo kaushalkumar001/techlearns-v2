@@ -197,6 +197,41 @@ const PartnerLogo = ({ name, size = 18 }: { name: string; size?: number }) => {
     );
   }
 
+  if (cleanName.includes("digital india")) {
+    return (
+      <svg width={size} height={size} viewBox="0 0 24 24" fill="none" style={{ flexShrink: 0 }}>
+        <circle cx="12" cy="12" r="10" fill="#0284C7" />
+        <path d="M7 12l3 3 7-7" stroke="#FFFFFF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    );
+  }
+
+  if (cleanName.includes("meity")) {
+    return (
+      <svg width={size} height={size} viewBox="0 0 24 24" fill="none" style={{ flexShrink: 0 }}>
+        <rect x="3" y="4" width="18" height="16" rx="3" fill="#15803D" />
+        <path d="M7 12h10M12 7v10" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" />
+      </svg>
+    );
+  }
+
+  if (cleanName.includes("aicte")) {
+    return (
+      <svg width={size} height={size} viewBox="0 0 24 24" fill="none" style={{ flexShrink: 0 }}>
+        <polygon points="12,2 22,8 22,16 12,22 2,16 2,8" fill="#D97706" />
+      </svg>
+    );
+  }
+
+  if (cleanName.includes("nptel")) {
+    return (
+      <svg width={size} height={size} viewBox="0 0 24 24" fill="none" style={{ flexShrink: 0 }}>
+        <rect x="2" y="5" width="20" height="14" rx="3" fill="#6366F1" />
+        <text x="12" y="15" fontSize="8" fontWeight="900" fill="#FFFFFF" textAnchor="middle" fontFamily="sans-serif">IIT</text>
+      </svg>
+    );
+  }
+
   // STEP 7 LOGOS
   if (cleanName.includes("startup")) {
     return (
@@ -357,7 +392,7 @@ const ecosystemCategories = [
     title: "National Skilling & Digital Ecosystem",
     description:
       "Driving large-scale career transformation through government-backed national skilling programs, digital frameworks, and IT council standards.",
-    partners: ["NSDC", "Skill India", "FutureSkills Prime", "nasscom"],
+    partners: ["NSDC", "Skill India", "FutureSkills Prime", "nasscom", "Digital India", "MeitY", "AICTE", "NPTEL"],
     topTabs: ["NSDC", "Skill India", "nasscom"],
     sideTabs: ["National Standard", "Accredited"],
     cardGradient: "linear-gradient(135deg, #051A18 0%, #0A3D38 50%, #116B62 100%)",
@@ -634,14 +669,15 @@ export default function PartnersSection() {
                   transition={{ duration: 0.45 }}
                   style={{
                     width: "var(--card-width)",
-                    height: "var(--card-height)",
+                    minHeight: "var(--card-height)",
+                    height: "auto",
                     flexShrink: 0,
                     borderRadius: "24px",
                     background: cat.cardGradient,
                     boxShadow: isActive
                       ? `0 24px 60px -12px ${cat.glowColor}, 0 6px 24px rgba(0,0,0,0.25)`
                       : "0 10px 30px rgba(0,0,0,0.15)",
-                    padding: "44px 48px",
+                    padding: "32px 44px",
                     position: "relative",
                     overflow: "hidden",
                     border: isActive
@@ -704,22 +740,79 @@ export default function PartnersSection() {
                           color: "#EDE9FE",
                           letterSpacing: "0.08em",
                           textTransform: "uppercase",
-                          marginBottom: "10px"
+                          marginBottom: "6px"
                         }}
                       >
                         Step 0{cat.step} • {cat.tag}
                       </motion.div>
 
+                      {/* National Skilling Accreditation Badges (NSDC India, Skill India Mission, nasscom FutureSkills) across ALL cards */}
+                      <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "10px", flexWrap: "wrap" }}>
+                        <span
+                          style={{
+                            background: "rgba(251, 191, 36, 0.15)",
+                            border: "1px solid rgba(251, 191, 36, 0.35)",
+                            color: "#FDE68A",
+                            padding: "2.5px 8px",
+                            borderRadius: "6px",
+                            fontSize: "10.5px",
+                            fontWeight: "800",
+                            letterSpacing: "0.02em",
+                            display: "inline-flex",
+                            alignItems: "center",
+                            gap: "5px"
+                          }}
+                        >
+                          <span>🇮🇳</span> NSDC India
+                        </span>
+
+                        <span
+                          style={{
+                            background: "rgba(52, 211, 153, 0.15)",
+                            border: "1px solid rgba(52, 211, 153, 0.35)",
+                            color: "#A7F3D0",
+                            padding: "2.5px 8px",
+                            borderRadius: "6px",
+                            fontSize: "10.5px",
+                            fontWeight: "800",
+                            letterSpacing: "0.02em",
+                            display: "inline-flex",
+                            alignItems: "center",
+                            gap: "5px"
+                          }}
+                        >
+                          <span>⚡</span> Skill India Mission
+                        </span>
+
+                        <span
+                          style={{
+                            background: "rgba(96, 165, 250, 0.15)",
+                            border: "1px solid rgba(96, 165, 250, 0.35)",
+                            color: "#BFDBFE",
+                            padding: "2.5px 8px",
+                            borderRadius: "6px",
+                            fontSize: "10.5px",
+                            fontWeight: "800",
+                            letterSpacing: "0.02em",
+                            display: "inline-flex",
+                            alignItems: "center",
+                            gap: "5px"
+                          }}
+                        >
+                          <span>🚀</span> nasscom FutureSkills
+                        </span>
+                      </div>
+
                       {/* Title */}
                       <h3
                         style={{
                           fontFamily: "var(--font-montserrat), sans-serif",
-                          fontSize: "34px",
+                          fontSize: "32px",
                           fontWeight: "800",
                           color: "#FFFFFF",
-                          lineHeight: "1.2",
+                          lineHeight: "1.18",
                           letterSpacing: "-0.02em",
-                          marginBottom: "14px"
+                          marginBottom: "10px"
                         }}
                       >
                         {cat.title}
@@ -728,10 +821,10 @@ export default function PartnersSection() {
                       {/* Description */}
                       <p
                         style={{
-                          fontSize: "14.5px",
+                          fontSize: "14px",
                           color: "rgba(226, 232, 240, 0.85)",
-                          lineHeight: "1.6",
-                          marginBottom: "24px",
+                          lineHeight: "1.55",
+                          marginBottom: "18px",
                           maxWidth: "480px",
                           fontWeight: "400"
                         }}
@@ -740,7 +833,7 @@ export default function PartnersSection() {
                       </p>
 
                       {/* White Pill CTA Button */}
-                      <div style={{ marginBottom: "22px" }}>
+                      <div style={{ marginBottom: "18px" }}>
                         <motion.a
                           href="#contact"
                           whileHover={{ scale: 1.05, y: -2, boxShadow: "0 12px 28px rgba(0,0,0,0.25)" }}
@@ -814,7 +907,7 @@ export default function PartnersSection() {
                       </div>
                     </div>
 
-                    {/* Right Column: Cascading Layered Floating Glass Cards */}
+                    {/* Right Column: Cascading Layered Glass Cards (100% Fixed & Static - No Floating) */}
                     <div
                       style={{
                         position: "relative",
@@ -826,11 +919,8 @@ export default function PartnersSection() {
                       }}
                       className="stacked-cards-container"
                     >
-                      {/* Card 1 (Top Back Card) */}
-                      <motion.div
-                        animate={{ y: [0, -5, 0] }}
-                        transition={{ duration: 5.2, repeat: Infinity, ease: "easeInOut" }}
-                        whileHover={{ scale: 1.04, y: -10, zIndex: 10, filter: "brightness(1.1)" }}
+                      {/* Card 1 (Top Back Card - Fixed) */}
+                      <div
                         style={{
                           position: "absolute",
                           top: "0px",
@@ -845,9 +935,7 @@ export default function PartnersSection() {
                           borderRight: "none",
                           padding: "12px 22px 12px 18px",
                           boxShadow: "0 10px 25px rgba(0,0,0,0.35)",
-                          zIndex: 1,
-                          transition: "box-shadow 0.3s ease, border-color 0.3s ease",
-                          cursor: "pointer"
+                          zIndex: 1
                         }}
                       >
                         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", paddingRight: "20px" }}>
@@ -862,13 +950,10 @@ export default function PartnersSection() {
                             <span>{cat.stackedCards[0].time}</span>
                           </div>
                         </div>
-                      </motion.div>
+                      </div>
 
-                      {/* Card 2 (Middle Card) */}
-                      <motion.div
-                        animate={{ y: [0, 5, 0] }}
-                        transition={{ duration: 4.6, repeat: Infinity, ease: "easeInOut", delay: 0.4 }}
-                        whileHover={{ scale: 1.04, y: -8, zIndex: 10, filter: "brightness(1.1)" }}
+                      {/* Card 2 (Middle Card - Fixed) */}
+                      <div
                         style={{
                           position: "absolute",
                           top: "36px",
@@ -883,9 +968,7 @@ export default function PartnersSection() {
                           borderRight: "none",
                           padding: "12px 22px 12px 18px",
                           boxShadow: "0 12px 30px rgba(0,0,0,0.4)",
-                          zIndex: 2,
-                          transition: "box-shadow 0.3s ease, border-color 0.3s ease",
-                          cursor: "pointer"
+                          zIndex: 2
                         }}
                       >
                         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", paddingRight: "20px" }}>
@@ -900,13 +983,10 @@ export default function PartnersSection() {
                             <span>{cat.stackedCards[1].time}</span>
                           </div>
                         </div>
-                      </motion.div>
+                      </div>
 
-                      {/* Card 3 (Front Card) */}
-                      <motion.div
-                        animate={{ y: [0, -4, 0] }}
-                        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
-                        whileHover={{ scale: 1.03, y: -6, zIndex: 10, boxShadow: "0 25px 55px rgba(0,0,0,0.65)" }}
+                      {/* Card 3 (Front Card - Fixed) */}
+                      <div
                         style={{
                           position: "absolute",
                           top: "72px",
@@ -945,7 +1025,7 @@ export default function PartnersSection() {
                         {/* Solid Black Action Button */}
                         <motion.a
                           href="#contact"
-                          whileHover={{ scale: 1.03, background: "#18181B", boxShadow: "0 8px 24px rgba(0,0,0,0.8)" }}
+                          whileHover={{ scale: 1.02, background: "#18181B", boxShadow: "0 8px 24px rgba(0,0,0,0.8)" }}
                           whileTap={{ scale: 0.97 }}
                           transition={{ type: "spring", stiffness: 400, damping: 25 }}
                           style={{
@@ -965,7 +1045,7 @@ export default function PartnersSection() {
                         >
                           {cat.stackedCards[2].cta}
                         </motion.a>
-                      </motion.div>
+                      </div>
                     </div>
                   </div>
 

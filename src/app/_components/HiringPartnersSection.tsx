@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Building2, Users, Award, TrendingUp, ShieldCheck } from "lucide-react";
+import { Building2, Users, Award, TrendingUp, ShieldCheck, FileText, GraduationCap, Code2, Briefcase } from "lucide-react";
 
 // Official 100% Verified Full-Color Brand Vector Logos (VectorLogoZone CDN)
 const partnerLogos = [
@@ -18,6 +18,54 @@ const partnerLogos = [
   { name: "PayPal", logoUrl: "https://www.vectorlogo.zone/logos/paypal/paypal-icon.svg", color: "#003087", fontSize: "18px", fontWeight: "800" },
   { name: "Atlassian", logoUrl: "https://www.vectorlogo.zone/logos/atlassian/atlassian-icon.svg", color: "#0052CC", fontSize: "16px", fontWeight: "800" },
   { name: "Flipkart", logoUrl: "https://www.vectorlogo.zone/logos/flipkart/flipkart-icon.svg", color: "#2874F0", fontSize: "18px", fontWeight: "800" }
+];
+
+const journeySteps = [
+  {
+    stepTag: "Step 01 — Enroll",
+    title: "Enroll",
+    description: "Choose your program and complete a simple enrollment process.",
+    icon: FileText,
+    accentColor: "#7A42BE",
+    gradient: "linear-gradient(135deg, #7A42BE 0%, #5B2E91 100%)",
+    glowColor: "rgba(122, 66, 190, 0.25)"
+  },
+  {
+    stepTag: "Step 02 — Learn",
+    title: "Learn",
+    description: "Attend live classes with industry experts and access learning materials.",
+    icon: GraduationCap,
+    accentColor: "#6366F1",
+    gradient: "linear-gradient(135deg, #6366F1 0%, #4F46E5 100%)",
+    glowColor: "rgba(99, 102, 241, 0.25)"
+  },
+  {
+    stepTag: "Step 03 — Practice",
+    title: "Practice",
+    description: "Work on real-world projects and hands-on assignments.",
+    icon: Code2,
+    accentColor: "#0EA5E9",
+    gradient: "linear-gradient(135deg, #0EA5E9 0%, #0284C7 100%)",
+    glowColor: "rgba(14, 165, 233, 0.25)"
+  },
+  {
+    stepTag: "Step 04 — Get Certified",
+    title: "Get Certified",
+    description: "Earn industry-recognized certificates upon completion.",
+    icon: Award,
+    accentColor: "#F59E0B",
+    gradient: "linear-gradient(135deg, #F59E0B 0%, #D97706 100%)",
+    glowColor: "rgba(245, 158, 11, 0.25)"
+  },
+  {
+    stepTag: "Step 05 — Get Placed",
+    title: "Get Placed",
+    description: "Apply for jobs with our dedicated placement support.",
+    icon: Briefcase,
+    accentColor: "#10B981",
+    gradient: "linear-gradient(135deg, #10B981 0%, #059669 100%)",
+    glowColor: "rgba(16, 185, 129, 0.25)"
+  }
 ];
 
 export default function HiringPartnersSection() {
@@ -94,60 +142,60 @@ export default function HiringPartnersSection() {
           {/* Full-Height Frosted Glass Blur Overlay Curtain (Desktop) */}
           <div className="hiring-blur-curtain" />
 
-          {/* Top Section Counter / Tag */}
-          <div className="hiring-card-top-bar">
-            <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-              <span style={{ fontSize: "clamp(24px, 3vw, 32px)", fontWeight: "300", color: "#94A3B8", fontFamily: "var(--font-montserrat)" }}>01</span>
-              <h3 className="hiring-card-headline">
-                Career Placement &amp; Impact Performance
-              </h3>
-            </div>
-            <div style={{ width: "32px", height: "32px", borderRadius: "50%", border: "3px solid #E2E8F0", borderTopColor: "#5B2E91", transform: "rotate(45deg)", flexShrink: 0 }} />
-          </div>
-
-          {/* 2-Column Infographic Grid */}
+          {/* 2-Column Infographic Grid: Scroll Box Left, Sticky Right */}
           <div className="hiring-grid">
 
-            {/* Left Column: Big Percentage Stats */}
-            <div className="hiring-stats-col">
+            {/* Left Column: Scroll Box containing 01 Header & Your Path to Success, Step by Step Timeline */}
+            <div className="hiring-stats-col hiring-scroll-box">
 
-              {/* Stat 1 */}
-              <div>
-                <div className="hiring-stat-number">
-                  800+
+              {/* Sticky Header inside scroll box */}
+              <div className="hiring-scroll-header">
+                <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "4px" }}>
+                  <span style={{ fontSize: "clamp(24px, 2.8vw, 30px)", fontWeight: "800", color: "#5B2E91", fontFamily: "var(--font-montserrat)" }}>01</span>
+                  <span style={{ fontSize: "12px", fontWeight: "800", color: "#7A42BE", textTransform: "uppercase", letterSpacing: "0.06em", background: "#F3E8FF", padding: "3px 10px", borderRadius: "9999px", border: "1px solid #DDD6FE" }}>
+                    Career Placement &amp; Impact
+                  </span>
                 </div>
-                <p className="hiring-stat-desc">
-                  Active Industry Partners &amp; Enterprise Networks hiring TechLearns graduates globally.
-                </p>
-                <div className="hiring-stat-tag">
-                  From Placement Cell
-                </div>
+                <h4 style={{ fontSize: "clamp(1.15rem, 2.2vw, 1.35rem)", fontWeight: "800", color: "#0B1F3A", margin: "4px 0 6px", fontFamily: "var(--font-montserrat)", letterSpacing: "-0.01em" }}>
+                  Your Path to Success, Step by Step
+                </h4>
+                <div style={{ width: "42px", height: "3px", background: "linear-gradient(90deg, #7A42BE 0%, #5B2E91 100%)", borderRadius: "2px", marginBottom: "14px" }} />
               </div>
 
-              {/* Stat 2 */}
-              <div>
-                <div className="hiring-stat-number">
-                  25,000+
-                </div>
-                <p className="hiring-stat-desc">
-                  Learners placed into Software, AI, Cloud, Cybersecurity and Data engineering roles.
-                </p>
-                <div className="hiring-stat-tag">
-                  From Alumni Data
-                </div>
+              {/* Connected 5-Step Cards Journey Timeline inside Scroll Box */}
+              <div className="journey-timeline-list">
+                {journeySteps.map((step, idx) => {
+                  const IconComp = step.icon;
+                  return (
+                    <div key={step.stepTag} className="journey-card-item">
+
+                      {/* Subtle dotted connector line to next step */}
+                      {idx < journeySteps.length - 1 && (
+                        <div className="journey-card-connector" />
+                      )}
+
+                      {/* Icon Circle Container */}
+                      <div className="journey-icon-wrap" style={{ background: step.gradient, boxShadow: `0 6px 16px ${step.glowColor}` }}>
+                        <IconComp size={20} color="#FFFFFF" strokeWidth={2.2} />
+                      </div>
+
+                      {/* Card Content Details */}
+                      <div className="journey-card-body">
+                        <span className="journey-card-tag" style={{ color: step.accentColor, borderColor: step.glowColor }}>
+                          {step.stepTag}
+                        </span>
+                        <h5 className="journey-card-title">{step.title}</h5>
+                        <p className="journey-card-desc">{step.description}</p>
+                      </div>
+
+                    </div>
+                  );
+                })}
               </div>
 
-              {/* Stat 3 */}
-              <div>
-                <div className="hiring-stat-number">
-                  95%
-                </div>
-                <p className="hiring-stat-desc">
-                  Career Impact Rate with average salary hikes exceeding 120% after graduation.
-                </p>
-                <div className="hiring-stat-tag">
-                  From Verified Audit
-                </div>
+              {/* Scroll indicator footer */}
+              <div className="hiring-scroll-indicator">
+                <span>Scroll inside to explore all 5 journey steps ↓</span>
               </div>
 
             </div>
@@ -376,54 +424,162 @@ export default function HiringPartnersSection() {
 
         .hiring-grid {
           display: grid;
-          grid-template-columns: 1.1fr 1fr;
-          gap: 40px;
-          align-items: center;
+          grid-template-columns: 1.05fr 1fr;
+          gap: 36px;
+          align-items: start;
           position: relative;
         }
 
         .hiring-stats-col {
           display: flex;
           flex-direction: column;
-          gap: 40px;
+          gap: 24px;
           position: relative;
           z-index: 10;
         }
 
-        .hiring-stat-number {
-          font-size: clamp(2.35rem, 5.5vw, 3.25rem);
-          font-weight: 800;
-          color: #0B1F3A;
-          line-height: 1;
-          font-family: var(--font-montserrat);
+        .hiring-scroll-box {
+          max-height: 490px;
+          overflow-y: auto;
+          padding-right: 16px;
+          scrollbar-width: thin;
+          scrollbar-color: #7A42BE #F1F5F9;
+          scroll-behavior: smooth;
         }
 
-        .hiring-stat-desc {
-          font-size: 13px;
-          color: #64748B;
-          margin: 8px 0 10px;
-          line-height: 1.5;
-          font-weight: 500;
-          max-width: 360px;
+        .hiring-scroll-box::-webkit-scrollbar {
+          width: 6px;
+        }
+        .hiring-scroll-box::-webkit-scrollbar-track {
+          background: #F1F5F9;
+          border-radius: 8px;
+        }
+        .hiring-scroll-box::-webkit-scrollbar-thumb {
+          background: linear-gradient(180deg, #7A42BE 0%, #5B2E91 100%);
+          border-radius: 8px;
         }
 
-        .hiring-stat-tag {
-          display: inline-flex;
-          padding: 4px 12px;
+        .hiring-scroll-header {
+          position: sticky;
+          top: 0;
+          background: rgba(250, 249, 255, 0.95);
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+          padding-top: 4px;
+          padding-bottom: 8px;
+          z-index: 5;
+          margin-bottom: 8px;
+        }
+
+        .journey-timeline-list {
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+          position: relative;
+        }
+
+        .journey-card-item {
+          display: flex;
+          align-items: flex-start;
+          gap: 16px;
           background: #FFFFFF;
           border: 1px solid #EDE9FE;
+          border-radius: 20px;
+          padding: 18px 20px;
+          position: relative;
+          box-shadow: 0 4px 16px rgba(91, 46, 145, 0.04);
+          transition: all 0.25s ease;
+        }
+
+        .journey-card-item:hover {
+          border-color: #C084FC;
+          box-shadow: 0 10px 24px rgba(91, 46, 145, 0.1);
+          transform: translateY(-2px);
+        }
+
+        .journey-card-connector {
+          position: absolute;
+          left: 39px;
+          top: 60px;
+          bottom: -20px;
+          width: 2px;
+          background: repeating-linear-gradient(
+            to bottom,
+            #7A42BE 0,
+            #7A42BE 4px,
+            transparent 4px,
+            transparent 8px
+          );
+          opacity: 0.5;
+          z-index: 1;
+          pointer-events: none;
+        }
+
+        .journey-icon-wrap {
+          width: 44px;
+          height: 44px;
+          border-radius: 14px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+          position: relative;
+          z-index: 2;
+        }
+
+        .journey-card-body {
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+        }
+
+        .journey-card-tag {
+          display: inline-block;
+          font-size: 10.5px;
+          font-weight: 800;
+          padding: 2px 8px;
           border-radius: 9999px;
-          font-size: 11px;
-          color: #5B2E91;
+          background: #FAF8FF;
+          border: 1px solid;
+          letter-spacing: 0.02em;
+          text-transform: uppercase;
+          width: fit-content;
+        }
+
+        .journey-card-title {
+          font-family: var(--font-montserrat), sans-serif;
+          font-size: 15.5px;
+          font-weight: 800;
+          color: #0B1F3A;
+          margin: 2px 0 0;
+        }
+
+        .journey-card-desc {
+          font-size: 12px;
+          color: #64748B;
+          line-height: 1.55;
+          margin: 0;
+          font-weight: 450;
+        }
+
+        .hiring-scroll-indicator {
+          text-align: center;
+          padding: 10px 0;
+          font-size: 11.5px;
           font-weight: 700;
+          color: #7A42BE;
+          letter-spacing: 0.03em;
         }
 
         .hiring-dial-stage {
-          position: relative;
+          position: sticky;
+          top: 24px;
+          align-self: start;
           display: flex;
           justify-content: flex-end;
           min-height: 480px;
           align-items: center;
+          z-index: 10;
         }
 
         /* Circular Ring SVG Dial Wrapper - Size UNCHANGED (560px x 560px, r=280) */
