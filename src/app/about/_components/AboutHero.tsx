@@ -24,13 +24,13 @@ export default function AboutHero() {
         overflow: "hidden"
       }}
     >
-      {/* Right Side Solid Purple Background Block (Set to 700px height) */}
+      {/* Right Side Solid Purple Background Block (1/3 of width for 2:1 white to purple ratio) */}
       <div
         style={{
           position: "absolute",
           top: 0,
           right: 0,
-          width: "42%",
+          width: "33.33%",
           height: "700px",
           background: "linear-gradient(140deg, #8B5CF6 0%, #7C3AED 45%, #6D28D9 100%)",
           zIndex: 1
@@ -218,14 +218,14 @@ export default function AboutHero() {
 
         </div>
 
-        {/* Overlapping Floating Dual Cards Row */}
+        {/* Overlapping Floating Dual Cards Row (2:1 White to Purple ratio) */}
         <motion.div
           initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
           style={{
             display: "grid",
-            gridTemplateColumns: "1fr 1.35fr",
+            gridTemplateColumns: "1fr 2fr",
             gap: "24px",
             marginTop: "32px"
           }}
