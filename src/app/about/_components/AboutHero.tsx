@@ -51,12 +51,12 @@ export default function AboutHero() {
 
       <div className="container" style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px", position: "relative", zIndex: 10 }}>
 
-        {/* Top Hero Split Grid */}
+        {/* Top Hero Split Grid (67% Left Column / 33% Right Image) */}
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "1.15fr 0.85fr",
-            gap: "40px",
+            gridTemplateColumns: "1.35fr 0.65fr",
+            gap: "44px",
             alignItems: "center",
             minHeight: "440px"
           }}
@@ -111,12 +111,12 @@ export default function AboutHero() {
               transition={{ duration: 0.5, delay: 0.1 }}
               style={{
                 fontFamily: "var(--font-headings), sans-serif",
-                fontSize: "clamp(36px, 4.3vw, 56px)",
+                fontSize: "clamp(38px, 4.5vw, 60px)",
                 fontWeight: "900",
                 color: "#180C2E",
                 lineHeight: "1.12",
                 letterSpacing: "-0.025em",
-                marginBottom: "18px"
+                marginBottom: "20px"
               }}
             >
               Building Talent for<br />
@@ -129,11 +129,11 @@ export default function AboutHero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
               style={{
-                fontSize: "15px",
+                fontSize: "16px",
                 color: "#64748B",
                 lineHeight: "1.65",
-                maxWidth: "500px",
-                marginBottom: "32px",
+                maxWidth: "600px",
+                marginBottom: "36px",
                 fontWeight: "400"
               }}
             >
@@ -145,7 +145,7 @@ export default function AboutHero() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              style={{ display: "flex", alignItems: "center", gap: "16px", flexWrap: "wrap" }}
+              style={{ display: "flex", alignItems: "center", gap: "18px", flexWrap: "wrap" }}
             >
               <Link
                 href="/cel"
@@ -155,10 +155,10 @@ export default function AboutHero() {
                   justifyContent: "center",
                   background: "#8B5CF6",
                   color: "#FFFFFF",
-                  padding: "13px 36px",
+                  padding: "14px 40px",
                   borderRadius: "9999px",
-                  fontSize: "13.5px",
-                  fontWeight: "700",
+                  fontSize: "14px",
+                  fontWeight: "800",
                   textDecoration: "none",
                   boxShadow: "0 10px 24px rgba(139, 92, 246, 0.35)",
                   transition: "all 0.2s ease"
@@ -176,10 +176,10 @@ export default function AboutHero() {
                   background: "#FFFFFF",
                   color: "#7C3AED",
                   border: "1px solid rgba(124, 58, 237, 0.15)",
-                  padding: "13px 36px",
+                  padding: "14px 40px",
                   borderRadius: "9999px",
-                  fontSize: "13.5px",
-                  fontWeight: "700",
+                  fontSize: "14px",
+                  fontWeight: "800",
                   textDecoration: "none",
                   boxShadow: "0 4px 14px rgba(0, 0, 0, 0.04)",
                   transition: "all 0.2s ease"
@@ -205,8 +205,8 @@ export default function AboutHero() {
               src="/crops/hero_student_clean_cutout.png"
               alt="TechLearns Fellow"
               style={{
-                height: "460px",
-                maxHeight: "460px",
+                height: "470px",
+                maxHeight: "470px",
                 width: "auto",
                 objectFit: "contain",
                 marginBottom: "-32px",
@@ -226,8 +226,8 @@ export default function AboutHero() {
           style={{
             display: "grid",
             gridTemplateColumns: "1fr 2fr",
-            gap: "24px",
-            marginTop: "32px"
+            gap: "28px",
+            marginTop: "36px"
           }}
           className="grid-2col"
         >
@@ -300,29 +300,29 @@ export default function AboutHero() {
             </div>
           </div>
 
-          {/* Right White Floating Card */}
+          {/* Right White Floating Card (Expanded 2x width space) */}
           <div
             style={{
               background: "#FFFFFF",
               border: "1px solid #E2E8F0",
               borderRadius: "24px",
-              padding: "32px 36px",
+              padding: "36px 44px",
               boxShadow: "0 15px 45px rgba(0, 0, 0, 0.05)",
               display: "grid",
-              gridTemplateColumns: "1fr 1.25fr",
-              gap: "28px",
+              gridTemplateColumns: "1.1fr 1.9fr",
+              gap: "36px",
               alignItems: "center"
             }}
             className="grid-2col"
           >
 
             {/* Left Column Checklist */}
-            <div style={{ borderRight: "1px solid #F1F5F9", paddingRight: "20px" }}>
-              <div style={{ display: "flex", flexDirection: "column", gap: "9.5px" }}>
+            <div style={{ borderRight: "1px solid #F1F5F9", paddingRight: "28px" }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: "11px" }}>
                 {checklist.map((item) => (
-                  <div key={item} style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                    <CheckCircle2 size={15} color="#8B5CF6" style={{ flexShrink: 0 }} />
-                    <span style={{ fontSize: "12.5px", fontWeight: "700", color: "#334155" }}>
+                  <div key={item} style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                    <CheckCircle2 size={16} color="#8B5CF6" style={{ flexShrink: 0 }} />
+                    <span style={{ fontSize: "13px", fontWeight: "700", color: "#1E293B" }}>
                       {item}
                     </span>
                   </div>
@@ -332,10 +332,10 @@ export default function AboutHero() {
 
             {/* Right Column Statement */}
             <div>
-              <h4 style={{ fontFamily: "var(--font-headings), sans-serif", fontSize: "18px", fontWeight: "800", color: "#0F172A", marginBottom: "8px" }}>
+              <h4 style={{ fontFamily: "var(--font-headings), sans-serif", fontSize: "20px", fontWeight: "800", color: "#0F172A", marginBottom: "10px" }}>
                 How Can I Help You?
               </h4>
-              <p style={{ fontSize: "12px", color: "#64748B", lineHeight: "1.6", marginBottom: "16px" }}>
+              <p style={{ fontSize: "13.5px", color: "#64748B", lineHeight: "1.65", marginBottom: "20px" }}>
                 We are building Techlearns for a generation that wants to go beyond “I know it” to confidently say: <strong style={{ color: "#0F172A" }}>“I can build it. I can solve it. I can prove it.”</strong>
               </p>
               <Link
@@ -343,15 +343,15 @@ export default function AboutHero() {
                 style={{
                   display: "inline-flex",
                   alignItems: "center",
-                  gap: "6px",
-                  fontSize: "12.5px",
+                  gap: "8px",
+                  fontSize: "13.5px",
                   fontWeight: "800",
                   color: "#7C3AED",
                   textDecoration: "none"
                 }}
               >
                 <span>Read More</span>
-                <ArrowRight size={14} color="#7C3AED" />
+                <ArrowRight size={15} color="#7C3AED" />
               </Link>
             </div>
 
