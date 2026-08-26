@@ -2,17 +2,17 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { CheckCircle2, ArrowRight } from "lucide-react";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 import Link from "next/link";
 
 export default function AboutHero() {
-  const checklist = [
-    "Experience-Led Learning",
-    "Industry-Aligned Skills",
-    "AI-Native Thinking",
-    "Proof-Driven Growth",
-    "Verified Skill Passport",
-    "1-on-1 Corporate Mentorship",
+  const ecosystemPills = [
+    "Learn",
+    "Experience",
+    "Build",
+    "Compete",
+    "Prove",
+    "Lead"
   ];
 
   return (
@@ -24,7 +24,7 @@ export default function AboutHero() {
         overflow: "hidden"
       }}
     >
-      {/* Right Side Solid Purple Background Block (Set to 700px height) */}
+      {/* Right Side Solid Purple Background Stage (700px height) */}
       <div
         style={{
           position: "absolute",
@@ -37,7 +37,6 @@ export default function AboutHero() {
         }}
         className="desktop-only"
       >
-        {/* Geometric Hex Pattern Overlay */}
         <div
           style={{
             position: "absolute",
@@ -63,10 +62,10 @@ export default function AboutHero() {
           className="grid-2col"
         >
 
-          {/* Left Column: Eyebrow, Title, Paragraph, Buttons */}
+          {/* Left Column: Title, Subtitles, Philosophy */}
           <div>
 
-            {/* Eyebrow Tag (Matching img1 style) */}
+            {/* Eyebrow Tag */}
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
@@ -78,33 +77,37 @@ export default function AboutHero() {
                   display: "inline-flex",
                   alignItems: "center",
                   gap: "8px",
-                  background: "transparent",
+                  background: "#F5F0FF",
+                  border: "1px solid #E4D7FF",
+                  padding: "6px 16px",
+                  borderRadius: "9999px",
                   color: "#5B2E91",
-                  fontSize: "12.5px",
+                  fontSize: "12px",
                   fontWeight: "800",
-                  letterSpacing: "0.02em"
+                  letterSpacing: "0.08em",
+                  textTransform: "uppercase"
                 }}
               >
                 <span
                   style={{
-                    width: "16px",
-                    height: "16px",
+                    width: "14px",
+                    height: "14px",
                     borderRadius: "50%",
-                    border: "1.5px solid #8B5CF6",
+                    background: "#5B2E91",
+                    color: "#FFFFFF",
                     display: "inline-flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    color: "#8B5CF6",
-                    fontSize: "9px"
+                    fontSize: "8px"
                   }}
                 >
                   ⦿
                 </span>
-                <span>Feel The Convenience</span>
+                <span>ABOUT TECHLEARNS</span>
               </span>
             </motion.div>
 
-            {/* Main Headline (Matching img1 typography) */}
+            {/* Main Headline */}
             <motion.h1
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
@@ -120,27 +123,44 @@ export default function AboutHero() {
               }}
             >
               Building Talent for<br />
-              the Way the World Works
+              <span style={{ color: "#8B5CF6" }}>the Way the World Works</span>
             </motion.h1>
 
-            {/* Paragraph Subtitle */}
+            {/* Paragraph 1 */}
             <motion.p
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
               style={{
                 fontSize: "15px",
-                color: "#64748B",
+                color: "#0B1F3A",
                 lineHeight: "1.65",
-                maxWidth: "500px",
-                marginBottom: "32px",
-                fontWeight: "400"
+                maxWidth: "520px",
+                marginBottom: "16px",
+                fontWeight: "600"
               }}
             >
               Techlearns is a next-generation Corporate Experience Learning company built to transform how technology talent learns, experiences and prepares for the professional world.
             </motion.p>
 
-            {/* 2 Capsule Action Buttons (Matching img1 button styles) */}
+            {/* Paragraph 2 */}
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.25 }}
+              style={{
+                fontSize: "14px",
+                color: "#64748B",
+                lineHeight: "1.65",
+                maxWidth: "520px",
+                marginBottom: "24px",
+                fontWeight: "400"
+              }}
+            >
+              We believe the future of learning is not about consuming more content—it is about developing the ability to <strong style={{ color: "#0B1F3A" }}>apply knowledge, solve problems, work professionally and demonstrate capability.</strong> Through our <strong style={{ color: "#5B2E91" }}>Corporate Experience Learning (CEL)</strong> philosophy, Techlearns brings together technology learning, AI, practical exposure, industry engagement and career readiness within one connected ecosystem.
+            </motion.p>
+
+            {/* 2 Capsule Action Buttons */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
@@ -152,19 +172,20 @@ export default function AboutHero() {
                 style={{
                   display: "inline-flex",
                   alignItems: "center",
-                  justifyContent: "center",
+                  gap: "8px",
                   background: "#8B5CF6",
                   color: "#FFFFFF",
                   padding: "13px 36px",
                   borderRadius: "9999px",
                   fontSize: "13.5px",
-                  fontWeight: "700",
+                  fontWeight: "800",
                   textDecoration: "none",
                   boxShadow: "0 10px 24px rgba(139, 92, 246, 0.35)",
                   transition: "all 0.2s ease"
                 }}
               >
-                Get Started
+                <span>Explore CEL Philosophy</span>
+                <ArrowRight size={15} color="#FFFFFF" />
               </Link>
 
               <Link
@@ -172,26 +193,25 @@ export default function AboutHero() {
                 style={{
                   display: "inline-flex",
                   alignItems: "center",
-                  justifyContent: "center",
+                  gap: "8px",
                   background: "#FFFFFF",
                   color: "#7C3AED",
-                  border: "1px solid rgba(124, 58, 237, 0.15)",
+                  border: "1px solid rgba(124, 58, 237, 0.2)",
                   padding: "13px 36px",
                   borderRadius: "9999px",
                   fontSize: "13.5px",
-                  fontWeight: "700",
+                  fontWeight: "800",
                   textDecoration: "none",
-                  boxShadow: "0 4px 14px rgba(0, 0, 0, 0.04)",
-                  transition: "all 0.2s ease"
+                  boxShadow: "0 4px 14px rgba(0, 0, 0, 0.04)"
                 }}
               >
-                Learn More
+                <span>Explore Programs</span>
               </Link>
             </motion.div>
 
           </div>
 
-          {/* Right Column: Clean Cutout Student Image moved down touching the How Can I Help You div */}
+          {/* Right Column: Clean Student Cutout Image touching bottom cards */}
           <div
             style={{
               display: "flex",
@@ -218,7 +238,7 @@ export default function AboutHero() {
 
         </div>
 
-        {/* Overlapping Floating Dual Cards Row (Matching img1 bottom dual cards) */}
+        {/* Floating Dual Cards Row: Manifesto & CEL Ecosystem Pills */}
         <motion.div
           initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
@@ -232,7 +252,7 @@ export default function AboutHero() {
           className="grid-2col"
         >
 
-          {/* Left Purple Floating Card (Matching img1 purple card) */}
+          {/* Left Purple Card: "I can build it. I can solve it. I can prove it." */}
           <div
             style={{
               background: "linear-gradient(135deg, #8B5CF6 0%, #6D28D9 100%)",
@@ -246,98 +266,66 @@ export default function AboutHero() {
             }}
           >
             <div>
-              <h3 style={{ fontFamily: "var(--font-headings), sans-serif", fontSize: "21px", fontWeight: "800", color: "#FFFFFF", marginBottom: "8px" }}>
-                Always Update Every Day
+              <div style={{ fontSize: "11px", fontWeight: "900", textTransform: "uppercase", letterSpacing: "0.1em", color: "#F3E8FF", marginBottom: "8px" }}>
+                OUR CONFIDENT BELIEF
+              </div>
+              <h3 style={{ fontFamily: "var(--font-headings), sans-serif", fontSize: "20px", fontWeight: "800", color: "#FFFFFF", lineHeight: "1.4", marginBottom: "12px" }}>
+                We are building Techlearns for a generation that wants to go beyond “I know it” to confidently say:
               </h3>
-              <p style={{ fontSize: "13px", color: "rgba(255, 255, 255, 0.88)", lineHeight: "1.55", marginBottom: "28px" }}>
-                Corporate Experience Learning brings together technology learning, AI, practical exposure, and career readiness.
-              </p>
-            </div>
-
-            {/* Form Input Bar with White Pill Button (Matching img1 form input) */}
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                background: "rgba(255, 255, 255, 0.22)",
-                backdropFilter: "blur(12px)",
-                padding: "5px",
-                borderRadius: "9999px",
-                border: "1px solid rgba(255, 255, 255, 0.3)"
-              }}
-            >
-              <input
-                type="text"
-                readOnly
-                value="fellow@techlearns.com"
-                style={{
-                  width: "100%",
-                  background: "transparent",
-                  border: "none",
-                  outline: "none",
-                  padding: "6px 16px",
-                  fontSize: "12.5px",
-                  fontWeight: "600",
-                  color: "#FFFFFF"
-                }}
-              />
-              <Link
-                href="/cel"
-                style={{
-                  background: "#FFFFFF",
-                  color: "#7C3AED",
-                  padding: "10px 24px",
-                  borderRadius: "9999px",
-                  fontSize: "12.5px",
-                  fontWeight: "800",
-                  textDecoration: "none",
-                  whiteSpace: "nowrap",
-                  boxShadow: "0 4px 12px rgba(0,0,0,0.1)"
-                }}
-              >
-                Request
-              </Link>
-            </div>
-          </div>
-
-          {/* Right White Floating Card (Matching img1 white split card) */}
-          <div
-            style={{
-              background: "#FFFFFF",
-              border: "1px solid #E2E8F0",
-              borderRadius: "24px",
-              padding: "32px 36px",
-              boxShadow: "0 15px 45px rgba(0, 0, 0, 0.05)",
-              display: "grid",
-              gridTemplateColumns: "1fr 1.25fr",
-              gap: "28px",
-              alignItems: "center"
-            }}
-            className="grid-2col"
-          >
-
-            {/* Left Column Checklist */}
-            <div style={{ borderRight: "1px solid #F1F5F9", paddingRight: "20px" }}>
-              <div style={{ display: "flex", flexDirection: "column", gap: "9.5px" }}>
-                {checklist.map((item) => (
-                  <div key={item} style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                    <CheckCircle2 size={15} color="#8B5CF6" style={{ flexShrink: 0 }} />
-                    <span style={{ fontSize: "12.5px", fontWeight: "700", color: "#334155" }}>
-                      {item}
-                    </span>
-                  </div>
-                ))}
+              <div style={{ fontSize: "17px", fontWeight: "900", color: "#FDE68A", fontStyle: "italic", marginBottom: "20px" }}>
+                “I can build it. I can solve it. I can prove it.”
               </div>
             </div>
 
-            {/* Right Column Statement */}
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}>
+              {ecosystemPills.map((pill) => (
+                <span
+                  key={pill}
+                  style={{
+                    background: "rgba(255, 255, 255, 0.18)",
+                    border: "1px solid rgba(255, 255, 255, 0.3)",
+                    borderRadius: "9999px",
+                    padding: "4px 12px",
+                    fontSize: "11.5px",
+                    fontWeight: "800",
+                    color: "#FFFFFF"
+                  }}
+                >
+                  • {pill}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Right White Card: Corporate Experience Learning Ecosystem */}
+          <div
+            style={{
+              background: "#FFFFFF",
+              border: "1px solid #EDE9FE",
+              borderRadius: "24px",
+              padding: "32px 36px",
+              boxShadow: "0 15px 45px rgba(0, 0, 0, 0.05)",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between"
+            }}
+          >
             <div>
-              <h4 style={{ fontFamily: "var(--font-headings), sans-serif", fontSize: "18px", fontWeight: "800", color: "#0F172A", marginBottom: "8px" }}>
-                How Can I Help You?
+              <div style={{ fontSize: "11px", fontWeight: "900", textTransform: "uppercase", letterSpacing: "0.08em", color: "#8B5CF6", marginBottom: "6px" }}>
+                CONNECTED ECOSYSTEM
+              </div>
+              <h4 style={{ fontFamily: "var(--font-headings), sans-serif", fontSize: "20px", fontWeight: "800", color: "#0B1F3A", marginBottom: "10px" }}>
+                Corporate Experience Learning Ecosystem
               </h4>
-              <p style={{ fontSize: "12px", color: "#64748B", lineHeight: "1.6", marginBottom: "16px" }}>
-                We are building Techlearns for a generation that wants to go beyond “I know it” to confidently say: <strong style={{ color: "#0F172A" }}>“I can build it. I can solve it. I can prove it.”</strong>
+              <p style={{ fontSize: "13px", color: "#64748B", lineHeight: "1.6", marginBottom: "20px" }}>
+                Bringing together technology learning, AI, practical exposure, industry engagement and career readiness within one connected ecosystem.
               </p>
+            </div>
+
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "12px", borderTop: "1px solid #F1F5F9", paddingTop: "16px" }}>
+              <div style={{ fontSize: "12.5px", fontWeight: "800", color: "#5B2E91" }}>
+                Learn. Experience. Build. Compete. Prove. Lead.
+              </div>
               <Link
                 href="/cel"
                 style={{
@@ -346,15 +334,14 @@ export default function AboutHero() {
                   gap: "6px",
                   fontSize: "12.5px",
                   fontWeight: "800",
-                  color: "#7C3AED",
+                  color: "#8B5CF6",
                   textDecoration: "none"
                 }}
               >
-                <span>Read More</span>
-                <ArrowRight size={14} color="#7C3AED" />
+                <span>Learn More</span>
+                <ArrowRight size={14} color="#8B5CF6" />
               </Link>
             </div>
-
           </div>
 
         </motion.div>

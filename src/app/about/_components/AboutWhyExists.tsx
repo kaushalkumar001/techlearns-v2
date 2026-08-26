@@ -1,28 +1,17 @@
 "use client";
 
 import React from "react";
-import { Target, Users, ShieldCheck } from "lucide-react";
+import { CheckCircle2, Target } from "lucide-react";
 
 export default function AboutWhyExists() {
-  const features = [
-    {
-      title: "Trusted Partner & Purpose",
-      desc: "To make professional experience an integral part of the learning journey—not something that begins only after employment.",
-      icon: <Target size={20} color="#8B5CF6" />,
-      bg: "#F5F0FF"
-    },
-    {
-      title: "Fastpace Workplace Integration",
-      desc: "Creating an environment where learners progressively understand how technology is applied, how teams operate, and how ideas become products.",
-      icon: <Users size={20} color="#8B5CF6" />,
-      bg: "#F5F0FF"
-    },
-    {
-      title: "Tested Reliability & Proof",
-      desc: "Projects, portfolios, challenges, demonstrations and assessments create stronger evidence than course completion certificates alone.",
-      icon: <ShieldCheck size={20} color="#8B5CF6" />,
-      bg: "#F5F0FF"
-    }
+  const learningPoints = [
+    "How technology is applied",
+    "How professional teams operate",
+    "How problems are solved",
+    "How ideas become products",
+    "How AI changes modern workflows",
+    "How skills are demonstrated",
+    "How professionals continuously evolve"
   ];
 
   return (
@@ -125,7 +114,7 @@ export default function AboutWhyExists() {
 
           </div>
 
-          {/* Right Column: Content & 3 Purple Feature Rows (Matching img1 layout) */}
+          {/* Right Column: Exact User Section 01 Copy */}
           <div>
 
             {/* Eyebrow Tag */}
@@ -149,7 +138,7 @@ export default function AboutWhyExists() {
                 <span style={{ width: "14px", height: "14px", borderRadius: "50%", background: "#5B2E91", color: "#FFFFFF", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "8px" }}>
                   🏢
                 </span>
-                <span>About Company</span>
+                <span>01. WHY TECHLEARNS EXISTS</span>
               </span>
             </div>
 
@@ -165,42 +154,49 @@ export default function AboutWhyExists() {
                 marginBottom: "16px"
               }}
             >
-              We Are The Best Corporate Experience Learning Platform
+              Bridging the Space Between Education and the Real World
             </h2>
 
             {/* Paragraph Subtitle */}
-            <p style={{ fontSize: "15px", color: "#64748B", lineHeight: "1.7", marginBottom: "32px", fontWeight: "400" }}>
-              Technology is changing faster than conventional learning models. Students today have unprecedented access to courses, tutorials and certifications—yet employers continue to experience a gap between academic knowledge and workplace capability. Techlearns was created to address this gap.
+            <p style={{ fontSize: "15px", color: "#64748B", lineHeight: "1.7", marginBottom: "16px", fontWeight: "400" }}>
+              Technology is changing faster than conventional learning models. Students today have unprecedented access to courses, tutorials and certifications—yet employers continue to experience a gap between <strong style={{ color: "#0B1F3A" }}>academic knowledge and workplace capability.</strong>
             </p>
 
-            {/* 3 Purple Icon Feature Rows */}
-            <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
-              {features.map((feat) => (
-                <div key={feat.title} style={{ display: "flex", alignItems: "flex-start", gap: "16px" }}>
-                  <div
-                    style={{
-                      width: "48px",
-                      height: "48px",
-                      borderRadius: "16px",
-                      background: feat.bg,
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      flexShrink: 0
-                    }}
-                  >
-                    {feat.icon}
-                  </div>
-                  <div>
-                    <h3 style={{ fontSize: "16px", fontWeight: "800", color: "#0B1F3A", marginBottom: "4px" }}>
-                      {feat.title}
-                    </h3>
-                    <p style={{ fontSize: "13px", color: "#64748B", lineHeight: "1.6" }}>
-                      {feat.desc}
-                    </p>
-                  </div>
+            <p style={{ fontSize: "14px", color: "#64748B", lineHeight: "1.6", marginBottom: "20px" }}>
+              Techlearns was created to address this gap. Our focus is not simply to add another learning platform to the market. We are creating an environment where learners progressively understand:
+            </p>
+
+            {/* 7 Progressively Understand Bullet Points */}
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px", marginBottom: "28px" }} className="grid-2col">
+              {learningPoints.map((point) => (
+                <div key={point} style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                  <CheckCircle2 size={15} color="#8B5CF6" style={{ flexShrink: 0 }} />
+                  <span style={{ fontSize: "12.5px", fontWeight: "700", color: "#1E293B" }}>
+                    {point}
+                  </span>
                 </div>
               ))}
+            </div>
+
+            {/* Purpose Box */}
+            <div
+              style={{
+                background: "linear-gradient(135deg, #0B1F3A 0%, #1E0A3C 100%)",
+                borderRadius: "20px",
+                padding: "22px 26px",
+                color: "#FFFFFF",
+                boxShadow: "0 12px 30px rgba(11, 31, 58, 0.15)"
+              }}
+            >
+              <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "6px" }}>
+                <Target size={18} color="#D8B4FE" />
+                <span style={{ fontSize: "11px", fontWeight: "900", textTransform: "uppercase", letterSpacing: "0.1em", color: "#D8B4FE" }}>
+                  OUR PURPOSE
+                </span>
+              </div>
+              <div style={{ fontSize: "14px", fontWeight: "700", lineHeight: "1.6", color: "#FFFFFF" }}>
+                “To make professional experience an integral part of the learning journey—not something that begins only after employment.”
+              </div>
             </div>
 
           </div>

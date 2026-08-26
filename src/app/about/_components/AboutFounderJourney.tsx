@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { ArrowRight, Scroll } from "lucide-react";
+import { ArrowRight, Sparkles } from "lucide-react";
 import Link from "next/link";
 
 export default function AboutFounderJourney() {
@@ -22,7 +22,7 @@ export default function AboutFounderJourney() {
     <section style={{ padding: "80px 0", background: "#FAF9FC", position: "relative" }}>
       <div className="container" style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px" }}>
 
-        {/* Founder Bio Card */}
+        {/* Section 04: Meet the Founder */}
         <div
           id="founder"
           style={{
@@ -31,7 +31,7 @@ export default function AboutFounderJourney() {
             borderRadius: "32px",
             padding: "48px",
             boxShadow: "0 20px 50px rgba(91, 46, 145, 0.06)",
-            marginBottom: "64px"
+            marginBottom: "80px"
           }}
         >
           <div style={{ display: "grid", gridTemplateColumns: "1.2fr 0.8fr", gap: "40px", alignItems: "center" }} className="grid-2col">
@@ -41,26 +41,48 @@ export default function AboutFounderJourney() {
               <div style={{ fontSize: "12px", fontWeight: "800", textTransform: "uppercase", letterSpacing: "0.08em", color: "#5B2E91", marginBottom: "8px" }}>
                 04. MEET THE FOUNDER
               </div>
-              <h3 style={{ fontFamily: "var(--font-headings), sans-serif", fontSize: "36px", fontWeight: "900", color: "#0B1F3A", marginBottom: "8px" }}>
+              <h3 style={{ fontFamily: "var(--font-headings), sans-serif", fontSize: "36px", fontWeight: "900", color: "#0B1F3A", marginBottom: "4px" }}>
                 Prof. Ankur Gill
               </h3>
-              <div style={{ fontSize: "13px", fontWeight: "700", color: "#8B5CF6", marginBottom: "18px" }}>
+              <div style={{ fontSize: "14px", fontWeight: "700", color: "#8B5CF6", marginBottom: "16px" }}>
                 Founder, Techlearns • Educator • Industry Professional • Mentor • Author • Institution Builder
               </div>
 
-              <p style={{ fontSize: "14px", color: "#64748B", lineHeight: "1.7", marginBottom: "20px" }}>
-                Techlearns is founded by <strong style={{ color: "#0B1F3A" }}>Prof. Ankur Gill</strong>, an education and industry professional with more than a decade of experience spanning academic operations, student development, employability, corporate relations, admissions, technology initiatives and industry-academia engagement.
+              <p style={{ fontSize: "14px", color: "#64748B", lineHeight: "1.7", marginBottom: "16px" }}>
+                Techlearns is founded by <strong style={{ color: "#0B1F3A" }}>Prof. Ankur Gill</strong>, an education and industry professional with more than a decade of experience spanning <strong style={{ color: "#0B1F3A" }}>academic operations, student development, employability, corporate relations, admissions, technology initiatives and industry-academia engagement.</strong>
               </p>
 
-              {/* Founder's Belief Callout */}
+              {/* Observation Callout Box */}
               <div
                 style={{
-                  background: "#0B1F3A",
+                  background: "#F5F0FF",
+                  borderLeft: "4px solid #8B5CF6",
+                  padding: "16px 20px",
+                  borderRadius: "0 16px 16px 0",
+                  marginBottom: "16px"
+                }}
+              >
+                <div style={{ fontSize: "12px", fontWeight: "800", color: "#5B2E91", marginBottom: "4px" }}>
+                  A Fundamental Observation:
+                </div>
+                <div style={{ fontSize: "13.5px", fontWeight: "600", color: "#0B1F3A", fontStyle: "italic", lineHeight: "1.5" }}>
+                  “Students do not need only more courses. They need environments that allow them to experience how professionals learn, think, build and perform.”
+                </div>
+              </div>
+
+              <p style={{ fontSize: "13.5px", color: "#64748B", lineHeight: "1.65", marginBottom: "16px" }}>
+                Over the years, he has worked closely with thousands of students while building and mentoring specialised learning and career-development initiatives focused on technical skills, professional discipline, corporate exposure and employability. He has also authored multiple books, contributed to academic research and innovation, and represented the education ecosystem at national and international platforms. Techlearns takes this experience forward at a larger scale.
+              </p>
+
+              {/* Founder's Belief Box */}
+              <div
+                style={{
+                  background: "linear-gradient(135deg, #0B1F3A 0%, #1E0A3C 100%)",
                   borderRadius: "20px",
                   padding: "20px 24px",
                   color: "#FFFFFF",
                   boxShadow: "0 10px 25px rgba(11, 31, 58, 0.2)",
-                  marginBottom: "20px"
+                  marginBottom: "24px"
                 }}
               >
                 <div style={{ fontSize: "11px", fontWeight: "800", textTransform: "uppercase", letterSpacing: "0.08em", color: "#D8B4FE", marginBottom: "6px" }}>
@@ -71,9 +93,29 @@ export default function AboutFounderJourney() {
                 </div>
               </div>
 
-              <div style={{ fontSize: "13px", color: "#64748B" }}>
-                His vision for Techlearns is to create an ecosystem where students can gain <strong style={{ color: "#0B1F3A" }}>experience before employment</strong> and develop the confidence to compete in a global technology economy.
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "12px" }}>
+                <div style={{ fontSize: "13px", color: "#64748B", maxWidth: "420px" }}>
+                  His vision for Techlearns is to create an ecosystem where students can gain <strong style={{ color: "#0B1F3A" }}>experience before employment</strong> and develop the confidence to compete in a global technology economy.
+                </div>
+
+                <Link
+                  href="/mentors"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "6px",
+                    fontSize: "13px",
+                    fontWeight: "800",
+                    color: "#8B5CF6",
+                    textDecoration: "none",
+                    whiteSpace: "nowrap"
+                  }}
+                >
+                  <span>Know More About Our Founder</span>
+                  <ArrowRight size={14} color="#8B5CF6" />
+                </Link>
               </div>
+
             </div>
 
             {/* Right Founder Photo & Glass Badge */}
@@ -131,45 +173,7 @@ export default function AboutFounderJourney() {
           </div>
         </div>
 
-        {/* Our Manifesto Card */}
-        <div
-          style={{
-            background: "#FFFFFF",
-            border: "2px dashed #EDE9FE",
-            borderRadius: "32px",
-            padding: "48px 40px",
-            textAlign: "center",
-            marginBottom: "64px"
-          }}
-        >
-          <div style={{ marginBottom: "16px" }}>
-            <span
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "6px",
-                background: "#F5F0FF",
-                border: "1px solid #E4D7FF",
-                padding: "6px 18px",
-                borderRadius: "9999px",
-                color: "#5B2E91",
-                fontSize: "12px",
-                fontWeight: "800",
-                letterSpacing: "0.08em",
-                textTransform: "uppercase"
-              }}
-            >
-              <Scroll size={14} color="#5B2E91" />
-              <span>OUR MANIFESTO</span>
-            </span>
-          </div>
-
-          <p style={{ fontSize: "17px", fontWeight: "500", fontStyle: "italic", color: "#334155", lineHeight: "1.8", maxWidth: "900px", margin: "0 auto" }}>
-            &ldquo;We believe talent is everywhere, but meaningful exposure is not. We believe a learner should experience the discipline of real work before the first job. We believe skills become valuable when they are practised, challenged, reviewed and proven. We believe technology should make learning measurable without making it impersonal. And we believe India can build a generation that does not merely hold certificates — it can build, solve, communicate, compete, and lead.&rdquo;
-          </p>
-        </div>
-
-        {/* Section Header: The Journey Ahead */}
+        {/* Section Header: Section 06 The Journey Ahead */}
         <div style={{ textAlign: "center", marginBottom: "48px" }}>
           <div style={{ marginBottom: "14px" }}>
             <span
@@ -209,7 +213,7 @@ export default function AboutFounderJourney() {
             Building More Than<br />
             <span style={{ color: "#8B5CF6" }}>a Learning Platform</span>
           </h2>
-          <p style={{ fontSize: "15px", color: "#64748B", maxWidth: "560px", margin: "0 auto", fontWeight: "400" }}>
+          <p style={{ fontSize: "15px", color: "#64748B", maxWidth: "560px", margin: "0 auto 20px", fontWeight: "400" }}>
             Techlearns is being built as an evolving ecosystem. Our journey will progressively connect:
           </p>
         </div>
@@ -220,7 +224,7 @@ export default function AboutFounderJourney() {
             display: "grid",
             gridTemplateColumns: "repeat(5, 1fr)",
             gap: "14px",
-            marginBottom: "48px"
+            marginBottom: "40px"
           }}
           className="grid-2col"
         >
@@ -246,6 +250,29 @@ export default function AboutFounderJourney() {
               </span>
             </div>
           ))}
+        </div>
+
+        {/* Evolving Statements Strip */}
+        <div
+          style={{
+            background: "#F8F5FD",
+            border: "1px solid #EDE9FE",
+            borderRadius: "20px",
+            padding: "24px 32px",
+            textAlign: "center",
+            marginBottom: "64px"
+          }}
+        >
+          <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "24px", flexWrap: "wrap", fontSize: "13.5px", fontWeight: "700", color: "#5B2E91" }}>
+            <span>As technologies change, our programs will evolve.</span>
+            <span>•</span>
+            <span>As industry expectations change, our experiences will evolve.</span>
+            <span>•</span>
+            <span>As our learners grow, Techlearns will grow with them.</span>
+          </div>
+          <div style={{ fontSize: "12.5px", color: "#64748B", marginTop: "8px" }}>
+            Because preparing people for the future cannot be achieved with a static learning model.
+          </div>
         </div>
 
         {/* Grand CTA Banner */}

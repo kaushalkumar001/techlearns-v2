@@ -1,7 +1,8 @@
 "use client";
 
 import React from "react";
-import { Eye, Rocket, Network, Cpu, Building2, GraduationCap, Lightbulb, Users } from "lucide-react";
+import { Eye, Rocket, Network, Cpu, Building2, GraduationCap, Lightbulb, Users, ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 export default function AboutVisionAdvisory() {
   const graduateOutcomes = [
@@ -137,7 +138,7 @@ export default function AboutVisionAdvisory() {
               </h3>
 
               <p style={{ fontSize: "13px", color: "#64748B", lineHeight: "1.6", marginBottom: "24px" }}>
-                We envision a future where learners graduate not only with theoretical knowledge, but with a complete evidence stack built for professional impact.
+                We envision a future where learners graduate not only with knowledge, but with skills, experience, portfolio, professional confidence, industry exposure, and the ability to continuously adapt.
               </p>
 
               <div style={{ fontSize: "11px", fontWeight: "800", textTransform: "uppercase", letterSpacing: "0.08em", color: "#64748B", marginBottom: "12px" }}>
@@ -194,7 +195,7 @@ export default function AboutVisionAdvisory() {
                 Empowering Digital Economy Leaders
               </h3>
 
-              <p style={{ fontSize: "14px", fontWeight: "500", color: "#E2E8F0", lineHeight: "1.7" }}>
+              <p style={{ fontSize: "15px", fontWeight: "600", color: "#E2E8F0", lineHeight: "1.7" }}>
                 “To empower learners with technology capabilities, professional experiences and career confidence required to thrive in a continuously evolving digital economy.”
               </p>
             </div>
@@ -238,7 +239,7 @@ export default function AboutVisionAdvisory() {
             ))}
           </div>
 
-          <div style={{ fontSize: "13px", fontWeight: "800", color: "#5B2E91" }}>
+          <div style={{ fontSize: "13.5px", fontWeight: "800", color: "#5B2E91" }}>
             Together, creating stronger pathways from learning to professional impact.
           </div>
         </div>
@@ -282,8 +283,8 @@ export default function AboutVisionAdvisory() {
           >
             Guided by Experience. Shaped by Industry.
           </h2>
-          <p style={{ fontSize: "15px", color: "#64748B", maxWidth: "600px", margin: "0 auto", fontWeight: "400" }}>
-            Building future-ready talent requires perspectives beyond the classroom. The Techlearns Advisory Board brings together experienced leaders from complementary domains.
+          <p style={{ fontSize: "15px", color: "#64748B", maxWidth: "680px", margin: "0 auto 12px", fontWeight: "400", lineHeight: "1.65" }}>
+            Building future-ready talent requires perspectives beyond the classroom. The <strong style={{ color: "#0B1F3A" }}>Techlearns Advisory Board</strong> brings together experienced professionals and leaders from complementary domains to provide strategic direction as the ecosystem evolves.
           </p>
         </div>
 
@@ -292,7 +293,8 @@ export default function AboutVisionAdvisory() {
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(3, 1fr)",
-            gap: "24px"
+            gap: "24px",
+            marginBottom: "40px"
           }}
           className="grid-3col"
         >
@@ -333,6 +335,50 @@ export default function AboutVisionAdvisory() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Advisory Closing Callout & Button */}
+        <div
+          style={{
+            background: "#F5F0FF",
+            border: "1px solid #E4D7FF",
+            borderRadius: "24px",
+            padding: "28px 36px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            flexWrap: "wrap",
+            gap: "20px"
+          }}
+        >
+          <div>
+            <div style={{ fontSize: "13px", color: "#64748B", marginBottom: "4px" }}>
+              Every advisor brings a different perspective. Together, they help ensure one thing:
+            </div>
+            <div style={{ fontSize: "16px", fontWeight: "900", color: "#0B1F3A" }}>
+              “Techlearns remains connected to where the world of work is going—not where it has been.”
+            </div>
+          </div>
+
+          <Link
+            href="/mentors"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "8px",
+              background: "#5B2E91",
+              color: "#FFFFFF",
+              padding: "12px 26px",
+              borderRadius: "9999px",
+              fontSize: "13px",
+              fontWeight: "800",
+              textDecoration: "none",
+              boxShadow: "0 4px 14px rgba(91, 46, 145, 0.25)"
+            }}
+          >
+            <span>Meet Our Advisory Board</span>
+            <ArrowRight size={15} color="#FFFFFF" />
+          </Link>
         </div>
 
       </div>
