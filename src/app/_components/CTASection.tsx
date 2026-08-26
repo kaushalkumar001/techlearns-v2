@@ -32,21 +32,21 @@ export default function CTASection() {
   const floatBadgeRotate = useTransform(smoothProgress, [0, 1], [4, -4]);
 
   return (
-    <section ref={sectionRef} style={{ padding: "64px 0 0", background: "#F6F7F9", overflow: "hidden" }}>
+    <section ref={sectionRef} style={{ padding: "48px 0 0", background: "#F6F7F9", overflow: "hidden" }}>
       <div className="container" style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 24px" }}>
 
         {/* Main Banner Card with Scroll Entrance & Soft Tilt */}
         <motion.div
-          initial={{ opacity: 0, y: 35 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
+          viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           style={{
             background: "linear-gradient(135deg, #AFA0D2 0%, #A290C6 45%, #947EBC 100%)",
-            borderRadius: "36px",
-            padding: "54px 56px",
+            borderRadius: "28px",
+            padding: "36px 44px",
             color: "#180C2E",
-            boxShadow: "0 24px 64px -14px rgba(91, 46, 145, 0.25)",
+            boxShadow: "0 18px 48px -12px rgba(91, 46, 145, 0.22)",
             position: "relative",
             overflow: "hidden"
           }}
@@ -55,7 +55,7 @@ export default function CTASection() {
           <motion.div
             style={{
               position: "absolute",
-              right: "220px",
+              right: "180px",
               top: "50%",
               x: "50%",
               y: "-50%",
@@ -68,8 +68,8 @@ export default function CTASection() {
           >
             <div
               style={{
-                width: "740px",
-                height: "740px",
+                width: "560px",
+                height: "560px",
                 borderRadius: "50%",
                 background: "rgba(255, 255, 255, 0.04)",
                 position: "absolute",
@@ -80,8 +80,8 @@ export default function CTASection() {
             />
             <div
               style={{
-                width: "560px",
-                height: "560px",
+                width: "420px",
+                height: "420px",
                 borderRadius: "50%",
                 background: "rgba(255, 255, 255, 0.07)",
                 position: "absolute",
@@ -92,8 +92,8 @@ export default function CTASection() {
             />
             <div
               style={{
-                width: "400px",
-                height: "400px",
+                width: "300px",
+                height: "300px",
                 borderRadius: "50%",
                 background: "rgba(255, 255, 255, 0.10)",
                 position: "absolute",
@@ -104,8 +104,8 @@ export default function CTASection() {
             />
             <div
               style={{
-                width: "250px",
-                height: "250px",
+                width: "180px",
+                height: "180px",
                 borderRadius: "50%",
                 background: "rgba(255, 255, 255, 0.13)",
                 position: "absolute",
@@ -162,7 +162,7 @@ export default function CTASection() {
                   letterSpacing: "0.08em",
                   color: "#180C2E",
                   textTransform: "uppercase",
-                  marginBottom: "20px"
+                  marginBottom: "14px"
                 }}
               >
                 <motion.span
@@ -182,12 +182,12 @@ export default function CTASection() {
                 }}
                 style={{
                   fontFamily: "var(--font-headings), sans-serif",
-                  fontSize: "44px",
+                  fontSize: "36px",
                   fontWeight: "600",
                   color: "#160B2B",
-                  lineHeight: "1.16",
+                  lineHeight: "1.18",
                   letterSpacing: "-0.025em",
-                  marginBottom: "18px"
+                  marginBottom: "14px"
                 }}
               >
                 Techlearns,{" "}
@@ -212,10 +212,10 @@ export default function CTASection() {
                   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } }
                 }}
                 style={{
-                  fontSize: "15px",
+                  fontSize: "14px",
                   color: "#2C1B46",
-                  lineHeight: "1.65",
-                  marginBottom: "32px",
+                  lineHeight: "1.55",
+                  marginBottom: "22px",
                   fontWeight: "450"
                 }}
               >
@@ -230,10 +230,10 @@ export default function CTASection() {
                 }}
                 style={{
                   display: "flex",
-                  gap: "14px",
+                  gap: "12px",
                   alignItems: "center",
                   flexWrap: "wrap",
-                  marginBottom: "28px"
+                  marginBottom: "20px"
                 }}
               >
                 {/* Primary Button */}
@@ -246,12 +246,12 @@ export default function CTASection() {
                       gap: "8px",
                       background: "#180C2E",
                       color: "#FFFFFF",
-                      padding: "14px 28px",
-                      borderRadius: "14px",
-                      fontSize: "14px",
+                      padding: "11px 22px",
+                      borderRadius: "12px",
+                      fontSize: "13.5px",
                       fontWeight: "700",
                       textDecoration: "none",
-                      boxShadow: "0 8px 22px rgba(24, 12, 46, 0.3)",
+                      boxShadow: "0 6px 18px rgba(24, 12, 46, 0.25)",
                       transition: "background 0.2s ease"
                     }}
                   >
@@ -276,9 +276,9 @@ export default function CTASection() {
                       background: "rgba(255, 255, 255, 0.4)",
                       color: "#180C2E",
                       border: "1.5px solid rgba(24, 12, 46, 0.25)",
-                      padding: "14px 26px",
-                      borderRadius: "14px",
-                      fontSize: "14px",
+                      padding: "11px 20px",
+                      borderRadius: "12px",
+                      fontSize: "13.5px",
                       fontWeight: "700",
                       textDecoration: "none",
                       backdropFilter: "blur(8px)",
@@ -299,21 +299,21 @@ export default function CTASection() {
                 style={{
                   display: "grid",
                   gridTemplateColumns: "repeat(2, 1fr)",
-                  gap: "10px 16px",
-                  paddingTop: "20px",
+                  gap: "8px 14px",
+                  paddingTop: "14px",
                   borderTop: "1px solid rgba(24, 12, 46, 0.12)"
                 }}
               >
-                <div style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "12px", color: "#221138", fontWeight: "600" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "11.5px", color: "#221138", fontWeight: "600" }}>
                   <span style={{ color: "#180C2E", fontWeight: "800" }}>✓</span> 100% Placement Assistance
                 </div>
-                <div style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "12px", color: "#221138", fontWeight: "600" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "11.5px", color: "#221138", fontWeight: "600" }}>
                   <span style={{ color: "#180C2E", fontWeight: "800" }}>✓</span> 1-on-1 Industry Mentorship
                 </div>
-                <div style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "12px", color: "#221138", fontWeight: "600" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "11.5px", color: "#221138", fontWeight: "600" }}>
                   <span style={{ color: "#180C2E", fontWeight: "800" }}>✓</span> Verified Skill Passport
                 </div>
-                <div style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "12px", color: "#221138", fontWeight: "600" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "11.5px", color: "#221138", fontWeight: "600" }}>
                   <span style={{ color: "#180C2E", fontWeight: "800" }}>✓</span> Zero-Cost EMI Available
                 </div>
               </motion.div>
@@ -377,12 +377,12 @@ export default function CTASection() {
                   y: phoneY,
                   rotateZ: phoneRotate,
                   scale: phoneScale,
-                  width: "315px",
-                  height: "560px",
+                  width: "270px",
+                  height: "470px",
                   background: "#0F0C16",
-                  borderRadius: "46px",
-                  padding: "9px",
-                  boxShadow: "0 28px 65px -12px rgba(22, 10, 44, 0.45), 0 0 0 2px rgba(255, 255, 255, 0.15), inset 0 0 4px 1px rgba(255, 255, 255, 0.12)",
+                  borderRadius: "38px",
+                  padding: "8px",
+                  boxShadow: "0 22px 50px -10px rgba(22, 10, 44, 0.45), 0 0 0 2px rgba(255, 255, 255, 0.15), inset 0 0 4px 1px rgba(255, 255, 255, 0.12)",
                   position: "relative",
                   display: "flex",
                   flexDirection: "column"
