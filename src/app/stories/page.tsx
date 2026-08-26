@@ -20,8 +20,8 @@ export default function StoriesPage() {
   return (
     <>
       <Header />
-      <main style={{ paddingTop: "120px" }}>
-        <div className="container" style={{ textAlign: "center", minHeight: "60vh", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+      <main>
+        <div className="container" style={{ textAlign: "center", minHeight: "60vh", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", paddingTop: "24px" }}>
 
           <span style={{ color: "#CB6CE6", fontSize: "12px", fontWeight: 700, fontFamily: "monospace", letterSpacing: "0.15em", textTransform: "uppercase" }}>
             REAL EVIDENCE ONLY

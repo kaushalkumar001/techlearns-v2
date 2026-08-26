@@ -1,8 +1,27 @@
 "use client";
 
-import React, { useState } from "react";
-import { motion } from "framer-motion";
-import { Building2, Users, Award, TrendingUp, ShieldCheck, FileText, GraduationCap, Code2, Briefcase } from "lucide-react";
+import React, { useState, useRef, useEffect } from "react";
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
+import {
+  Building2,
+  Users,
+  Award,
+  TrendingUp,
+  ShieldCheck,
+  FileText,
+  GraduationCap,
+  Code2,
+  Briefcase,
+  Laptop,
+  Terminal,
+  Trophy,
+  Target,
+  Zap,
+  Timer,
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight
+} from "lucide-react";
 
 // Official 100% Verified Full-Color Brand Vector Logos (VectorLogoZone CDN)
 const partnerLogos = [
@@ -21,69 +40,215 @@ const partnerLogos = [
 ];
 
 const journeySteps = [
+
   {
-    stepTag: "Step 01 — Enroll",
-    title: "Enroll",
-    description: "Choose your program and complete a simple enrollment process.",
-    icon: FileText,
+    stepNum: "01",
+
+    stepTag: "01 — BUILD YOUR FOUNDATION",
+
+    title: "Every Great Developer Starts Somewhere",
+
+    description:
+      "Start with programming fundamentals, problem-solving, computer science basics, and essential development concepts.",
+
+    icon: Laptop,
+
+    skills: ["HTML", "CSS", "JavaScript", "CS Basics"],
+
     accentColor: "#7A42BE",
+
     gradient: "linear-gradient(135deg, #7A42BE 0%, #5B2E91 100%)",
-    glowColor: "rgba(122, 66, 190, 0.25)"
+
+    glowColor: "rgba(122, 66, 190, 0.3)"
   },
+
   {
-    stepTag: "Step 02 — Learn",
-    title: "Learn",
-    description: "Attend live classes with industry experts and access learning materials.",
-    icon: GraduationCap,
-    accentColor: "#6366F1",
-    gradient: "linear-gradient(135deg, #6366F1 0%, #4F46E5 100%)",
-    glowColor: "rgba(99, 102, 241, 0.25)"
-  },
-  {
-    stepTag: "Step 03 — Practice",
-    title: "Practice",
-    description: "Work on real-world projects and hands-on assignments.",
+    stepNum: "02",
+
+    stepTag: "02 — BUILD REAL PROJECTS",
+
+    title: "Time to Build Something Awesome",
+
+    description:
+      "Apply your skills by building practical projects, working with modern technologies, and creating a strong portfolio.",
+
     icon: Code2,
-    accentColor: "#0EA5E9",
-    gradient: "linear-gradient(135deg, #0EA5E9 0%, #0284C7 100%)",
-    glowColor: "rgba(14, 165, 233, 0.25)"
+
+    skills: ["React", "Node.js", "MongoDB", "Full-Stack Portfolio"],
+
+    accentColor: "#6366F1",
+
+    gradient: "linear-gradient(135deg, #6366F1 0%, #4F46E5 100%)",
+
+    glowColor: "rgba(99, 102, 241, 0.3)"
   },
+
   {
-    stepTag: "Step 04 — Get Certified",
-    title: "Get Certified",
-    description: "Earn industry-recognized certificates upon completion.",
-    icon: Award,
+    stepNum: "03",
+
+    stepTag: "03 — COMPETE & COLLABORATE",
+
+    title: "Build. Break Things. Win Hackathons.",
+
+    description:
+      "Participate in hackathons, collaborative challenges, and problem-solving experiences that simulate real-world development.",
+
+    icon: Trophy,
+
+    skills: ["Hackathons", "Team Work", "Live Projects", "Innovation"],
+
+    isHackathon: true,
+
     accentColor: "#F59E0B",
+
     gradient: "linear-gradient(135deg, #F59E0B 0%, #D97706 100%)",
-    glowColor: "rgba(245, 158, 11, 0.25)"
+
+    glowColor: "rgba(245, 158, 11, 0.35)"
   },
+
   {
-    stepTag: "Step 05 — Get Placed",
-    title: "Get Placed",
-    description: "Apply for jobs with our dedicated placement support.",
+    stepNum: "04",
+
+    stepTag: "04 — BECOME INDUSTRY READY",
+
+    title: "Turn Your Skills Into Superpowers",
+
+    description:
+      "Strengthen technical expertise, communication, interview preparation, and professional problem-solving abilities.",
+
+    icon: Target,
+
+    skills: ["DSA", "System Design", "Mock Interviews", "Resume Prep"],
+
+    accentColor: "#14B8A6",
+
+    gradient: "linear-gradient(135deg, #14B8A6 0%, #0D9488 100%)",
+
+    glowColor: "rgba(20, 184, 166, 0.3)"
+  },
+
+  {
+    stepNum: "05",
+
+    stepTag: "05 — LAUNCH YOUR CAREER",
+
+    title: "Now Go Get That Dream Job 🚀",
+
+    description:
+      "Connect with opportunities, hiring networks, career guidance, and roles that help learners begin and accelerate their professional journey.",
+
     icon: Briefcase,
+
+    skills: ["Job Offers", "800+ Hiring Partners", "1-on-1 Referrals"],
+
     accentColor: "#10B981",
+
     gradient: "linear-gradient(135deg, #10B981 0%, #059669 100%)",
-    glowColor: "rgba(16, 185, 129, 0.25)"
+
+    glowColor: "rgba(16, 185, 129, 0.3)"
   }
+
 ];
 
 export default function HiringPartnersSection() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const journeyRef = useRef<HTMLDivElement>(null);
   const [failedLogos, setFailedLogos] = useState<Record<string, boolean>>({});
+  const [activeStepIndex, setActiveStepIndex] = useState<number>(0);
 
   const validLogos = partnerLogos.filter(logo => !failedLogos[logo.name]);
   const marqueeItems = [...validLogos, ...validLogos];
 
+  const currentStep = journeySteps[activeStepIndex] || journeySteps[0];
+  const CurrentIcon = currentStep.icon;
+
+  const lastWheelTime = useRef<number>(0);
+  const touchStartY = useRef<number>(0);
+
+  useEffect(() => {
+    const el = journeyRef.current;
+    if (!el) return;
+
+    const handleWheel = (e: WheelEvent) => {
+      const rect = el.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      
+      // Div changing & scroll pause starts ONLY when "From Learning Code..." heading arrives at top view
+      const isInZone = rect.top <= 140 && rect.bottom >= windowHeight * 0.35;
+      if (!isInZone) return;
+
+      const now = Date.now();
+      const isDown = e.deltaY > 0;
+      const isUp = e.deltaY < 0;
+
+      // Pause website scroll and cycle step until last step (index 4)
+      if (isDown && activeStepIndex < journeySteps.length - 1) {
+        e.preventDefault();
+        if (now - lastWheelTime.current > 260) {
+          setActiveStepIndex(prev => prev + 1);
+          lastWheelTime.current = now;
+        }
+      } else if (isUp && activeStepIndex > 0) {
+        e.preventDefault();
+        if (now - lastWheelTime.current > 260) {
+          setActiveStepIndex(prev => prev - 1);
+          lastWheelTime.current = now;
+        }
+      }
+    };
+
+    const handleTouchStart = (e: TouchEvent) => {
+      touchStartY.current = e.touches[0].clientY;
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      const rect = el.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      const isInZone = rect.top <= 140 && rect.bottom >= windowHeight * 0.35;
+      if (!isInZone) return;
+
+      const touchEndY = e.touches[0].clientY;
+      const deltaY = touchStartY.current - touchEndY;
+      const now = Date.now();
+
+      if (deltaY > 18 && activeStepIndex < journeySteps.length - 1) {
+        e.preventDefault();
+        if (now - lastWheelTime.current > 280) {
+          setActiveStepIndex(prev => prev + 1);
+          lastWheelTime.current = now;
+          touchStartY.current = touchEndY;
+        }
+      } else if (deltaY < -18 && activeStepIndex > 0) {
+        e.preventDefault();
+        if (now - lastWheelTime.current > 280) {
+          setActiveStepIndex(prev => prev - 1);
+          lastWheelTime.current = now;
+          touchStartY.current = touchEndY;
+        }
+      }
+    };
+
+    window.addEventListener("wheel", handleWheel, { passive: false });
+    window.addEventListener("touchstart", handleTouchStart, { passive: true });
+    window.addEventListener("touchmove", handleTouchMove, { passive: false });
+
+    return () => {
+      window.removeEventListener("wheel", handleWheel);
+      window.removeEventListener("touchstart", handleTouchStart);
+      window.removeEventListener("touchmove", handleTouchMove);
+    };
+  }, [activeStepIndex]);
+
   return (
-    <section aria-label="Hiring Partners Section" style={{ padding: "clamp(32px, 5vw, 56px) 0", background: "#FFFFFF", overflow: "hidden" }}>
+    <section ref={sectionRef} aria-label="Hiring Partners Section" className="hiring-section-pin-container">
       <div className="container" style={{ maxWidth: "1380px", width: "100%", margin: "0 auto", padding: "0 24px" }}>
 
         {/* Section Header */}
-        <div style={{ textAlign: "center", marginBottom: "clamp(24px, 4vw, 40px)" }}>
+        <div style={{ textAlign: "center", marginBottom: "clamp(20px, 3vw, 32px)" }}>
           <div style={{ fontSize: "clamp(11px, 1.2vw, 12.5px)", fontWeight: "700", color: "#5B2E91", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "6px" }}>
             TRUSTED BY INDUSTRY LEADERS
           </div>
-          <div style={{ width: "32px", height: "3px", background: "#5B2E91", borderRadius: "2px", margin: "0 auto 16px" }} />
+          <div style={{ width: "32px", height: "3px", background: "#5B2E91", borderRadius: "2px", margin: "0 auto 12px" }} />
 
           <h2 className="hiring-title">
             Get offers from <span style={{ color: "#5B2E91" }}>800+ top companies</span>
@@ -136,185 +301,307 @@ export default function HiringPartnersSection() {
 
         </div>
 
-        {/* High-End Performance Infographic Container */}
-        <div className="hiring-infographic-card">
+      </div>
 
-          {/* Full-Height Frosted Glass Blur Overlay Curtain (Desktop) */}
-          <div className="hiring-blur-curtain" />
+      {/* Pinned Scroll Journey Container (Pins heading until step 5 completes) */}
+      <div ref={journeyRef} className="journey-pinned-stage">
+        <div className="journey-sticky-wrapper">
+          <div className="container" style={{ maxWidth: "1380px", width: "100%", margin: "0 auto", padding: "0 24px" }}>
 
-          {/* 2-Column Infographic Grid: Scroll Box Left, Sticky Right */}
-          <div className="hiring-grid">
+            {/* High-End Performance Infographic Container */}
+            <div className="hiring-infographic-card">
 
-            {/* Left Column: Scroll Box containing 01 Header & Your Path to Success, Step by Step Timeline */}
-            <div className="hiring-stats-col hiring-scroll-box">
+              {/* Full-Height Frosted Glass Blur Overlay Curtain (Desktop) */}
+              <div className="hiring-blur-curtain" />
 
-              {/* Sticky Header inside scroll box */}
-              <div className="hiring-scroll-header">
-                <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "4px" }}>
-                  <span style={{ fontSize: "clamp(24px, 2.8vw, 30px)", fontWeight: "800", color: "#5B2E91", fontFamily: "var(--font-montserrat)" }}>01</span>
-                  <span style={{ fontSize: "12px", fontWeight: "800", color: "#7A42BE", textTransform: "uppercase", letterSpacing: "0.06em", background: "#F3E8FF", padding: "3px 10px", borderRadius: "9999px", border: "1px solid #DDD6FE" }}>
-                    Career Placement &amp; Impact
-                  </span>
-                </div>
-                <h4 style={{ fontSize: "clamp(1.15rem, 2.2vw, 1.35rem)", fontWeight: "800", color: "#0B1F3A", margin: "4px 0 6px", fontFamily: "var(--font-montserrat)", letterSpacing: "-0.01em" }}>
-                  Your Path to Success, Step by Step
-                </h4>
-                <div style={{ width: "42px", height: "3px", background: "linear-gradient(90deg, #7A42BE 0%, #5B2E91 100%)", borderRadius: "2px", marginBottom: "14px" }} />
-              </div>
+              {/* 2-Column Infographic Grid: Storytelling Left, Sticky Right */}
+              <div className="hiring-grid">
 
-              {/* Connected 5-Step Cards Journey Timeline inside Scroll Box */}
-              <div className="journey-timeline-list">
-                {journeySteps.map((step, idx) => {
-                  const IconComp = step.icon;
-                  return (
-                    <div key={step.stepTag} className="journey-card-item">
+                {/* Left Column: Single-Card Developer Journey Storytelling */}
+                <div className="hiring-stats-col">
 
-                      {/* Subtle dotted connector line to next step */}
-                      {idx < journeySteps.length - 1 && (
-                        <div className="journey-card-connector" />
-                      )}
-
-                      {/* Icon Circle Container */}
-                      <div className="journey-icon-wrap" style={{ background: step.gradient, boxShadow: `0 6px 16px ${step.glowColor}` }}>
-                        <IconComp size={20} color="#FFFFFF" strokeWidth={2.2} />
-                      </div>
-
-                      {/* Card Content Details */}
-                      <div className="journey-card-body">
-                        <span className="journey-card-tag" style={{ color: step.accentColor, borderColor: step.glowColor }}>
-                          {step.stepTag}
+                  {/* Sticky Header inside storytelling box */}
+                  <div className="hiring-scroll-header">
+                    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "6px" }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                        <span style={{ fontSize: "clamp(22px, 2.6vw, 28px)", fontWeight: "800", color: "#5B2E91", fontFamily: "var(--font-montserrat)" }}>01</span>
+                        <span style={{ fontSize: "11px", fontWeight: "800", color: "#7A42BE", textTransform: "uppercase", letterSpacing: "0.06em", background: "#F3E8FF", padding: "3px 10px", borderRadius: "9999px", border: "1px solid #DDD6FE" }}>
+                          Career Storytelling
                         </span>
-                        <h5 className="journey-card-title">{step.title}</h5>
-                        <p className="journey-card-desc">{step.description}</p>
                       </div>
 
+                      {/* Step Indicator Pills (01 - 05) */}
+                      <div style={{ display: "flex", gap: "4px" }}>
+                        {journeySteps.map((s, i) => (
+                          <button
+                            key={s.stepNum}
+                            onClick={() => setActiveStepIndex(i)}
+                            style={{
+                              padding: "3px 8px",
+                              borderRadius: "9999px",
+                              fontSize: "10px",
+                              fontWeight: "800",
+                              border: "1px solid",
+                              borderColor: activeStepIndex === i ? s.accentColor : "#E2E8F0",
+                              background: activeStepIndex === i ? s.accentColor : "#FFFFFF",
+                              color: activeStepIndex === i ? "#FFFFFF" : "#64748B",
+                              cursor: "pointer",
+                              transition: "all 0.25s ease"
+                            }}
+                          >
+                            {s.stepNum}
+                          </button>
+                        ))}
+                      </div>
                     </div>
-                  );
-                })}
-              </div>
 
-              {/* Scroll indicator footer */}
-              <div className="hiring-scroll-indicator">
-                <span>Scroll inside to explore all 5 journey steps ↓</span>
+                    <h4 style={{ fontSize: "clamp(1.1rem, 2vw, 1.25rem)", fontWeight: "800", color: "#0B1F3A", margin: "4px 0 4px", fontFamily: "var(--font-montserrat)", letterSpacing: "-0.01em" }}>
+                      From “Hello World” to “You’re Hired!” 🚀
+                    </h4>
+                    <p style={{ fontSize: "11.5px", color: "#64748B", margin: "0 0 10px", lineHeight: "1.5" }}>
+                      A structured journey that takes you from learning the fundamentals to building projects, competing in hackathons, and becoming a job-ready software developer.
+                    </p>
+                    <div style={{ width: "42px", height: "3px", background: "linear-gradient(90deg, #7A42BE 0%, #5B2E91 100%)", borderRadius: "2px", marginBottom: "12px" }} />
+                  </div>
+
+                  {/* Single Active Step Card Viewport with Right-Curve Entrance Animation */}
+                  <div className="single-card-story-viewport">
+                    <AnimatePresence mode="wait">
+                      <motion.div
+                        key={currentStep.stepNum}
+                        initial={{ opacity: 0, x: 90, y: -20, rotate: 6, scale: 0.92 }}
+                        animate={{ opacity: 1, x: 0, y: 0, rotate: 0, scale: 1 }}
+                        exit={{ opacity: 0, x: -90, y: 20, rotate: -6, scale: 0.92 }}
+                        transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                        className={`infographic-single-pill-card ${currentStep.isHackathon ? "infographic-hackathon-pill" : ""}`}
+                        style={{
+                          borderColor: currentStep.accentColor,
+                          boxShadow: `0 12px 36px ${currentStep.glowColor}`
+                        }}
+                      >
+                        {/* LEFT SIDE: Step Icon Container */}
+                        <div className="card-left-icon-wrap" style={{ background: currentStep.gradient }}>
+                          <CurrentIcon size={24} color="#FFFFFF" strokeWidth={2.2} />
+                        </div>
+
+                        {/* MIDDLE: Content Details */}
+                        <div className="card-middle-content">
+                          <span className="card-step-tag" style={{ color: currentStep.accentColor }}>
+                            {currentStep.stepTag}
+                          </span>
+                          <h5 className="card-step-title">{currentStep.title}</h5>
+                          <p className="card-step-desc">{currentStep.description}</p>
+
+                          {/* Hackathon Special Visual Elements for Step 03 */}
+                          {currentStep.isHackathon && (
+                            <div className="journey-hackathon-block">
+                              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "6px" }}>
+                                <span style={{ fontSize: "10px", fontWeight: "800", color: "#B45309", background: "#FFFFFF", padding: "2px 8px", borderRadius: "9999px", display: "inline-flex", alignItems: "center", gap: "4px" }}>
+                                  <Award size={10} color="#D97706" /> Winner Badge 🏆
+                                </span>
+                                <span style={{ fontSize: "10px", fontWeight: "800", color: "#D97706", display: "inline-flex", alignItems: "center", gap: "3px" }}>
+                                  <Timer size={10} color="#F59E0B" /> 48H Clock ⚡
+                                </span>
+                              </div>
+                              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "6px" }}>
+                                <div style={{ display: "flex", alignItems: "center" }}>
+                                  <span style={{ width: "18px", height: "18px", borderRadius: "50%", background: "#7A42BE", color: "#FFF", fontSize: "7px", fontWeight: "800", display: "inline-flex", alignItems: "center", justifyContent: "center", border: "1px solid #FFF" }}>JS</span>
+                                  <span style={{ width: "18px", height: "18px", borderRadius: "50%", background: "#0EA5E9", color: "#FFF", fontSize: "7px", fontWeight: "800", display: "inline-flex", alignItems: "center", justifyContent: "center", border: "1px solid #FFF", marginLeft: "-4px" }}>PY</span>
+                                  <span style={{ width: "18px", height: "18px", borderRadius: "50%", background: "#10B981", color: "#FFF", fontSize: "7px", fontWeight: "800", display: "inline-flex", alignItems: "center", justifyContent: "center", border: "1px solid #FFF", marginLeft: "-4px" }}>TS</span>
+                                  <span style={{ fontSize: "9.5px", fontWeight: "700", color: "#78350F", marginLeft: "4px" }}>+4 Team</span>
+                                </div>
+                                <span style={{ fontSize: "9px", fontWeight: "800", color: "#92400E", background: "#FFFFFF", padding: "2px 6px", borderRadius: "6px", border: "1px solid #FCD34D", display: "inline-flex", alignItems: "center", gap: "3px" }}>
+                                  <Zap size={9} color="#F59E0B" /> Build • Innovate • Compete
+                                </span>
+                              </div>
+                            </div>
+                          )}
+
+                          {/* Skills Pill Tags with Staggered Entrance */}
+                          <div style={{ display: "flex", gap: "5px", flexWrap: "wrap", marginTop: "8px" }}>
+                            {currentStep.skills.map((skill, sIdx) => (
+                              <motion.span
+                                key={skill}
+                                initial={{ opacity: 0, scale: 0.8, y: 4 }}
+                                animate={{ opacity: 1, scale: 1, y: 0 }}
+                                transition={{ duration: 0.25, delay: 0.12 + sIdx * 0.05 }}
+                                className="infographic-skill-pill"
+                              >
+                                {skill}
+                              </motion.span>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* RIGHT SIDE: Overlapping Circular Number Node */}
+                        <motion.div
+                          whileHover={{ scale: 1.1, rotate: 5 }}
+                          transition={{ duration: 0.2 }}
+                          className="card-right-node-circle"
+                          style={{ background: currentStep.gradient }}
+                        >
+                          <span>{currentStep.stepNum}</span>
+                        </motion.div>
+                      </motion.div>
+                    </AnimatePresence>
+                  </div>
+
+                  {/* Animated Down Scroll Badge */}
+                  <div className="hiring-premium-scroll-indicator" style={{ width: "100%", justifyContent: "center", margin: "14px 0 0" }}>
+                    <div className="scroll-mouse-pill">
+                      <div className="scroll-wheel-dot" />
+                    </div>
+                    <span className="scroll-indicator-label">SCROLL DOWN TO PROGRESS ({activeStepIndex + 1}/5)</span>
+                    <ChevronDown size={14} className="scroll-chevron-bounce" />
+                  </div>
+
+                </div>
+
+                {/* Right Column: Floating Frosted Cards & Precision SVG Dial/Leader System */}
+                <div className="hiring-dial-stage">
+
+                  {/* Precision SVG Leader Lines & Sunburst Dial (Unchanged original 560px x 560px r=280 dial dimensions) */}
+                  <div className="hiring-svg-dial-wrapper">
+                    <svg width="700" height="560" viewBox="-260 -60 700 560" fill="none" style={{ overflow: "visible" }}>
+
+                      {/* 3 Horizontal Leader Lines extending from Left Stats */}
+                      <line x1="-260" y1="10" x2="35" y2="10" stroke="#CBD5E1" strokeWidth="1" />
+                      <circle cx="35" cy="10" r="4.5" fill="#5B2E91" stroke="#FFFFFF" strokeWidth="2" />
+
+                      <line x1="-260" y1="220" x2="-60" y2="220" stroke="#CBD5E1" strokeWidth="1" />
+                      <circle cx="-60" cy="220" r="4.5" fill="#5B2E91" stroke="#FFFFFF" strokeWidth="2" />
+
+                      <line x1="-260" y1="430" x2="35" y2="430" stroke="#CBD5E1" strokeWidth="1" />
+                      <circle cx="35" cy="430" r="4.5" fill="#5B2E91" stroke="#FFFFFF" strokeWidth="2" />
+
+                      {/* Outer Dotted Guide Arc (r=280 circle kept UNCHANGED) */}
+                      <circle cx="220" cy="220" r="280" stroke="#7A42BE" strokeWidth="1.5" strokeDasharray="4 4" strokeOpacity="0.6" />
+
+                      {/* Dense Radial Spokes Ring (140 fine spokes rotating at a slow, ultra-premium speed) */}
+                      <motion.g
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+                        style={{ transformOrigin: "220px 220px" }}
+                      >
+                        {Array.from({ length: 140 }).map((_, i) => {
+                          const angle = (i * 2.57) - 90;
+                          const rad = (angle * Math.PI) / 180;
+                          const x1 = 220 + Math.cos(rad) * 180;
+                          const y1 = 220 + Math.sin(rad) * 180;
+                          const x2 = 220 + Math.cos(rad) * 265;
+                          const y2 = 220 + Math.sin(rad) * 265;
+                          return (
+                            <line
+                              key={i}
+                              x1={x1}
+                              y1={y1}
+                              x2={x2}
+                              y2={y2}
+                              stroke={i % 4 === 0 ? "#5B2E91" : "#A78BFA"}
+                              strokeWidth={i % 4 === 0 ? "2.4" : "1.2"}
+                              strokeOpacity={i % 4 === 0 ? "0.9" : "0.45"}
+                            />
+                          );
+                        })}
+                      </motion.g>
+                    </svg>
+
+                    {/* Central Ambient Glowing Purple Orb */}
+                    <div className="hiring-ambient-orb" />
+                  </div>
+
+                  {/* 4 Stacked Frosted Cards with Scroll Reveal Cascade */}
+                  <div className="hiring-cards-list">
+
+                    {/* Card 1 */}
+                    <motion.div
+                      initial={{ opacity: 0, x: 30, scale: 0.95 }}
+                      whileInView={{ opacity: 1, x: 0, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
+                      whileHover={{ scale: 1.03, x: -4 }}
+                      className="hiring-frosted-card"
+                    >
+                      <div>
+                        <div style={{ fontSize: "16px", fontWeight: "800", color: "#0B1F3A" }}>800+ Companies</div>
+                        <div style={{ fontSize: "12px", color: "#64748B", fontWeight: "600" }}>Hiring Partners</div>
+                      </div>
+                      <div className="hiring-card-icon-wrap">
+                        <Building2 size={20} color="#FFFFFF" />
+                      </div>
+                    </motion.div>
+
+                    {/* Card 2 */}
+                    <motion.div
+                      initial={{ opacity: 0, x: 30, scale: 0.95 }}
+                      whileInView={{ opacity: 1, x: 0, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+                      whileHover={{ scale: 1.03, x: -4 }}
+                      className="hiring-frosted-card"
+                    >
+                      <div>
+                        <div style={{ fontSize: "16px", fontWeight: "800", color: "#0B1F3A" }}>25,000+ Placed</div>
+                        <div style={{ fontSize: "12px", color: "#64748B", fontWeight: "600" }}>Learners Career Growth</div>
+                      </div>
+                      <div className="hiring-card-icon-wrap">
+                        <Users size={20} color="#FFFFFF" />
+                      </div>
+                    </motion.div>
+
+                    {/* Card 3 */}
+                    <motion.div
+                      initial={{ opacity: 0, x: 30, scale: 0.95 }}
+                      whileInView={{ opacity: 1, x: 0, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
+                      whileHover={{ scale: 1.03, x: -4 }}
+                      className="hiring-frosted-card"
+                    >
+                      <div>
+                        <div style={{ fontSize: "16px", fontWeight: "800", color: "#0B1F3A" }}>95% Placement</div>
+                        <div style={{ fontSize: "12px", color: "#64748B", fontWeight: "600" }}>Impact Success Rate</div>
+                      </div>
+                      <div className="hiring-card-icon-wrap">
+                        <Award size={20} color="#FFFFFF" />
+                      </div>
+                    </motion.div>
+
+                    {/* Card 4 */}
+                    <motion.div
+                      initial={{ opacity: 0, x: 30, scale: 0.95 }}
+                      whileInView={{ opacity: 1, x: 0, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
+                      whileHover={{ scale: 1.03, x: -4 }}
+                      className="hiring-frosted-card"
+                    >
+                      <div>
+                        <div style={{ fontSize: "16px", fontWeight: "800", color: "#0B1F3A" }}>32 LPA Highest</div>
+                        <div style={{ fontSize: "12px", color: "#64748B", fontWeight: "600" }}>Annual CTC Package</div>
+                      </div>
+                      <div className="hiring-card-icon-wrap">
+                        <TrendingUp size={20} color="#FFFFFF" />
+                      </div>
+                    </motion.div>
+
+                  </div>
+
+                </div>
+
+                {/* Bottom Dream Job Callout Pill */}
+                <div style={{ textAlign: "center" }}>
+                  <div className="hiring-bottom-pill">
+                    <ShieldCheck size={18} color="#5B2E91" style={{ flexShrink: 0 }} />
+                    <span>Your dream job is closer than you think. <strong style={{ color: "#5B2E91", fontWeight: "700" }}>We help you get there!</strong></span>
+                  </div>
+                </div>
+
               </div>
 
             </div>
-
-            {/* Right Column: Floating Frosted Cards & Precision SVG Dial/Leader System */}
-            <div className="hiring-dial-stage">
-
-              {/* Precision SVG Leader Lines & Sunburst Dial (Unchanged original 560px x 560px r=280 dial dimensions) */}
-              <div className="hiring-svg-dial-wrapper">
-                <svg width="700" height="560" viewBox="-260 -60 700 560" fill="none" style={{ overflow: "visible" }}>
-
-                  {/* 3 Horizontal Leader Lines extending from Left Stats */}
-                  <line x1="-260" y1="10" x2="35" y2="10" stroke="#CBD5E1" strokeWidth="1" />
-                  <circle cx="35" cy="10" r="4.5" fill="#5B2E91" stroke="#FFFFFF" strokeWidth="2" />
-
-                  <line x1="-260" y1="220" x2="-60" y2="220" stroke="#CBD5E1" strokeWidth="1" />
-                  <circle cx="-60" cy="220" r="4.5" fill="#5B2E91" stroke="#FFFFFF" strokeWidth="2" />
-
-                  <line x1="-260" y1="430" x2="35" y2="430" stroke="#CBD5E1" strokeWidth="1" />
-                  <circle cx="35" cy="430" r="4.5" fill="#5B2E91" stroke="#FFFFFF" strokeWidth="2" />
-
-                  {/* Outer Dotted Guide Arc (r=280 circle kept UNCHANGED) */}
-                  <circle cx="220" cy="220" r="280" stroke="#7A42BE" strokeWidth="1.5" strokeDasharray="4 4" strokeOpacity="0.6" />
-
-                  {/* Dense Radial Spokes Ring (140 fine spokes rotating at a slow, ultra-premium speed) */}
-                  <motion.g
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-                    style={{ transformOrigin: "220px 220px" }}
-                  >
-                    {Array.from({ length: 140 }).map((_, i) => {
-                      const angle = (i * 2.57) - 90;
-                      const rad = (angle * Math.PI) / 180;
-                      const x1 = 220 + Math.cos(rad) * 180;
-                      const y1 = 220 + Math.sin(rad) * 180;
-                      const x2 = 220 + Math.cos(rad) * 265;
-                      const y2 = 220 + Math.sin(rad) * 265;
-                      return (
-                        <line
-                          key={i}
-                          x1={x1}
-                          y1={y1}
-                          x2={x2}
-                          y2={y2}
-                          stroke={i % 4 === 0 ? "#5B2E91" : "#A78BFA"}
-                          strokeWidth={i % 4 === 0 ? "2.4" : "1.2"}
-                          strokeOpacity={i % 4 === 0 ? "0.9" : "0.45"}
-                        />
-                      );
-                    })}
-                  </motion.g>
-                </svg>
-
-                {/* Central Ambient Glowing Purple Orb */}
-                <div className="hiring-ambient-orb" />
-              </div>
-
-              {/* 4 Stacked Frosted Cards */}
-              <div className="hiring-cards-list">
-
-                {/* Card 1 */}
-                <div className="hiring-frosted-card">
-                  <div>
-                    <div style={{ fontSize: "16px", fontWeight: "800", color: "#0B1F3A" }}>800+ Companies</div>
-                    <div style={{ fontSize: "12px", color: "#64748B", fontWeight: "600" }}>Hiring Partners</div>
-                  </div>
-                  <div className="hiring-card-icon-wrap">
-                    <Building2 size={20} color="#FFFFFF" />
-                  </div>
-                </div>
-
-                {/* Card 2 */}
-                <div className="hiring-frosted-card">
-                  <div>
-                    <div style={{ fontSize: "16px", fontWeight: "800", color: "#0B1F3A" }}>25,000+ Placed</div>
-                    <div style={{ fontSize: "12px", color: "#64748B", fontWeight: "600" }}>Learners Career Growth</div>
-                  </div>
-                  <div className="hiring-card-icon-wrap">
-                    <Users size={20} color="#FFFFFF" />
-                  </div>
-                </div>
-
-                {/* Card 3 */}
-                <div className="hiring-frosted-card">
-                  <div>
-                    <div style={{ fontSize: "16px", fontWeight: "800", color: "#0B1F3A" }}>95% Placement</div>
-                    <div style={{ fontSize: "12px", color: "#64748B", fontWeight: "600" }}>Impact Success Rate</div>
-                  </div>
-                  <div className="hiring-card-icon-wrap">
-                    <Award size={20} color="#FFFFFF" />
-                  </div>
-                </div>
-
-                {/* Card 4 */}
-                <div className="hiring-frosted-card">
-                  <div>
-                    <div style={{ fontSize: "16px", fontWeight: "800", color: "#0B1F3A" }}>32 LPA Highest</div>
-                    <div style={{ fontSize: "12px", color: "#64748B", fontWeight: "600" }}>Annual CTC Package</div>
-                  </div>
-                  <div className="hiring-card-icon-wrap">
-                    <TrendingUp size={20} color="#FFFFFF" />
-                  </div>
-                </div>
-
-              </div>
-
-            </div>
-
           </div>
         </div>
-
-        {/* Bottom Dream Job Callout Pill */}
-        <div style={{ textAlign: "center" }}>
-          <div className="hiring-bottom-pill">
-            <ShieldCheck size={18} color="#5B2E91" style={{ flexShrink: 0 }} />
-            <span>Your dream job is closer than you think. <strong style={{ color: "#5B2E91", fontWeight: "700" }}>We help you get there!</strong></span>
-          </div>
-        </div>
-
       </div>
 
       <style jsx global>{`
@@ -388,9 +675,8 @@ export default function HiringPartnersSection() {
           border: 1px solid #EDE9FE;
           border-radius: 28px;
           padding: 48px 40px;
-          margin-bottom: 40px;
+          margin-bottom: 0;
           position: relative;
-          overflow: hidden;
           box-shadow: 0 12px 36px rgba(91, 46, 145, 0.04);
         }
 
@@ -405,6 +691,8 @@ export default function HiringPartnersSection() {
           -webkit-backdrop-filter: blur(5px);
           z-index: 5;
           pointer-events: none;
+          border-top-right-radius: 28px;
+          border-bottom-right-radius: 28px;
         }
 
         .hiring-card-top-bar {
@@ -430,33 +718,24 @@ export default function HiringPartnersSection() {
           position: relative;
         }
 
-        .hiring-stats-col {
-          display: flex;
-          flex-direction: column;
-          gap: 24px;
+        .hiring-section-pin-container {
           position: relative;
-          z-index: 10;
+          min-height: auto;
+          padding: clamp(32px, 4vw, 48px) 0 0;
+          background: #FFFFFF;
         }
 
-        .hiring-scroll-box {
-          max-height: 490px;
-          overflow-y: auto;
-          padding-right: 16px;
-          scrollbar-width: thin;
-          scrollbar-color: #7A42BE #F1F5F9;
-          scroll-behavior: smooth;
+        .journey-pinned-stage {
+          position: relative;
+          height: auto;
+          padding: 0;
+          margin: 0;
         }
 
-        .hiring-scroll-box::-webkit-scrollbar {
-          width: 6px;
-        }
-        .hiring-scroll-box::-webkit-scrollbar-track {
-          background: #F1F5F9;
-          border-radius: 8px;
-        }
-        .hiring-scroll-box::-webkit-scrollbar-thumb {
-          background: linear-gradient(180deg, #7A42BE 0%, #5B2E91 100%);
-          border-radius: 8px;
+        .journey-sticky-wrapper {
+          position: relative;
+          top: auto;
+          width: 100%;
         }
 
         .hiring-scroll-header {
@@ -471,104 +750,183 @@ export default function HiringPartnersSection() {
           margin-bottom: 8px;
         }
 
-        .journey-timeline-list {
-          display: flex;
-          flex-direction: column;
-          gap: 16px;
+        .single-card-story-viewport {
+          width: 100%;
+          padding-right: 28px;
           position: relative;
+          min-height: 220px;
+          box-sizing: border-box;
         }
 
-        .journey-card-item {
+        .infographic-single-pill-card {
           display: flex;
-          align-items: flex-start;
-          gap: 16px;
+          align-items: center;
+          justify-content: space-between;
           background: #FFFFFF;
-          border: 1px solid #EDE9FE;
-          border-radius: 20px;
-          padding: 18px 20px;
+          border: 1.5px solid #EDE9FE;
+          border-radius: 28px;
+          padding: 18px 48px 18px 20px;
           position: relative;
-          box-shadow: 0 4px 16px rgba(91, 46, 145, 0.04);
-          transition: all 0.25s ease;
+          width: 100%;
+          min-height: 220px;
+          height: 220px;
+          box-sizing: border-box;
+          transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .journey-card-item:hover {
-          border-color: #C084FC;
-          box-shadow: 0 10px 24px rgba(91, 46, 145, 0.1);
-          transform: translateY(-2px);
+        .infographic-hackathon-pill {
+          background: linear-gradient(180deg, #FFFDF5 0%, #FFFFFF 100%);
+          border-color: #FDE68A !important;
         }
 
-        .journey-card-connector {
-          position: absolute;
-          left: 39px;
-          top: 60px;
-          bottom: -20px;
-          width: 2px;
-          background: repeating-linear-gradient(
-            to bottom,
-            #7A42BE 0,
-            #7A42BE 4px,
-            transparent 4px,
-            transparent 8px
-          );
-          opacity: 0.5;
-          z-index: 1;
-          pointer-events: none;
-        }
-
-        .journey-icon-wrap {
-          width: 44px;
-          height: 44px;
-          border-radius: 14px;
+        .card-left-icon-wrap {
+          width: 48px;
+          height: 48px;
+          border-radius: 16px;
           display: flex;
           align-items: center;
           justify-content: center;
           flex-shrink: 0;
-          position: relative;
-          z-index: 2;
+          margin-right: 16px;
+          box-shadow: 0 6px 16px rgba(11, 31, 58, 0.12);
         }
 
-        .journey-card-body {
+        .card-middle-content {
           display: flex;
           flex-direction: column;
-          gap: 4px;
+          gap: 3px;
+          flex: 1;
         }
 
-        .journey-card-tag {
-          display: inline-block;
-          font-size: 10.5px;
+        .card-step-tag {
+          font-size: 10px;
           font-weight: 800;
-          padding: 2px 8px;
-          border-radius: 9999px;
-          background: #FAF8FF;
-          border: 1px solid;
-          letter-spacing: 0.02em;
+          letter-spacing: 0.04em;
           text-transform: uppercase;
-          width: fit-content;
         }
 
-        .journey-card-title {
+        .card-step-title {
           font-family: var(--font-montserrat), sans-serif;
           font-size: 15.5px;
           font-weight: 800;
           color: #0B1F3A;
-          margin: 2px 0 0;
+          margin: 1px 0 2px;
+          letter-spacing: -0.01em;
         }
 
-        .journey-card-desc {
+        .card-step-desc {
           font-size: 12px;
           color: #64748B;
-          line-height: 1.55;
+          line-height: 1.5;
           margin: 0;
           font-weight: 450;
         }
 
-        .hiring-scroll-indicator {
-          text-align: center;
-          padding: 10px 0;
-          font-size: 11.5px;
-          font-weight: 700;
+        .card-right-node-circle {
+          position: absolute;
+          right: -22px;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 46px;
+          height: 46px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #FFFFFF;
+          font-family: var(--font-montserrat), sans-serif;
+          font-size: 16px;
+          font-weight: 800;
+          border: 3px solid #FFFFFF;
+          box-shadow: 0 4px 16px rgba(11, 31, 58, 0.18);
+          z-index: 4;
+        }
+
+        .infographic-skill-pill {
+          font-size: 10px;
+          font-weight: 600;
+          color: #475569;
+          background: #F8FAFC;
+          border: 1px solid #E2E8F0;
+          padding: 2px 7px;
+          border-radius: 6px;
+        }
+
+        .journey-hackathon-block {
+          width: 100%;
+          background: #FEF3C7;
+          border: 1px solid #FDE68A;
+          border-radius: 12px;
+          padding: 8px 10px;
+          margin-top: 6px;
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
+        }
+
+        .hiring-premium-scroll-indicator {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 9px;
+          padding: 8px 16px;
+          margin-top: 14px;
+          margin-bottom: 6px;
+          width: 100%;
+          background: linear-gradient(135deg, rgba(243, 232, 255, 0.9) 0%, rgba(238, 242, 255, 0.9) 100%);
+          border: 1px solid #DDD6FE;
+          border-radius: 9999px;
+          box-shadow: 0 4px 14px rgba(91, 46, 145, 0.06);
+          position: sticky;
+          bottom: 0;
+          backdrop-filter: blur(8px);
+          -webkit-backdrop-filter: blur(8px);
+          z-index: 5;
+        }
+
+        .scroll-mouse-pill {
+          width: 13px;
+          height: 20px;
+          border: 1.8px solid #7A42BE;
+          border-radius: 9999px;
+          position: relative;
+          display: flex;
+          justify-content: center;
+          padding-top: 2px;
+          flex-shrink: 0;
+        }
+
+        .scroll-wheel-dot {
+          width: 3px;
+          height: 5px;
+          background: #7A42BE;
+          border-radius: 9999px;
+          animation: mouseWheelScroll 1.6s infinite ease-in-out;
+        }
+
+        @keyframes mouseWheelScroll {
+          0% { opacity: 1; transform: translateY(0); }
+          60% { opacity: 0.2; transform: translateY(7px); }
+          100% { opacity: 0; transform: translateY(9px); }
+        }
+
+        .scroll-indicator-label {
+          font-size: 10.5px;
+          font-weight: 800;
+          color: #5B2E91;
+          letter-spacing: 0.05em;
+          text-transform: uppercase;
+        }
+
+        .scroll-chevron-bounce {
           color: #7A42BE;
-          letter-spacing: 0.03em;
+          animation: chevronBounce 1.5s infinite ease-in-out;
+          flex-shrink: 0;
+        }
+
+        @keyframes chevronBounce {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(4px); }
         }
 
         .hiring-dial-stage {

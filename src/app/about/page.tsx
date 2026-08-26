@@ -22,7 +22,7 @@ export default function AboutPage() {
   return (
     <div className="landing-page-container light-theme">
       <Header />
-      <main style={{ paddingTop: "72px" }}>
+      <main>
         <AboutHero />
         <AboutVisionMission />
         <AboutManifesto />

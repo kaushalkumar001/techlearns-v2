@@ -20,7 +20,7 @@ export default function HomeClient() {
     <div className="landing-page-container light-theme">
       <Header />
 
-      <main style={{ paddingTop: "72px" }}>
+      <main>
         <HeroSection />
         <HiringPartnersSection />
         <StepsSection />

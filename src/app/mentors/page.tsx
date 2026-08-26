@@ -55,8 +55,8 @@ export default function MentorsPage() {
   return (
     <>
       <Header />
-      <main style={{ paddingTop: "120px" }}>
-        <div className="container">
+      <main>
+        <div className="container" style={{ paddingTop: "24px" }}>
           
           {/* Header */}
           <div style={{ textAlign: "center", marginBottom: "60px" }}>

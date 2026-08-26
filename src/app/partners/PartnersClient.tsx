@@ -19,10 +19,10 @@ export default function PartnersClient() {
   return (
     <>
       <Header />
-      <main style={{ paddingTop: "120px" }}>
+      <main>
 
         {/* Hero Section */}
-        <section style={{ padding: "0 0 80px" }}>
+        <section style={{ padding: "24px 0 80px" }}>
           <div className="container" style={{ textAlign: "center" }}>
             <span style={{ color: "#CB6CE6", fontSize: "12px", fontWeight: 700, fontFamily: "monospace", letterSpacing: "0.15em", textTransform: "uppercase" }}>
               PARTNER WITH TECHLEARNS

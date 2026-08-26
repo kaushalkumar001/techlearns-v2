@@ -189,7 +189,7 @@ export default function HeroSection() {
       style={{
         position: "relative",
         background: "linear-gradient(180deg, #FBF9FF 0%, #F5F0FF 50%, #FAF8FF 100%)",
-        padding: "clamp(24px, 4vw, 40px) 0 clamp(32px, 5vw, 48px)",
+        padding: "clamp(12px, 2vw, 20px) 0 clamp(32px, 5vw, 48px)",
         overflow: "hidden"
       }}
     >
@@ -416,26 +416,6 @@ export default function HeroSection() {
                 </div>
               </motion.div>
             </AnimatePresence>
-
-            {/* Carousel Navigation Dots */}
-            <div className="hero-carousel-dots">
-              {COURSE_STATS.map((course, idx) => {
-                const isVisible = [
-                  activeOffset % COURSE_STATS.length,
-                  (activeOffset + 1) % COURSE_STATS.length,
-                  (activeOffset + 2) % COURSE_STATS.length
-                ].includes(idx);
-                return (
-                  <button
-                    key={course.id}
-                    onClick={() => setActiveOffset(idx)}
-                    title={`Show ${course.title}`}
-                    aria-label={`Carousel slide ${idx + 1}`}
-                    className={`hero-dot ${isVisible ? "hero-dot-active" : ""}`}
-                  />
-                );
-              })}
-            </div>
 
           </motion.div>
 

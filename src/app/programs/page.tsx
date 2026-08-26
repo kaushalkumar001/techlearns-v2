@@ -107,10 +107,10 @@ export default function ProgramsPage() {
   return (
     <>
       <Header />
-      <main style={{ paddingTop: "120px" }}>
+      <main>
 
         {/* Hero */}
-        <section style={{ padding: "0 0 80px" }}>
+        <section style={{ padding: "24px 0 80px" }}>
           <div className="container" style={{ textAlign: "center" }}>
             <span style={{ color: "#CB6CE6", fontSize: "12px", fontWeight: 700, fontFamily: "monospace", letterSpacing: "0.1em", textTransform: "uppercase" }}>Flagship Career Tracks</span>
             <h1 style={{ fontSize: "48px", color: "var(--foreground)", marginTop: "12px", marginBottom: "20px", lineHeight: "1.15" }}>

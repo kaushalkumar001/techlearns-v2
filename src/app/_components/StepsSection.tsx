@@ -2,58 +2,58 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { FileText, GraduationCap, Code2, Award, Briefcase, Sparkles, ChevronRight } from "lucide-react";
+import { FileText, GraduationCap, Code2, Award, Briefcase, Sparkles } from "lucide-react";
 
 const steps = [
   {
-    stepNumber: "Step 01",
+    stepNumber: "01",
     stepTag: "Step 01 — Enroll",
-    title: "Enroll",
+    title: "ENROLL",
     description: "Choose your program and complete a simple enrollment process.",
     icon: FileText,
-    gradient: "linear-gradient(135deg, #7A42BE 0%, #5B2E91 100%)",
-    accentColor: "#7A42BE",
-    glowColor: "rgba(122, 66, 190, 0.25)"
+    accentColor: "#5B2E91",
+    secondaryColor: "#7A42BE",
+    glowColor: "rgba(91, 46, 145, 0.18)"
   },
   {
-    stepNumber: "Step 02",
+    stepNumber: "02",
     stepTag: "Step 02 — Learn",
-    title: "Learn",
+    title: "LEARN",
     description: "Attend live classes with industry experts and access learning materials.",
     icon: GraduationCap,
-    gradient: "linear-gradient(135deg, #6366F1 0%, #4F46E5 100%)",
-    accentColor: "#6366F1",
-    glowColor: "rgba(99, 102, 241, 0.25)"
+    accentColor: "#3B82F6",
+    secondaryColor: "#60A5FA",
+    glowColor: "rgba(59, 130, 246, 0.18)"
   },
   {
-    stepNumber: "Step 03",
+    stepNumber: "03",
     stepTag: "Step 03 — Practice",
-    title: "Practice",
+    title: "PRACTICE",
     description: "Work on real-world projects and hands-on assignments.",
     icon: Code2,
-    gradient: "linear-gradient(135deg, #0EA5E9 0%, #0284C7 100%)",
     accentColor: "#0EA5E9",
-    glowColor: "rgba(14, 165, 233, 0.25)"
+    secondaryColor: "#38BDF8",
+    glowColor: "rgba(14, 165, 233, 0.18)"
   },
   {
-    stepNumber: "Step 04",
+    stepNumber: "04",
     stepTag: "Step 04 — Get Certified",
-    title: "Get Certified",
+    title: "GET CERTIFIED",
     description: "Earn industry-recognized certificates upon completion.",
     icon: Award,
-    gradient: "linear-gradient(135deg, #F59E0B 0%, #D97706 100%)",
-    accentColor: "#F59E0B",
-    glowColor: "rgba(245, 158, 11, 0.25)"
+    accentColor: "#D97706",
+    secondaryColor: "#F59E0B",
+    glowColor: "rgba(217, 119, 6, 0.18)"
   },
   {
-    stepNumber: "Step 05",
+    stepNumber: "05",
     stepTag: "Step 05 — Get Placed",
-    title: "Get Placed",
+    title: "GET PLACED",
     description: "Apply for jobs with our dedicated placement support.",
     icon: Briefcase,
-    gradient: "linear-gradient(135deg, #10B981 0%, #059669 100%)",
     accentColor: "#10B981",
-    glowColor: "rgba(16, 185, 129, 0.25)"
+    secondaryColor: "#34D399",
+    glowColor: "rgba(16, 185, 129, 0.18)"
   }
 ];
 
@@ -72,7 +72,7 @@ export default function StepsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          style={{ textAlign: "center", maxWidth: "780px", margin: "0 auto 48px" }}
+          style={{ textAlign: "center", maxWidth: "780px", margin: "0 auto 56px" }}
         >
           <div className="steps-pill-tag">
             <Sparkles size={14} color="#5B2E91" />
@@ -87,55 +87,114 @@ export default function StepsSection() {
           </p>
         </motion.div>
 
-        {/* Horizontal Timeline Container */}
-        <div className="steps-timeline-stage">
+        {/* Infographic Connected Roadmap Timeline (Desktop Layout matching Reference Infographic img1) */}
+        <div className="infographic-roadmap-stage">
 
-          {/* Dotted Glowing Connecting Line across steps (Desktop) */}
-          <div className="steps-connector-line">
-            <motion.div
-              className="steps-connector-pulse"
-              animate={{ x: ["0%", "100%"] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            />
-          </div>
+          {/* Dotted Wave / Straight Connection Line across centers */}
+          <div className="infographic-horizontal-line" />
 
-          {/* 5 Step Cards */}
-          <div className="steps-grid">
+          {/* 5 Alternating Circular Nodes Row */}
+          <div className="infographic-nodes-row">
             {steps.map((step, idx) => {
-              const IconComponent = step.icon;
+              const isTop = idx % 2 === 0; // Steps 01, 03, 05 are TOP; Steps 02, 04 are BOTTOM
+              const IconComp = step.icon;
+
               return (
-                <motion.div
+                <div
                   key={step.stepNumber}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: idx * 0.12, ease: [0.16, 1, 0.3, 1] }}
-                  whileHover={{ y: -8, transition: { duration: 0.25 } }}
-                  className="step-card-item"
+                  className={`infographic-node-column ${isTop ? "is-top" : "is-bottom"}`}
                 >
-                  {/* Step Badge Tag */}
-                  <div className="step-tag-header">
-                    <span className="step-tag-pill" style={{ color: step.accentColor, borderColor: step.glowColor }}>
-                      {step.stepTag}
-                    </span>
+
+                  {/* TOP SLOT (Content for Steps 01, 03, 05) */}
+                  <div className="infographic-slot slot-top">
+                    {isTop && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -24 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                        className="infographic-content-card"
+                      >
+                        <div className="infographic-card-header">
+                          <IconComp size={16} color={step.accentColor} />
+                          <span className="infographic-card-title" style={{ color: step.accentColor }}>
+                            {step.title}
+                          </span>
+                        </div>
+                        <p className="infographic-card-desc">{step.description}</p>
+
+                        {/* Connecting Dot pointing down to node */}
+                        <div className="infographic-dot-connector dot-bottom" style={{ background: step.accentColor }} />
+                      </motion.div>
+                    )}
                   </div>
 
-                  {/* Icon Node Container */}
-                  <div className="step-icon-wrapper" style={{ background: step.gradient, boxShadow: `0 8px 20px ${step.glowColor}` }}>
-                    <IconComponent size={24} color="#FFFFFF" strokeWidth={2.2} />
+                  {/* CENTER CIRCULAR NODE DISK */}
+                  <div className="infographic-circle-center-wrap">
+
+                    {/* Outer Dashed Orbit Circle Ring */}
+                    <div
+                      className="infographic-orbit-ring"
+                      style={{ borderColor: step.accentColor }}
+                    />
+
+                    {/* Main White Circular Node Disk */}
+                    <motion.div
+                      whileHover={{ scale: 1.08 }}
+                      transition={{ duration: 0.25 }}
+                      className="infographic-circle-disk"
+                      style={{
+                        borderColor: step.accentColor,
+                        boxShadow: `0 10px 30px ${step.glowColor}`
+                      }}
+                    >
+                      {/* Triangular Pointer Arrow */}
+                      <div
+                        className={`infographic-pointer-arrow ${isTop ? "pointer-top" : "pointer-bottom"}`}
+                        style={{
+                          borderBottomColor: isTop ? step.accentColor : "transparent",
+                          borderTopColor: !isTop ? step.accentColor : "transparent"
+                        }}
+                      />
+
+                      {/* Step Number inside Circle */}
+                      <div className="infographic-node-num">
+                        {step.stepNumber}
+                      </div>
+
+                      {/* Sub-label "STEP" inside Circle */}
+                      <div className="infographic-node-sub" style={{ color: step.accentColor }}>
+                        STEP
+                      </div>
+                    </motion.div>
+
                   </div>
 
-                  {/* Step Content */}
-                  <h3 className="step-card-title">{step.title}</h3>
-                  <p className="step-card-desc">{step.description}</p>
+                  {/* BOTTOM SLOT (Content for Steps 02, 04) */}
+                  <div className="infographic-slot slot-bottom">
+                    {!isTop && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 24 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                        className="infographic-content-card"
+                      >
+                        {/* Connecting Dot pointing up to node */}
+                        <div className="infographic-dot-connector dot-top" style={{ background: step.accentColor }} />
 
-                  {/* Directional indicator for desktop except last card */}
-                  {idx < steps.length - 1 && (
-                    <div className="step-card-arrow" aria-hidden="true">
-                      <ChevronRight size={18} color="#94A3B8" />
-                    </div>
-                  )}
-                </motion.div>
+                        <div className="infographic-card-header">
+                          <IconComp size={16} color={step.accentColor} />
+                          <span className="infographic-card-title" style={{ color: step.accentColor }}>
+                            {step.title}
+                          </span>
+                        </div>
+                        <p className="infographic-card-desc">{step.description}</p>
+                      </motion.div>
+                    )}
+                  </div>
+
+                </div>
               );
             })}
           </div>
@@ -157,8 +216,8 @@ export default function StepsSection() {
 
       <style jsx global>{`
         .steps-section-wrapper {
-          padding: clamp(48px, 6vw, 72px) 0;
-          background: linear-gradient(180deg, #FAF9FF 0%, #FFFFFF 50%, #F8FAFC 100%);
+          padding: clamp(48px, 6vw, 80px) 0;
+          background: linear-gradient(180deg, #FFFFFF 0%, #FAF9FF 50%, #FFFFFF 100%);
           position: relative;
           overflow: hidden;
           border-top: 1px solid #EDE9FE;
@@ -210,18 +269,21 @@ export default function StepsSection() {
           margin: 0;
         }
 
-        .steps-timeline-stage {
+        /* Infographic Stage Layout */
+        .infographic-roadmap-stage {
           position: relative;
-          margin-bottom: 48px;
+          margin: 40px 0 56px;
+          padding: 20px 0;
         }
 
-        /* Glowing Connector Line (Desktop) */
-        .steps-connector-line {
+        /* Horizontal Center Dotted Line */
+        .infographic-horizontal-line {
           position: absolute;
-          top: 86px;
-          left: 10%;
-          right: 10%;
-          height: 3px;
+          top: 50%;
+          left: 6%;
+          right: 6%;
+          height: 2px;
+          transform: translateY(-50%);
           background: repeating-linear-gradient(
             to right,
             #CBD5E1 0,
@@ -230,115 +292,189 @@ export default function StepsSection() {
             transparent 16px
           );
           z-index: 1;
-          pointer-events: none;
         }
 
-        .steps-connector-pulse {
-          position: absolute;
-          top: -2px;
-          left: 0;
-          width: 80px;
-          height: 7px;
-          background: linear-gradient(90deg, rgba(122, 66, 190, 0) 0%, #7A42BE 50%, rgba(122, 66, 190, 0) 100%);
-          border-radius: 4px;
-          box-shadow: 0 0 12px #7A42BE;
-        }
-
-        /* 5 Connected Step Cards Grid */
-        .steps-grid {
+        .infographic-nodes-row {
           display: grid;
           grid-template-columns: repeat(5, 1fr);
-          gap: 20px;
+          gap: 16px;
           position: relative;
           z-index: 2;
         }
 
-        .step-card-item {
-          background: rgba(255, 255, 255, 0.95);
-          backdrop-filter: blur(16px);
-          -webkit-backdrop-filter: blur(16px);
-          border: 1px solid #EDE9FE;
-          border-radius: 24px;
-          padding: 24px 20px;
+        .infographic-node-column {
           display: flex;
           flex-direction: column;
           align-items: center;
+          position: relative;
+        }
+
+        /* Slots for Alternating Content Cards */
+        .infographic-slot {
+          min-height: 140px;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
+          align-items: center;
+          width: 100%;
+        }
+
+        .slot-top {
+          justify-content: flex-end;
+          padding-bottom: 24px;
+        }
+
+        .slot-bottom {
+          justify-content: flex-start;
+          padding-top: 24px;
+        }
+
+        /* Text Content Cards */
+        .infographic-content-card {
+          background: #FFFFFF;
+          border: 1px solid #E2E8F0;
+          border-radius: 16px;
+          padding: 14px 16px;
           text-align: center;
           position: relative;
-          box-shadow: 0 10px 30px rgba(11, 31, 58, 0.04);
-          transition: all 0.3s ease;
+          box-shadow: 0 8px 24px rgba(11, 31, 58, 0.05);
+          max-width: 220px;
+          width: 100%;
+          box-sizing: border-box;
+          transition: all 0.25s ease;
         }
 
-        .step-card-item:hover {
-          border-color: #C084FC;
-          box-shadow: 0 18px 40px rgba(91, 46, 145, 0.12);
+        .infographic-content-card:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 14px 32px rgba(91, 46, 145, 0.1);
+          border-color: #CBD5E1;
         }
 
-        .step-tag-header {
-          margin-bottom: 16px;
+        .infographic-card-header {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 6px;
+          margin-bottom: 6px;
         }
 
-        .step-tag-pill {
-          display: inline-block;
-          font-size: 11px;
+        .infographic-card-title {
+          font-family: var(--font-montserrat), sans-serif;
+          font-size: 13px;
           font-weight: 800;
-          padding: 4px 10px;
-          border-radius: 9999px;
-          background: #FFFFFF;
-          border: 1px solid;
-          letter-spacing: 0.02em;
+          letter-spacing: 0.04em;
           text-transform: uppercase;
         }
 
-        .step-icon-wrapper {
-          width: 58px;
-          height: 58px;
-          border-radius: 18px;
+        .infographic-card-desc {
+          font-size: 11.5px;
+          color: #64748B;
+          line-height: 1.5;
+          margin: 0;
+        }
+
+        /* Connecting Dots */
+        .infographic-dot-connector {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+          box-shadow: 0 0 8px currentColor;
+        }
+
+        .dot-bottom {
+          bottom: -14px;
+        }
+
+        .dot-top {
+          top: -14px;
+        }
+
+        /* Center Circle Container */
+        .infographic-circle-center-wrap {
+          position: relative;
+          width: 120px;
+          height: 120px;
           display: flex;
           align-items: center;
           justify-content: center;
-          margin-bottom: 18px;
-          transition: transform 0.3s ease;
-          position: relative;
-          z-index: 3;
+          margin: 6px 0;
+          flex-shrink: 0;
         }
 
-        .step-card-item:hover .step-icon-wrapper {
-          transform: scale(1.08) rotate(3deg);
-        }
-
-        .step-card-title {
-          font-family: var(--font-montserrat), sans-serif;
-          font-size: 17px;
-          font-weight: 800;
-          color: #0B1F3A;
-          margin-bottom: 10px;
-          letter-spacing: -0.01em;
-        }
-
-        .step-card-desc {
-          font-size: 12.5px;
-          color: #64748B;
-          line-height: 1.6;
-          margin: 0;
-          font-weight: 450;
-        }
-
-        .step-card-arrow {
+        /* Outer Dashed Orbit Circle Ring */
+        .infographic-orbit-ring {
           position: absolute;
-          right: -14px;
-          top: 50%;
-          transform: translateY(-50%);
-          width: 26px;
-          height: 26px;
+          top: -8px;
+          left: -8px;
+          right: -8px;
+          bottom: -8px;
+          border-radius: 50%;
+          border: 1.8px dashed;
+          opacity: 0.6;
+          pointer-events: none;
+          animation: spinOrbit 40s linear infinite;
+        }
+
+        @keyframes spinOrbit {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+
+        /* Main Circular Node Disk */
+        .infographic-circle-disk {
+          width: 104px;
+          height: 104px;
           border-radius: 50%;
           background: #FFFFFF;
-          border: 1px solid #E2E8F0;
+          border: 3.5px solid;
           display: flex;
+          flex-direction: column;
           align-items: center;
           justify-content: center;
-          z-index: 4;
-          box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+          position: relative;
+          z-index: 3;
+          box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+          cursor: pointer;
+        }
+
+        /* Triangular Pointer Arrow */
+        .infographic-pointer-arrow {
+          width: 0;
+          height: 0;
+          border-left: 7px solid transparent;
+          border-right: 7px solid transparent;
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+        }
+
+        .pointer-top {
+          top: -10px;
+          border-bottom: 9px solid;
+        }
+
+        .pointer-bottom {
+          bottom: -10px;
+          border-top: 9px solid;
+        }
+
+        .infographic-node-num {
+          font-family: var(--font-montserrat), sans-serif;
+          font-size: 28px;
+          font-weight: 800;
+          color: #0B1F3A;
+          line-height: 1;
+          letter-spacing: -0.02em;
+        }
+
+        .infographic-node-sub {
+          font-size: 9px;
+          font-weight: 800;
+          letter-spacing: 0.1em;
+          margin-top: 2px;
         }
 
         .steps-bottom-divider {
@@ -371,52 +507,35 @@ export default function StepsSection() {
           color: #64748B;
         }
 
-        /* Responsive Breakpoints */
-        @media (max-width: 1200px) {
-          .steps-grid {
+        /* Responsive Architecture */
+        @media (max-width: 1024px) {
+          .infographic-nodes-row {
             grid-template-columns: repeat(3, 1fr);
             gap: 24px;
           }
-          .steps-connector-line {
+          .infographic-horizontal-line {
             display: none;
           }
-          .step-card-arrow {
-            display: none;
+          .slot-top, .slot-bottom {
+            min-height: auto;
+            padding: 12px 0;
           }
         }
 
-        @media (max-width: 768px) {
-          .steps-grid {
+        @media (max-width: 640px) {
+          .infographic-nodes-row {
             grid-template-columns: repeat(1, 1fr);
-            gap: 20px;
+            gap: 32px;
           }
-          .steps-connector-line {
+          .infographic-slot {
+            min-height: auto;
+            padding: 8px 0;
+          }
+          .infographic-dot-connector {
             display: none;
-          }
-          .step-card-arrow {
-            display: none;
-          }
-          .step-card-item {
-            padding: 20px 18px;
-            text-align: left;
-            flex-direction: row;
-            gap: 16px;
-            align-items: flex-start;
-          }
-          .step-tag-header {
-            margin-bottom: 6px;
-          }
-          .step-icon-wrapper {
-            margin-bottom: 0;
-            flex-shrink: 0;
-            width: 50px;
-            height: 50px;
-            border-radius: 14px;
           }
         }
       `}</style>
     </section>
   );
 }
-
-

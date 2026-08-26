@@ -28,8 +28,8 @@ export default function ContactClient() {
   return (
     <>
       <Header />
-      <main style={{ paddingTop: "120px" }}>
-        <div className="container" style={{ maxWidth: "800px" }}>
+      <main>
+        <div className="container" style={{ maxWidth: "800px", paddingTop: "24px" }}>
 
           {/* Header */}
           <div style={{ textAlign: "center", marginBottom: "50px" }}>

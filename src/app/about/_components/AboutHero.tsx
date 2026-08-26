@@ -2,7 +2,7 @@
 
 export default function AboutHero() {
   return (
-    <section style={{ padding: "60px 0 80px", background: "linear-gradient(180deg, #F8F7FF 0%, #FFFFFF 100%)", textAlign: "center" }}>
+    <section style={{ padding: "24px 0 80px", background: "linear-gradient(180deg, #F8F7FF 0%, #FFFFFF 100%)", textAlign: "center" }}>
       <div className="container" style={{ maxWidth: "900px", margin: "0 auto", padding: "0 24px" }}>
         <div style={{ display: "inline-flex", alignItems: "center", gap: "6px", background: "#F5F0FF", border: "1px solid #E4D7FF", padding: "6px 16px", borderRadius: "9999px", color: "#5B2E91", fontSize: "12px", fontWeight: "700", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "16px" }}>
           <span>🏢</span> About TechLearns
