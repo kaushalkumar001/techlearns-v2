@@ -2,6 +2,7 @@
 
 Welcome to the **Techlearns Academy** web platform. Techlearns is a next-generation corporate experience learning ecosystem co-designed with engineering leaders and enterprise partners. We replace traditional academic certificate-collecting with hands-on corporate workflows, live projects, competitions, and a cryptographically verified **Skill Passport**.
 
+
 ---
 
 ## 🎯 Core Philosophy: The CEL Flywheel
