@@ -113,20 +113,24 @@ export default function Header() {
   ];
 
   return (
-    <header
-      className="glass-nav"
-      style={{
-        padding: "18px 0",
-        transition: "all 0.3s ease",
-        width: "100%",
-        boxShadow: "none",
-        position: "relative",
-        zIndex: 1000,
-        background: "rgba(255, 255, 255, 0.95)",
-        backdropFilter: "blur(16px)",
-        borderBottom: "1px solid rgba(0, 0, 0, 0.08)"
-      }}
-    >
+    <>
+      <header
+        className="glass-nav"
+        style={{
+          padding: "16px 0",
+          transition: "all 0.3s ease",
+          width: "100%",
+          boxShadow: isScrolled ? "0 10px 30px rgba(0, 0, 0, 0.08)" : "none",
+          position: "fixed",
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: 1000,
+          background: "rgba(255, 255, 255, 0.96)",
+          backdropFilter: "blur(16px)",
+          borderBottom: "1px solid rgba(0, 0, 0, 0.08)"
+        }}
+      >
       <div className="container" style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
 
         {/* Brand Logo */}
@@ -521,7 +525,7 @@ export default function Header() {
 
           {/* Explore */}
           <Link href="/partners" className="nav-link" style={{ fontSize: "14px", fontWeight: 700, color: "#000000", textDecoration: "none" }}>
-            Explore
+            Explore CEL
           </Link>
 
           {/* Blogs */}
@@ -691,5 +695,8 @@ export default function Header() {
         </div>
       </div>
     </header>
+    {/* Layout Spacer to preserve page flow with fixed header */}
+    <div style={{ height: "68px" }} />
+    </>
   );
 }

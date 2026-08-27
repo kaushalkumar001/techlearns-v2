@@ -3,6 +3,9 @@
 import React from "react";
 import { Edit3, Maximize2, Search, ShieldCheck, Sparkles, ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { motion } from "framer-motion";
+
+const smoothEase = [0.16, 1, 0.3, 1] as const;
 
 export default function AboutDifferent() {
   const principles = [
@@ -10,42 +13,36 @@ export default function AboutDifferent() {
       isElevated: true,
       title: "EXPERIENCE-LED LEARNING",
       desc: "Learning becomes more powerful when concepts are connected with projects, challenges, professional environments and real applications.",
-      icon: <Edit3 size={20} color="#2563EB" />,
-      iconBg: "#EFF6FF"
+      icon: <Edit3 size={20} color="#5B2E91" />,
+      iconBg: "#F5F0FF"
     },
     {
       title: "INDUSTRY-ALIGNED SKILLS",
       desc: "Our learning ecosystem evolves with technologies, tools, roles and capabilities shaping the modern workplace.",
-      icon: <Maximize2 size={20} color="#0F172A" />
+      icon: <Maximize2 size={20} color="#0B1F3A" />
     },
     {
       title: "AI-NATIVE THINKING",
       desc: "AI is not treated only as another subject. We encourage learners to understand how AI can enhance the way they learn, build, analyse, automate and create.",
-      icon: <Search size={20} color="#0F172A" />
+      icon: <Search size={20} color="#0B1F3A" />
     },
     {
       title: "PROOF-DRIVEN GROWTH",
       desc: "We believe capability should be visible. Projects, portfolios, challenges, demonstrations and assessments create stronger evidence than course completion alone.",
-      icon: <ShieldCheck size={20} color="#0F172A" />
+      icon: <ShieldCheck size={20} color="#0B1F3A" />
     }
   ];
 
   return (
-    <section style={{ padding: "80px 0", background: "#F1F5F9", position: "relative" }}>
-      <div className="container" style={{ maxWidth: "1140px", margin: "0 auto", padding: "0 24px" }}>
+    <section style={{ padding: "80px 0", background: "#FFFFFF", position: "relative" }}>
+      <div className="container" style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px" }}>
         
-        {/* Large White Container Stage (Matching img1 card boundary) */}
-        <div
-          style={{
-            background: "#FFFFFF",
-            borderRadius: "32px",
-            padding: "56px 52px",
-            boxShadow: "0 25px 60px rgba(0, 0, 0, 0.05)",
-            border: "1px solid #E2E8F0"
-          }}
-        >
-          {/* Header Row (Matching img1 layout) */}
-          <div
+        {/* Header Row */}
+          <motion.div
+            initial={{ opacity: 0, y: 32 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.7, ease: smoothEase }}
             style={{
               display: "flex",
               alignItems: "center",
@@ -65,7 +62,7 @@ export default function AboutDifferent() {
                   fontFamily: "var(--font-headings), sans-serif",
                   fontSize: "clamp(30px, 3.6vw, 42px)",
                   fontWeight: "900",
-                  color: "#0F172A",
+                  color: "#0B1F3A",
                   lineHeight: "1.15",
                   letterSpacing: "-0.025em",
                   margin: 0
@@ -73,7 +70,7 @@ export default function AboutDifferent() {
               >
                 Designed Around<br />
                 <span style={{ display: "inline-flex", alignItems: "center", gap: "10px" }}>
-                  <span style={{ color: "#2563EB" }}>capability</span>
+                  <span style={{ color: "#5B2E91" }}>capability</span>
                   <span
                     style={{
                       display: "inline-flex",
@@ -81,7 +78,7 @@ export default function AboutDifferent() {
                       width: "56px",
                       height: "28px",
                       borderRadius: "9999px",
-                      background: "#2563EB",
+                      background: "#5B2E91",
                       padding: "3px",
                       cursor: "pointer"
                     }}
@@ -109,7 +106,7 @@ export default function AboutDifferent() {
                 display: "inline-flex",
                 alignItems: "center",
                 gap: "8px",
-                background: "#1E293B",
+                background: "#0B1F3A",
                 color: "#FFFFFF",
                 padding: "13px 26px",
                 borderRadius: "14px",
@@ -123,7 +120,7 @@ export default function AboutDifferent() {
               <span style={{ fontSize: "14px" }}>✨</span>
               <span>Explore CEL</span>
             </Link>
-          </div>
+          </motion.div>
 
           <p style={{ fontSize: "15px", color: "#64748B", marginBottom: "40px", fontWeight: "500" }}>
             Techlearns is built around four fundamental principles:
@@ -140,8 +137,12 @@ export default function AboutDifferent() {
             className="grid-2col"
           >
             {principles.map((p, i) => (
-              <div
+              <motion.div
                 key={i}
+                initial={{ opacity: 0, y: 32 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.6, delay: i * 0.1, ease: smoothEase }}
                 style={
                   p.isElevated
                     ? {
@@ -182,7 +183,7 @@ export default function AboutDifferent() {
                     fontSize: "15px",
                     fontWeight: "900",
                     letterSpacing: "0.04em",
-                    color: "#0F172A",
+                    color: "#0B1F3A",
                     marginBottom: "8px",
                     textTransform: "uppercase"
                   }}
@@ -202,36 +203,40 @@ export default function AboutDifferent() {
                 >
                   {p.desc}
                 </p>
-              </div>
+              </motion.div>
             ))}
           </div>
 
           {/* Highlight Principle Box: One Skill. One Proof. */}
-          <div
+          <motion.div
+            initial={{ opacity: 0, y: 32, scale: 0.98 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.7, ease: smoothEase }}
             style={{
-              background: "linear-gradient(135deg, #0B1F3A 0%, #160B2E 50%, #3A1B68 100%)",
+              background: "#F5F0FF",
+              border: "1.5px solid #E4D7FF",
               borderRadius: "24px",
               padding: "32px 36px",
-              color: "#FFFFFF",
+              color: "#0B1F3A",
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
               flexWrap: "wrap",
-              gap: "20px",
-              boxShadow: "0 15px 40px rgba(11, 31, 58, 0.2)"
+              gap: "20px"
             }}
           >
             <div>
               <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "6px" }}>
-                <Sparkles size={18} color="#FDE68A" />
-                <span style={{ fontSize: "11px", fontWeight: "900", textTransform: "uppercase", letterSpacing: "0.1em", color: "#FDE68A" }}>
+                <Sparkles size={18} color="#5B2E91" />
+                <span style={{ fontSize: "11px", fontWeight: "900", textTransform: "uppercase", letterSpacing: "0.1em", color: "#5B2E91" }}>
                   FLAGSHIP PHILOSOPHY
                 </span>
               </div>
-              <h3 style={{ fontFamily: "var(--font-headings), sans-serif", fontSize: "24px", fontWeight: "900", color: "#FFFFFF", marginBottom: "4px" }}>
+              <h3 style={{ fontFamily: "var(--font-headings), sans-serif", fontSize: "24px", fontWeight: "900", color: "#0B1F3A", marginBottom: "4px" }}>
                 One Skill. One Proof.
               </h3>
-              <p style={{ fontSize: "13.5px", color: "rgba(255, 255, 255, 0.85)", margin: 0 }}>
+              <p style={{ fontSize: "13.5px", color: "#64748B", margin: 0 }}>
                 That philosophy sits at the heart of Techlearns.
               </p>
             </div>
@@ -242,22 +247,20 @@ export default function AboutDifferent() {
                 display: "inline-flex",
                 alignItems: "center",
                 gap: "8px",
-                background: "#8B5CF6",
+                background: "linear-gradient(135deg, #5B2E91 0%, #7E3AF2 100%)",
                 color: "#FFFFFF",
                 padding: "12px 28px",
                 borderRadius: "9999px",
                 fontSize: "13.5px",
                 fontWeight: "800",
                 textDecoration: "none",
-                boxShadow: "0 6px 20px rgba(139, 92, 246, 0.4)"
+                boxShadow: "0 6px 20px rgba(91, 46, 145, 0.3)"
               }}
             >
               <span>Explore CEL Methodology</span>
               <ArrowRight size={15} color="#FFFFFF" />
             </Link>
-          </div>
-
-        </div>
+          </motion.div>
 
       </div>
     </section>

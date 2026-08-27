@@ -19,16 +19,27 @@ export const metadata: Metadata = {
   }
 };
 
+const SectionDivider = () => (
+  <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px" }}>
+    <div style={{ height: "1px", background: "linear-gradient(90deg, transparent 0%, #E2E8F0 15%, #E2E8F0 85%, transparent 100%)" }} />
+  </div>
+);
+
 export default function AboutPage() {
   return (
     <div className="landing-page-container light-theme">
       <Header />
       <main>
         <AboutHero />
+        <SectionDivider />
         <AboutWhyExists />
+        <SectionDivider />
         <AboutStats />
+        <SectionDivider />
         <AboutDifferent />
+        <SectionDivider />
         <AboutVisionAdvisory />
+        <SectionDivider />
         <AboutFounderJourney />
       </main>
       <Footer />

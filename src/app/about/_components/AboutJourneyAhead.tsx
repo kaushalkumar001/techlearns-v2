@@ -28,7 +28,7 @@ export default function AboutJourneyAhead() {
             06. THE JOURNEY AHEAD
           </div>
           <h2 className="mb-4 text-3xl font-black leading-tight tracking-tight text-[#0B1F3A] sm:text-4xl md:text-5xl">
-            Building More Than<br />
+            Building More Than{" "}
             <span className="text-[#5B2E91]">a Learning Platform</span>
           </h2>
           <p className="mx-auto max-w-2xl text-base text-slate-600">

@@ -2,6 +2,9 @@
 
 import React from "react";
 import { CheckCircle2, Target } from "lucide-react";
+import { motion } from "framer-motion";
+
+const smoothEase = [0.16, 1, 0.3, 1] as const;
 
 export default function AboutWhyExists() {
   const learningPoints = [
@@ -29,7 +32,13 @@ export default function AboutWhyExists() {
         >
 
           {/* Left Column: Overlapping Dual Composition with Bridge Puzzle Illustration */}
-          <div style={{ position: "relative", minHeight: "340px", paddingBottom: "24px" }}>
+          <motion.div
+            initial={{ opacity: 0, y: 36, scale: 0.96 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.7, ease: smoothEase }}
+            style={{ position: "relative", minHeight: "340px", paddingBottom: "24px" }}
+          >
 
             {/* Primary Illustration Container scaled to match image aspect ratio */}
             <div
@@ -47,7 +56,7 @@ export default function AboutWhyExists() {
               }}
             >
               <img
-                src="/crops/bridge_gap_illustration.png"
+                src="/crops/whyexists1.png"
                 alt="Bridging the Space Between Education and the Real World"
                 style={{
                   width: "100%",
@@ -64,19 +73,19 @@ export default function AboutWhyExists() {
                 position: "absolute",
                 bottom: "-18px",
                 left: "0px",
-                width: "200px",
+                width: "210px",
                 height: "140px",
                 borderRadius: "24px",
                 border: "4px solid #FFFFFF",
-                background: "#0B1F3A",
+                background: "#FFFFFF",
                 boxShadow: "0 18px 40px rgba(0,0,0,0.18)",
                 overflow: "hidden",
                 zIndex: 10
               }}
             >
               <img
-                src="/crops/lab_modern.png"
-                alt="TechLearns Corporate Lab"
+                src="/crops/bridge_gap_illustration.png"
+                alt="Education Excellence & Leadership Awards"
                 style={{
                   width: "100%",
                   height: "100%",
@@ -94,7 +103,7 @@ export default function AboutWhyExists() {
                 width: "115px",
                 height: "115px",
                 borderRadius: "50%",
-                background: "#8B5CF6",
+                background: "#5B2E91",
                 color: "#FFFFFF",
                 padding: "16px",
                 textAlign: "center",
@@ -102,7 +111,7 @@ export default function AboutWhyExists() {
                 flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
-                boxShadow: "0 18px 40px rgba(139, 92, 246, 0.38)",
+                boxShadow: "0 18px 40px rgba(91, 46, 145, 0.38)",
                 zIndex: 20
               }}
             >
@@ -112,10 +121,15 @@ export default function AboutWhyExists() {
               </span>
             </div>
 
-          </div>
+          </motion.div>
 
           {/* Right Column: Exact User Section 01 Copy */}
-          <div>
+          <motion.div
+            initial={{ opacity: 0, y: 36 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.7, delay: 0.15, ease: smoothEase }}
+          >
 
             {/* Eyebrow Tag */}
             <div style={{ marginBottom: "14px" }}>
@@ -158,20 +172,16 @@ export default function AboutWhyExists() {
             </h2>
 
             {/* Paragraph Subtitle */}
-            <p style={{ fontSize: "15px", color: "#64748B", lineHeight: "1.7", marginBottom: "16px", fontWeight: "400" }}>
-              Technology is changing faster than conventional learning models. Students today have unprecedented access to courses, tutorials and certifications—yet employers continue to experience a gap between <strong style={{ color: "#0B1F3A" }}>academic knowledge and workplace capability.</strong>
-            </p>
-
-            <p style={{ fontSize: "14px", color: "#64748B", lineHeight: "1.6", marginBottom: "20px" }}>
-              Techlearns was created to address this gap. Our focus is not simply to add another learning platform to the market. We are creating an environment where learners progressively understand:
+            <p style={{ fontSize: "15px", color: "#64748B", lineHeight: "1.7", marginBottom: "20px", fontWeight: "400" }}>
+              Technology is evolving faster than traditional learning can keep up. Students have endless access to courses, tutorials, and certifications—yet a critical gap remains between what they learn and what the real world demands. <strong style={{ color: "#5B2E91" }}>Techlearns bridges that gap by transforming learning into an experience where students build, apply, collaborate, and grow.</strong>
             </p>
 
             {/* 7 Progressively Understand Bullet Points */}
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px", marginBottom: "28px" }} className="grid-2col">
               {learningPoints.map((point) => (
                 <div key={point} style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                  <CheckCircle2 size={15} color="#8B5CF6" style={{ flexShrink: 0 }} />
-                  <span style={{ fontSize: "12.5px", fontWeight: "700", color: "#1E293B" }}>
+                  <CheckCircle2 size={15} color="#5B2E91" style={{ flexShrink: 0 }} />
+                  <span style={{ fontSize: "12.5px", fontWeight: "700", color: "#0B1F3A" }}>
                     {point}
                   </span>
                 </div>
@@ -199,7 +209,7 @@ export default function AboutWhyExists() {
               </div>
             </div>
 
-          </div>
+          </motion.div>
 
         </div>
 
