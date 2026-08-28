@@ -8,25 +8,13 @@ export default function Footer() {
       style={{
         background: "#F6F7F9",
         borderTop: "1px solid #E2E8F0",
-        color: "#374151"
+        color: "#374151",
+        overflow: "hidden"
       }}
     >
       {/* Main footer content */}
-      <div
-        style={{
-          maxWidth: "1280px",
-          margin: "0 auto",
-          padding: "48px 32px 36px"
-        }}
-      >
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1.6fr 1fr 1fr 1fr",
-            gap: "40px",
-            alignItems: "flex-start"
-          }}
-        >
+      <div className="footer-main-container">
+        <div className="footer-grid-layout">
           {/* Column 1 — Logo + Description + Contact */}
           <div>
             {/* Logo */}
@@ -122,14 +110,14 @@ export default function Footer() {
               >
                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.78a16 16 0 0 0 7.28 7.28l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 17z" />
               </svg>
-              <span style={{ fontSize: "12.5px", color: "#4B5563" }}>
+              <span style={{ fontSize: "12.5px", color: "#4B5563", wordBreak: "break-word" }}>
                 +91 76200 92712 / +91 75060 70698
               </span>
             </div>
           </div>
 
           {/* Column 2 — Programs */}
-          <div>
+          <div className="footer-col-programs">
             <h4
               style={{
                 fontSize: "12px",
@@ -142,7 +130,7 @@ export default function Footer() {
             >
               PROGRAMS
             </h4>
-            <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: "10px" }}>
+            <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: "10px", margin: 0 }}>
               {[
                 { label: "Generative AI Engineering", href: "/programs" },
                 { label: "Full-Stack Software Eng", href: "/programs" },
@@ -166,7 +154,7 @@ export default function Footer() {
           </div>
 
           {/* Column 3 — Ecosystem */}
-          <div>
+          <div className="footer-col-ecosystem">
             <h4
               style={{
                 fontSize: "12px",
@@ -179,7 +167,7 @@ export default function Footer() {
             >
               ECOSYSTEM
             </h4>
-            <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: "10px" }}>
+            <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: "10px", margin: 0 }}>
               {[
                 { label: "CEL Wheel System", href: "/cel" },
                 { label: "5-Step Engineering Pipeline", href: "/cel" },
@@ -328,21 +316,7 @@ export default function Footer() {
             {/* CTA Button */}
             <Link
               href="/contact"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                justifyContent: "center",
-                background: "#5B2E91",
-                color: "#FFFFFF",
-                padding: "12px 20px",
-                borderRadius: "10px",
-                fontSize: "13px",
-                fontWeight: "700",
-                textDecoration: "none",
-                whiteSpace: "nowrap",
-                boxShadow: "0 4px 14px rgba(91, 46, 145, 0.3)",
-                transition: "all 0.2s ease"
-              }}
+              className="footer-cta-btn"
               onMouseEnter={e => {
                 (e.currentTarget as HTMLElement).style.background = "#4A2478";
                 (e.currentTarget as HTMLElement).style.transform = "translateY(-1px)";
@@ -362,24 +336,12 @@ export default function Footer() {
       <div
         style={{
           borderTop: "1px solid #E2E8F0",
-          padding: "16px 32px"
+          padding: "16px clamp(16px, 3.5vw, 32px)"
         }}
       >
-        <div
-          style={{
-            maxWidth: "1280px",
-            margin: "0 auto",
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            fontSize: "12.5px",
-            color: "#6B7280",
-            flexWrap: "wrap",
-            gap: "8px"
-          }}
-        >
+        <div className="footer-bottom-flex">
           <span>© 2026 Techlearns Academy. All rights reserved.</span>
-          <div style={{ display: "flex", gap: "24px" }}>
+          <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", justifyContent: "center" }}>
             <Link href="/about" style={{ color: "#6B7280", textDecoration: "none" }}
               onMouseEnter={e => ((e.target as HTMLElement).style.color = "#5B2E91")}
               onMouseLeave={e => ((e.target as HTMLElement).style.color = "#6B7280")}
@@ -395,6 +357,94 @@ export default function Footer() {
           </div>
         </div>
       </div>
+
+      <style jsx global>{`
+        /* Fully Responsive CSS Architecture for Footer */
+
+        .footer-main-container {
+          max-width: 1280px;
+          margin: 0 auto;
+          padding: 48px clamp(16px, 3.5vw, 32px) 36px;
+        }
+
+        .footer-grid-layout {
+          display: grid;
+          grid-template-columns: 1.6fr 1fr 1fr 1fr;
+          gap: 40px;
+          align-items: flex-start;
+        }
+
+        .footer-cta-btn {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          background: #5B2E91;
+          color: #FFFFFF;
+          padding: 12px 20px;
+          border-radius: 10px;
+          font-size: 13px;
+          font-weight: 700;
+          text-decoration: none;
+          white-space: nowrap;
+          box-shadow: 0 4px 14px rgba(91, 46, 145, 0.3);
+          transition: all 0.2s ease;
+        }
+
+        .footer-bottom-flex {
+          max-width: 1280px;
+          margin: 0 auto;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-size: 12.5px;
+          color: #6B7280;
+          flex-wrap: wrap;
+          gap: 12px;
+        }
+
+        /* ----------------------------------------------------
+           RESPONSIVE BREAKPOINTS
+        ---------------------------------------------------- */
+
+        /* Laptop (1024px to 1279px) */
+        @media (max-width: 1279px) and (min-width: 900px) {
+          .footer-grid-layout {
+            gap: 28px;
+            grid-template-columns: 1.4fr 1fr 1fr 1fr;
+          }
+        }
+
+        /* Tablet (640px to 899px) */
+        @media (max-width: 899px) and (min-width: 640px) {
+          .footer-grid-layout {
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+          }
+        }
+
+        /* Mobile Devices (<640px) */
+        @media (max-width: 639px) {
+          .footer-grid-layout {
+            grid-template-columns: 1fr;
+            gap: 32px;
+          }
+          .footer-col-programs,
+          .footer-col-ecosystem {
+            display: none !important;
+          }
+          .footer-cta-btn {
+            width: 100%;
+            white-space: normal;
+            box-sizing: border-box;
+            text-align: center;
+          }
+          .footer-bottom-flex {
+            flex-direction: column;
+            text-align: center;
+            justify-content: center;
+          }
+        }
+      `}</style>
     </footer>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 
 const mentorsData = [
@@ -63,6 +63,16 @@ const mentorsData = [
 export default function MentorsSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const dragContainerRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   // Track scroll progress of section
   const { scrollYProgress } = useScroll({
@@ -77,8 +87,10 @@ export default function MentorsSection() {
     restDelta: 0.001
   });
 
-  // Scroll translation: Cards start at right (+550px) and slide left (-650px) while scrolling
-  const x = useTransform(smoothProgress, [0, 1], ["1500px", "-650px"]);
+  // Responsive scroll translation range
+  const desktopX = useTransform(smoothProgress, [0, 1], ["500px", "-650px"]);
+  const mobileX = useTransform(smoothProgress, [0, 1], ["0px", "-750px"]);
+  const x = isMobile ? mobileX : desktopX;
 
   return (
     <section ref={sectionRef} id="mentors" style={{ padding: "64px 0", background: "#FFFFFF", overflow: "hidden", position: "relative" }}>
@@ -101,49 +113,50 @@ export default function MentorsSection() {
           src="/techlearns logo.png"
           alt="TechLearns Corporate Experience Learning"
           style={{
-            height: "110px",
+            height: "clamp(60px, 12vw, 110px)",
             width: "auto",
-            objectFit: "contain"
+            objectFit: "contain",
+            opacity: 0.5
           }}
         />
       </div>
 
-      <div style={{ maxWidth: "1280px", width: "100%", margin: "0 auto", padding: "0 24px", position: "relative", zIndex: 2 }}>
+      <div style={{ maxWidth: "1280px", width: "100%", margin: "0 auto", padding: "0 clamp(16px, 3vw, 24px)", position: "relative", zIndex: 2 }}>
 
         {/* Section Header */}
         <div style={{ textAlign: "left", maxWidth: "672px", marginBottom: "24px" }}>
-          <div style={{ fontSize: "12px", fontWeight: "700", color: "#5B2E91", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "6px" }}>
+          <div style={{ fontSize: "clamp(10.5px, 1.2vw, 12px)", fontWeight: "700", color: "#5B2E91", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "6px" }}>
             OUR DISTINGUISHED
           </div>
           <div style={{ width: "32px", height: "3px", background: "#5B2E91", borderRadius: "2px", marginBottom: "16px" }}></div>
-          <h2 style={{ fontFamily: "var(--font-montserrat), sans-serif", fontSize: "38px", fontWeight: "900", color: "#0B1F3A", letterSpacing: "-0.01em", margin: 0 }}>
+          <h2 className="mentors-header-title">
             INDUSTRY <span style={{ color: "#5B2E91" }}>MENTORS</span>
           </h2>
         </div>
 
       </div>
 
-      {/* Outer Overflow Container on Layer 5 (slides horizontally in front of the background logo) */}
+      {/* Outer Overflow Container on Layer 5 */}
       <div ref={dragContainerRef} style={{ width: "100%", overflow: "hidden", paddingTop: "24px", paddingBottom: "24px", position: "relative", zIndex: 5 }}>
 
-        {/* Layer 1: Scroll-Driven Parallax Motion (translates right to left as user scrolls down) */}
+        {/* Layer 1: Scroll-Driven Parallax Motion */}
         <motion.div
+          className="mentors-parallax-track"
           style={{
             display: "flex",
             width: "max-content",
-            paddingLeft: "calc((100vw - 1280px) / 2 + 24px)",
             x
           }}
         >
-          {/* Layer 2: Palm / Mouse Drag Layer (enables interactive click & drag with palm cursor) */}
+          {/* Layer 2: Palm / Mouse Drag Layer */}
           <motion.div
             drag="x"
-            dragConstraints={{ left: -1400, right: 400 }}
+            dragConstraints={{ left: -1400, right: 100 }}
             dragElastic={0.15}
             whileTap={{ cursor: "grabbing" }}
             style={{
               display: "flex",
-              gap: "24px",
+              gap: "clamp(14px, 2.5vw, 24px)",
               cursor: "grab",
               userSelect: "none"
             }}
@@ -152,46 +165,35 @@ export default function MentorsSection() {
               <motion.div
                 key={idx}
                 whileHover={{ y: -6 }}
-                style={{
-                  minWidth: "350px",
-                  maxWidth: "370px",
-                  flexShrink: 0,
-                  borderRadius: "20px",
-                  overflow: "hidden",
-                  boxShadow: "0 10px 30px rgba(11, 31, 58, 0.06)",
-                  border: "1px solid #EDE9FE",
-                  display: "flex",
-                  flexDirection: "column",
-                  transition: "all 0.2s ease"
-                }}
+                className="mentor-card"
               >
-                {/* Top Dark Navy Tier strictly using brand color (#0B1F3A) */}
-                <div style={{ background: "#0B1F3A", padding: "24px", color: "#FFFFFF", position: "relative", minHeight: "150px" }}>
-                  <div style={{ display: "flex", gap: "16px", alignItems: "flex-start" }}>
+                {/* Top Dark Navy Tier */}
+                <div className="mentor-card-top">
+                  <div style={{ display: "flex", gap: "14px", alignItems: "flex-start" }}>
                     <img
                       src={m.photo}
                       alt={m.name}
-                      style={{ width: "80px", height: "96px", borderRadius: "14px", objectFit: "cover", flexShrink: 0, border: "2px solid rgba(139, 92, 246, 0.4)" }}
+                      className="mentor-photo"
                     />
                     <div style={{ flex: 1 }}>
-                      <h4 style={{ fontSize: "17px", fontWeight: "800", color: "#FFFFFF", marginBottom: "6px", lineHeight: "1.25" }}>
+                      <h4 className="mentor-name">
                         {m.name}
                       </h4>
-                      <p style={{ fontSize: "12.5px", color: "#CBD5E1", lineHeight: "1.5", margin: 0 }}>
+                      <p className="mentor-desc">
                         {m.desc}
                       </p>
                     </div>
                   </div>
 
-                  {/* Decorative Quote Mark strictly using #8B5CF6 */}
-                  <div style={{ position: "absolute", bottom: "8px", right: "16px", fontSize: "32px", color: "#8B5CF6", opacity: 0.6, fontWeight: "900", fontFamily: "Georgia, serif" }}>
+                  {/* Decorative Quote Mark */}
+                  <div className="mentor-quote-mark">
                     ”
                   </div>
                 </div>
 
-                {/* Bottom White Tier with Purple Accent Border (#8B5CF6) & Navy Role Text (#0B1F3A) */}
-                <div style={{ background: "#FFFFFF", padding: "18px 20px", display: "flex", justifyContent: "space-between", alignItems: "center", flex: 1, borderTop: "2px solid #8B5CF6" }}>
-                  <div style={{ fontSize: "12px", color: "#0B1F3A", fontWeight: "700", maxWidth: "60%", lineHeight: "1.4" }}>
+                {/* Bottom White Tier */}
+                <div className="mentor-card-bottom">
+                  <div className="mentor-role">
                     {m.role}
                   </div>
                   <div style={{ textAlign: "right", flexShrink: 0 }}>
@@ -212,6 +214,109 @@ export default function MentorsSection() {
 
       </div>
 
+      <style jsx global>{`
+        /* Fully Responsive CSS Architecture for MentorsSection */
+
+        .mentors-header-title {
+          font-family: var(--font-montserrat), sans-serif;
+          font-size: clamp(1.75rem, 4.2vw, 2.375rem);
+          font-weight: 900;
+          color: #0B1F3A;
+          letter-spacing: -0.01em;
+          margin: 0;
+        }
+
+        .mentors-parallax-track {
+          padding-left: max(24px, calc((100vw - 1280px) / 2 + 24px));
+        }
+
+        .mentor-card {
+          min-width: clamp(270px, 80vw, 350px);
+          max-width: clamp(285px, 85vw, 370px);
+          flex-shrink: 0;
+          border-radius: 20px;
+          overflow: hidden;
+          box-shadow: 0 10px 30px rgba(11, 31, 58, 0.06);
+          border: 1px solid #EDE9FE;
+          display: flex;
+          flex-direction: column;
+          transition: all 0.2s ease;
+        }
+
+        .mentor-card-top {
+          background: #0B1F3A;
+          padding: clamp(18px, 3vw, 24px);
+          color: #FFFFFF;
+          position: relative;
+          min-height: 150px;
+        }
+
+        .mentor-photo {
+          width: clamp(66px, 12vw, 80px);
+          height: clamp(80px, 14vw, 96px);
+          border-radius: 14px;
+          object-fit: cover;
+          flex-shrink: 0;
+          border: 2px solid rgba(139, 92, 246, 0.4);
+        }
+
+        .mentor-name {
+          font-size: clamp(15px, 2vw, 17px);
+          font-weight: 800;
+          color: #FFFFFF;
+          margin-bottom: 6px;
+          line-height: 1.25;
+        }
+
+        .mentor-desc {
+          font-size: clamp(11.5px, 1.3vw, 12.5px);
+          color: #CBD5E1;
+          line-height: 1.5;
+          margin: 0;
+        }
+
+        .mentor-quote-mark {
+          position: absolute;
+          bottom: 8px;
+          right: 16px;
+          font-size: 32px;
+          color: #8B5CF6;
+          opacity: 0.6;
+          font-weight: 900;
+          font-family: Georgia, serif;
+        }
+
+        .mentor-card-bottom {
+          background: #FFFFFF;
+          padding: 16px 18px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          flex: 1;
+          border-top: 2px solid #8B5CF6;
+        }
+
+        .mentor-role {
+          font-size: clamp(11px, 1.3vw, 12px);
+          color: #0B1F3A;
+          font-weight: 700;
+          max-width: 60%;
+          line-height: 1.4;
+        }
+
+        /* ----------------------------------------------------
+           RESPONSIVE BREAKPOINTS
+        ---------------------------------------------------- */
+
+        @media (max-width: 767px) {
+          .mentors-parallax-track {
+            padding-left: 16px;
+          }
+          .mentor-card-top {
+            min-height: auto;
+          }
+        }
+      `}</style>
     </section>
   );
 }

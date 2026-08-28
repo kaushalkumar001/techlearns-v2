@@ -33,19 +33,11 @@ export default function FAQSection() {
   };
 
   return (
-    <section id="faq" style={{ padding: "48px 0 60px", background: "#FFFFFF" }}>
-      <div style={{ maxWidth: "1160px", margin: "0 auto", padding: "0 24px" }}>
+    <section id="faq" style={{ padding: "48px 0 60px", background: "#FFFFFF", overflow: "hidden" }}>
+      <div style={{ maxWidth: "1160px", margin: "0 auto", padding: "0 clamp(16px, 3vw, 24px)" }}>
 
-        {/* 2-Column Layout matching reference image */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1.25fr",
-            gap: "56px",
-            alignItems: "start"
-          }}
-          className="faq-grid-layout"
-        >
+        {/* 2-Column Layout */}
+        <div className="faq-grid-layout">
 
           {/* Left Column: Eyebrow + Headline + Still have a questions card */}
           <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
@@ -99,35 +91,16 @@ export default function FAQSection() {
             </div>
 
             {/* Main Title */}
-            <h2
-              style={{
-                fontFamily: "var(--font-montserrat), sans-serif",
-                fontSize: "44px",
-                fontWeight: "800",
-                color: "#111827",
-                lineHeight: "1.12",
-                letterSpacing: "-0.03em",
-                margin: "0 0 48px 0"
-              }}
-            >
-              Frequently asked<br />
+            <h2 className="faq-main-title">
+              Frequently asked<br className="faq-br" />
               questions
             </h2>
 
             {/* Bottom "Still have a questions?" Box */}
-            <div
-              style={{
-                background: "linear-gradient(135deg, #F3EEFE 0%, #FAF8FF 60%, #F5F0FE 100%)",
-                border: "1px solid #EBE3FA",
-                borderRadius: "24px",
-                padding: "32px 28px",
-                maxWidth: "380px",
-                boxShadow: "0 4px 16px rgba(124, 58, 237, 0.03)"
-              }}
-            >
+            <div className="faq-question-box">
               <h3
                 style={{
-                  fontSize: "22px",
+                  fontSize: "clamp(18px, 2.2vw, 22px)",
                   fontWeight: "800",
                   color: "#111827",
                   margin: "0 0 10px 0",
@@ -176,13 +149,7 @@ export default function FAQSection() {
               return (
                 <div
                   key={index}
-                  style={{
-                    background: "#F4F5F9",
-                    border: "1px solid #ECEEF5",
-                    borderRadius: "18px",
-                    padding: "22px 26px",
-                    transition: "all 0.2s ease"
-                  }}
+                  className="faq-accordion-card"
                 >
                   {/* Question Row */}
                   <div
@@ -197,14 +164,7 @@ export default function FAQSection() {
                       userSelect: "none"
                     }}
                   >
-                    <span
-                      style={{
-                        fontSize: "15px",
-                        fontWeight: "700",
-                        color: "#1F2937",
-                        lineHeight: "1.4"
-                      }}
-                    >
+                    <span className="faq-question-text">
                       {faq.q}
                     </span>
 
@@ -260,6 +220,92 @@ export default function FAQSection() {
         </div>
 
       </div>
+
+      <style jsx global>{`
+        /* Fully Responsive CSS Architecture for FAQSection */
+
+        .faq-grid-layout {
+          display: grid;
+          grid-template-columns: 1fr 1.25fr;
+          gap: 56px;
+          align-items: start;
+        }
+
+        .faq-main-title {
+          font-family: var(--font-montserrat), sans-serif;
+          font-size: clamp(2rem, 4.5vw, 2.75rem);
+          font-weight: 800;
+          color: #111827;
+          line-height: 1.12;
+          letter-spacing: -0.03em;
+          margin: 0 0 48px 0;
+        }
+
+        .faq-question-box {
+          background: linear-gradient(135deg, #F3EEFE 0%, #FAF8FF 60%, #F5F0FE 100%);
+          border: 1px solid #EBE3FA;
+          border-radius: 24px;
+          padding: 32px 28px;
+          max-width: 380px;
+          box-shadow: 0 4px 16px rgba(124, 58, 237, 0.03);
+        }
+
+        .faq-accordion-card {
+          background: #F4F5F9;
+          border: 1px solid #ECEEF5;
+          border-radius: 18px;
+          padding: 22px 26px;
+          transition: all 0.2s ease;
+        }
+
+        .faq-question-text {
+          font-size: clamp(14px, 1.6vw, 15px);
+          font-weight: 700;
+          color: #1F2937;
+          line-height: 1.4;
+        }
+
+        /* ----------------------------------------------------
+           RESPONSIVE BREAKPOINTS
+        ---------------------------------------------------- */
+
+        /* Laptop (1024px to 1279px) */
+        @media (max-width: 1279px) and (min-width: 1024px) {
+          .faq-grid-layout {
+            gap: 36px;
+          }
+        }
+
+        /* Tablet & Mobile Layout (<1024px) */
+        @media (max-width: 1023px) {
+          .faq-grid-layout {
+            grid-template-columns: 1fr;
+            gap: 32px;
+          }
+          .faq-main-title {
+            margin-bottom: 24px;
+          }
+          .faq-question-box {
+            max-width: 100%;
+            margin-bottom: 8px;
+          }
+          .faq-br {
+            display: none;
+          }
+        }
+
+        /* Mobile Devices (<= 480px) */
+        @media (max-width: 480px) {
+          .faq-accordion-card {
+            padding: 16px 18px;
+            border-radius: 14px;
+          }
+          .faq-question-box {
+            padding: 22px 18px;
+            border-radius: 18px;
+          }
+        }
+      `}</style>
     </section>
   );
 }

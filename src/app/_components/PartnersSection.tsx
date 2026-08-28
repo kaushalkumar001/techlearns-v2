@@ -423,11 +423,6 @@ const ecosystemCategories = [
 ];
 
 // Infinite loop array padded with 2 clone slides on both sides:
-// Index 0: Step 6 clone
-// Index 1: Step 7 clone (peeks on the left before Step 1!)
-// Index 2..8: Real Step 1 to Step 7
-// Index 9: Step 1 clone (peeks on the right after Step 7!)
-// Index 10: Step 2 clone
 const infiniteSlides = [
   { ...ecosystemCategories[5], cloneKey: "clone-prev-6" },
   { ...ecosystemCategories[6], cloneKey: "clone-prev-7" },
@@ -501,91 +496,43 @@ export default function PartnersSection() {
   return (
     <section
       id="ecosystem"
-      style={{
-        padding: "70px 0 80px",
-        background: "#FAF9FC",
-        position: "relative",
-        overflow: "hidden"
-      }}
+      className="partners-section-wrapper"
     >
       <div style={{ width: "100%", margin: "0 auto", position: "relative" }}>
 
         {/* Top Header Section with container padding */}
-        <div style={{ maxWidth: "1360px", margin: "0 auto", padding: "0 24px" }}>
+        <div style={{ maxWidth: "1360px", margin: "0 auto", padding: "0 clamp(16px, 3vw, 24px)" }}>
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            style={{ marginBottom: "40px" }}
+            style={{ marginBottom: "clamp(24px, 4vw, 40px)" }}
           >
             {/* Eyebrow Tag */}
-            <div
-              style={{
-                fontSize: "12.5px",
-                fontWeight: "700",
-                color: "#5B2E91",
-                letterSpacing: "0.08em",
-                textTransform: "uppercase",
-                marginBottom: "12px",
-                display: "flex",
-                alignItems: "center",
-                gap: "8px"
-              }}
-            >
+            <div className="partners-eyebrow-tag">
               <Layers size={15} color="#5B2E91" />
               <span>INSIGHTS &amp; INTELLIGENCE • THE TECHLEARNS ECOSYSTEM</span>
             </div>
 
             {/* Main Title */}
-            <h2
-              style={{
-                fontFamily: "var(--font-montserrat), sans-serif",
-                fontSize: "48px",
-                fontWeight: "800",
-                color: "#3A1B68",
-                lineHeight: "1.12",
-                letterSpacing: "-0.03em",
-                marginBottom: "16px"
-              }}
-            >
+            <h2 className="partners-main-title">
               The Techlearns Ecosystem
             </h2>
 
             {/* Subtitle Paragraph */}
-            <p
-              style={{
-                fontSize: "16px",
-                color: "#64748B",
-                lineHeight: "1.65",
-                maxWidth: "680px",
-                marginBottom: "28px",
-                fontWeight: "400"
-              }}
-            >
+            <p className="partners-sub-title">
               A connected ecosystem that empowers learners, developers and professionals to learn, grow and build the future.
-            </p>            {/* Action Buttons Row */}
-            <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+            </p>
+
+            {/* Action Buttons Row */}
+            <div style={{ display: "flex", alignItems: "center", gap: "16px", flexWrap: "wrap" }}>
               <motion.a
                 href="#contact"
                 whileHover={{ scale: 1.05, boxShadow: "0 12px 30px rgba(58, 27, 104, 0.4)" }}
                 whileTap={{ scale: 0.97 }}
                 transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                style={{
-                  background: "#3A1B68",
-                  color: "#FFFFFF",
-                  padding: "13px 32px",
-                  borderRadius: "9999px",
-                  fontSize: "13px",
-                  fontWeight: "800",
-                  letterSpacing: "0.06em",
-                  textTransform: "uppercase",
-                  textDecoration: "none",
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "8px",
-                  boxShadow: "0 8px 24px rgba(58, 27, 104, 0.25)"
-                }}
+                className="partners-read-more-btn"
               >
                 <span>READ MORE</span>
                 <motion.div
@@ -600,8 +547,8 @@ export default function PartnersSection() {
                 whileHover={{ scale: 1.15, rotate: 90 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 style={{
-                  width: "46px",
-                  height: "46px",
+                  width: "42px",
+                  height: "42px",
                   borderRadius: "50%",
                   border: "1.5px solid #CBD5E1",
                   background: "#FFFFFF",
@@ -677,7 +624,6 @@ export default function PartnersSection() {
                     boxShadow: isActive
                       ? `0 24px 60px -12px ${cat.glowColor}, 0 6px 24px rgba(0,0,0,0.25)`
                       : "0 10px 30px rgba(0,0,0,0.15)",
-                    padding: "32px 44px",
                     position: "relative",
                     overflow: "hidden",
                     border: isActive
@@ -715,18 +661,7 @@ export default function PartnersSection() {
                   />
 
                   {/* 2-Column Layout Grid */}
-                  <div
-                    style={{
-                      display: "grid",
-                      gridTemplateColumns: "1.15fr 0.85fr",
-                      gap: "40px",
-                      alignItems: "center",
-                      height: "100%",
-                      position: "relative",
-                      zIndex: 2
-                    }}
-                    className="card-content-grid"
-                  >
+                  <div className="card-content-grid">
                     {/* Left Column: Eyebrow, Title, Description, White Pill CTA & Partner Tags */}
                     <div style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
                       {/* Eyebrow Tag */}
@@ -746,7 +681,7 @@ export default function PartnersSection() {
                         Step 0{cat.step} • {cat.tag}
                       </motion.div>
 
-                      {/* National Skilling Accreditation Badges (NSDC India, Skill India Mission, nasscom FutureSkills) across ALL cards */}
+                      {/* National Skilling Accreditation Badges */}
                       <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "10px", flexWrap: "wrap" }}>
                         <span
                           style={{
@@ -804,31 +739,12 @@ export default function PartnersSection() {
                       </div>
 
                       {/* Title */}
-                      <h3
-                        style={{
-                          fontFamily: "var(--font-montserrat), sans-serif",
-                          fontSize: "32px",
-                          fontWeight: "800",
-                          color: "#FFFFFF",
-                          lineHeight: "1.18",
-                          letterSpacing: "-0.02em",
-                          marginBottom: "10px"
-                        }}
-                      >
+                      <h3 className="partner-card-title">
                         {cat.title}
                       </h3>
 
                       {/* Description */}
-                      <p
-                        style={{
-                          fontSize: "14px",
-                          color: "rgba(226, 232, 240, 0.85)",
-                          lineHeight: "1.55",
-                          marginBottom: "18px",
-                          maxWidth: "480px",
-                          fontWeight: "400"
-                        }}
-                      >
+                      <p className="partner-card-desc">
                         {cat.description}
                       </p>
 
@@ -907,118 +823,58 @@ export default function PartnersSection() {
                       </div>
                     </div>
 
-                    {/* Right Column: Cascading Layered Glass Cards (100% Fixed & Static - No Floating) */}
-                    <div
-                      style={{
-                        position: "relative",
-                        width: "100%",
-                        height: "270px",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "flex-end"
-                      }}
-                      className="stacked-cards-container"
-                    >
-                      {/* Card 1 (Top Back Card - Fixed) */}
-                      <div
-                        style={{
-                          position: "absolute",
-                          top: "0px",
-                          right: "-48px",
-                          width: "300px",
-                          height: "100px",
-                          borderRadius: "16px 0 0 16px",
-                          background: "linear-gradient(135deg, rgba(32, 16, 68, 0.95) 0%, rgba(18, 9, 42, 0.98) 100%)",
-                          backgroundImage: "radial-gradient(rgba(255, 255, 255, 0.16) 1.2px, transparent 1.2px)",
-                          backgroundSize: "10px 10px",
-                          border: "1px solid rgba(255, 255, 255, 0.18)",
-                          borderRight: "none",
-                          padding: "12px 22px 12px 18px",
-                          boxShadow: "0 10px 25px rgba(0,0,0,0.35)",
-                          zIndex: 1
-                        }}
-                      >
-                        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", paddingRight: "20px" }}>
+                    {/* Right Column: Cascading Layered Glass Cards */}
+                    <div className="stacked-cards-container">
+                      {/* Card 1 (Top Back Card) */}
+                      <div className="stacked-card card-stacked-1">
+                        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", paddingRight: "12px" }}>
                           <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                            <PartnerLogo name={cat.partners[0]} size={22} />
-                            <span style={{ color: "#FFFFFF", fontWeight: "700", fontSize: "15px" }}>
+                            <PartnerLogo name={cat.partners[0]} size={20} />
+                            <span style={{ color: "#FFFFFF", fontWeight: "700", fontSize: "14px" }}>
                               {cat.stackedCards[0].company}
                             </span>
                           </div>
-                          <div style={{ display: "flex", alignItems: "center", gap: "4px", color: "rgba(255,255,255,0.75)", fontSize: "12px", fontWeight: "600" }}>
-                            <Clock size={12} />
+                          <div style={{ display: "flex", alignItems: "center", gap: "4px", color: "rgba(255,255,255,0.75)", fontSize: "11.5px", fontWeight: "600" }}>
+                            <Clock size={11} />
                             <span>{cat.stackedCards[0].time}</span>
                           </div>
                         </div>
                       </div>
 
-                      {/* Card 2 (Middle Card - Fixed) */}
-                      <div
-                        style={{
-                          position: "absolute",
-                          top: "36px",
-                          right: "-48px",
-                          width: "335px",
-                          height: "100px",
-                          borderRadius: "16px 0 0 16px",
-                          background: "linear-gradient(135deg, rgba(36, 18, 76, 0.95) 0%, rgba(20, 10, 48, 0.98) 100%)",
-                          backgroundImage: "radial-gradient(rgba(255, 255, 255, 0.16) 1.2px, transparent 1.2px)",
-                          backgroundSize: "10px 10px",
-                          border: "1px solid rgba(255, 255, 255, 0.2)",
-                          borderRight: "none",
-                          padding: "12px 22px 12px 18px",
-                          boxShadow: "0 12px 30px rgba(0,0,0,0.4)",
-                          zIndex: 2
-                        }}
-                      >
-                        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", paddingRight: "20px" }}>
+                      {/* Card 2 (Middle Card) */}
+                      <div className="stacked-card card-stacked-2">
+                        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", paddingRight: "12px" }}>
                           <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                            <PartnerLogo name={cat.partners[1] || cat.partners[0]} size={22} />
-                            <span style={{ color: "#FFFFFF", fontWeight: "700", fontSize: "15px" }}>
+                            <PartnerLogo name={cat.partners[1] || cat.partners[0]} size={20} />
+                            <span style={{ color: "#FFFFFF", fontWeight: "700", fontSize: "14px" }}>
                               {cat.stackedCards[1].company}
                             </span>
                           </div>
-                          <div style={{ display: "flex", alignItems: "center", gap: "4px", color: "rgba(255,255,255,0.75)", fontSize: "12px", fontWeight: "600" }}>
-                            <Clock size={12} />
+                          <div style={{ display: "flex", alignItems: "center", gap: "4px", color: "rgba(255,255,255,0.75)", fontSize: "11.5px", fontWeight: "600" }}>
+                            <Clock size={11} />
                             <span>{cat.stackedCards[1].time}</span>
                           </div>
                         </div>
                       </div>
 
-                      {/* Card 3 (Front Card - Fixed) */}
-                      <div
-                        style={{
-                          position: "absolute",
-                          top: "72px",
-                          right: "-48px",
-                          width: "370px",
-                          borderRadius: "18px 0 0 18px",
-                          background: "linear-gradient(135deg, rgba(42, 20, 88, 0.98) 0%, rgba(24, 11, 54, 0.99) 100%)",
-                          backgroundImage: "radial-gradient(rgba(255, 255, 255, 0.18) 1.2px, transparent 1.2px)",
-                          backgroundSize: "10px 10px",
-                          border: "1.5px solid rgba(255, 255, 255, 0.24)",
-                          borderRight: "none",
-                          padding: "16px 24px 16px 20px",
-                          boxShadow: "0 20px 45px rgba(0,0,0,0.55)",
-                          zIndex: 3
-                        }}
-                      >
+                      {/* Card 3 (Front Card) */}
+                      <div className="stacked-card card-stacked-3">
                         {/* Header Row */}
-                        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "12px", paddingRight: "16px" }}>
-                          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                            <PartnerLogo name={cat.partners[2] || cat.partners[0]} size={28} />
-                            <span style={{ color: "#FFFFFF", fontWeight: "800", fontSize: "16px" }}>
+                        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "10px", paddingRight: "12px" }}>
+                          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                            <PartnerLogo name={cat.partners[2] || cat.partners[0]} size={24} />
+                            <span style={{ color: "#FFFFFF", fontWeight: "800", fontSize: "15px" }}>
                               {cat.stackedCards[2].company}
                             </span>
                           </div>
-                          <div style={{ display: "flex", alignItems: "center", gap: "4px", color: "rgba(255,255,255,0.85)", fontSize: "12.5px", fontWeight: "600" }}>
-                            <Clock size={13} />
+                          <div style={{ display: "flex", alignItems: "center", gap: "4px", color: "rgba(255,255,255,0.85)", fontSize: "12px", fontWeight: "600" }}>
+                            <Clock size={12} />
                             <span>{cat.stackedCards[2].time}</span>
                           </div>
                         </div>
 
                         {/* Role Title */}
-                        <div style={{ color: "#FFFFFF", fontWeight: "700", fontSize: "15px", marginBottom: "16px", lineHeight: "1.3" }}>
+                        <div style={{ color: "#FFFFFF", fontWeight: "700", fontSize: "14px", marginBottom: "14px", lineHeight: "1.3" }}>
                           {cat.stackedCards[2].role}
                         </div>
 
@@ -1031,12 +887,12 @@ export default function PartnersSection() {
                           style={{
                             display: "block",
                             width: "100%",
-                            padding: "11px",
+                            padding: "10px",
                             background: "#000000",
                             border: "1px solid rgba(255, 255, 255, 0.2)",
                             borderRadius: "10px",
                             color: "#FFFFFF",
-                            fontSize: "13px",
+                            fontSize: "12.5px",
                             fontWeight: "700",
                             textAlign: "center",
                             textDecoration: "none",
@@ -1056,15 +912,7 @@ export default function PartnersSection() {
         </div>
 
         {/* Navigation Controls */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: "16px",
-            marginTop: "20px"
-          }}
-        >
+        <div className="partners-nav-controls">
           {/* Left Arrow Button */}
           <motion.button
             onClick={handlePrev}
@@ -1072,8 +920,8 @@ export default function PartnersSection() {
             whileTap={{ scale: 0.9 }}
             transition={{ type: "spring", stiffness: 400, damping: 20 }}
             style={{
-              width: "42px",
-              height: "42px",
+              width: "40px",
+              height: "40px",
               borderRadius: "50%",
               border: "1.5px solid #CBD5E1",
               background: "#FFFFFF",
@@ -1087,11 +935,11 @@ export default function PartnersSection() {
             }}
             aria-label="Previous Slide"
           >
-            <ChevronLeft size={20} />
+            <ChevronLeft size={18} />
           </motion.button>
 
           {/* Pagination Indicators (7 Dots with Active Pill) */}
-          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
             {ecosystemCategories.map((cat) => {
               const isActive = cat.step === activeStep;
               return (
@@ -1102,14 +950,14 @@ export default function PartnersSection() {
                     setTrackIndex(cat.step + 1);
                   }}
                   animate={{
-                    width: isActive ? 30 : 8,
+                    width: isActive ? 24 : 7,
                     backgroundColor: isActive ? "#5B2E91" : "#CBD5E1"
                   }}
                   whileHover={{ scale: 1.25 }}
                   whileTap={{ scale: 0.9 }}
                   transition={{ type: "spring", stiffness: 350, damping: 25 }}
                   style={{
-                    height: "8px",
+                    height: "7px",
                     borderRadius: "9999px",
                     border: "none",
                     padding: 0,
@@ -1129,8 +977,8 @@ export default function PartnersSection() {
             whileTap={{ scale: 0.9 }}
             transition={{ type: "spring", stiffness: 400, damping: 20 }}
             style={{
-              width: "42px",
-              height: "42px",
+              width: "40px",
+              height: "40px",
               borderRadius: "50%",
               border: "1.5px solid #CBD5E1",
               background: "#FFFFFF",
@@ -1144,47 +992,287 @@ export default function PartnersSection() {
             }}
             aria-label="Next Slide"
           >
-            <ChevronRight size={20} />
+            <ChevronRight size={18} />
           </motion.button>
         </div>
 
       </div>
 
       <style jsx global>{`
+        /* Fully Responsive CSS Architecture for PartnersSection */
+
+        .partners-section-wrapper {
+          padding: clamp(48px, 6vw, 70px) 0 clamp(56px, 7vw, 80px);
+          background: #FAF9FC;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .partners-eyebrow-tag {
+          font-size: clamp(10.5px, 1.2vw, 12.5px);
+          font-weight: 700;
+          color: #5B2E91;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          margin-bottom: 12px;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+
+        .partners-main-title {
+          font-family: var(--font-montserrat), sans-serif;
+          font-size: clamp(1.75rem, 4.2vw, 3rem);
+          font-weight: 800;
+          color: #3A1B68;
+          line-height: 1.12;
+          letter-spacing: -0.03em;
+          margin-bottom: 16px;
+          word-break: break-word;
+        }
+
+        .partners-sub-title {
+          font-size: clamp(0.875rem, 1.4vw, 1rem);
+          color: #64748B;
+          line-height: 1.65;
+          max-width: 680px;
+          margin-bottom: 28px;
+          font-weight: 400;
+        }
+
+        .partners-read-more-btn {
+          background: #3A1B68;
+          color: #FFFFFF;
+          padding: 13px 32px;
+          border-radius: 9999px;
+          font-size: 13px;
+          font-weight: 800;
+          letter-spacing: 0.06em;
+          text-transform: uppercase;
+          text-decoration: none;
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          box-shadow: 0 8px 24px rgba(58, 27, 104, 0.25);
+        }
+
         :root {
           --card-width: 1080px;
           --card-height: 380px;
           --card-gap: 24px;
         }
 
-        @media (max-width: 1200px) {
+        .carousel-slide-card {
+          padding: 32px 44px;
+        }
+
+        .card-content-grid {
+          display: grid;
+          grid-template-columns: 1.15fr 0.85fr;
+          gap: 40px;
+          align-items: center;
+          height: 100%;
+          position: relative;
+          z-index: 2;
+        }
+
+        .partner-card-title {
+          font-family: var(--font-montserrat), sans-serif;
+          font-size: clamp(22px, 2.5vw, 32px);
+          font-weight: 800;
+          color: #FFFFFF;
+          line-height: 1.18;
+          letter-spacing: -0.02em;
+          margin-bottom: 10px;
+          word-break: break-word;
+        }
+
+        .partner-card-desc {
+          font-size: clamp(12.5px, 1.3vw, 14px);
+          color: rgba(226, 232, 240, 0.85);
+          line-height: 1.55;
+          margin-bottom: 18px;
+          max-width: 480px;
+          font-weight: 400;
+        }
+
+        .stacked-cards-container {
+          position: relative;
+          width: 100%;
+          height: 270px;
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+        }
+
+        .stacked-card {
+          position: absolute;
+          border-radius: 16px 0 0 16px;
+          background-size: 10px 10px;
+          box-sizing: border-box;
+        }
+
+        .card-stacked-1 {
+          top: 0px;
+          right: -48px;
+          width: 300px;
+          height: 100px;
+          background: linear-gradient(135deg, rgba(32, 16, 68, 0.95) 0%, rgba(18, 9, 42, 0.98) 100%);
+          background-image: radial-gradient(rgba(255, 255, 255, 0.16) 1.2px, transparent 1.2px);
+          border: 1px solid rgba(255, 255, 255, 0.18);
+          border-right: none;
+          padding: 12px 22px 12px 18px;
+          box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+          z-index: 1;
+        }
+
+        .card-stacked-2 {
+          top: 36px;
+          right: -48px;
+          width: 335px;
+          height: 100px;
+          background: linear-gradient(135deg, rgba(36, 18, 76, 0.95) 0%, rgba(20, 10, 48, 0.98) 100%);
+          background-image: radial-gradient(rgba(255, 255, 255, 0.16) 1.2px, transparent 1.2px);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          border-right: none;
+          padding: 12px 22px 12px 18px;
+          box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+          z-index: 2;
+        }
+
+        .card-stacked-3 {
+          top: 72px;
+          right: -48px;
+          width: 370px;
+          border-radius: 18px 0 0 18px;
+          background: linear-gradient(135deg, rgba(42, 20, 88, 0.98) 0%, rgba(24, 11, 54, 0.99) 100%);
+          background-image: radial-gradient(rgba(255, 255, 255, 0.18) 1.2px, transparent 1.2px);
+          border: 1.5px solid rgba(255, 255, 255, 0.24);
+          border-right: none;
+          padding: 16px 24px 16px 20px;
+          box-shadow: 0 20px 45px rgba(0,0,0,0.55);
+          z-index: 3;
+        }
+
+        .partners-nav-controls {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 16px;
+          margin-top: 20px;
+        }
+
+        /* ----------------------------------------------------
+           RESPONSIVE BREAKPOINTS
+        ---------------------------------------------------- */
+
+        /* Laptop (1200px - 1439px) */
+        @media (max-width: 1399px) and (min-width: 1025px) {
           :root {
-            --card-width: 86vw;
-            --card-height: 400px;
+            --card-width: 960px;
+            --card-height: 380px;
             --card-gap: 20px;
+          }
+          .carousel-slide-card {
+            padding: 28px 36px;
           }
         }
 
-        @media (max-width: 1024px) {
+        /* Laptop / Large Tablet (1024px to 1199px) */
+        @media (max-width: 1024px) and (min-width: 768px) {
           :root {
-            --card-width: 90vw;
+            --card-width: 88vw;
             --card-height: auto;
-            --card-gap: 16px;
+            --card-gap: 18px;
           }
           .carousel-slide-card {
-            padding: 32px 28px !important;
+            padding: 28px 24px;
           }
           .card-content-grid {
-            grid-template-columns: 1fr !important;
-            gap: 28px !important;
+            grid-template-columns: 1fr;
+            gap: 24px;
           }
           .stacked-cards-container {
-            align-items: center !important;
+            justify-content: center;
+            height: auto;
+            min-height: 200px;
           }
-          .stacked-cards-container > div {
-            margin-right: 0 !important;
-            width: 100% !important;
-            max-width: 320px !important;
+          .card-stacked-1, .card-stacked-2, .card-stacked-3 {
+            position: relative;
+            top: auto;
+            right: 0;
+            width: 100%;
+            max-width: 100%;
+            border-radius: 14px;
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
+          }
+          .card-stacked-1, .card-stacked-2 {
+            display: none; /* Hide background stack cards on tablet/mobile for clean focus */
+          }
+        }
+
+        /* Mobile Devices (<768px) */
+        @media (max-width: 767px) {
+          :root {
+            --card-width: calc(100vw - 32px);
+            --card-height: auto;
+            --card-gap: 14px;
+          }
+          .carousel-slide-card {
+            padding: 20px 16px;
+            border-radius: 20px;
+          }
+          .card-content-grid {
+            grid-template-columns: 1fr;
+            gap: 20px;
+          }
+          .stacked-cards-container {
+            justify-content: center;
+            height: auto;
+          }
+          .card-stacked-1, .card-stacked-2 {
+            display: none;
+          }
+          .card-stacked-3 {
+            position: relative;
+            top: auto;
+            right: 0;
+            width: 100%;
+            max-width: 100%;
+            border-radius: 14px;
+            border-right: 1.5px solid rgba(255, 255, 255, 0.24);
+            padding: 14px 16px;
+          }
+          .partners-nav-controls {
+            gap: 12px;
+            margin-top: 16px;
+          }
+        }
+
+        /* Small Phones (<= 480px) */
+        @media (max-width: 480px) {
+          :root {
+            --card-width: calc(100vw - 24px);
+            --card-gap: 10px;
+          }
+          .carousel-slide-card {
+            padding: 16px 14px;
+            border-radius: 16px;
+          }
+          .partners-read-more-btn {
+            padding: 10px 22px;
+            font-size: 11.5px;
+          }
+        }
+
+        /* Ultra Compact Screens (<= 360px) */
+        @media (max-width: 360px) {
+          :root {
+            --card-width: calc(100vw - 16px);
+            --card-gap: 8px;
+          }
+          .carousel-slide-card {
+            padding: 14px 12px;
           }
         }
       `}</style>

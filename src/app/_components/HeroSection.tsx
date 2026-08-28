@@ -189,7 +189,8 @@ export default function HeroSection() {
       style={{
         position: "relative",
         background: "linear-gradient(180deg, #FBF9FF 0%, #F5F0FF 50%, #FAF8FF 100%)",
-        padding: "clamp(12px, 2vw, 20px) 0 clamp(32px, 5vw, 48px)",
+        padding: "0 0 48px",
+        marginTop: "0",
         overflow: "hidden"
       }}
     >
@@ -210,7 +211,7 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1, ease: smoothEasing }}
-              style={{ marginBottom: "16px" }}
+              style={{ marginBottom: "14px" }}
             >
               <div
                 style={{
@@ -222,12 +223,12 @@ export default function HeroSection() {
                   marginBottom: "6px"
                 }}
               >
-                India’s First Corporate Experience Learning Ecosystem
+                India’s First
               </div>
               <div style={{ width: "32px", height: "3px", background: "#5B2E91", borderRadius: "2px" }} />
             </motion.div>
 
-            {/* Main Title with Responsive clamp() */}
+            {/* Main Title */}
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -335,18 +336,18 @@ export default function HeroSection() {
                 className="hero-badge hero-badge-1"
               >
                 <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                  <div style={{ width: "32px", height: "32px", borderRadius: "9px", background: visibleCourses[0].iconBg, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                    <CourseIcon0 color={visibleCourses[0].iconColor} size={17} />
+                  <div style={{ width: "30px", height: "30px", borderRadius: "8px", background: visibleCourses[0].iconBg, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                    <CourseIcon0 color={visibleCourses[0].iconColor} size={15} />
                   </div>
                   <div style={{ minWidth: 0 }}>
-                    <div style={{ fontSize: "12px", fontWeight: "800", color: "#0B1F3A", lineHeight: "1.25", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                    <div style={{ fontSize: "11.5px", fontWeight: "800", color: "#0B1F3A", lineHeight: "1.25", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
                       {visibleCourses[0].title}
                     </div>
-                    <div style={{ display: "flex", alignItems: "center", gap: "6px", marginTop: "3px" }}>
-                      <span style={{ fontSize: "10.5px", fontWeight: "700", color: visibleCourses[0].iconColor }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "6px", marginTop: "2px" }}>
+                      <span style={{ fontSize: "10px", fontWeight: "700", color: visibleCourses[0].iconColor }}>
                         {visibleCourses[0].stat}
                       </span>
-                      <span style={{ fontSize: "9px", fontWeight: "600", background: "#F1F5F9", color: "#475569", padding: "1.5px 5px", borderRadius: "4px" }}>
+                      <span style={{ fontSize: "8.5px", fontWeight: "600", background: "#F1F5F9", color: "#475569", padding: "1px 4px", borderRadius: "4px" }}>
                         {visibleCourses[0].badge}
                       </span>
                     </div>
@@ -355,7 +356,7 @@ export default function HeroSection() {
               </motion.div>
             </AnimatePresence>
 
-            {/* Floating Course Badge 2: Bottom Left */}
+            {/* Floating Course Badge 2: Middle Left */}
             <AnimatePresence mode="wait">
               <motion.div
                 key={visibleCourses[1].id + "-slot2"}
@@ -366,18 +367,18 @@ export default function HeroSection() {
                 className="hero-badge hero-badge-2"
               >
                 <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                  <div style={{ width: "32px", height: "32px", borderRadius: "9px", background: visibleCourses[1].iconBg, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                    <CourseIcon1 color={visibleCourses[1].iconColor} size={17} />
+                  <div style={{ width: "30px", height: "30px", borderRadius: "8px", background: visibleCourses[1].iconBg, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                    <CourseIcon1 color={visibleCourses[1].iconColor} size={15} />
                   </div>
                   <div style={{ minWidth: 0 }}>
-                    <div style={{ fontSize: "12px", fontWeight: "800", color: "#0B1F3A", lineHeight: "1.25", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                    <div style={{ fontSize: "11.5px", fontWeight: "800", color: "#0B1F3A", lineHeight: "1.25", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
                       {visibleCourses[1].title}
                     </div>
-                    <div style={{ display: "flex", alignItems: "center", gap: "6px", marginTop: "3px" }}>
-                      <span style={{ fontSize: "10.5px", fontWeight: "700", color: visibleCourses[1].iconColor }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "6px", marginTop: "2px" }}>
+                      <span style={{ fontSize: "10px", fontWeight: "700", color: visibleCourses[1].iconColor }}>
                         {visibleCourses[1].stat}
                       </span>
-                      <span style={{ fontSize: "9px", fontWeight: "600", background: "#F1F5F9", color: "#475569", padding: "1.5px 5px", borderRadius: "4px" }}>
+                      <span style={{ fontSize: "8.5px", fontWeight: "600", background: "#F1F5F9", color: "#475569", padding: "1px 4px", borderRadius: "4px" }}>
                         {visibleCourses[1].badge}
                       </span>
                     </div>
@@ -397,18 +398,18 @@ export default function HeroSection() {
                 className="hero-badge hero-badge-3"
               >
                 <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                  <div style={{ width: "32px", height: "32px", borderRadius: "9px", background: visibleCourses[2].iconBg, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                    <CourseIcon2 color={visibleCourses[2].iconColor} size={17} />
+                  <div style={{ width: "30px", height: "30px", borderRadius: "8px", background: visibleCourses[2].iconBg, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                    <CourseIcon2 color={visibleCourses[2].iconColor} size={15} />
                   </div>
                   <div style={{ minWidth: 0 }}>
-                    <div style={{ fontSize: "12px", fontWeight: "800", color: "#0B1F3A", lineHeight: "1.25", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                    <div style={{ fontSize: "11.5px", fontWeight: "800", color: "#0B1F3A", lineHeight: "1.25", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
                       {visibleCourses[2].title}
                     </div>
-                    <div style={{ display: "flex", alignItems: "center", gap: "6px", marginTop: "3px" }}>
-                      <span style={{ fontSize: "10.5px", fontWeight: "700", color: visibleCourses[2].iconColor }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "6px", marginTop: "2px" }}>
+                      <span style={{ fontSize: "10px", fontWeight: "700", color: visibleCourses[2].iconColor }}>
                         {visibleCourses[2].stat}
                       </span>
-                      <span style={{ fontSize: "9px", fontWeight: "600", background: "#F1F5F9", color: "#475569", padding: "1.5px 5px", borderRadius: "4px" }}>
+                      <span style={{ fontSize: "8.5px", fontWeight: "600", background: "#F1F5F9", color: "#475569", padding: "1px 4px", borderRadius: "4px" }}>
                         {visibleCourses[2].badge}
                       </span>
                     </div>
@@ -432,44 +433,44 @@ export default function HeroSection() {
           {/* Feature 1 */}
           <div className="hero-feature-item">
             <div className="hero-feature-icon">
-              <GraduationCapIcon color="#6D28D9" size={22} />
+              <GraduationCapIcon color="#6D28D9" size={20} />
             </div>
             <div>
-              <h2 style={{ fontSize: "14px", fontWeight: "700", color: "#0F172A", margin: "0 0 2px" }}>Expert-Led Training</h2>
-              <p style={{ fontSize: "12px", color: "#64748B", margin: 0, lineHeight: "1.35" }}>Learn from industry professionals</p>
+              <h2 className="hero-feature-title">Expert-Led Training</h2>
+              <p className="hero-feature-desc">Learn from industry professionals</p>
             </div>
           </div>
 
           {/* Feature 2 */}
           <div className="hero-feature-item hero-feature-border">
             <div className="hero-feature-icon">
-              <BriefcaseIcon color="#6D28D9" size={22} />
+              <BriefcaseIcon color="#6D28D9" size={20} />
             </div>
             <div>
-              <h2 style={{ fontSize: "14px", fontWeight: "700", color: "#0F172A", margin: "0 0 2px" }}>Job-Ready Skills</h2>
-              <p style={{ fontSize: "12px", color: "#64748B", margin: 0, lineHeight: "1.35" }}>Build practical skills that employers value</p>
+              <h2 className="hero-feature-title">Job-Ready Skills</h2>
+              <p className="hero-feature-desc">Build practical skills that employers value</p>
             </div>
           </div>
 
           {/* Feature 3 */}
           <div className="hero-feature-item hero-feature-border">
             <div className="hero-feature-icon">
-              <TrendingUpIcon color="#6D28D9" size={22} />
+              <TrendingUpIcon color="#6D28D9" size={20} />
             </div>
             <div>
-              <h2 style={{ fontSize: "14px", fontWeight: "700", color: "#0F172A", margin: "0 0 2px" }}>Measurable Impact</h2>
-              <p style={{ fontSize: "12px", color: "#64748B", margin: 0, lineHeight: "1.35" }}>Boost productivity and business growth</p>
+              <h2 className="hero-feature-title">Measurable Impact</h2>
+              <p className="hero-feature-desc">Boost productivity and business growth</p>
             </div>
           </div>
 
           {/* Feature 4 */}
           <div className="hero-feature-item hero-feature-border">
             <div className="hero-feature-icon">
-              <ShieldIcon color="#6D28D9" size={22} />
+              <ShieldIcon color="#6D28D9" size={20} />
             </div>
             <div>
-              <h2 style={{ fontSize: "14px", fontWeight: "700", color: "#0F172A", margin: "0 0 2px" }}>End-to-End Support</h2>
-              <p style={{ fontSize: "12px", color: "#64748B", margin: 0, lineHeight: "1.35" }}>From learning to placement</p>
+              <h2 className="hero-feature-title">End-to-End Support</h2>
+              <p className="hero-feature-desc">From learning to placement</p>
             </div>
           </div>
         </motion.div>
@@ -491,8 +492,8 @@ export default function HeroSection() {
                 <GraduationCapIcon color="#FFFFFF" size={18} />
               </div>
               <div>
-                <div style={{ fontSize: "18px", fontWeight: "800", color: "#FFFFFF", lineHeight: "1" }}>50+</div>
-                <div style={{ fontSize: "11px", color: "rgba(255, 255, 255, 0.75)", marginTop: "3px" }}>Programs</div>
+                <div className="hero-stat-value">50+</div>
+                <div className="hero-stat-label">Programs</div>
               </div>
             </div>
 
@@ -504,8 +505,8 @@ export default function HeroSection() {
                 <BuildingIcon color="#FFFFFF" size={18} />
               </div>
               <div>
-                <div style={{ fontSize: "18px", fontWeight: "800", color: "#FFFFFF", lineHeight: "1" }}>200+</div>
-                <div style={{ fontSize: "11px", color: "rgba(255, 255, 255, 0.75)", marginTop: "3px" }}>Corporate Clients</div>
+                <div className="hero-stat-value">200+</div>
+                <div className="hero-stat-label">Corporate Clients</div>
               </div>
             </div>
 
@@ -517,8 +518,8 @@ export default function HeroSection() {
                 <UsersIcon color="#FFFFFF" size={18} />
               </div>
               <div>
-                <div style={{ fontSize: "18px", fontWeight: "800", color: "#FFFFFF", lineHeight: "1" }}>10K+</div>
-                <div style={{ fontSize: "11px", color: "rgba(255, 255, 255, 0.75)", marginTop: "3px" }}>Professionals Trained</div>
+                <div className="hero-stat-value">10K+</div>
+                <div className="hero-stat-label">Professionals Trained</div>
               </div>
             </div>
 
@@ -530,8 +531,8 @@ export default function HeroSection() {
                 <HeartIcon color="#FFFFFF" size={18} />
               </div>
               <div>
-                <div style={{ fontSize: "18px", fontWeight: "800", color: "#FFFFFF", lineHeight: "1" }}>95%</div>
-                <div style={{ fontSize: "11px", color: "rgba(255, 255, 255, 0.75)", marginTop: "3px" }}>Satisfaction Rate</div>
+                <div className="hero-stat-value">95%</div>
+                <div className="hero-stat-label">Satisfaction Rate</div>
               </div>
             </div>
 
@@ -549,14 +550,14 @@ export default function HeroSection() {
             </svg>
 
             <div style={{ textAlign: "center" }}>
-              <div style={{ fontSize: "10px", fontWeight: "700", color: "#FDE68A", textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: "4px" }}>
+              <div className="hero-laurel-title">
                 Trusted by<br />Leading Companies
               </div>
-              <div style={{ display: "flex", alignItems: "center", gap: "12px", justifyContent: "center" }}>
-                <span style={{ fontWeight: "800", fontSize: "14px", letterSpacing: "-0.03em", color: "#FFFFFF" }}>tcs</span>
-                <span style={{ fontWeight: "700", fontSize: "12.5px", color: "#FFFFFF" }}>Infosys</span>
-                <span style={{ fontWeight: "700", fontSize: "12.5px", color: "#FFFFFF" }}>wipro</span>
-                <span style={{ fontSize: "10.5px", color: "rgba(255, 255, 255, 0.75)", fontWeight: "500" }}>&amp; more</span>
+              <div className="hero-laurel-logos">
+                <span className="hero-company-tcs">tcs</span>
+                <span className="hero-company-info">Infosys</span>
+                <span className="hero-company-wipro">wipro</span>
+                <span className="hero-company-more">&amp; more</span>
               </div>
             </div>
 
@@ -575,29 +576,32 @@ export default function HeroSection() {
       </div>
 
       <style jsx global>{`
-        /* Responsive CSS Architecture for HeroSection */
+        /* Fully Responsive CSS Architecture for HeroSection */
 
-        /* Desktop Layout (1280px+) */
         .hero-top-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 48px;
+          gap: clamp(32px, 4vw, 56px);
           align-items: center;
-          margin-bottom: 48px;
+          margin-bottom: clamp(28px, 4vw, 48px);
+          padding-top: 0px !important;
+          margin-top: 0px !important;
         }
 
         .hero-headline {
           font-family: var(--font-montserrat), sans-serif;
-          font-size: clamp(2.25rem, 4.2vw, 3.125rem);
+          font-size: clamp(1.75rem, 4.2vw, 3.125rem);
           font-weight: 800;
           color: #0B1F3A;
           line-height: 1.15;
           letter-spacing: -0.025em;
           margin-bottom: 20px;
+          word-break: break-word;
+          overflow-wrap: break-word;
         }
 
         .hero-subtext {
-          font-size: clamp(0.9375rem, 1.5vw, 1rem);
+          font-size: clamp(0.875rem, 1.3vw, 1rem);
           color: #64748B;
           line-height: 1.6;
           max-width: 490px;
@@ -648,7 +652,7 @@ export default function HeroSection() {
 
         .hero-visual-stage {
           position: relative;
-          height: 480px;
+          height: clamp(380px, 35vw, 480px);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -704,7 +708,7 @@ export default function HeroSection() {
           top: 15px;
           right: -25px;
           padding: 12px 16px;
-          min-width: 200px;
+          min-width: 180px;
           max-width: 240px;
         }
 
@@ -712,7 +716,7 @@ export default function HeroSection() {
           bottom: 70px;
           left: -35px;
           padding: 12px 16px;
-          min-width: 195px;
+          min-width: 175px;
           max-width: 235px;
         }
 
@@ -720,42 +724,8 @@ export default function HeroSection() {
           bottom: 35px;
           right: -25px;
           padding: 12px 16px;
-          min-width: 200px;
+          min-width: 180px;
           max-width: 240px;
-        }
-
-        .hero-carousel-dots {
-          position: absolute;
-          bottom: -16px;
-          left: 50%;
-          transform: translateX(-50%);
-          display: flex;
-          align-items: center;
-          gap: 6px;
-          z-index: 15;
-          background: rgba(255, 255, 255, 0.9);
-          padding: 5px 12px;
-          border-radius: 20px;
-          backdrop-filter: blur(8px);
-          box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
-          border: 1px solid rgba(226, 232, 240, 0.8);
-        }
-
-        .hero-dot {
-          width: 6px;
-          height: 6px;
-          border-radius: 50%;
-          background: #CBD5E1;
-          border: none;
-          cursor: pointer;
-          padding: 0;
-          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .hero-dot-active {
-          width: 18px;
-          border-radius: 4px;
-          background: #6D28D9;
         }
 
         .hero-feature-bar {
@@ -790,6 +760,21 @@ export default function HeroSection() {
           align-items: center;
           justify-content: center;
           flex-shrink: 0;
+        }
+
+        .hero-feature-title {
+          font-size: 14px;
+          font-weight: 700;
+          color: #0F172A;
+          margin: 0 0 2px;
+          line-height: 1.25;
+        }
+
+        .hero-feature-desc {
+          font-size: 12px;
+          color: #64748B;
+          margin: 0;
+          line-height: 1.35;
         }
 
         .hero-stats-banner {
@@ -829,6 +814,19 @@ export default function HeroSection() {
           flex-shrink: 0;
         }
 
+        .hero-stat-value {
+          font-size: 18px;
+          font-weight: 800;
+          color: #FFFFFF;
+          line-height: 1;
+        }
+
+        .hero-stat-label {
+          font-size: 11px;
+          color: rgba(255, 255, 255, 0.75);
+          margin-top: 3px;
+        }
+
         .hero-stat-divider {
           width: 1px;
           height: 32px;
@@ -841,7 +839,76 @@ export default function HeroSection() {
           gap: 14px;
         }
 
-        /* Laptop Breakpoint (1024px to 1279px) */
+        .hero-laurel-title {
+          font-size: 10px;
+          font-weight: 700;
+          color: #FDE68A;
+          text-transform: uppercase;
+          letter-spacing: 0.06em;
+          margin-bottom: 4px;
+        }
+
+        .hero-laurel-logos {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          justify-content: center;
+        }
+
+        .hero-company-tcs {
+          font-weight: 800;
+          font-size: 14px;
+          letter-spacing: -0.03em;
+          color: #FFFFFF;
+        }
+
+        .hero-company-info {
+          font-weight: 700;
+          font-size: 12.5px;
+          color: #FFFFFF;
+        }
+
+        .hero-company-wipro {
+          font-weight: 700;
+          font-size: 12.5px;
+          color: #FFFFFF;
+        }
+
+        .hero-company-more {
+          font-size: 10.5px;
+          color: rgba(255, 255, 255, 0.75);
+          font-weight: 500;
+        }
+
+        /* ----------------------------------------------------
+           RESPONSIVE BREAKPOINTS & MOBILE SCALING
+        ---------------------------------------------------- */
+
+        /* Large Desktop (1920px+) */
+        @media (min-width: 1920px) {
+          .hero-headline {
+            font-size: 3.25rem;
+          }
+          .hero-subtext {
+            font-size: 1.1rem;
+            max-width: 540px;
+          }
+        }
+
+        /* Standard Desktop / Large Laptop (1280px to 1439px) */
+        @media (max-width: 1439px) and (min-width: 1280px) {
+          .hero-badge-1 {
+            right: -10px;
+          }
+          .hero-badge-2 {
+            left: -15px;
+          }
+          .hero-badge-3 {
+            right: -10px;
+          }
+        }
+
+        /* Laptop (1024px to 1279px) */
         @media (max-width: 1279px) and (min-width: 1024px) {
           .hero-top-grid {
             gap: 32px;
@@ -851,15 +918,18 @@ export default function HeroSection() {
           }
           .hero-badge-1 {
             right: 0;
-            padding: 12px 16px;
+            padding: 10px 14px;
+            max-width: 210px;
           }
           .hero-badge-2 {
-            left: -10px;
-            padding: 12px 16px;
+            left: 0;
+            padding: 10px 14px;
+            max-width: 205px;
           }
           .hero-badge-3 {
             right: 0;
-            padding: 12px 16px;
+            padding: 10px 14px;
+            max-width: 210px;
           }
           .hero-feature-bar {
             padding: 20px 24px;
@@ -870,13 +940,14 @@ export default function HeroSection() {
           }
         }
 
-        /* Tablet Breakpoint (768px to 1023px) */
+        /* Tablet Landscape & Portrait (768px to 1023px) */
         @media (max-width: 1023px) {
           .hero-top-grid {
             grid-template-columns: 1fr;
-            gap: 40px;
+            gap: 32px;
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 32px;
+            padding-top: 0px !important;
           }
           .hero-text-block {
             display: flex;
@@ -894,19 +965,27 @@ export default function HeroSection() {
             margin-top: 10px;
           }
           .hero-badge-1 {
-            right: 10%;
+            right: 4%;
+            top: 10px;
           }
           .hero-badge-2 {
-            left: 10%;
+            left: 4%;
+            bottom: 85px;
           }
           .hero-badge-3 {
-            right: 10%;
-            bottom: 30px;
+            right: 4%;
+            bottom: 15px;
           }
           .hero-feature-bar {
             grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            padding: 20px 24px;
+            gap: 16px;
+            padding: 18px 20px;
+          }
+          .hero-feature-title {
+            font-size: 13px !important;
+          }
+          .hero-feature-desc {
+            font-size: 11.5px !important;
           }
           .hero-feature-border:nth-child(3) {
             border-left: none;
@@ -914,20 +993,27 @@ export default function HeroSection() {
           }
           .hero-stats-banner {
             justify-content: center;
-            padding: 20px 24px;
+            padding: 18px 20px;
           }
           .hero-stats-grid {
             justify-content: center;
           }
+          .hero-stat-value {
+            font-size: 16px !important;
+          }
+          .hero-stat-label {
+            font-size: 10.5px !important;
+          }
         }
 
-        /* Mobile Breakpoint (Below 768px) */
+        /* Mobile Breakpoint (<768px) */
         @media (max-width: 767px) {
           .hero-top-grid {
             grid-template-columns: 1fr;
-            gap: 32px;
+            gap: 24px;
             text-align: center;
-            margin-bottom: 36px;
+            margin-bottom: 24px;
+            padding-top: 0px !important;
           }
           .hero-text-block {
             display: flex;
@@ -935,18 +1021,19 @@ export default function HeroSection() {
             align-items: center;
           }
           .hero-headline {
-            font-size: clamp(1.85rem, 7.5vw, 2.5rem);
-            margin-bottom: 16px;
+            font-size: clamp(1.65rem, 6.8vw, 2.25rem);
+            margin-bottom: 12px;
+            line-height: 1.2;
           }
           .hero-subtext {
-            width: 95%;
-            font-size: 14.5px;
-            margin-bottom: 24px;
+            width: 100%;
+            font-size: 13.5px;
+            margin-bottom: 18px;
           }
           .hero-actions {
             flex-direction: column;
             width: 100%;
-            gap: 12px;
+            gap: 10px;
           }
           .hero-btn-wrap {
             width: 100%;
@@ -954,72 +1041,258 @@ export default function HeroSection() {
           .hero-primary-btn, .hero-secondary-btn {
             width: 100%;
             justify-content: center;
-            min-height: 48px;
-            padding: 14px 20px;
+            min-height: 46px;
+            padding: 12px 18px;
+            font-size: 14px;
           }
           .hero-visual-stage {
-            height: 340px;
-            margin-top: 10px;
+            height: 370px;
+            margin-top: 5px;
           }
           .hero-card-glass-border {
-            width: 240px;
-            height: 310px;
+            width: 220px;
+            height: 285px;
             border-radius: 32px;
           }
           .hero-card-frame {
-            width: 220px;
-            height: 290px;
+            width: 200px;
+            height: 265px;
             border-radius: 28px;
           }
           .hero-badge-1 {
-            right: 0;
-            top: 10px;
-            padding: 10px 14px;
-            min-width: 140px;
+            right: 0px;
+            top: 0px;
+            padding: 7px 10px;
+            max-width: 165px;
+            min-width: 130px;
           }
           .hero-badge-2 {
-            left: -5px;
-            bottom: 45px;
-            padding: 10px 14px;
-            gap: 10px;
+            left: 0px;
+            bottom: 90px;
+            padding: 7px 10px;
+            max-width: 160px;
+            min-width: 125px;
           }
           .hero-badge-3 {
-            right: -5px;
-            bottom: 20px;
-            padding: 10px 14px;
-            gap: 10px;
+            right: 0px;
+            bottom: 5px;
+            padding: 7px 10px;
+            max-width: 165px;
+            min-width: 130px;
           }
+
+          /* Explicit Scaled Feature Card Typography for Phone & Mobile */
           .hero-feature-bar {
-            grid-template-columns: 1fr;
-            gap: 16px;
-            padding: 20px;
+            grid-template-columns: 1fr !important;
+            gap: 10px !important;
+            padding: 14px 16px !important;
+            border-radius: 16px !important;
+            margin-bottom: 20px !important;
+          }
+          .hero-feature-item {
+            gap: 10px !important;
+          }
+          .hero-feature-icon {
+            width: 36px !important;
+            height: 36px !important;
+            min-width: 36px !important;
+            border-radius: 10px !important;
+          }
+          .hero-feature-title {
+            font-size: 12.5px !important;
+            font-weight: 700 !important;
+            margin-bottom: 1px !important;
+            line-height: 1.25 !important;
+          }
+          .hero-feature-desc {
+            font-size: 11px !important;
+            line-height: 1.3 !important;
           }
           .hero-feature-border {
-            border-left: none;
-            border-top: 1px solid #F1F5F9;
-            padding-left: 0;
-            padding-top: 14px;
+            border-left: none !important;
+            border-top: 1px solid #F1F5F9 !important;
+            padding-left: 0 !important;
+            padding-top: 10px !important;
           }
+
+          /* Explicit Scaled Bottom Stats Banner Typography for Phone & Mobile */
           .hero-stats-banner {
-            padding: 20px;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
+            padding: 14px 16px !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            gap: 14px !important;
+            border-radius: 16px !important;
           }
           .hero-stats-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px 20px;
-            width: 100%;
+            display: grid !important;
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 12px 8px !important;
+            width: 100% !important;
+          }
+          .hero-stat-cell {
+            gap: 8px !important;
+          }
+          .hero-stat-icon {
+            width: 32px !important;
+            height: 32px !important;
+            min-width: 32px !important;
+            border-radius: 8px !important;
+          }
+          .hero-stat-value {
+            font-size: 15px !important;
+            font-weight: 800 !important;
+          }
+          .hero-stat-label {
+            font-size: 10px !important;
+            margin-top: 2px !important;
           }
           .hero-stat-divider {
-            display: none;
+            display: none !important;
           }
           .hero-laurel-section {
-            width: 100%;
-            justify-content: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.15);
-            padding-top: 16px;
+            width: 100% !important;
+            justify-content: center !important;
+            border-top: 1px solid rgba(255, 255, 255, 0.15) !important;
+            padding-top: 10px !important;
+            gap: 10px !important;
+          }
+          .hero-laurel-title {
+            font-size: 9px !important;
+            margin-bottom: 2px !important;
+          }
+          .hero-laurel-logos {
+            gap: 10px !important;
+          }
+          .hero-company-tcs {
+            font-size: 12px !important;
+          }
+          .hero-company-info, .hero-company-wipro {
+            font-size: 11px !important;
+          }
+          .hero-company-more {
+            font-size: 9.5px !important;
+          }
+        }
+
+        /* Small Mobile Devices (<= 480px) */
+        @media (max-width: 480px) {
+          .hero-headline {
+            font-size: clamp(1.45rem, 6.5vw, 1.85rem) !important;
+          }
+          .hero-visual-stage {
+            height: 340px !important;
+          }
+          .hero-card-glass-border {
+            width: 195px !important;
+            height: 255px !important;
+          }
+          .hero-card-frame {
+            width: 180px !important;
+            height: 240px !important;
+          }
+          .hero-badge-1 {
+            right: -2px !important;
+            top: 0px !important;
+            padding: 6px 8px !important;
+            max-width: 150px !important;
+          }
+          .hero-badge-2 {
+            left: -2px !important;
+            bottom: 80px !important;
+            padding: 6px 8px !important;
+            max-width: 145px !important;
+          }
+          .hero-badge-3 {
+            right: -2px !important;
+            bottom: 2px !important;
+            padding: 6px 8px !important;
+            max-width: 150px !important;
+          }
+          .hero-feature-bar {
+            padding: 12px 12px !important;
+            gap: 8px !important;
+          }
+          .hero-feature-icon {
+            width: 32px !important;
+            height: 32px !important;
+            min-width: 32px !important;
+            border-radius: 8px !important;
+          }
+          .hero-feature-title {
+            font-size: 11.5px !important;
+          }
+          .hero-feature-desc {
+            font-size: 10px !important;
+          }
+
+          /* Bottom Stats Banner Small Phone Scaling */
+          .hero-stats-banner {
+            padding: 12px 12px !important;
+            gap: 10px !important;
+          }
+          .hero-stat-cell {
+            gap: 6px !important;
+          }
+          .hero-stat-icon {
+            width: 28px !important;
+            height: 28px !important;
+            min-width: 28px !important;
+            border-radius: 7px !important;
+          }
+          .hero-stat-value {
+            font-size: 14px !important;
+          }
+          .hero-stat-label {
+            font-size: 9.5px !important;
+          }
+          .hero-laurel-title {
+            font-size: 8.5px !important;
+          }
+          .hero-company-tcs {
+            font-size: 11px !important;
+          }
+          .hero-company-info, .hero-company-wipro {
+            font-size: 10px !important;
+          }
+          .hero-company-more {
+            font-size: 9px !important;
+          }
+        }
+
+        /* Ultra Compact Screens (<= 360px) */
+        @media (max-width: 360px) {
+          .hero-headline {
+            font-size: 1.35rem !important;
+          }
+          .hero-visual-stage {
+            height: 320px !important;
+          }
+          .hero-card-glass-border {
+            width: 175px !important;
+            height: 230px !important;
+          }
+          .hero-card-frame {
+            width: 160px !important;
+            height: 215px !important;
+          }
+          .hero-badge-1 {
+            right: -5px !important;
+            top: 0px !important;
+            max-width: 135px !important;
+          }
+          .hero-badge-2 {
+            left: -5px !important;
+            bottom: 70px !important;
+            max-width: 130px !important;
+          }
+          .hero-badge-3 {
+            right: -5px !important;
+            bottom: 0px !important;
+            max-width: 135px !important;
+          }
+          .hero-stats-grid {
+            grid-template-columns: 1fr !important;
+            gap: 10px !important;
           }
         }
 

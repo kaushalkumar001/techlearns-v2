@@ -252,7 +252,7 @@ export default function AlumniSection() {
       }}
     >
       <div style={{ maxWidth: "1360px", margin: "0 auto", padding: "0 8px" }}>
-        
+
         {/* Header Grid Section */}
         <div
           style={{

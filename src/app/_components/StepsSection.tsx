@@ -72,7 +72,7 @@ export default function StepsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          style={{ textAlign: "center", maxWidth: "780px", margin: "0 auto 56px" }}
+          style={{ textAlign: "center", maxWidth: "780px", margin: "0 auto 48px" }}
         >
           <div className="steps-pill-tag">
             <Sparkles size={14} color="#5B2E91" />
@@ -87,16 +87,17 @@ export default function StepsSection() {
           </p>
         </motion.div>
 
-        {/* Infographic Connected Roadmap Timeline (Desktop Layout matching Reference Infographic img1) */}
+        {/* Infographic Connected Roadmap Timeline */}
         <div className="infographic-roadmap-stage">
 
-          {/* Dotted Wave / Straight Connection Line across centers */}
+          {/* Dotted Connection Lines */}
           <div className="infographic-horizontal-line" />
+          <div className="infographic-vertical-line" />
 
-          {/* 5 Alternating Circular Nodes Row */}
+          {/* 5 Circular Nodes Row / Timeline Column */}
           <div className="infographic-nodes-row">
             {steps.map((step, idx) => {
-              const isTop = idx % 2 === 0; // Steps 01, 03, 05 are TOP; Steps 02, 04 are BOTTOM
+              const isTop = idx % 2 === 0; // Steps 01, 03, 05 are TOP on desktop; Steps 02, 04 are BOTTOM on desktop
               const IconComp = step.icon;
 
               return (
@@ -105,7 +106,7 @@ export default function StepsSection() {
                   className={`infographic-node-column ${isTop ? "is-top" : "is-bottom"}`}
                 >
 
-                  {/* TOP SLOT (Content for Steps 01, 03, 05) */}
+                  {/* TOP SLOT (Content for Steps 01, 03, 05 on Desktop) */}
                   <div className="infographic-slot slot-top">
                     {isTop && (
                       <motion.div
@@ -170,7 +171,7 @@ export default function StepsSection() {
 
                   </div>
 
-                  {/* BOTTOM SLOT (Content for Steps 02, 04) */}
+                  {/* BOTTOM SLOT (Content for Steps 02, 04 on Desktop) */}
                   <div className="infographic-slot slot-bottom">
                     {!isTop && (
                       <motion.div
@@ -216,7 +217,7 @@ export default function StepsSection() {
 
       <style jsx global>{`
         .steps-section-wrapper {
-          padding: clamp(48px, 6vw, 80px) 0;
+          padding: clamp(40px, 6vw, 80px) 0;
           background: linear-gradient(180deg, #FFFFFF 0%, #FAF9FF 50%, #FFFFFF 100%);
           position: relative;
           overflow: hidden;
@@ -228,7 +229,7 @@ export default function StepsSection() {
           max-width: 1380px;
           width: 100%;
           margin: 0 auto;
-          padding: 0 24px;
+          padding: 0 clamp(16px, 3vw, 24px);
         }
 
         .steps-pill-tag {
@@ -239,7 +240,7 @@ export default function StepsSection() {
           background: #F3E8FF;
           border: 1px solid #DDD6FE;
           border-radius: 9999px;
-          font-size: 11.5px;
+          font-size: clamp(10.5px, 1.2vw, 11.5px);
           font-weight: 800;
           color: #5B2E91;
           letter-spacing: 0.06em;
@@ -248,12 +249,13 @@ export default function StepsSection() {
 
         .steps-main-title {
           font-family: var(--font-montserrat), sans-serif;
-          font-size: clamp(1.85rem, 4vw, 2.5rem);
+          font-size: clamp(1.6rem, 4vw, 2.5rem);
           font-weight: 800;
           color: #0B1F3A;
           line-height: 1.25;
           letter-spacing: -0.02em;
           margin-bottom: 12px;
+          word-break: break-word;
         }
 
         .steps-main-title .highlight-text {
@@ -263,7 +265,7 @@ export default function StepsSection() {
         }
 
         .steps-sub-title {
-          font-size: clamp(0.875rem, 1.5vw, 1rem);
+          font-size: clamp(0.85rem, 1.4vw, 1rem);
           color: #64748B;
           line-height: 1.6;
           margin: 0;
@@ -272,16 +274,16 @@ export default function StepsSection() {
         /* Infographic Stage Layout */
         .infographic-roadmap-stage {
           position: relative;
-          margin: 40px 0 56px;
-          padding: 20px 0;
+          margin: clamp(28px, 4vw, 40px) 0 clamp(36px, 5vw, 56px);
+          padding: 10px 0;
         }
 
-        /* Horizontal Center Dotted Line */
+        /* Horizontal Center Dotted Line (Desktop) */
         .infographic-horizontal-line {
           position: absolute;
           top: 50%;
-          left: 6%;
-          right: 6%;
+          left: 5%;
+          right: 5%;
           height: 2px;
           transform: translateY(-50%);
           background: repeating-linear-gradient(
@@ -294,10 +296,15 @@ export default function StepsSection() {
           z-index: 1;
         }
 
+        /* Vertical Center Dotted Line (Mobile & Tablet) */
+        .infographic-vertical-line {
+          display: none;
+        }
+
         .infographic-nodes-row {
           display: grid;
           grid-template-columns: repeat(5, 1fr);
-          gap: 16px;
+          gap: clamp(8px, 1.5vw, 16px);
           position: relative;
           z-index: 2;
         }
@@ -321,12 +328,12 @@ export default function StepsSection() {
 
         .slot-top {
           justify-content: flex-end;
-          padding-bottom: 24px;
+          padding-bottom: 20px;
         }
 
         .slot-bottom {
           justify-content: flex-start;
-          padding-top: 24px;
+          padding-top: 20px;
         }
 
         /* Text Content Cards */
@@ -395,22 +402,22 @@ export default function StepsSection() {
         /* Center Circle Container */
         .infographic-circle-center-wrap {
           position: relative;
-          width: 120px;
-          height: 120px;
+          width: clamp(72px, 7vw, 96px);
+          height: clamp(72px, 7vw, 96px);
           display: flex;
           align-items: center;
           justify-content: center;
-          margin: 6px 0;
+          margin: 4px 0;
           flex-shrink: 0;
         }
 
         /* Outer Dashed Orbit Circle Ring */
         .infographic-orbit-ring {
           position: absolute;
-          top: -8px;
-          left: -8px;
-          right: -8px;
-          bottom: -8px;
+          top: -5px;
+          left: -5px;
+          right: -5px;
+          bottom: -5px;
           border-radius: 50%;
           border: 1.8px dashed;
           opacity: 0.6;
@@ -425,11 +432,11 @@ export default function StepsSection() {
 
         /* Main Circular Node Disk */
         .infographic-circle-disk {
-          width: 104px;
-          height: 104px;
+          width: clamp(62px, 6vw, 84px);
+          height: clamp(62px, 6vw, 84px);
           border-radius: 50%;
           background: #FFFFFF;
-          border: 3.5px solid;
+          border: 3px solid;
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -444,26 +451,26 @@ export default function StepsSection() {
         .infographic-pointer-arrow {
           width: 0;
           height: 0;
-          border-left: 7px solid transparent;
-          border-right: 7px solid transparent;
+          border-left: 6px solid transparent;
+          border-right: 6px solid transparent;
           position: absolute;
           left: 50%;
           transform: translateX(-50%);
         }
 
         .pointer-top {
-          top: -10px;
-          border-bottom: 9px solid;
+          top: -9px;
+          border-bottom: 8px solid;
         }
 
         .pointer-bottom {
-          bottom: -10px;
-          border-top: 9px solid;
+          bottom: -9px;
+          border-top: 8px solid;
         }
 
         .infographic-node-num {
           font-family: var(--font-montserrat), sans-serif;
-          font-size: 28px;
+          font-size: clamp(16px, 1.8vw, 22px);
           font-weight: 800;
           color: #0B1F3A;
           line-height: 1;
@@ -471,7 +478,7 @@ export default function StepsSection() {
         }
 
         .infographic-node-sub {
-          font-size: 9px;
+          font-size: clamp(7.5px, 0.8vw, 8.5px);
           font-weight: 800;
           letter-spacing: 0.1em;
           margin-top: 2px;
@@ -507,32 +514,258 @@ export default function StepsSection() {
           color: #64748B;
         }
 
-        /* Responsive Architecture */
-        @media (max-width: 1024px) {
+        /* ----------------------------------------------------
+           RESPONSIVE ARCHITECTURE (Tablet & Mobile Progression)
+        ---------------------------------------------------- */
+
+        /* Standard Desktop / Large Laptop (1280px - 1439px) */
+        @media (max-width: 1439px) and (min-width: 1100px) {
           .infographic-nodes-row {
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
+            gap: 12px;
           }
-          .infographic-horizontal-line {
-            display: none;
+          .infographic-content-card {
+            padding: 12px 14px;
           }
-          .slot-top, .slot-bottom {
-            min-height: auto;
-            padding: 12px 0;
+          .infographic-card-title {
+            font-size: 12.5px;
+          }
+          .infographic-card-desc {
+            font-size: 11px;
           }
         }
 
-        @media (max-width: 640px) {
+        /* Laptop (900px - 1099px) */
+        @media (max-width: 1099px) and (min-width: 900px) {
           .infographic-nodes-row {
-            grid-template-columns: repeat(1, 1fr);
-            gap: 32px;
+            gap: 8px;
           }
-          .infographic-slot {
-            min-height: auto;
-            padding: 8px 0;
+          .infographic-content-card {
+            padding: 10px 12px;
+            border-radius: 14px;
           }
+          .infographic-card-title {
+            font-size: 11.5px;
+          }
+          .infographic-card-desc {
+            font-size: 10.5px;
+          }
+          .slot-top {
+            padding-bottom: 14px;
+          }
+          .slot-bottom {
+            padding-top: 14px;
+          }
+        }
+
+        /* Tablet & Mobile Layout (<900px) */
+        @media (max-width: 899px) {
+          .infographic-horizontal-line {
+            display: none;
+          }
+
+          .infographic-vertical-line {
+            display: block;
+            position: absolute;
+            top: 40px;
+            bottom: 40px;
+            left: 40px;
+            width: 2px;
+            transform: translateX(-50%);
+            background: repeating-linear-gradient(
+              to bottom,
+              #CBD5E1 0,
+              #CBD5E1 8px,
+              transparent 8px,
+              transparent 16px
+            );
+            z-index: 1;
+          }
+
+          .infographic-nodes-row {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 620px;
+            margin: 0 auto;
+          }
+
+          .infographic-node-column {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 16px;
+            width: 100%;
+            text-align: left;
+          }
+
+          .infographic-circle-center-wrap {
+            width: 80px;
+            height: 80px;
+            margin: 0;
+            z-index: 3;
+          }
+
+          .infographic-circle-disk {
+            width: 72px;
+            height: 72px;
+            border-width: 3px;
+          }
+
+          .infographic-node-num {
+            font-size: 20px;
+          }
+
+          .infographic-node-sub {
+            font-size: 8px;
+          }
+
+          .infographic-pointer-arrow {
+            display: none;
+          }
+
           .infographic-dot-connector {
             display: none;
+          }
+
+          .infographic-slot {
+            min-height: auto;
+            padding: 0;
+            flex: 1;
+          }
+
+          .slot-top, .slot-bottom {
+            justify-content: center;
+          }
+
+          .slot-top:empty, .slot-bottom:empty {
+            display: none;
+          }
+
+          .infographic-content-card {
+            max-width: 100%;
+            text-align: left;
+            padding: 14px 16px;
+            border-radius: 16px;
+          }
+
+          .infographic-card-header {
+            justify-content: flex-start;
+          }
+
+          .infographic-card-title {
+            font-size: 13px;
+          }
+
+          .infographic-card-desc {
+            font-size: 11.5px;
+          }
+        }
+
+        /* Mobile / Phone Devices (<768px) */
+        @media (max-width: 767px) {
+          .infographic-orbit-ring {
+            display: none !important;
+            visibility: hidden !important;
+          }
+        }
+
+        /* Mobile Devices (<= 640px) */
+        @media (max-width: 640px) {
+          .infographic-vertical-line {
+            left: 36px;
+          }
+
+          .infographic-circle-center-wrap {
+            width: 72px;
+            height: 72px;
+          }
+
+          .infographic-circle-disk {
+            width: 64px;
+            height: 64px;
+            border-width: 2.5px;
+          }
+
+          .infographic-node-num {
+            font-size: 18px;
+          }
+
+          .infographic-node-sub {
+            font-size: 7.5px;
+          }
+
+          .infographic-node-column {
+            gap: 12px;
+          }
+
+          .infographic-content-card {
+            padding: 12px 14px;
+            border-radius: 14px;
+          }
+
+          .infographic-card-title {
+            font-size: 12px;
+          }
+
+          .infographic-card-desc {
+            font-size: 11px;
+          }
+
+          .steps-bottom-divider {
+            gap: 10px;
+          }
+
+          .divider-content {
+            font-size: 11px;
+          }
+        }
+
+        /* Extra Small Phones (<= 380px) */
+        @media (max-width: 380px) {
+          .infographic-vertical-line {
+            left: 30px;
+          }
+
+          .infographic-circle-center-wrap {
+            width: 60px;
+            height: 60px;
+          }
+
+          .infographic-circle-disk {
+            width: 54px;
+            height: 54px;
+            border-width: 2px;
+          }
+
+          .infographic-node-num {
+            font-size: 16px;
+          }
+
+          .infographic-node-sub {
+            font-size: 7px;
+          }
+
+          .infographic-node-column {
+            gap: 10px;
+          }
+
+          .infographic-content-card {
+            padding: 10px 12px;
+          }
+
+          .infographic-card-title {
+            font-size: 11.5px;
+          }
+
+          .infographic-card-desc {
+            font-size: 10.5px;
+          }
+        }
+
+        /* Prefers Reduced Motion Accessibility Override */
+        @media (prefers-reduced-motion: reduce) {
+          .infographic-orbit-ring {
+            animation: none !important;
           }
         }
       `}</style>

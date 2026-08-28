@@ -33,25 +33,17 @@ export default function CTASection() {
 
   return (
     <section ref={sectionRef} style={{ padding: "48px 0 0", background: "#F6F7F9", overflow: "hidden" }}>
-      <div className="container" style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 24px" }}>
+      <div className="container" style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 clamp(16px, 3vw, 24px)" }}>
 
-        {/* Main Banner Card with Scroll Entrance & Soft Tilt */}
+        {/* Main Banner Card */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          style={{
-            background: "linear-gradient(135deg, #AFA0D2 0%, #A290C6 45%, #947EBC 100%)",
-            borderRadius: "28px",
-            padding: "36px 44px",
-            color: "#180C2E",
-            boxShadow: "0 18px 48px -12px rgba(91, 46, 145, 0.22)",
-            position: "relative",
-            overflow: "hidden"
-          }}
+          className="cta-banner-card"
         >
-          {/* Concentric Circular Rings with Scroll-Linked Parallax & Rotation */}
+          {/* Concentric Circular Rings */}
           <motion.div
             style={{
               position: "absolute",
@@ -65,6 +57,7 @@ export default function CTASection() {
               pointerEvents: "none",
               zIndex: 0
             }}
+            className="cta-bg-rings"
           >
             <div
               style={{
@@ -117,18 +110,8 @@ export default function CTASection() {
           </motion.div>
 
           {/* Inner Grid */}
-          <div
-            style={{
-              position: "relative",
-              zIndex: 1,
-              display: "grid",
-              gridTemplateColumns: "1.15fr 0.85fr",
-              gap: "40px",
-              alignItems: "center"
-            }}
-            className="cta-grid-responsive"
-          >
-            {/* Left Column: Staggered Scroll Entrance Typography & Actions */}
+          <div className="cta-grid-responsive">
+            {/* Left Column */}
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -140,7 +123,7 @@ export default function CTASection() {
                   transition: { staggerChildren: 0.12, delayChildren: 0.1 }
                 }
               }}
-              style={{ maxWidth: "560px" }}
+              className="cta-left-content"
             >
               {/* Eyebrow Pill Tag */}
               <motion.div
@@ -174,21 +157,13 @@ export default function CTASection() {
                 ELEVATE YOUR TECH CAREER
               </motion.div>
 
-              {/* Main Headline with Serif Italic Typography */}
+              {/* Main Headline */}
               <motion.h2
                 variants={{
                   hidden: { opacity: 0, y: 20 },
                   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } }
                 }}
-                style={{
-                  fontFamily: "var(--font-headings), sans-serif",
-                  fontSize: "36px",
-                  fontWeight: "600",
-                  color: "#160B2B",
-                  lineHeight: "1.18",
-                  letterSpacing: "-0.025em",
-                  marginBottom: "14px"
-                }}
+                className="cta-headline"
               >
                 Techlearns,{" "}
                 <span
@@ -211,13 +186,7 @@ export default function CTASection() {
                   hidden: { opacity: 0, y: 18 },
                   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } }
                 }}
-                style={{
-                  fontSize: "14px",
-                  color: "#2C1B46",
-                  lineHeight: "1.55",
-                  marginBottom: "22px",
-                  fontWeight: "450"
-                }}
+                className="cta-subtext"
               >
                 Join thousands of successful graduates who transitioned into high-growth software engineering, Data Science, and AI roles with 1-on-1 mentorship, live projects, and lifetime placement support.
               </motion.p>
@@ -228,32 +197,13 @@ export default function CTASection() {
                   hidden: { opacity: 0, y: 16 },
                   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } }
                 }}
-                style={{
-                  display: "flex",
-                  gap: "12px",
-                  alignItems: "center",
-                  flexWrap: "wrap",
-                  marginBottom: "20px"
-                }}
+                className="cta-buttons-wrapper"
               >
                 {/* Primary Button */}
-                <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+                <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} className="cta-btn-wrap">
                   <Link
                     href="#courses"
-                    style={{
-                      display: "inline-flex",
-                      alignItems: "center",
-                      gap: "8px",
-                      background: "#180C2E",
-                      color: "#FFFFFF",
-                      padding: "11px 22px",
-                      borderRadius: "12px",
-                      fontSize: "13.5px",
-                      fontWeight: "700",
-                      textDecoration: "none",
-                      boxShadow: "0 6px 18px rgba(24, 12, 46, 0.25)",
-                      transition: "background 0.2s ease"
-                    }}
+                    className="cta-primary-btn"
                   >
                     <span>Apply for Next Cohort</span>
                     <motion.span
@@ -266,24 +216,10 @@ export default function CTASection() {
                 </motion.div>
 
                 {/* Secondary Button */}
-                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="cta-btn-wrap">
                   <Link
                     href="/contact"
-                    style={{
-                      display: "inline-flex",
-                      alignItems: "center",
-                      gap: "8px",
-                      background: "rgba(255, 255, 255, 0.4)",
-                      color: "#180C2E",
-                      border: "1.5px solid rgba(24, 12, 46, 0.25)",
-                      padding: "11px 20px",
-                      borderRadius: "12px",
-                      fontSize: "13.5px",
-                      fontWeight: "700",
-                      textDecoration: "none",
-                      backdropFilter: "blur(8px)",
-                      transition: "all 0.2s ease"
-                    }}
+                    className="cta-secondary-btn"
                   >
                     <span>Schedule Free 1-on-1 Counseling</span>
                   </Link>
@@ -296,13 +232,7 @@ export default function CTASection() {
                   hidden: { opacity: 0 },
                   visible: { opacity: 1, transition: { duration: 0.5 } }
                 }}
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "repeat(2, 1fr)",
-                  gap: "8px 14px",
-                  paddingTop: "14px",
-                  borderTop: "1px solid rgba(24, 12, 46, 0.12)"
-                }}
+                className="cta-trust-grid"
               >
                 <div style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "11.5px", color: "#221138", fontWeight: "600" }}>
                   <span style={{ color: "#180C2E", fontWeight: "800" }}>✓</span> 100% Placement Assistance
@@ -320,16 +250,13 @@ export default function CTASection() {
 
             </motion.div>
 
-            {/* Right Column: Smartphone Mockup with Scroll-Linked Parallax, Floating Badge & Micro-Interactions */}
+            {/* Right Column: Smartphone Mockup */}
             <div style={{ display: "flex", justifyContent: "center", alignItems: "center", position: "relative" }}>
 
-              {/* Floating Achievement Milestone Pill (Scroll-Linked Parallax) */}
+              {/* Floating Achievement Milestone Pill */}
               <motion.div
+                className="cta-floating-badge"
                 style={{
-                  position: "absolute",
-                  top: "14%",
-                  left: "-115px",
-                  zIndex: 25,
                   y: floatBadgeY,
                   rotate: floatBadgeRotate
                 }}
@@ -371,7 +298,7 @@ export default function CTASection() {
                 </div>
               </motion.div>
 
-              {/* Phone Device Mockup Container with Parallax */}
+              {/* Phone Device Mockup Container */}
               <motion.div
                 style={{
                   y: phoneY,
@@ -388,6 +315,7 @@ export default function CTASection() {
                   flexDirection: "column"
                 }}
                 whileHover={{ scale: 1.025, transition: { duration: 0.3 } }}
+                className="cta-phone-mockup"
               >
                 {/* Screen Canvas */}
                 <div
@@ -433,21 +361,18 @@ export default function CTASection() {
                     />
 
                     <div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
-                      {/* Signal */}
                       <svg width="12" height="10" viewBox="0 0 16 12" fill="#0F172A">
                         <rect x="0" y="9" width="2.5" height="3" rx="0.5" />
                         <rect x="4" y="6" width="2.5" height="6" rx="0.5" />
                         <rect x="8" y="3" width="2.5" height="9" rx="0.5" />
                         <rect x="12" y="0" width="2.5" height="12" rx="0.5" />
                       </svg>
-                      {/* WiFi */}
                       <svg width="12" height="10" viewBox="0 0 24 24" fill="none" stroke="#0F172A" strokeWidth="2.5">
                         <path d="M5 12.55a11 11 0 0 1 14.08 0" />
                         <path d="M1.42 9a16 16 0 0 1 21.16 0" />
                         <path d="M8.53 16.11a6 6 0 0 1 6.95 0" />
                         <line x1="12" y1="20" x2="12.01" y2="20" strokeWidth="3" />
                       </svg>
-                      {/* Battery */}
                       <div
                         style={{
                           width: "18px",
@@ -496,7 +421,7 @@ export default function CTASection() {
                       </motion.div>
                     </div>
 
-                    {/* Filter Chips (TechLearns Tracks) */}
+                    {/* Filter Chips */}
                     <div style={{ display: "flex", gap: "5px", alignItems: "center" }}>
                       <span
                         style={{
@@ -544,7 +469,7 @@ export default function CTASection() {
                         Corporate Sprints
                       </div>
 
-                      {/* Main Featured Sprint Card with Hover Sheen */}
+                      {/* Main Featured Sprint Card */}
                       <motion.div
                         whileHover={{ y: -2, boxShadow: "0 12px 26px rgba(24, 11, 46, 0.35)" }}
                         style={{
@@ -558,7 +483,6 @@ export default function CTASection() {
                           cursor: "pointer"
                         }}
                       >
-                        {/* Background Radial Glow */}
                         <div
                           style={{
                             position: "absolute",
@@ -572,11 +496,10 @@ export default function CTASection() {
                         />
 
                         <div style={{ fontSize: "13px", fontWeight: "800", lineHeight: "1.3", marginBottom: "14px", maxWidth: "165px" }}>
-                          Generative AI & Agentic RAG Sprint
+                          Generative AI &amp; Agentic RAG Sprint
                         </div>
 
                         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                          {/* Badges */}
                           <div style={{ display: "flex", gap: "5px" }}>
                             <span
                               style={{
@@ -607,7 +530,6 @@ export default function CTASection() {
                             </span>
                           </div>
 
-                          {/* Floating Circular Action Button */}
                           <motion.div
                             whileHover={{ scale: 1.15 }}
                             whileTap={{ scale: 0.9 }}
@@ -684,7 +606,7 @@ export default function CTASection() {
 
                   </div>
 
-                  {/* App Bottom Navigation Bar (TechLearns Ecosystem) */}
+                  {/* App Bottom Navigation Bar */}
                   <div
                     style={{
                       background: "#180C2E",
@@ -696,7 +618,6 @@ export default function CTASection() {
                       alignItems: "center"
                     }}
                   >
-                    {/* Active SkillOS Home Pill */}
                     <div
                       style={{
                         background: "#E5F77D",
@@ -716,7 +637,6 @@ export default function CTASection() {
                       SkillOS
                     </div>
 
-                    {/* Sprints Navigation Icon */}
                     <div style={{ color: "rgba(255,255,255,0.6)", padding: "4px" }}>
                       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
                         <polygon points="12 2 2 7 12 12 22 7 12 2" />
@@ -725,7 +645,6 @@ export default function CTASection() {
                       </svg>
                     </div>
 
-                    {/* Skill Passport Navigation Icon */}
                     <div style={{ color: "rgba(255,255,255,0.6)", padding: "4px" }}>
                       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
                         <rect x="3" y="4" width="18" height="16" rx="2" />
@@ -735,7 +654,6 @@ export default function CTASection() {
                       </svg>
                     </div>
 
-                    {/* Profile Navigation Icon */}
                     <div style={{ color: "rgba(255,255,255,0.6)", padding: "4px" }}>
                       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
                         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
@@ -756,15 +674,162 @@ export default function CTASection() {
       </div>
 
       <style jsx global>{`
+        /* Fully Responsive CSS Architecture for CTASection */
+
+        .cta-banner-card {
+          background: linear-gradient(135deg, #AFA0D2 0%, #A290C6 45%, #947EBC 100%);
+          border-radius: 28px;
+          padding: 36px 44px;
+          color: #180C2E;
+          box-shadow: 0 18px 48px -12px rgba(91, 46, 145, 0.22);
+          position: relative;
+          overflow: hidden;
+        }
+
+        .cta-grid-responsive {
+          position: relative;
+          z-index: 1;
+          display: grid;
+          grid-template-columns: 1.15fr 0.85fr;
+          gap: 40px;
+          align-items: center;
+        }
+
+        .cta-left-content {
+          max-width: 560px;
+        }
+
+        .cta-headline {
+          font-family: var(--font-headings), sans-serif;
+          font-size: clamp(1.85rem, 4.2vw, 2.25rem);
+          font-weight: 600;
+          color: #160B2B;
+          line-height: 1.18;
+          letter-spacing: -0.025em;
+          margin-bottom: 14px;
+        }
+
+        .cta-subtext {
+          font-size: clamp(0.8125rem, 1.4vw, 0.875rem);
+          color: #2C1B46;
+          line-height: 1.55;
+          margin-bottom: 22px;
+          font-weight: 450;
+        }
+
+        .cta-buttons-wrapper {
+          display: flex;
+          gap: 12px;
+          align-items: center;
+          flex-wrap: wrap;
+          margin-bottom: 20px;
+        }
+
+        .cta-primary-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          background: #180C2E;
+          color: #FFFFFF;
+          padding: 11px 22px;
+          border-radius: 12px;
+          font-size: 13.5px;
+          font-weight: 700;
+          text-decoration: none;
+          box-shadow: 0 6px 18px rgba(24, 12, 46, 0.25);
+          transition: background 0.2s ease;
+        }
+
+        .cta-secondary-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          background: rgba(255, 255, 255, 0.4);
+          color: #180C2E;
+          border: 1.5px solid rgba(24, 12, 46, 0.25);
+          padding: 11px 20px;
+          border-radius: 12px;
+          font-size: 13.5px;
+          font-weight: 700;
+          text-decoration: none;
+          backdrop-filter: blur(8px);
+          transition: all 0.2s ease;
+        }
+
+        .cta-trust-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 8px 14px;
+          padding-top: 14px;
+          border-top: 1px solid rgba(24, 12, 46, 0.12);
+        }
+
+        .cta-floating-badge {
+          position: absolute;
+          top: 14%;
+          left: -115px;
+          z-index: 25;
+        }
+
+        /* ----------------------------------------------------
+           RESPONSIVE BREAKPOINTS
+        ---------------------------------------------------- */
+
+        /* Laptop (992px to 1279px) */
+        @media (max-width: 1279px) and (min-width: 992px) {
+          .cta-banner-card {
+            padding: 32px 36px;
+          }
+          .cta-floating-badge {
+            left: -60px;
+          }
+        }
+
+        /* Tablet Layout (<992px) */
         @media (max-width: 991px) {
           .cta-grid-responsive {
             grid-template-columns: 1fr !important;
+            gap: 36px !important;
             text-align: center;
           }
-          .cta-grid-responsive > div:first-child {
+          .cta-left-content {
+            max-width: 100% !important;
             display: flex;
             flex-direction: column;
             align-items: center;
+          }
+          .cta-buttons-wrapper {
+            justify-content: center;
+          }
+          .cta-trust-grid {
+            justify-content: center;
+            text-align: left;
+          }
+          .cta-floating-badge {
+            left: 0px;
+            top: -24px;
+          }
+        }
+
+        /* Mobile Devices (<767px) */
+        @media (max-width: 767px) {
+          .cta-banner-card {
+            padding: 24px 18px;
+            border-radius: 20px;
+          }
+          .cta-btn-wrap {
+            width: 100%;
+          }
+          .cta-primary-btn, .cta-secondary-btn {
+            width: 100%;
+            justify-content: center;
+            box-sizing: border-box;
+          }
+          .cta-bg-rings,
+          .cta-floating-badge,
+          .cta-phone-mockup,
+          .cta-trust-grid {
+            display: none !important;
           }
         }
       `}</style>

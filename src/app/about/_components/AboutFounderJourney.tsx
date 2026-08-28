@@ -348,7 +348,7 @@ export default function AboutFounderJourney() {
           </div>
 
           <div style={{ position: "relative", zIndex: 10, maxWidth: "700px", margin: "0 auto" }}>
-            
+
             {/* Premium Eyebrow Pill Badge */}
             <div style={{ marginBottom: "18px" }}>
               <span

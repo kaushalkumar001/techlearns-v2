@@ -17,7 +17,7 @@ import PartnersSection from "./_components/PartnersSection";
 
 export default function HomeClient() {
   return (
-    <div className="landing-page-container light-theme">
+    <div className="landing-page-container">
       <Header />
 
       <main>

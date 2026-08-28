@@ -323,11 +323,20 @@ export default function HiringPartnersSection() {
                   {/* Sticky Header inside storytelling box */}
                   <div className="hiring-scroll-header">
                     <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "6px" }}>
-                      <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                        <span style={{ fontSize: "clamp(22px, 2.6vw, 28px)", fontWeight: "800", color: "#5B2E91", fontFamily: "var(--font-montserrat)" }}>01</span>
-                        <span style={{ fontSize: "11px", fontWeight: "800", color: "#7A42BE", textTransform: "uppercase", letterSpacing: "0.06em", background: "#F3E8FF", padding: "3px 10px", borderRadius: "9999px", border: "1px solid #DDD6FE" }}>
+                      <div>
+                        <div
+                          style={{
+                            fontSize: "clamp(11px, 1.2vw, 12.5px)",
+                            fontWeight: "700",
+                            color: "#5B2E91",
+                            letterSpacing: "0.08em",
+                            textTransform: "uppercase",
+                            marginBottom: "6px"
+                          }}
+                        >
                           Career Storytelling
-                        </span>
+                        </div>
+                        <div style={{ width: "32px", height: "3px", background: "#5B2E91", borderRadius: "2px" }} />
                       </div>
 
                       {/* Step Indicator Pills (01 - 05) */}
@@ -1056,7 +1065,7 @@ export default function HiringPartnersSection() {
         /* Mobile Breakpoint (Below 768px) */
         @media (max-width: 767px) {
           .hiring-infographic-card {
-            padding: 24px 18px;
+            padding: 24px 14px;
             border-radius: 20px;
             margin-bottom: 28px;
           }
@@ -1069,6 +1078,34 @@ export default function HiringPartnersSection() {
           .hiring-grid {
             grid-template-columns: 1fr;
             gap: 28px;
+          }
+          .single-card-story-viewport {
+            padding-right: 18px !important;
+            min-height: auto !important;
+          }
+          .infographic-single-pill-card {
+            height: auto !important;
+            min-height: auto !important;
+            padding: 16px 36px 16px 14px !important;
+            border-radius: 20px !important;
+          }
+          .card-left-icon-wrap {
+            width: 40px !important;
+            height: 40px !important;
+            margin-right: 12px !important;
+            border-radius: 12px !important;
+          }
+          .card-step-title {
+            font-size: 13.5px !important;
+          }
+          .card-step-desc {
+            font-size: 11px !important;
+          }
+          .card-right-node-circle {
+            right: -16px !important;
+            width: 36px !important;
+            height: 36px !important;
+            font-size: 13px !important;
           }
           .hiring-stats-col {
             display: flex;
@@ -1096,6 +1133,47 @@ export default function HiringPartnersSection() {
             padding: 10px 18px;
             font-size: 12.5px;
             text-align: center;
+          }
+        }
+
+        /* Small Mobile Devices (<= 480px) */
+        @media (max-width: 480px) {
+          .hiring-infographic-card {
+            padding: 18px 10px !important;
+            border-radius: 16px !important;
+          }
+          .single-card-story-viewport {
+            padding-right: 14px !important;
+          }
+          .infographic-single-pill-card {
+            padding: 14px 28px 14px 10px !important;
+            border-radius: 16px !important;
+          }
+          .card-left-icon-wrap {
+            width: 34px !important;
+            height: 34px !important;
+            margin-right: 8px !important;
+            border-radius: 10px !important;
+          }
+          .card-step-tag {
+            font-size: 9px !important;
+          }
+          .card-step-title {
+            font-size: 12.5px !important;
+          }
+          .card-step-desc {
+            font-size: 10.5px !important;
+          }
+          .card-right-node-circle {
+            right: -14px !important;
+            width: 30px !important;
+            height: 30px !important;
+            font-size: 11px !important;
+            border-width: 2px !important;
+          }
+          .infographic-skill-pill {
+            font-size: 9px !important;
+            padding: 2px 5px !important;
           }
         }
 

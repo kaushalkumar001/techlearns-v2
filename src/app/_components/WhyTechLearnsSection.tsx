@@ -46,34 +46,34 @@ export default function WhyTechLearnsSection() {
   const current = testimonials[currentIndex];
 
   return (
-    <section style={{ padding: "48px 0", background: "#FFFFFF" }}>
-      <div className="container" style={{ maxWidth: "1380px", width: "100%", margin: "0 auto", padding: "0 24px" }}>
+    <section style={{ padding: "48px 0", background: "#FFFFFF", overflow: "hidden" }}>
+      <div className="container" style={{ maxWidth: "1380px", width: "100%", margin: "0 auto", padding: "0 clamp(16px, 3vw, 24px)" }}>
 
         {/* Section Header */}
-        <div style={{ marginBottom: "40px" }}>
-          <div style={{ fontSize: "12px", fontWeight: "700", color: "#5B2E91", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "6px" }}>
+        <div style={{ marginBottom: "clamp(24px, 4vw, 40px)" }}>
+          <div style={{ fontSize: "clamp(10.5px, 1.2vw, 12px)", fontWeight: "700", color: "#5B2E91", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "6px" }}>
             WHY TECHLEARNS ACADEMY
           </div>
           <div style={{ width: "32px", height: "3px", background: "#5B2E91", borderRadius: "2px", marginBottom: "16px" }}></div>
 
-          <h2 style={{ fontFamily: "var(--font-montserrat), sans-serif", fontSize: "36px", fontWeight: "800", color: "#0B1F3A", letterSpacing: "-0.02em", marginBottom: "10px" }}>
+          <h2 className="why-main-title">
             Industry-tailored <span style={{ color: "#5B2E91" }}>learning</span>
           </h2>
-          <p style={{ fontSize: "15px", color: "#6B7280" }}>
+          <p className="why-sub-title">
             Everything we do is designed to make you job-ready and future-ready.
           </p>
         </div>
 
         {/* 2-Column Layout: Left Cards (60%), Video Testimonial Right (40%) */}
-        <div style={{ display: "grid", gridTemplateColumns: "0.6fr 0.4fr", gap: "32px", alignItems: "stretch" }}>
+        <div className="why-main-grid">
 
-          {/* 4 Feature Cards Grid matching reference bento graphics in original compact height and width */}
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
+          {/* 4 Feature Cards Grid matching reference bento graphics */}
+          <div className="why-bento-grid">
 
             {/* Card 1: Industry-oriented curriculum */}
-            <div style={{ background: "#FFFFFF", borderRadius: "18px", border: "1px solid #EDE9FE", padding: "18px", boxShadow: "0 8px 24px rgba(0,0,0,0.03)", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-              {/* Compact Graphic Panel: Arc Dashboard (Multiservice support style) */}
-              <div style={{ background: "#FAFAFE", border: "1px solid #F1F5F9", borderRadius: "12px", height: "92px", overflow: "hidden", position: "relative", marginBottom: "12px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <div className="why-bento-card">
+              {/* Compact Graphic Panel: Arc Dashboard */}
+              <div style={{ background: "#FAFAFE", border: "1.5px solid #5B2E91", borderRadius: "12px", height: "92px", overflow: "hidden", position: "relative", marginBottom: "12px", display: "flex", alignItems: "center", justifyContent: "center" }}>
                 {/* Arc SVG & Floating Badges */}
                 <svg width="180" height="70" viewBox="0 0 180 70" fill="none" style={{ position: "absolute", top: "10px" }}>
                   <path d="M 15 60 A 75 75 0 0 1 165 60" stroke="#CBD5E1" strokeWidth="1.2" strokeDasharray="3 3" />
@@ -125,9 +125,9 @@ export default function WhyTechLearnsSection() {
             </div>
 
             {/* Card 2: AI-driven learning products */}
-            <div style={{ background: "#FFFFFF", borderRadius: "18px", border: "1px solid #EDE9FE", padding: "18px", boxShadow: "0 8px 24px rgba(0,0,0,0.03)", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-              {/* Compact Graphic Panel: Analytics Line Chart (Track actions style) */}
-              <div style={{ background: "#FAFAFE", border: "1px solid #F1F5F9", borderRadius: "12px", height: "92px", overflow: "hidden", position: "relative", marginBottom: "12px", padding: "8px 12px" }}>
+            <div className="why-bento-card">
+              {/* Compact Graphic Panel: Analytics Line Chart */}
+              <div style={{ background: "#FAFAFE", border: "1.5px solid #5B2E91", borderRadius: "12px", height: "92px", overflow: "hidden", position: "relative", marginBottom: "12px", padding: "8px 12px" }}>
                 {/* Header Metrics */}
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
                   <div>
@@ -175,9 +175,9 @@ export default function WhyTechLearnsSection() {
             </div>
 
             {/* Card 3: Experienced Instructors */}
-            <div style={{ background: "#FFFFFF", borderRadius: "18px", border: "1px solid #EDE9FE", padding: "18px", boxShadow: "0 8px 24px rgba(0,0,0,0.03)", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-              {/* Compact Graphic Panel: Bar Chart with Floating "You" Pill (Keep track of your rating style) */}
-              <div style={{ background: "#FAFAFE", border: "1px solid #F1F5F9", borderRadius: "12px", height: "92px", overflow: "hidden", position: "relative", marginBottom: "12px", display: "flex", alignItems: "flex-end", justifyContent: "center", gap: "8px", paddingBottom: "10px" }}>
+            <div className="why-bento-card">
+              {/* Compact Graphic Panel: Bar Chart with Floating Pill */}
+              <div style={{ background: "#FAFAFE", border: "1.5px solid #5B2E91", borderRadius: "12px", height: "92px", overflow: "hidden", position: "relative", marginBottom: "12px", display: "flex", alignItems: "flex-end", justifyContent: "center", gap: "8px", paddingBottom: "10px" }}>
                 {/* Background Dotted Line */}
                 <div style={{ position: "absolute", top: "50%", left: "10px", right: "10px", borderTop: "1px dashed #CBD5E1" }} />
 
@@ -214,9 +214,9 @@ export default function WhyTechLearnsSection() {
             </div>
 
             {/* Card 4: 1000+ mock interviews */}
-            <div style={{ background: "#FFFFFF", borderRadius: "18px", border: "1px solid #EDE9FE", padding: "18px", boxShadow: "0 8px 24px rgba(0,0,0,0.03)", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-              {/* Compact Graphic Panel: Flowchart Node Diagram (No code platform style) */}
-              <div style={{ background: "#FAFAFE", border: "1px solid #F1F5F9", borderRadius: "12px", height: "92px", overflow: "hidden", position: "relative", marginBottom: "12px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <div className="why-bento-card">
+              {/* Compact Graphic Panel: Flowchart Node Diagram */}
+              <div style={{ background: "#FAFAFE", border: "1.5px solid #5B2E91", borderRadius: "12px", height: "92px", overflow: "hidden", position: "relative", marginBottom: "12px", display: "flex", alignItems: "center", justifyContent: "center" }}>
                 {/* Node 1 (Top Left) */}
                 <div style={{ position: "absolute", top: "10px", left: "14px", background: "linear-gradient(135deg, #93C5FD 0%, #60A5FA 100%)", color: "#FFFFFF", padding: "3px 8px", borderRadius: "6px", fontSize: "9px", fontWeight: "700", boxShadow: "0 2px 6px rgba(96, 165, 250, 0.3)" }}>
                   ⚡ Technical
@@ -257,10 +257,10 @@ export default function WhyTechLearnsSection() {
           </div>
 
           {/* Right Video Testimonial Card */}
-          <div style={{ background: "#FFFFFF", borderRadius: "24px", border: "1px solid #EDE9FE", overflow: "hidden", boxShadow: "0 10px 30px rgba(0,0,0,0.04)", display: "flex", flexDirection: "column" }}>
+          <div className="why-testimonial-card">
 
             {/* Video Frame with Play Overlay */}
-            <div style={{ position: "relative", width: "100%", height: "280px", background: "#0F172A" }}>
+            <div className="why-video-frame">
               <AnimatePresence mode="wait">
                 <motion.img
                   key={current.image}
@@ -280,7 +280,7 @@ export default function WhyTechLearnsSection() {
               </div>
 
               {/* Working Slider Controls (< >) */}
-              <div style={{ position: "absolute", bottom: "14px", left: "0", right: "0", display: "flex", justifyContent: "center", alignItems: "center", gap: "12px", background: "rgba(15, 23, 42, 0.4)", backdropFilter: "blur(8px)", padding: "6px 16px", width: "fit-content", margin: "0 auto", borderRadius: "20px" }}>
+              <div style={{ position: "absolute", bottom: "14px", left: "0", right: "0", display: "flex", justifyContent: "center", alignItems: "center", gap: "12px", background: "rgba(15, 23, 42, 0.4)", backdropFilter: "blur(8px)", padding: "6px 16px", width: "fit-content", maxWidth: "90%", margin: "0 auto", borderRadius: "20px" }}>
                 {/* Left Prev Arrow */}
                 <button
                   onClick={handlePrev}
@@ -346,7 +346,7 @@ export default function WhyTechLearnsSection() {
             </div>
 
             {/* Bottom Testimonial Card Details */}
-            <div style={{ padding: "24px", minHeight: "140px" }}>
+            <div style={{ padding: "clamp(16px, 3vw, 24px)", minHeight: "140px" }}>
               <AnimatePresence mode="wait">
                 <motion.div
                   key={current.name}
@@ -356,7 +356,7 @@ export default function WhyTechLearnsSection() {
                   transition={{ duration: 0.35, ease: smoothEasing }}
                 >
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "4px" }}>
-                    <h4 style={{ fontSize: "18px", fontWeight: "800", color: "#6D28D9" }}>
+                    <h4 style={{ fontSize: "clamp(16px, 2vw, 18px)", fontWeight: "800", color: "#6D28D9" }}>
                       {current.name}
                     </h4>
                     <span style={{ background: "#0A66C2", color: "#FFFFFF", padding: "2px 6px", borderRadius: "4px", fontSize: "11px", fontWeight: "bold" }}>
@@ -366,7 +366,7 @@ export default function WhyTechLearnsSection() {
                   <div style={{ fontSize: "12.5px", color: "#64748B", marginBottom: "14px" }}>
                     {current.role}
                   </div>
-                  <p style={{ fontSize: "13px", color: "#334155", lineHeight: "1.6" }}>
+                  <p style={{ fontSize: "clamp(12px, 1.5vw, 13px)", color: "#334155", lineHeight: "1.6" }}>
                     <span style={{ color: "#6D28D9", fontSize: "18px", fontWeight: "bold", marginRight: "6px" }}>“</span>
                     {current.quote}
                   </p>
@@ -379,6 +379,113 @@ export default function WhyTechLearnsSection() {
         </div>
 
       </div>
+
+      <style jsx global>{`
+        /* Fully Responsive CSS Architecture for WhyTechLearnsSection */
+
+        .why-main-title {
+          font-family: var(--font-montserrat), sans-serif;
+          font-size: clamp(1.75rem, 4.2vw, 2.25rem);
+          font-weight: 800;
+          color: #0B1F3A;
+          letter-spacing: -0.02em;
+          margin-bottom: 10px;
+        }
+
+        .why-sub-title {
+          font-size: clamp(0.875rem, 1.5vw, 0.9375rem);
+          color: #6B7280;
+          margin: 0;
+        }
+
+        .why-main-grid {
+          display: grid;
+          grid-template-columns: 0.6fr 0.4fr;
+          gap: 32px;
+          align-items: stretch;
+        }
+
+        .why-bento-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 20px;
+        }
+
+        .why-bento-card {
+          background: #FFFFFF;
+          border-radius: 18px;
+          border: 1px solid #EDE9FE;
+          padding: 18px;
+          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.03);
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+        }
+
+        .why-testimonial-card {
+          background: #FFFFFF;
+          border-radius: 24px;
+          border: 1px solid #EDE9FE;
+          overflow: hidden;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+          display: flex;
+          flex-direction: column;
+        }
+
+        .why-video-frame {
+          position: relative;
+          width: 100%;
+          height: 280px;
+          background: #0F172A;
+        }
+
+        /* ----------------------------------------------------
+           RESPONSIVE BREAKPOINTS
+        ---------------------------------------------------- */
+
+        /* Laptop (1024px to 1279px) */
+        @media (max-width: 1279px) and (min-width: 1024px) {
+          .why-main-grid {
+            gap: 24px;
+          }
+          .why-bento-grid {
+            gap: 16px;
+          }
+        }
+
+        /* Tablet & Mobile Layout (<1024px) */
+        @media (max-width: 1023px) {
+          .why-main-grid {
+            grid-template-columns: 1fr;
+            gap: 32px;
+          }
+        }
+
+        /* Mobile Devices (<640px) */
+        @media (max-width: 639px) {
+          .why-bento-grid {
+            grid-template-columns: 1fr;
+            gap: 16px;
+          }
+          .why-bento-card {
+            padding: 16px;
+            border-radius: 16px;
+          }
+          .why-video-frame {
+            height: clamp(200px, 55vw, 260px);
+          }
+        }
+
+        /* Small Mobile Devices (<= 480px) */
+        @media (max-width: 480px) {
+          .why-bento-card {
+            padding: 14px;
+          }
+          .why-testimonial-card {
+            border-radius: 18px;
+          }
+        }
+      `}</style>
     </section>
   );
 }

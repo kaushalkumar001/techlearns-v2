@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { motion } from "framer-motion";
 import {
   Compass,
   BookOpen,
@@ -11,6 +12,8 @@ import {
   Trophy,
   Rocket,
   ChevronRight,
+  User,
+  CheckCircle2,
   Target
 } from "lucide-react";
 
@@ -102,67 +105,219 @@ export default function PartnersCelFramework() {
 
   return (
     <>
-      {/* SECTION 03: THE 8-STAGE CEL FRAMEWORK */}
-      <section id="framework" style={{ padding: "80px 0" }}>
-        <div className="container" style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px" }}>
+      {/* SECTION 03: THE 8-STAGE CEL FRAMEWORK (CAROUSEL POST PORTRAIT FRAME TEMPLATE MATCHING IMAGE) */}
+      <section id="framework" style={{ padding: "90px 0", background: "#E8E7E3" }}>
+        <div className="container" style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 24px" }}>
 
-          <div style={{ textAlign: "center", marginBottom: "52px" }}>
-            <span style={{ background: "#F5F0FF", border: "1px solid #E4D7FF", color: "#5B2E91", padding: "5px 16px", borderRadius: "9999px", fontSize: "12px", fontWeight: "800", letterSpacing: "0.08em", textTransform: "uppercase" }}>
-              03. PROGRESSIVE METHODOLOGY
-            </span>
-            <h2 style={{ fontFamily: "var(--font-headings), sans-serif", fontSize: "clamp(30px, 3.6vw, 44px)", fontWeight: "900", color: "#0B1F3A", marginTop: "14px", marginBottom: "16px" }}>
+          {/* Section Header */}
+          <div style={{ textAlign: "center", marginBottom: "56px" }}>
+            <div style={{ display: "inline-flex", flexDirection: "column", alignItems: "center", marginBottom: "14px" }}>
+              <div
+                style={{
+                  fontSize: "clamp(11px, 1.2vw, 12.5px)",
+                  fontWeight: "700",
+                  color: "#5B2E91",
+                  letterSpacing: "0.08em",
+                  textTransform: "uppercase",
+                  marginBottom: "6px"
+                }}
+              >
+                03. PROGRESSIVE METHODOLOGY
+              </div>
+              <div style={{ width: "32px", height: "3px", background: "#5B2E91", borderRadius: "2px" }} />
+            </div>
+
+            <h2 style={{ fontFamily: "var(--font-headings), sans-serif", fontSize: "clamp(34px, 4.2vw, 50px)", fontWeight: "900", color: "#0B1F3A", letterSpacing: "-0.02em", marginBottom: "14px" }}>
               The 8-Stage CEL Framework
             </h2>
-            <p style={{ fontSize: "16px", color: "#64748B", maxWidth: "780px", margin: "0 auto", lineHeight: "1.7" }}>
-              <strong style={{ color: "#5B2E91" }}>Discover → Learn → Practise → Build → Operate → Experience → Compete → Prove & Launch</strong><br />
+            <p style={{ fontSize: "16px", color: "#64748B", maxWidth: "780px", margin: "0 auto", lineHeight: "1.7", fontStyle: "italic" }}>
+              Discover &rarr; Learn &rarr; Practise &rarr; Build &rarr; Operate &rarr; Experience &rarr; Compete &rarr; Prove &amp; Launch<br />
               Every stage takes the student closer to complete professional readiness.
             </p>
           </div>
 
-          {/* Interactive 8-Stage Tabs/Cards */}
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(270px, 1fr))", gap: "20px" }}>
+          {/* ============================================================ */}
+          {/* CAROUSEL POST PORTRAIT FRAME GRID (EXACT 1:1 MATCH FOR IMAGE) */}
+          {/* ============================================================ */}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fill, minmax(290px, 1fr))",
+              gap: "24px",
+              marginBottom: "60px"
+            }}
+          >
             {celStages.map((stage, idx) => {
               const IconComponent = stage.icon;
+              const isColoredCard = idx % 2 === 1; // Alternating cards matching template (02, 04, 06, 08 colored)
+
+              // Card Background Colors
+              const bgColor = isColoredCard ? "#3FA3B5" : "#FFFFFF"; // Teal #3FA3B5 matching template
+              const textColor = isColoredCard ? "#FFFFFF" : "#0B1F3A";
+              const subtitleColor = isColoredCard ? "rgba(255, 255, 255, 0.95)" : "#3FA3B5";
+              const watermarkColor = isColoredCard ? "rgba(255, 255, 255, 0.22)" : "rgba(11, 31, 58, 0.08)";
+              const descColor = isColoredCard ? "rgba(255, 255, 255, 0.88)" : "#64748B";
+              const tagBg = isColoredCard ? "rgba(255, 255, 255, 0.2)" : "#F0FDF4";
+              const tagText = isColoredCard ? "#FFFFFF" : "#0D9488";
+              const sliderLineBg = isColoredCard ? "rgba(255, 255, 255, 0.35)" : "#CBD5E1";
+              const sliderDotBg = isColoredCard ? "#FFFFFF" : "#3FA3B5";
+
+              // Progress percentage for slider line (1 to 8)
+              const dotPositionPercent = ((idx + 1) / celStages.length) * 100;
+
               return (
-                <div
+                <motion.div
                   key={idx}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: idx * 0.06 }}
+                  whileHover={{ y: -6, boxShadow: "0 20px 45px rgba(0, 0, 0, 0.12)" }}
                   style={{
-                    background: "#FFFFFF",
-                    border: "1.5px solid #E2E8F0",
+                    background: bgColor,
                     borderRadius: "20px",
-                    padding: "28px 24px",
-                    boxShadow: "0 4px 20px rgba(0,0,0,0.04)",
-                    transition: "all 0.25s ease",
-                    position: "relative"
+                    padding: "28px 26px",
+                    boxShadow: "0 8px 30px rgba(0, 0, 0, 0.05)",
+                    position: "relative",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-between",
+                    minHeight: "440px",
+                    border: isColoredCard ? "none" : "1px solid #E2E8F0",
+                    transition: "all 0.3s ease",
+                    overflow: "hidden"
                   }}
                 >
-                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "16px" }}>
-                    <span style={{ background: "#5B2E91", color: "#FFFFFF", fontSize: "11px", fontWeight: "900", padding: "3px 10px", borderRadius: "9999px", fontFamily: "monospace" }}>
-                      STAGE {stage.num}
-                    </span>
-                    <IconComponent size={24} color="#5B2E91" />
-                  </div>
 
-                  <h3 style={{ fontSize: "20px", fontWeight: "900", color: "#0B1F3A", marginBottom: "4px" }}>
-                    {stage.title}
-                  </h3>
-                  <div style={{ fontSize: "13px", fontWeight: "800", color: "#5B2E91", marginBottom: "12px" }}>
-                    {stage.subtitle}
-                  </div>
+                  {/* Top Header Row: Watermark Big Number + Top Right Small Counter (Matching Image) */}
+                  <div>
+                    <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: "12px", position: "relative" }}>
+                      
+                      {/* Big Watermark Number (e.g. 01 / 02 in upper left matching image) */}
+                      <span
+                        style={{
+                          fontSize: "56px",
+                          fontWeight: "900",
+                          color: watermarkColor,
+                          lineHeight: "0.9",
+                          fontFamily: "var(--font-headings), sans-serif",
+                          letterSpacing: "-0.04em",
+                          userSelect: "none"
+                        }}
+                      >
+                        {stage.num}
+                      </span>
 
-                  <p style={{ fontSize: "14px", color: "#64748B", lineHeight: "1.6", marginBottom: "16px" }}>
-                    {stage.desc}
-                  </p>
-
-                  <div style={{ borderTop: "1px solid #F1F5F9", paddingTop: "12px", display: "flex", flexDirection: "column", gap: "6px" }}>
-                    {stage.highlights.map((h, i) => (
-                      <div key={i} style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "12.5px", color: "#334155", fontWeight: "600" }}>
-                        <ChevronRight size={14} color="#5B2E91" />
-                        <span>{h}</span>
+                      {/* Top Right Small Counter (e.g. 01 / 02 in top right corner matching image) */}
+                      <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                        <IconComponent size={20} color={textColor} />
+                        <span style={{ fontSize: "14px", fontWeight: "800", color: textColor, fontFamily: "monospace" }}>
+                          {stage.num}
+                        </span>
                       </div>
-                    ))}
+                    </div>
+
+                    {/* Headline Title: SUB CONTENT / Stage Name (Matching Image bold text) */}
+                    <div style={{ fontSize: "12px", fontWeight: "900", color: subtitleColor, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "4px" }}>
+                      STAGE {stage.num}
+                    </div>
+                    <h3
+                      style={{
+                        fontFamily: "var(--font-headings), sans-serif",
+                        fontSize: "22px",
+                        fontWeight: "900",
+                        color: textColor,
+                        lineHeight: "1.15",
+                        letterSpacing: "-0.01em",
+                        marginBottom: "6px",
+                        textTransform: "uppercase"
+                      }}
+                    >
+                      {stage.title}
+                    </h3>
+
+                    {/* Subtitle (Italic matching image template) */}
+                    <div style={{ fontSize: "13px", fontWeight: "700", fontStyle: "italic", color: subtitleColor, marginBottom: "12px" }}>
+                      {stage.subtitle}
+                    </div>
+
+                    {/* Paragraph Description */}
+                    <p style={{ fontSize: "13px", color: descColor, lineHeight: "1.55", marginBottom: "16px", fontWeight: "400" }}>
+                      {stage.desc}
+                    </p>
+
+                    {/* Checklist Pills */}
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: "5px" }}>
+                      {stage.highlights.map((h, i) => (
+                        <span
+                          key={i}
+                          style={{
+                            background: tagBg,
+                            color: tagText,
+                            fontSize: "10.5px",
+                            fontWeight: "700",
+                            padding: "3px 9px",
+                            borderRadius: "9999px",
+                            border: isColoredCard ? "1px solid rgba(255,255,255,0.3)" : "1px solid #CCFBF1"
+                          }}
+                        >
+                          ✓ {h}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                </div>
+
+                  {/* Bottom Elements matching Carousel Template */}
+                  <div style={{ marginTop: "24px" }}>
+                    
+                    {/* Horizontal Line with Circle Dot Slider Indicator (Matching Image line with dot) */}
+                    <div style={{ position: "relative", width: "100%", height: "2px", background: sliderLineBg, marginBottom: "18px", borderRadius: "2px" }}>
+                      <div
+                        style={{
+                          position: "absolute",
+                          top: "50%",
+                          left: `${dotPositionPercent}%`,
+                          transform: "translate(-50%, -50%)",
+                          width: "10px",
+                          height: "10px",
+                          borderRadius: "50%",
+                          background: sliderDotBg,
+                          boxShadow: "0 2px 6px rgba(0, 0, 0, 0.2)"
+                        }}
+                      />
+                    </div>
+
+                    {/* Footer Row: User Badge + Right Chevron Arrow (Matching Image bottom row) */}
+                    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                      
+                      {/* Left User / Brand Pill Badge */}
+                      <div
+                        style={{
+                          display: "inline-flex",
+                          alignItems: "center",
+                          gap: "6px",
+                          background: isColoredCard ? "rgba(255, 255, 255, 0.22)" : "rgba(11, 31, 58, 0.05)",
+                          padding: "5px 12px",
+                          borderRadius: "9999px",
+                          fontSize: "11px",
+                          fontWeight: "800",
+                          color: textColor
+                        }}
+                      >
+                        <User size={12} color={textColor} />
+                        <span>Techlearns CEL™</span>
+                      </div>
+
+                      {/* Right Chevron Arrow Icon */}
+                      <div style={{ opacity: 0.8, color: textColor }}>
+                        <ChevronRight size={18} color={textColor} />
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                </motion.div>
               );
             })}
           </div>
@@ -170,44 +325,97 @@ export default function PartnersCelFramework() {
         </div>
       </section>
 
-      {/* SECTION 04: 100% CORPORATE-READY PRACTICES */}
-      <section style={{ padding: "80px 0", background: "#F8FAFC" }}>
-        <div className="container" style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px" }}>
+      {/* SECTION 04: 100% CORPORATE-READY PRACTICES (EXACT 1:1 SPLIT GRID MATCH FOR IMG1) */}
+      <section style={{ padding: "90px 0", background: "#FFFFFF", borderTop: "1px solid #E2E8F0" }}>
+        <div className="container" style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 24px" }}>
 
-          <div style={{ textAlign: "center", marginBottom: "52px" }}>
-            <span style={{ background: "#F5F0FF", border: "1px solid #E4D7FF", color: "#5B2E91", padding: "5px 16px", borderRadius: "9999px", fontSize: "12px", fontWeight: "800", letterSpacing: "0.08em", textTransform: "uppercase" }}>
-              04. DAILY WORKPLACE HABITS
-            </span>
-            <h2 style={{ fontFamily: "var(--font-headings), sans-serif", fontSize: "clamp(30px, 3.6vw, 44px)", fontWeight: "900", color: "#0B1F3A", marginTop: "14px", marginBottom: "16px" }}>
-              100% Corporate-Ready Practices
-            </h2>
-            <p style={{ fontSize: "16px", color: "#64748B", maxWidth: "720px", margin: "0 auto", lineHeight: "1.7" }}>
-              Corporate readiness is built through daily behavior — not suddenly during placement season.
-            </p>
-          </div>
+          {/* 2-Column Split Layout matching img1 */}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "320px 1fr",
+              gap: "48px",
+              alignItems: "start"
+            }}
+            className="corporate-split-container"
+          >
+            {/* Left Column: Title Block matching img1 */}
+            <div style={{ position: "sticky", top: "100px" }}>
+              <div style={{ display: "inline-flex", flexDirection: "column", marginBottom: "16px" }}>
+                <div
+                  style={{
+                    fontSize: "clamp(11px, 1.2vw, 12.5px)",
+                    fontWeight: "700",
+                    color: "#5B2E91",
+                    letterSpacing: "0.08em",
+                    textTransform: "uppercase",
+                    marginBottom: "6px"
+                  }}
+                >
+                  04. DAILY WORKPLACE HABITS
+                </div>
+                <div style={{ width: "32px", height: "3px", background: "#5B2E91", borderRadius: "2px" }} />
+              </div>
 
-          {/* 15 Practices Grid */}
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))", gap: "18px" }}>
-            {corporatePractices.map((prac, idx) => (
-              <div
-                key={idx}
+              <h2
                 style={{
-                  background: "#FFFFFF",
-                  border: "1px solid #E2E8F0",
-                  borderRadius: "16px",
-                  padding: "20px 22px",
-                  boxShadow: "0 2px 10px rgba(0, 0, 0, 0.03)"
+                  fontFamily: "var(--font-headings), sans-serif",
+                  fontSize: "clamp(28px, 3.4vw, 42px)",
+                  fontWeight: "900",
+                  color: "#0B1F3A",
+                  lineHeight: "1.15",
+                  letterSpacing: "-0.02em",
+                  marginBottom: "16px"
                 }}
               >
-                <h3 style={{ fontSize: "16px", fontWeight: "800", color: "#0B1F3A", marginBottom: "6px", display: "flex", alignItems: "center", gap: "8px" }}>
-                  <Target size={16} color="#5B2E91" />
-                  <span>{prac.title}</span>
-                </h3>
-                <p style={{ fontSize: "13.5px", color: "#64748B", lineHeight: "1.6" }}>
-                  {prac.desc}
-                </p>
+                100% Corporate-Ready Practices
+              </h2>
+              <p style={{ fontSize: "15px", color: "#64748B", lineHeight: "1.65" }}>
+                Corporate readiness is built through daily behavior — not suddenly during placement season.
+              </p>
+            </div>
+
+            {/* Right Column: Grid with Vertical Divider & Horizontal Line Borders matching img1 */}
+            <div
+              style={{
+                borderLeft: "1px solid #E2E8F0",
+                paddingLeft: "48px"
+              }}
+              className="corporate-grid-col"
+            >
+              {/* 3-Column / 4-Column Structured Cell Grid matching img1 rows */}
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))",
+                  gap: "32px 28px"
+                }}
+              >
+                {corporatePractices.map((prac, idx) => (
+                  <div
+                    key={idx}
+                    style={{
+                      paddingBottom: "24px",
+                      borderBottom: "1px solid #F1F5F9",
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "flex-start"
+                    }}
+                  >
+                    <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "6px" }}>
+                      <Target size={15} color="#5B2E91" />
+                      <h3 style={{ fontSize: "15px", fontWeight: "800", color: "#0B1F3A" }}>
+                        {prac.title}
+                      </h3>
+                    </div>
+                    <p style={{ fontSize: "13px", color: "#64748B", lineHeight: "1.5" }}>
+                      {prac.desc}
+                    </p>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
+
           </div>
 
         </div>
