@@ -55,7 +55,7 @@ export default function AboutDifferent() {
           {/* Title with Blue Toggle Switch */}
           <div>
             <div style={{ fontSize: "11px", fontWeight: "900", letterSpacing: "0.1em", textTransform: "uppercase", color: "#5B2E91", marginBottom: "8px" }}>
-              02. WHAT MAKES TECHLEARNS DIFFERENT
+              WHAT MAKES TECHLEARNS DIFFERENT
             </div>
             <h2
               style={{

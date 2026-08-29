@@ -18,81 +18,83 @@ interface AlumniItem {
 
 const alumniData: AlumniItem[] = [
   {
-    name: "Mansi Sharma",
-    role: "AI Data Scientist",
-    company: "Amazon",
+    name: "Amber Hashmi",
+    role: "Associate Software Engineer",
+    company: "NeoSOFT",
     ctc: "18 LPA",
     quote: "TechLearns transformed my theoretical knowledge into real production ML models. The 1-on-1 mentorship made all the difference!",
-    photo: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&auto=format&fit=crop&q=80",
+    photo: "https://theuniquesportal-server.vercel.app/api/image-proxy/1A7A8ri0hdhcK_fQwYGczNTvdnkREyhZC",
     companyColor: "#FF9900",
     before: "B.Tech Student",
-    after: "AI Engineer"
+    after: "Associate Software Engineer"
   },
   {
-    name: "Aman Kumar",
-    role: "SDE-2",
-    company: "Flipkart",
-    ctc: "16 LPA",
-    quote: "The hands-on projects helped me transition seamlessly from college to a high-scale backend role at Flipkart.",
-    photo: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=500&auto=format&fit=crop&q=80",
-    companyColor: "#2874F0",
-    before: "Fresher",
-    after: "Backend Dev"
-  },
-  {
-    name: "Priya Nair",
-    role: "Cloud Architect",
-    company: "Salesforce",
-    ctc: "14 LPA",
+    name: "Ronit Jai Prakash",
+    role: "Full Stack Developer",
+    company: "Caelius Consulting",
+    ctc: "18 LPA",
     quote: "Learning cloud infrastructure with live deployments gave me the confidence to ace technical interviews effortlessly.",
-    photo: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=500&auto=format&fit=crop&q=80",
+    photo: "https://media.licdn.com/dms/image/v2/D5622AQHKqiBZ6evlGQ/feedshare-shrink_800/B56ZhwIK09HMAg-/0/1754227872964?e=1789603200&v=beta&t=Hmlg6qsN1BRSN3hSydAjcwHw2JximWSNBUA3Fzi-0ck",
     companyColor: "#00A1E0",
     before: "Intern",
-    after: "Cloud Engineer"
+    after: "Full Stack Developer"
+    
   },
   {
-    name: "Shubham Verma",
-    role: "Full Stack Developer",
-    company: "Microsoft",
+    name: "Naveen Jaiswal",
+    role: "Software Developer",
+    company: "Entab",
     ctc: "10 LPA",
     quote: "Building real-world production projects & AI-powered mock interviews boosted my coding confidence tremendously.",
-    photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop&q=80",
+    photo: "https://media.licdn.com/dms/image/v2/D5603AQFnP2LqKHK4Tg/profile-displayphoto-shrink_800_800/B56ZXRMoqbGsAg-/0/1742971506121?e=1789603200&v=beta&t=iNys096_COjEUykctnYcQVTMAOuNmG6GIdp7mzFfkDM",
     companyColor: "#00A4EF",
     before: "Student",
-    after: "Full Stack Dev"
+    after: "Software Developer"
+    
   },
   {
-    name: "Yash Gupta",
+    name: "Muntaha Tabassum",
+    role: "Full Stack Developer",
+    company: "Revocept Solutions",
+    ctc: "16 LPA",
+    quote: "The hands-on projects helped me transition seamlessly from college to a high-scale backend role at Flipkart.",
+    photo: "https://theuniquesportal-server.vercel.app/api/image-proxy/1d_LbN3UxDik3Gl6hzAXQJsWCgJEFzjd8",
+    companyColor: "#2874F0",
+    before: "Fresher",
+    after: "Full Stack Developer"
+  },
+  {
+    name: "Aditya Jadon",
     role: "Cybersecurity Analyst",
     company: "PwC",
     ctc: "12 LPA",
     quote: "The practical labs and threat modeling scenarios provided industry-grade skills that recruiters instantly valued.",
-    photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&auto=format&fit=crop&q=80",
+    photo: "https://theuniquesportal-server.vercel.app/api/image-proxy/1OWDkBNiTsjjUPtPihdUOger0BRJl8Lvn",
     companyColor: "#D04A02",
     before: "Support Tech",
     after: "Security Analyst"
   },
   {
-    name: "Rohan Mehta",
-    role: "DevOps Engineer",
-    company: "Adobe",
+    name: "Aditya Raj",
+    role: "Graphic & Visual Designer ",
+    company: "Stell Media",
     ctc: "15 LPA",
     quote: "Automating CI/CD pipelines during the program prepared me directly for high-concurrency enterprise workflows.",
-    photo: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=500&auto=format&fit=crop&q=80",
+    photo: "https://media.licdn.com/dms/image/v2/D5603AQGwd_cU_uauDQ/profile-displayphoto-crop_800_800/B56ZyFfAfmJMAI-/0/1771766026631?e=1789603200&v=beta&t=4yNXX_Y05Hnd0Ff51mTW4z-qraBgD4TLGxBXRQ5Q4s8",
     companyColor: "#FF0000",
     before: "Junior Dev",
-    after: "DevOps Lead"
+    after: "Graphic & Visual Designer "
   },
   {
-    name: "Ananya Sen",
-    role: "Security Engineer",
-    company: "KPMG",
+    name: "Krishna",
+    role: "Full Stack Engineer",
+    company: "Sopra Steria",
     ctc: "13 LPA",
     quote: "The curriculum aligned 100% with enterprise security standards, opening doors to top MNC offers.",
-    photo: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80",
+    photo: "https://theuniquesportal-server.vercel.app/api/image-proxy/1iLgcuJh2rXS0fdoyKQB2fx8zEIo-snHj",
     companyColor: "#00338D",
     before: "IT Analyst",
-    after: "Security Lead"
+    after: "Technical Lead"
   }
 ];
 

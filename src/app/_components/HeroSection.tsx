@@ -189,7 +189,7 @@ export default function HeroSection() {
       style={{
         position: "relative",
         background: "linear-gradient(180deg, #FBF9FF 0%, #F5F0FF 50%, #FAF8FF 100%)",
-        padding: "0 0 48px",
+        padding: "36px 0 48px",
         marginTop: "0",
         overflow: "hidden"
       }}
@@ -261,7 +261,7 @@ export default function HeroSection() {
             >
               <motion.div whileHover={{ scale: 1.025 }} whileTap={{ scale: 0.97 }} className="hero-btn-wrap">
                 <Link
-                  href="/programs"
+                  href="/contact"
                   className="hero-primary-btn"
                 >
                   Explore Programs →

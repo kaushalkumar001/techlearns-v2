@@ -7,28 +7,31 @@ const smoothEasing = [0.16, 1, 0.3, 1] as const;
 
 const testimonials = [
   {
-    name: "Aman Kumar",
-    role: "Data Analyst • CTC: 8 LPA",
+    name: "Paveen Jaiswal",
+    role: "Software Developer • CTC: 16 LPA",
     quote: "TechLearns Academy changed my career journey. The training, projects and mock interviews helped me crack the job I always dreamed of.",
     image: "/crops/aman_kumar.png",
+    objectPosition: "center 15%"
   },
   {
-    name: "Mansi Sharma",
-    role: "Software Engineer • CTC: 12 LPA",
+    name: "Mantasha Tabassum",
+    role: "Software Engineer • CTC: 16 LPA",
     quote: "The Centres of Excellence & corporate mentorship gave me real hands-on experience before stepping into industry interviews.",
     image: "/images/alumni_mansi.jpg",
+    objectPosition: "center 15%"
   },
   {
-    name: "Shubham Verma",
-    role: "Full Stack Developer • CTC: 10 LPA",
+    name: "Harshit Raj",
+    role: "Associate Solutions Engineer • CTC: 10 LPA",
     quote: "Building real-world production projects & AI-powered mock interviews boosted my coding confidence tremendously.",
     image: "/images/alumni_shubham.jpg",
   },
   {
-    name: "Yash Gupta",
-    role: "Data Engineer • CTC: 14 LPA",
+    name: "vaishnavi bajpai",
+    role: "Application Developer • CTC: 18 LPA",
     quote: "TechLearns bridged the gap between college curriculum and top tech company expectations effortlessly.",
     image: "/images/alumni_yash.jpg",
+    objectPosition: "center 15%"
   }
 ];
 
@@ -270,7 +273,12 @@ export default function WhyTechLearnsSection() {
                   transition={{ duration: 0.35, ease: smoothEasing }}
                   src={current.image}
                   alt={current.name}
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    objectPosition: (current as { objectPosition?: string }).objectPosition || "center"
+                  }}
                 />
               </AnimatePresence>
 

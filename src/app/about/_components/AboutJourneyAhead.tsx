@@ -25,7 +25,7 @@ export default function AboutJourneyAhead() {
         {/* Section Header */}
         <div className="mb-12 text-center">
           <div className="mb-2.5 font-mono text-xs font-extrabold uppercase tracking-widest text-[#5B2E91]">
-            06. THE JOURNEY AHEAD
+            THE JOURNEY AHEAD
           </div>
           <h2 className="mb-4 text-3xl font-black leading-tight tracking-tight text-[#0B1F3A] sm:text-4xl md:text-5xl">
             Building More Than{" "}
@@ -124,7 +124,7 @@ export default function AboutJourneyAhead() {
               </Link>
 
               <Link
-                href="/programs"
+                href="/contact"
                 className="inline-flex items-center gap-2 rounded-xl bg-white px-7 py-3.5 text-sm font-extrabold text-[#0B1F3A] shadow-md transition-all duration-200 hover:bg-slate-100"
               >
                 <span>Explore Programs</span>

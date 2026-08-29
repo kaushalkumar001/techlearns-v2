@@ -9,8 +9,8 @@ export default function PartnersHero() {
   return (
     <section
       style={{
-        marginTop: "-68px",
-        paddingTop: "68px",
+        marginTop: "0px",
+        paddingTop: "50px",
         paddingBottom: "40px",
         paddingLeft: "0",
         paddingRight: "0",
@@ -122,7 +122,7 @@ export default function PartnersHero() {
               </Link>
 
               <Link
-                href="/programs"
+                href="/contact"
                 className="partners-hero-secondary-btn"
                 style={{
                   display: "inline-flex",
@@ -174,7 +174,7 @@ export default function PartnersHero() {
               }}
             >
               <img
-                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=80"
+                src="https://media.licdn.com/dms/image/v2/D4D22AQGRYND7lWQOig/feedshare-image-high-res/B4DZ.yVyAfIIAY-/0/1785403483970?e=1789603200&v=beta&t=Z_h38tcUBjcExoHoOMSnwFLSizuWDQfJbT5yihc3RtU"
                 alt="Corporate Experience Learning at Techlearns"
                 className="partners-hero-img"
                 style={{

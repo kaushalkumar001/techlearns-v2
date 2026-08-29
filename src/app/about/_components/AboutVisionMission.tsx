@@ -31,7 +31,7 @@ export default function AboutVisionMission() {
         {/* Section Header */}
         <div className="mb-12 text-center">
           <div className="mb-2.5 font-mono text-xs font-extrabold uppercase tracking-widest text-[#5B2E91]">
-            03. OUR VISION &amp; MISSION
+            OUR VISION &amp; MISSION
           </div>
           <h2 className="mb-4 text-3xl font-black leading-tight tracking-tight text-[#0B1F3A] sm:text-4xl md:text-5xl">
             Creating a New Standard<br />

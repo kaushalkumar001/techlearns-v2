@@ -63,8 +63,7 @@ export default function Footer() {
                 <circle cx="12" cy="10" r="3" />
               </svg>
               <span style={{ fontSize: "12.5px", color: "#4B5563", lineHeight: "1.6" }}>
-                Avior Corporate Park, 425, Lal Bahadur Shastri Marg, Mulund West, Mumbai,
-                Maharashtra 400080
+                JRQC+76 Orbit Signature Walk, Sales Office, 1, VIP Rd, Zirakpur, Punjab 140603
               </span>
             </div>
 
@@ -132,12 +131,12 @@ export default function Footer() {
             </h4>
             <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: "10px", margin: 0 }}>
               {[
-                { label: "Generative AI Engineering", href: "/programs" },
-                { label: "Full-Stack Software Eng", href: "/programs" },
-                { label: "Cloud & DevOps SRE", href: "/programs" },
-                { label: "Cybersecurity & Defense", href: "/programs" },
-                { label: "Data Engineering", href: "/programs" },
-                { label: "AI Foundations", href: "/programs" }
+                { label: "Generative AI Engineering", href: "/contact" },
+                { label: "Full-Stack Software Eng", href: "/contact" },
+                { label: "Cloud & DevOps SRE", href: "/contact" },
+                { label: "Cybersecurity & Defense", href: "/contact" },
+                { label: "Data Engineering", href: "/contact" },
+                { label: "AI Foundations", href: "/contact" }
               ].map(({ label, href }) => (
                 <li key={label}>
                   <Link
@@ -171,8 +170,7 @@ export default function Footer() {
               {[
                 { label: "CEL Wheel System", href: "/cel" },
                 { label: "5-Step Engineering Pipeline", href: "/cel" },
-                { label: "Future Skills League (FSL)", href: "/fsl" },
-                { label: "Skill Passport Verification", href: "/passport" },
+                { label: "Corporate Experience Environment", href: "/partners" },
                 { label: "Institutional Tie-ups", href: "/partners" },
                 { label: "Entrance Test (TLET)", href: "/contact" }
               ].map(({ label, href }) => (

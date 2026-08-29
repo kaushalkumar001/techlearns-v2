@@ -28,7 +28,7 @@ export default function EnvironmentSection() {
             <div className="env-card env-card-tall">
               <div className="env-card-img-wrap">
                 <img
-                  src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1200&q=80"
+                  src="/images/Environment/modernLab.JPG"
                   alt="Modern Classrooms"
                   style={{ width: "100%", height: "100%", objectFit: "cover" }}
                 />
@@ -50,7 +50,7 @@ export default function EnvironmentSection() {
             <div className="env-card env-card-split">
               <div className="env-split-img-wrap">
                 <img
-                  src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80"
+                  src="/images/Environment/Interactive Learning.JPG"
                   alt="Interactive Learning"
                   style={{ width: "100%", height: "100%", objectFit: "cover" }}
                 />
@@ -77,7 +77,7 @@ export default function EnvironmentSection() {
             <div className="env-card env-card-split">
               <div className="env-split-img-wrap">
                 <img
-                  src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=800&q=80"
+                  src="/crops/bridge_gap_illustration.png"
                   alt="Hands-on Coding Labs"
                   style={{ width: "100%", height: "100%", objectFit: "cover" }}
                 />
@@ -98,7 +98,7 @@ export default function EnvironmentSection() {
             {/* Card 4: Offline Learning Experience */}
             <div className="env-card env-card-hero">
               <img
-                src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=80"
+                src="/images/Environment/offline.JPG"
                 alt="Offline Learning Experience"
                 style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", objectFit: "cover" }}
               />

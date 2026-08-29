@@ -122,7 +122,7 @@ export default function PartnersCelFramework() {
                   marginBottom: "6px"
                 }}
               >
-                03. PROGRESSIVE METHODOLOGY
+                PROGRESSIVE METHODOLOGY
               </div>
               <div style={{ width: "32px", height: "3px", background: "#5B2E91", borderRadius: "2px" }} />
             </div>
@@ -335,7 +335,7 @@ export default function PartnersCelFramework() {
                     marginBottom: "6px"
                   }}
                 >
-                  04. DAILY WORKPLACE HABITS
+                  DAILY WORKPLACE HABITS
                 </div>
                 <div style={{ width: "32px", height: "3px", background: "#5B2E91", borderRadius: "2px" }} />
               </div>

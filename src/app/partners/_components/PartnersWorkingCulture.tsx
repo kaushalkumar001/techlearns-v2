@@ -34,7 +34,7 @@ export default function PartnersWorkingCulture() {
         {/* Header Section */}
         <div style={{ marginBottom: "40px" }}>
           <div style={{ fontSize: "12px", fontWeight: "900", color: "#5B2E91", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: "8px" }}>
-            02. WORKING CULTURE
+            WORKING CULTURE
           </div>
           <h2 style={{ fontFamily: "var(--font-headings), sans-serif", fontSize: "clamp(32px, 4vw, 48px)", fontWeight: "900", color: "#0B1F3A", letterSpacing: "-0.02em", marginBottom: "12px" }}>
             Explore by category

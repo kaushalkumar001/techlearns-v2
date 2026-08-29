@@ -96,7 +96,7 @@ export default function AboutVisionAdvisory() {
               <span style={{ width: "14px", height: "14px", borderRadius: "50%", background: "#5B2E91", color: "#FFFFFF", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "8px" }}>
                 🎯
               </span>
-              <span>03. OUR VISION &amp; MISSION</span>
+              <span>OUR VISION &amp; MISSION</span>
             </span>
           </div>
 
@@ -747,7 +747,7 @@ export default function AboutVisionAdvisory() {
                 <span style={{ width: "14px", height: "14px", borderRadius: "50%", background: "#5B2E91", color: "#FFFFFF", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "8px" }}>
                   👥
                 </span>
-                <span>05. ADVISORY BOARD</span>
+                <span>ADVISORY BOARD</span>
               </span>
             </div>
 

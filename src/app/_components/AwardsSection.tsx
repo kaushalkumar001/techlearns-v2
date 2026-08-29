@@ -24,6 +24,8 @@ interface AwardItem {
   photo: string;
   badgeIcon: React.ReactNode;
   category: string;
+  objectFit?: "cover" | "contain";
+  objectPosition?: string;
 }
 
 const awardsData: AwardItem[] = [
@@ -45,7 +47,8 @@ const awardsData: AwardItem[] = [
     desc: "Honored for leadership in advancing quality education through technology and innovation.",
     photo: "/images/award_leadership_2023.jpg",
     badgeIcon: <Award size={20} color="#FFFFFF" />,
-    category: "Academic Leadership"
+    category: "Academic Leadership",
+    objectPosition: "center top"
   },
   {
     id: "award-3",
@@ -55,7 +58,9 @@ const awardsData: AwardItem[] = [
     desc: "Awarded for excellence in education, mentorship and building future-ready learning solutions.",
     photo: "/images/award_indian_2022.jpg",
     badgeIcon: <Star size={20} color="#FFFFFF" />,
-    category: "Mentorship Excellence"
+    category: "Mentorship Excellence",
+    objectFit: "cover",
+    objectPosition: "center 20%"
   },
   {
     id: "award-4",
@@ -83,7 +88,7 @@ const awardsData: AwardItem[] = [
     org: "National Education Network",
     year: "2019",
     desc: "Honored for inspiring students and educators through leadership, mentorship and future-focused education initiatives.",
-    photo: "/images/award_emerging_leader_2019.jpg",
+    photo: "/images/award_emerging_leader_2019.png",
     badgeIcon: <Rocket size={20} color="#FFFFFF" />,
     category: "Emerging Leader"
   }
@@ -264,14 +269,15 @@ export default function AwardsSection() {
                 }}
               >
                 {/* Photo Header */}
-                <div style={{ position: "relative", height: "220px", background: "#F1F5F9", overflow: "hidden" }}>
+                <div style={{ position: "relative", height: "220px", background: award.objectFit === "contain" ? "#0F172A" : "#F1F5F9", overflow: "hidden" }}>
                   <img
                     src={award.photo}
                     alt={award.title}
                     style={{
                       width: "100%",
                       height: "100%",
-                      objectFit: "cover",
+                      objectFit: award.objectFit || "cover",
+                      objectPosition: award.objectPosition || "center",
                       transform: isHovered ? "scale(1.06)" : "scale(1)",
                       transition: "transform 0.5s ease"
                     }}
@@ -285,71 +291,10 @@ export default function AwardsSection() {
                       background: "linear-gradient(to top, rgba(11, 31, 58, 0.65) 0%, transparent 65%)"
                     }}
                   />
-
-                  {/* Year Tag */}
-                  <div
-                    style={{
-                      position: "absolute",
-                      top: "16px",
-                      right: "16px",
-                      background: "rgba(255, 255, 255, 0.95)",
-                      color: "#3A1B68",
-                      padding: "5px 14px",
-                      borderRadius: "9999px",
-                      fontSize: "12px",
-                      fontWeight: "800",
-                      letterSpacing: "0.04em",
-                      boxShadow: "0 4px 12px rgba(0, 0, 0, 0.12)"
-                    }}
-                  >
-                    {award.year}
-                  </div>
-
-                  {/* Category Pill Tag */}
-                  <div
-                    style={{
-                      position: "absolute",
-                      top: "16px",
-                      left: "16px",
-                      background: "rgba(91, 46, 145, 0.85)",
-                      backdropFilter: "blur(6px)",
-                      color: "#FFFFFF",
-                      padding: "4px 12px",
-                      borderRadius: "9999px",
-                      fontSize: "11px",
-                      fontWeight: "700",
-                      letterSpacing: "0.02em"
-                    }}
-                  >
-                    {award.category}
-                  </div>
-
-                  {/* Floating Badge Icon Circle */}
-                  <div
-                    style={{
-                      position: "absolute",
-                      bottom: "-22px",
-                      left: "24px",
-                      width: "48px",
-                      height: "48px",
-                      borderRadius: "16px",
-                      background: "linear-gradient(135deg, #5B2E91 0%, #7A42BE 100%)",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      border: "3.5px solid #FFFFFF",
-                      boxShadow: "0 8px 20px rgba(91, 46, 145, 0.3)",
-                      transform: isHovered ? "scale(1.08)" : "scale(1)",
-                      transition: "transform 0.3s ease",
-                      zIndex: 3
-                    }}
-                  >
-                    {award.badgeIcon}
-                  </div>
                 </div>
 
                 {/* Card Body */}
-                <div style={{ padding: "34px 24px 24px", flex: 1, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+                <div style={{ padding: "24px", flex: 1, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
                   <div>
                     {/* Organization Name */}
                     <div
@@ -388,50 +333,6 @@ export default function AwardsSection() {
                     <p style={{ fontSize: "14px", color: "#64748B", lineHeight: "1.6", margin: 0 }}>
                       {award.desc}
                     </p>
-                  </div>
-
-                  {/* Footer Bar */}
-                  <div
-                    style={{
-                      marginTop: "22px",
-                      paddingTop: "16px",
-                      borderTop: "1px solid #F1F5F9",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "space-between"
-                    }}
-                  >
-                    <span
-                      style={{
-                        display: "inline-flex",
-                        alignItems: "center",
-                        gap: "6px",
-                        background: "#ECFDF5",
-                        color: "#047857",
-                        fontSize: "12px",
-                        fontWeight: "700",
-                        padding: "4px 12px",
-                        borderRadius: "9999px",
-                        border: "1px solid #A7F3D0"
-                      }}
-                    >
-                      <CheckCircle2 size={13} color="#059669" />
-                      Verified Award
-                    </span>
-
-                    <span
-                      style={{
-                        fontSize: "12px",
-                        fontWeight: "600",
-                        color: isHovered ? "#7A42BE" : "#94A3B8",
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "4px",
-                        transition: "color 0.2s ease"
-                      }}
-                    >
-                      <Sparkles size={13} /> Official Honor
-                    </span>
                   </div>
                 </div>
               </motion.div>

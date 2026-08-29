@@ -67,7 +67,7 @@ export default function PartnersEnvironment() {
         {/* Header Section */}
         <div style={{ textAlign: "center", marginBottom: "40px" }}>
           <span style={{ background: "#F5F0FF", border: "1px solid #E4D7FF", color: "#5B2E91", padding: "6px 18px", borderRadius: "9999px", fontSize: "12px", fontWeight: "800", letterSpacing: "0.08em", textTransform: "uppercase", display: "inline-block", marginBottom: "16px" }}>
-            01. CORPORATE EXPERIENCE ENVIRONMENT
+            CORPORATE EXPERIENCE ENVIRONMENT
           </span>
           <h2 style={{ fontFamily: "var(--font-headings), sans-serif", fontSize: "clamp(28px, 4.2vw, 52px)", fontWeight: "900", color: "#0B1F3A", letterSpacing: "-0.02em", marginBottom: "14px" }}>
             The Environment Changes the Learner.

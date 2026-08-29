@@ -152,7 +152,7 @@ export default function AboutWhyExists() {
                 <span style={{ width: "14px", height: "14px", borderRadius: "50%", background: "#5B2E91", color: "#FFFFFF", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "8px" }}>
                   🏢
                 </span>
-                <span>01. WHY TECHLEARNS EXISTS</span>
+                <span>WHY TECHLEARNS EXISTS</span>
               </span>
             </div>
 

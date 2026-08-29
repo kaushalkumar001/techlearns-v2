@@ -39,7 +39,7 @@ export default function AboutFounderJourney() {
             {/* Left Bio Text */}
             <div>
               <div style={{ fontSize: "12px", fontWeight: "800", textTransform: "uppercase", letterSpacing: "0.08em", color: "#5B2E91", marginBottom: "8px" }}>
-                04. MEET THE FOUNDER
+                MEET THE FOUNDER
               </div>
               <h3 style={{ fontFamily: "var(--font-headings), sans-serif", fontSize: "36px", fontWeight: "900", color: "#0B1F3A", marginBottom: "4px" }}>
                 Prof. Ankur Gill
@@ -200,7 +200,7 @@ export default function AboutFounderJourney() {
               <span style={{ width: "14px", height: "14px", borderRadius: "50%", background: "#5B2E91", color: "#FFFFFF", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "8px" }}>
                 🚀
               </span>
-              <span>06. THE JOURNEY AHEAD</span>
+              <span>THE JOURNEY AHEAD</span>
             </span>
           </div>
 

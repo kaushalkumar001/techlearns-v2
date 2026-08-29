@@ -41,7 +41,7 @@ export default function StoriesPage() {
           </div>
 
           <div style={{ marginTop: "40px" }}>
-            <Link href="/programs" className="glow-btn-primary">
+            <Link href="/contact" className="glow-btn-primary">
               Build Your Own Skill Passport
             </Link>
           </div>

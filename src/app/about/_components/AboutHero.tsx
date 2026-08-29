@@ -20,8 +20,8 @@ export default function AboutHero() {
       style={{
         position: "relative",
         background: "#FAF8FE",
-        marginTop: "-68px",
-        padding: "84px 0 50px",
+        marginTop: "0px",
+        padding: "110px 0 50px",
         overflow: "hidden"
       }}
     >
@@ -31,7 +31,7 @@ export default function AboutHero() {
           position: "absolute",
           top: 0,
           right: 0,
-          width: "33.33%",
+          width: "38%",
           height: "650px",
           background: "linear-gradient(140deg, #5B2E91 0%, #421F6C 100%)",
           zIndex: 1
@@ -56,7 +56,7 @@ export default function AboutHero() {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "1.35fr 0.65fr",
+            gridTemplateColumns: "1.3fr 0.7fr",
             gap: "36px",
             alignItems: "flex-start",
             minHeight: "360px"
@@ -169,7 +169,7 @@ export default function AboutHero() {
               </Link>
 
               <Link
-                href="/programs"
+                href="/contact"
                 style={{
                   display: "inline-flex",
                   alignItems: "center",
@@ -196,10 +196,11 @@ export default function AboutHero() {
           <div
             style={{
               display: "flex",
-              justifyContent: "center",
+              justifyContent: "flex-end",
               alignItems: "flex-end",
               position: "relative",
-              height: "100%"
+              height: "100%",
+              marginRight: "-25px"
             }}
           >
             {/* Thinking / Speech Box Above Girl */}
@@ -209,11 +210,10 @@ export default function AboutHero() {
               transition={{ duration: 0.5, delay: 0.35 }}
               style={{
                 position: "absolute",
-                top: "-62px",
-                left: "58%",
-                transform: "translateX(-20%)",
-                width: "220px",
-                height: "115px",
+                top: "-64px",
+                right: "5px",
+                width: "195px",
+                height: "105px",
                 zIndex: 25,
                 display: "flex",
                 alignItems: "center",
@@ -240,8 +240,8 @@ export default function AboutHero() {
                 style={{
                   position: "relative",
                   zIndex: 2,
-                  padding: "12px 18px 24px 18px",
-                  fontSize: "12px",
+                  padding: "10px 16px 22px 16px",
+                  fontSize: "11px",
                   fontWeight: "900",
                   color: "#5B2E91",
                   lineHeight: "1.35",
@@ -259,12 +259,12 @@ export default function AboutHero() {
               src="/crops/hero_student_clean_cutout.png"
               alt="TechLearns Fellow"
               style={{
-                height: "410px",
-                maxHeight: "410px",
+                height: "330px",
+                maxHeight: "330px",
                 width: "auto",
                 objectFit: "contain",
                 marginBottom: "0px",
-                transform: "translateY(-32px)",
+                transform: "translateY(-34px)",
                 zIndex: 10,
                 filter: "drop-shadow(0 15px 30px rgba(255, 255, 255, 0.15))"
               }}

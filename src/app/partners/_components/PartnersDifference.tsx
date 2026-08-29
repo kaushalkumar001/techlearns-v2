@@ -55,7 +55,7 @@ export default function PartnersDifference() {
                       marginBottom: "6px"
                     }}
                   >
-                    /Why Techlearns?
+                    Why Techlearns?
                   </div>
                   <div style={{ width: "32px", height: "3px", background: "#5B2E91", borderRadius: "2px" }} />
                 </div>
@@ -298,7 +298,7 @@ export default function PartnersDifference() {
                     marginBottom: "6px"
                   }}
                 >
-                  07. CORE TRANSFORMATION
+                  CORE TRANSFORMATION
                 </div>
                 <div style={{ width: "32px", height: "3px", background: "#5B2E91", borderRadius: "2px" }} />
               </div>
@@ -498,7 +498,7 @@ export default function PartnersDifference() {
 
           <div style={{ display: "flex", justifyContent: "center" }}>
             <Link
-              href="/programs"
+              href="/contact"
               className="partners-promise-btn"
               style={{
                 display: "inline-flex",

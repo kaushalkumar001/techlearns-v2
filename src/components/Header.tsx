@@ -73,7 +73,7 @@ export default function Header() {
       metaDetail: "Live Projects",
       metaIcon: <FileText size={13} color="#7C3AED" />,
       description: "Build production apps with React, Node.js, Express, MongoDB & System Design.",
-      href: "/programs#fullstack",
+      href: "/contact",
       iconBoxGradient: "linear-gradient(135deg, #8B5CF6 0%, #6D28D9 100%)",
       icon: <Code size={18} color="#FFFFFF" strokeWidth={2.2} />,
       tagBg: "#F3E8FF",
@@ -87,7 +87,7 @@ export default function Header() {
       metaDetail: "Hands-on Labs",
       metaIcon: <FlaskConical size={13} color="#059669" />,
       description: "Master SQL databases, Python Pandas, PowerBI & AI-powered data analytics.",
-      href: "/programs#data-analyst",
+      href: "/contact",
       iconBoxGradient: "linear-gradient(135deg, #10B981 0%, #047857 100%)",
       icon: <BarChart3 size={18} color="#FFFFFF" strokeWidth={2.2} />,
       tagBg: "#ECFDF5",
@@ -101,7 +101,7 @@ export default function Header() {
       metaDetail: "Certified Track",
       metaIcon: <ShieldCheck size={13} color="#2563EB" />,
       description: "Learn network defense, SOC analysis, ethical hacking & cloud security.",
-      href: "/programs#cybersecurity",
+      href: "/contact",
       iconBoxGradient: "linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%)",
       icon: <ShieldCheck size={18} color="#FFFFFF" strokeWidth={2.2} />,
       tagBg: "#EFF6FF",
@@ -115,7 +115,7 @@ export default function Header() {
       metaDetail: "Live Campaigns",
       metaIcon: <Users size={13} color="#D97706" />,
       description: "Scale brands with Meta ads, Google Performance Max, SEO & growth strategies.",
-      href: "/programs#digital-marketing",
+      href: "/contact",
       iconBoxGradient: "linear-gradient(135deg, #F59E0B 0%, #D97706 100%)",
       icon: <Megaphone size={18} color="#FFFFFF" strokeWidth={2.2} />,
       tagBg: "#FFFBEB",
@@ -129,7 +129,7 @@ export default function Header() {
       <header
         className="glass-nav"
         style={{
-          padding: "12px 0",
+          padding: "14px 0 20px",
           transition: "all 0.3s ease",
           width: "100%",
           boxShadow: isScrolled ? "0 10px 30px rgba(0, 0, 0, 0.08)" : "none",
@@ -494,7 +494,7 @@ export default function Header() {
 
                       {/* Glowing Purple Button */}
                       <Link
-                        href="/programs"
+                        href="/contact"
                         onClick={() => setIsCoursesOpen(false)}
                         style={{
                           display: "flex",

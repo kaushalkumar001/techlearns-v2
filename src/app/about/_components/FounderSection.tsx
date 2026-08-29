@@ -19,7 +19,7 @@ export default function FounderSection() {
         {/* Section Tag */}
         <div className="mb-10 text-center">
           <div className="mb-2 font-mono text-xs font-extrabold uppercase tracking-widest text-[#5B2E91]">
-            04. MEET THE FOUNDER
+            MEET THE FOUNDER
           </div>
           <h2 className="text-3xl font-black tracking-tight text-[#0B1F3A] sm:text-4xl md:text-5xl">
             Guided by Vision &amp; Experience

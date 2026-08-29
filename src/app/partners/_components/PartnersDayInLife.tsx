@@ -192,7 +192,7 @@ export default function PartnersDayInLife() {
                   marginBottom: "6px"
                 }}
               >
-                05. A DAY IN THE LIFE
+                A DAY IN THE LIFE
               </div>
               <div style={{ width: "32px", height: "3px", background: "#5B2E91", borderRadius: "2px" }} />
             </div>
@@ -471,7 +471,7 @@ export default function PartnersDayInLife() {
                   marginBottom: "6px"
                 }}
               >
-                06. STUDENT TRANSFORMATION
+                STUDENT TRANSFORMATION
               </div>
               <div style={{ width: "32px", height: "3px", background: "#5B2E91", borderRadius: "2px" }} />
             </div>
