@@ -455,11 +455,11 @@ export default function PartnersDayInLife() {
       </section>
 
       {/* SECTION 06: STUDENT TRANSFORMATION */}
-      <section style={{ padding: "90px 0", background: "#F8FAFC", borderTop: "1px solid #E2E8F0", overflow: "hidden" }}>
+      <section style={{ padding: "40px 0 0px", background: "url('/images/paper_texture_bg.png') center/cover repeat", borderTop: "1px solid #E2E8F0", overflow: "hidden" }}>
         <div className="staircase-container" style={{ maxWidth: "1440px", margin: "0 auto", padding: "0 120px" }}>
 
           {/* Section Header */}
-          <div style={{ textAlign: "center", marginBottom: "60px" }}>
+          <div style={{ textAlign: "center", marginBottom: "16px" }}>
             <div style={{ display: "inline-flex", flexDirection: "column", alignItems: "center", marginBottom: "14px" }}>
               <div
                 style={{
@@ -490,7 +490,7 @@ export default function PartnersDayInLife() {
               width: "100%",
               maxWidth: "100%",
               overflowX: "auto",
-              paddingBottom: "20px"
+              paddingBottom: "0px"
             }}
           >
             <div
@@ -594,23 +594,39 @@ export default function PartnersDayInLife() {
                       }}
                     >
                       {isFinalStage ? (
-                        <div
+                        <motion.div
+                          animate={{
+                            scale: [1, 1.06, 1],
+                            boxShadow: [
+                              "0 6px 20px rgba(126, 58, 242, 0.4), 0 0 12px rgba(245, 158, 11, 0.3)",
+                              "0 10px 30px rgba(126, 58, 242, 0.75), 0 0 22px rgba(245, 158, 11, 0.75)",
+                              "0 6px 20px rgba(126, 58, 242, 0.4), 0 0 12px rgba(245, 158, 11, 0.3)"
+                            ]
+                          }}
+                          transition={{
+                            duration: 2.2,
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                          }}
                           style={{
-                            display: "flex",
+                            display: "inline-flex",
                             alignItems: "center",
-                            gap: "4px",
-                            background: "#7E3AF2",
+                            gap: "6px",
+                            background: "linear-gradient(135deg, #7E3AF2 0%, #B45309 60%, #D97706 100%)",
+                            border: "1.5px solid #FDE047",
                             color: "#FFFFFF",
-                            padding: "4px 10px",
+                            padding: "6px 14px",
                             borderRadius: "9999px",
-                            fontSize: "11px",
+                            fontSize: "11.5px",
                             fontWeight: "900",
-                            boxShadow: "0 4px 12px rgba(126, 58, 242, 0.4)"
+                            letterSpacing: "0.06em",
+                            position: "relative",
+                            zIndex: 12
                           }}
                         >
-                          <Trophy size={14} color="#FDE68A" />
-                          <span>VICTORIOUS!</span>
-                        </div>
+                          <Trophy size={15} color="#FFD700" />
+                          <span style={{ color: "#FFFBEB", textShadow: "0 1px 3px rgba(0,0,0,0.5)" }}>VICTORIOUS!</span>
+                        </motion.div>
                       ) : (
                         <div
                           style={{
