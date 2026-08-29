@@ -105,9 +105,9 @@ export default function PartnersCelFramework() {
 
   return (
     <>
-      {/* SECTION 03: THE 8-STAGE CEL FRAMEWORK (CAROUSEL POST PORTRAIT FRAME TEMPLATE MATCHING IMAGE) */}
+      {/* SECTION 03: THE 8-STAGE CEL FRAMEWORK */}
       <section id="framework" style={{ padding: "90px 0", background: "#E8E7E3" }}>
-        <div className="container" style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 24px" }}>
+        <div className="container" style={{ maxWidth: "1280px", width: "100%", margin: "0 auto", padding: "0 24px" }}>
 
           {/* Section Header */}
           <div style={{ textAlign: "center", marginBottom: "56px" }}>
@@ -127,32 +127,31 @@ export default function PartnersCelFramework() {
               <div style={{ width: "32px", height: "3px", background: "#5B2E91", borderRadius: "2px" }} />
             </div>
 
-            <h2 style={{ fontFamily: "var(--font-headings), sans-serif", fontSize: "clamp(34px, 4.2vw, 50px)", fontWeight: "900", color: "#0B1F3A", letterSpacing: "-0.02em", marginBottom: "14px" }}>
+            <h2 style={{ fontFamily: "var(--font-headings), sans-serif", fontSize: "clamp(28px, 4.2vw, 50px)", fontWeight: "900", color: "#0B1F3A", letterSpacing: "-0.02em", marginBottom: "14px" }}>
               The 8-Stage CEL Framework
             </h2>
-            <p style={{ fontSize: "16px", color: "#64748B", maxWidth: "780px", margin: "0 auto", lineHeight: "1.7", fontStyle: "italic" }}>
+            <p style={{ fontSize: "clamp(14px, 1.4vw, 16px)", color: "#64748B", maxWidth: "780px", margin: "0 auto", lineHeight: "1.7", fontStyle: "italic" }}>
               Discover &rarr; Learn &rarr; Practise &rarr; Build &rarr; Operate &rarr; Experience &rarr; Compete &rarr; Prove &amp; Launch<br />
               Every stage takes the student closer to complete professional readiness.
             </p>
           </div>
 
-          {/* ============================================================ */}
-          {/* CAROUSEL POST PORTRAIT FRAME GRID (EXACT 1:1 MATCH FOR IMAGE) */}
-          {/* ============================================================ */}
+          {/* CAROUSEL POST PORTRAIT FRAME GRID */}
           <div
+            className="cel-framework-grid"
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(290px, 1fr))",
+              gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
               gap: "24px",
               marginBottom: "60px"
             }}
           >
             {celStages.map((stage, idx) => {
               const IconComponent = stage.icon;
-              const isColoredCard = idx % 2 === 1; // Alternating cards matching template (02, 04, 06, 08 colored)
+              const isColoredCard = idx % 2 === 1;
 
               // Card Background Colors
-              const bgColor = isColoredCard ? "#3FA3B5" : "#FFFFFF"; // Teal #3FA3B5 matching template
+              const bgColor = isColoredCard ? "#3FA3B5" : "#FFFFFF";
               const textColor = isColoredCard ? "#FFFFFF" : "#0B1F3A";
               const subtitleColor = isColoredCard ? "rgba(255, 255, 255, 0.95)" : "#3FA3B5";
               const watermarkColor = isColoredCard ? "rgba(255, 255, 255, 0.22)" : "rgba(11, 31, 58, 0.08)";
@@ -162,7 +161,6 @@ export default function PartnersCelFramework() {
               const sliderLineBg = isColoredCard ? "rgba(255, 255, 255, 0.35)" : "#CBD5E1";
               const sliderDotBg = isColoredCard ? "#FFFFFF" : "#3FA3B5";
 
-              // Progress percentage for slider line (1 to 8)
               const dotPositionPercent = ((idx + 1) / celStages.length) * 100;
 
               return (
@@ -173,6 +171,7 @@ export default function PartnersCelFramework() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: idx * 0.06 }}
                   whileHover={{ y: -6, boxShadow: "0 20px 45px rgba(0, 0, 0, 0.12)" }}
+                  className="cel-stage-card"
                   style={{
                     background: bgColor,
                     borderRadius: "20px",
@@ -188,12 +187,9 @@ export default function PartnersCelFramework() {
                     overflow: "hidden"
                   }}
                 >
-
-                  {/* Top Header Row: Watermark Big Number + Top Right Small Counter (Matching Image) */}
+                  {/* Top Header Row */}
                   <div>
                     <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: "12px", position: "relative" }}>
-                      
-                      {/* Big Watermark Number (e.g. 01 / 02 in upper left matching image) */}
                       <span
                         style={{
                           fontSize: "56px",
@@ -208,7 +204,6 @@ export default function PartnersCelFramework() {
                         {stage.num}
                       </span>
 
-                      {/* Top Right Small Counter (e.g. 01 / 02 in top right corner matching image) */}
                       <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                         <IconComponent size={20} color={textColor} />
                         <span style={{ fontSize: "14px", fontWeight: "800", color: textColor, fontFamily: "monospace" }}>
@@ -217,7 +212,6 @@ export default function PartnersCelFramework() {
                       </div>
                     </div>
 
-                    {/* Headline Title: SUB CONTENT / Stage Name (Matching Image bold text) */}
                     <div style={{ fontSize: "12px", fontWeight: "900", color: subtitleColor, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "4px" }}>
                       STAGE {stage.num}
                     </div>
@@ -236,17 +230,14 @@ export default function PartnersCelFramework() {
                       {stage.title}
                     </h3>
 
-                    {/* Subtitle (Italic matching image template) */}
                     <div style={{ fontSize: "13px", fontWeight: "700", fontStyle: "italic", color: subtitleColor, marginBottom: "12px" }}>
                       {stage.subtitle}
                     </div>
 
-                    {/* Paragraph Description */}
                     <p style={{ fontSize: "13px", color: descColor, lineHeight: "1.55", marginBottom: "16px", fontWeight: "400" }}>
                       {stage.desc}
                     </p>
 
-                    {/* Checklist Pills */}
                     <div style={{ display: "flex", flexWrap: "wrap", gap: "5px" }}>
                       {stage.highlights.map((h, i) => (
                         <span
@@ -267,10 +258,8 @@ export default function PartnersCelFramework() {
                     </div>
                   </div>
 
-                  {/* Bottom Elements matching Carousel Template */}
+                  {/* Bottom Elements */}
                   <div style={{ marginTop: "24px" }}>
-                    
-                    {/* Horizontal Line with Circle Dot Slider Indicator (Matching Image line with dot) */}
                     <div style={{ position: "relative", width: "100%", height: "2px", background: sliderLineBg, marginBottom: "18px", borderRadius: "2px" }}>
                       <div
                         style={{
@@ -287,10 +276,7 @@ export default function PartnersCelFramework() {
                       />
                     </div>
 
-                    {/* Footer Row: User Badge + Right Chevron Arrow (Matching Image bottom row) */}
                     <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                      
-                      {/* Left User / Brand Pill Badge */}
                       <div
                         style={{
                           display: "inline-flex",
@@ -308,13 +294,10 @@ export default function PartnersCelFramework() {
                         <span>Techlearns CEL™</span>
                       </div>
 
-                      {/* Right Chevron Arrow Icon */}
                       <div style={{ opacity: 0.8, color: textColor }}>
                         <ChevronRight size={18} color={textColor} />
                       </div>
-
                     </div>
-
                   </div>
 
                 </motion.div>
@@ -325,11 +308,11 @@ export default function PartnersCelFramework() {
         </div>
       </section>
 
-      {/* SECTION 04: 100% CORPORATE-READY PRACTICES (EXACT 1:1 SPLIT GRID MATCH FOR IMG1) */}
+      {/* SECTION 04: 100% CORPORATE-READY PRACTICES */}
       <section style={{ padding: "90px 0", background: "#FFFFFF", borderTop: "1px solid #E2E8F0" }}>
-        <div className="container" style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 24px" }}>
+        <div className="container" style={{ maxWidth: "1280px", width: "100%", margin: "0 auto", padding: "0 24px" }}>
 
-          {/* 2-Column Split Layout matching img1 */}
+          {/* 2-Column Split Layout */}
           <div
             style={{
               display: "grid",
@@ -339,8 +322,8 @@ export default function PartnersCelFramework() {
             }}
             className="corporate-split-container"
           >
-            {/* Left Column: Title Block matching img1 */}
-            <div style={{ position: "sticky", top: "100px" }}>
+            {/* Left Column */}
+            <div className="corporate-sticky-left" style={{ position: "sticky", top: "100px" }}>
               <div style={{ display: "inline-flex", flexDirection: "column", marginBottom: "16px" }}>
                 <div
                   style={{
@@ -360,7 +343,7 @@ export default function PartnersCelFramework() {
               <h2
                 style={{
                   fontFamily: "var(--font-headings), sans-serif",
-                  fontSize: "clamp(28px, 3.4vw, 42px)",
+                  fontSize: "clamp(26px, 3.4vw, 42px)",
                   fontWeight: "900",
                   color: "#0B1F3A",
                   lineHeight: "1.15",
@@ -370,12 +353,12 @@ export default function PartnersCelFramework() {
               >
                 100% Corporate-Ready Practices
               </h2>
-              <p style={{ fontSize: "15px", color: "#64748B", lineHeight: "1.65" }}>
+              <p style={{ fontSize: "clamp(14px, 1.3vw, 15px)", color: "#64748B", lineHeight: "1.65" }}>
                 Corporate readiness is built through daily behavior — not suddenly during placement season.
               </p>
             </div>
 
-            {/* Right Column: Grid with Vertical Divider & Horizontal Line Borders matching img1 */}
+            {/* Right Column */}
             <div
               style={{
                 borderLeft: "1px solid #E2E8F0",
@@ -383,8 +366,8 @@ export default function PartnersCelFramework() {
               }}
               className="corporate-grid-col"
             >
-              {/* 3-Column / 4-Column Structured Cell Grid matching img1 rows */}
               <div
+                className="corporate-subgrid"
                 style={{
                   display: "grid",
                   gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))",

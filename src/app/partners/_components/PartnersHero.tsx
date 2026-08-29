@@ -11,7 +11,7 @@ export default function PartnersHero() {
       style={{
         marginTop: "-68px",
         paddingTop: "68px",
-        paddingBottom: "0",
+        paddingBottom: "40px",
         paddingLeft: "0",
         paddingRight: "0",
         background: "linear-gradient(180deg, #F8FAFC 0%, #FAF8FE 100%)",
@@ -19,22 +19,14 @@ export default function PartnersHero() {
         overflow: "hidden"
       }}
     >
-      <div className="container" style={{ maxWidth: "1280px", margin: "0 auto", padding: "0" }}>
+      <div className="container" style={{ maxWidth: "1280px", width: "100%", margin: "0 auto", padding: "0 24px" }}>
 
         {/* Full Width Grid Layout */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          style={{
-            display: "grid",
-            gridTemplateColumns: "6fr 4fr",
-            gap: "48px",
-            alignItems: "center",
-            position: "relative",
-            width: "100%"
-          }}
-          className="grid-hero-img3"
+          className="partners-hero-layout-grid"
         >
 
           {/* LEFT COLUMN: TEXT, BUTTONS & BOTTOM STATS/PILLARS */}
@@ -43,6 +35,7 @@ export default function PartnersHero() {
             {/* Eyebrow Badge */}
             <div style={{ marginBottom: "20px" }}>
               <span
+                className="partners-eyebrow-pill"
                 style={{
                   display: "inline-flex",
                   alignItems: "center",
@@ -55,27 +48,31 @@ export default function PartnersHero() {
                   fontSize: "12px",
                   fontWeight: "900",
                   letterSpacing: "0.06em",
-                  textTransform: "uppercase"
+                  textTransform: "uppercase",
+                  maxWidth: "100%"
                 }}
               >
-                <span style={{ width: "16px", height: "16px", borderRadius: "50%", background: "#5B2E91", color: "#FFFFFF", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "10px", fontWeight: "900" }}>✓</span>
-                <span>EXPLORE CEL™ • CORPORATE EXPERIENCE LEARNING</span>
+                <span style={{ width: "16px", height: "16px", borderRadius: "50%", background: "#5B2E91", color: "#FFFFFF", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "10px", fontWeight: "900", flexShrink: 0 }}>✓</span>
+                <span style={{ overflow: "hidden", textOverflow: "ellipsis" }}>
+                  EXPLORE CEL™ • CORPORATE EXPERIENCE LEARNING
+                </span>
               </span>
             </div>
 
             {/* Main Headline */}
             <h1
+              className="partners-hero-headline"
               style={{
                 fontFamily: "var(--font-headings), sans-serif",
-                fontSize: "clamp(34px, 4vw, 54px)",
+                fontSize: "clamp(26px, 3.8vw, 54px)",
                 fontWeight: "900",
                 color: "#0B1F3A",
-                lineHeight: "1.12",
+                lineHeight: "1.14",
                 letterSpacing: "-0.03em",
                 marginBottom: "20px"
               }}
             >
-              Don&apos;t Prepare for Corporate Life Someday.<br />
+              Don&apos;t Prepare for Corporate Life Someday.<br className="hidden sm:inline" />{" "}
               <span
                 style={{
                   color: "#5B2E91",
@@ -89,7 +86,7 @@ export default function PartnersHero() {
             {/* Paragraph */}
             <p
               style={{
-                fontSize: "15.5px",
+                fontSize: "clamp(14px, 1.4vw, 15.5px)",
                 color: "#64748B",
                 lineHeight: "1.7",
                 marginBottom: "32px",
@@ -100,12 +97,14 @@ export default function PartnersHero() {
             </p>
 
             {/* Buttons Row */}
-            <div style={{ display: "flex", alignItems: "center", gap: "16px", flexWrap: "wrap", marginBottom: "44px" }}>
+            <div className="partners-hero-btn-row">
               <Link
                 href="#framework"
+                className="partners-hero-primary-btn"
                 style={{
                   display: "inline-flex",
                   alignItems: "center",
+                  justifyContent: "center",
                   gap: "10px",
                   background: "linear-gradient(135deg, #5B2E91 0%, #7E3AF2 100%)",
                   color: "#FFFFFF",
@@ -124,9 +123,11 @@ export default function PartnersHero() {
 
               <Link
                 href="/programs"
+                className="partners-hero-secondary-btn"
                 style={{
                   display: "inline-flex",
                   alignItems: "center",
+                  justifyContent: "center",
                   gap: "8px",
                   background: "#FFFFFF",
                   color: "#0B1F3A",
@@ -144,14 +145,14 @@ export default function PartnersHero() {
             </div>
 
             {/* Bottom 3 Core Value Pillars */}
-            <div style={{ display: "flex", alignItems: "center", gap: "24px", paddingTop: "24px", borderTop: "1px solid #F1F5F9", flexWrap: "wrap" }}>
+            <div className="partners-hero-pillars-row">
               {[
                 { title: "Learn Like a Student.", desc: "Structured Industry Context" },
                 { title: "Work Like a Professional.", desc: "Real Sprints & GitHub Discipline" },
                 { title: "Grow Like Future Talent.", desc: "Proven Career Capability" }
               ].map((stat, i) => (
                 <div key={i} style={{ display: "flex", flexDirection: "column" }}>
-                  <span style={{ fontSize: "14.5px", fontWeight: "900", color: "#0B1F3A" }}>{stat.title}</span>
+                  <span style={{ fontSize: "14px", fontWeight: "900", color: "#0B1F3A" }}>{stat.title}</span>
                   <span style={{ fontSize: "11.5px", color: "#64748B", fontWeight: "600" }}>{stat.desc}</span>
                 </div>
               ))}
@@ -175,6 +176,7 @@ export default function PartnersHero() {
               <img
                 src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=80"
                 alt="Corporate Experience Learning at Techlearns"
+                className="partners-hero-img"
                 style={{
                   width: "100%",
                   height: "380px",
@@ -185,6 +187,7 @@ export default function PartnersHero() {
 
               {/* Top Right Floating Pill Badge */}
               <div
+                className="partners-floating-badge"
                 style={{
                   position: "absolute",
                   top: "16px",
@@ -205,6 +208,7 @@ export default function PartnersHero() {
 
               {/* Bottom Left Floating Frosted Card */}
               <div
+                className="partners-frosted-card"
                 style={{
                   position: "absolute",
                   bottom: "16px",
@@ -220,7 +224,7 @@ export default function PartnersHero() {
                   gap: "10px"
                 }}
               >
-                <div style={{ width: "24px", height: "24px", borderRadius: "50%", background: "#F5F0FF", color: "#5B2E91", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", fontWeight: "900" }}>✓</div>
+                <div style={{ width: "24px", height: "24px", borderRadius: "50%", background: "#F5F0FF", color: "#5B2E91", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", fontWeight: "900", flexShrink: 0 }}>✓</div>
                 <div>
                   <div style={{ fontSize: "12px", fontWeight: "800", color: "#0B1F3A" }}>1-on-1 Corporate Mentorship</div>
                   <div style={{ fontSize: "10.5px", color: "#64748B", fontWeight: "600" }}>Real Code Reviews & Sprints</div>

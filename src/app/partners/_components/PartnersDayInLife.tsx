@@ -27,7 +27,7 @@ export default function PartnersDayInLife() {
       title: "TEAM HUDDLE",
       desc: "The day begins with priorities, goals and team responsibilities.",
       icon: Users,
-      color: "#0D9488" // Teal matching img1 Node 1
+      color: "#0D9488"
     },
     {
       num: "02",
@@ -35,7 +35,7 @@ export default function PartnersDayInLife() {
       title: "TECH LEARNING",
       desc: "A new concept is introduced with practical industry relevance.",
       icon: BookOpen,
-      color: "#E11D48" // Coral Red matching img1 Node 2
+      color: "#E11D48"
     },
     {
       num: "03",
@@ -43,7 +43,7 @@ export default function PartnersDayInLife() {
       title: "HANDS-ON BUILDING",
       desc: "Students implement the concept through practical development.",
       icon: Hammer,
-      color: "#D97706" // Amber matching img1 Node 3
+      color: "#D97706"
     },
     {
       num: "04",
@@ -51,7 +51,7 @@ export default function PartnersDayInLife() {
       title: "COLLABORATE",
       desc: "Team members discuss blockers, solutions and architectural approaches.",
       icon: MessageSquare,
-      color: "#9333EA" // Purple Crimson matching img1 Node 4
+      color: "#9333EA"
     },
     {
       num: "05",
@@ -59,7 +59,7 @@ export default function PartnersDayInLife() {
       title: "PROJECT SPRINT",
       desc: "Learners work on applications, products or industry-oriented problems.",
       icon: Zap,
-      color: "#059669" // Emerald Cyan matching img1 Node 5
+      color: "#059669"
     },
     {
       num: "06",
@@ -67,7 +67,7 @@ export default function PartnersDayInLife() {
       title: "CODE / WORK REVIEW",
       desc: "Mentors or peers review work and suggest optimizations.",
       icon: CheckCircle,
-      color: "#4F46E5" // Royal Indigo
+      color: "#4F46E5"
     },
     {
       num: "07",
@@ -75,7 +75,7 @@ export default function PartnersDayInLife() {
       title: "CHALLENGE",
       desc: "Students face a coding, design, problem-solving or innovation challenge.",
       icon: Trophy,
-      color: "#BE185D" // Magenta Rose
+      color: "#BE185D"
     },
     {
       num: "08",
@@ -83,7 +83,7 @@ export default function PartnersDayInLife() {
       title: "DEMO & PRESENT",
       desc: "Selected learners explain what they created and what they learned.",
       icon: Presentation,
-      color: "#7C3AED" // Violet
+      color: "#7C3AED"
     },
     {
       num: "09",
@@ -91,7 +91,7 @@ export default function PartnersDayInLife() {
       title: "REFLECT & PLAN",
       desc: "Progress is documented and the next milestone is defined.",
       icon: Compass,
-      color: "#2563EB" // Sapphire Blue
+      color: "#2563EB"
     }
   ];
 
@@ -101,7 +101,7 @@ export default function PartnersDayInLife() {
       label: "MONTH 1",
       title: "“TELL ME WHAT TO DO.”",
       desc: "The student is learning fundamentals and needs clear direction.",
-      color: "#0284C7", // Sky Blue
+      color: "#0284C7",
       height: 90
     },
     {
@@ -109,7 +109,7 @@ export default function PartnersDayInLife() {
       label: "EARLY JOURNEY",
       title: "“I CAN DO THIS TASK.”",
       desc: "The student starts applying concepts independently.",
-      color: "#0D9488", // Teal
+      color: "#0D9488",
       height: 125
     },
     {
@@ -117,7 +117,7 @@ export default function PartnersDayInLife() {
       label: "DEVELOPING",
       title: "“I CAN BUILD THIS.”",
       desc: "Projects start replacing simple classroom assignments.",
-      color: "#10B981", // Emerald
+      color: "#10B981",
       height: 160
     },
     {
@@ -125,7 +125,7 @@ export default function PartnersDayInLife() {
       label: "ADVANCED",
       title: "“WE CAN BUILD THIS TOGETHER.”",
       desc: "The learner understands collaboration, sprints, and teamwork.",
-      color: "#F59E0B", // Amber
+      color: "#F59E0B",
       height: 195
     },
     {
@@ -133,7 +133,7 @@ export default function PartnersDayInLife() {
       label: "EXPERIENCE",
       title: "“I CAN SOLVE THIS PROBLEM.”",
       desc: "The student begins thinking beyond step-by-step instructions.",
-      color: "#EA580C", // Orange
+      color: "#EA580C",
       height: 230
     },
     {
@@ -141,7 +141,7 @@ export default function PartnersDayInLife() {
       label: "PROFESSIONAL",
       title: "“I CAN OWN THIS.”",
       desc: "The learner manages responsibility, quality, and strict deadlines.",
-      color: "#E11D48", // Crimson Red
+      color: "#E11D48",
       height: 265
     },
     {
@@ -149,17 +149,17 @@ export default function PartnersDayInLife() {
       label: "CAREER-READY",
       title: "“LET ME SHOW YOU WHAT I CAN DO.”",
       desc: "Enters interviews with Projects, Evidence, Confidence & Experience.",
-      color: "#7E3AF2", // Royal Purple
+      color: "#7E3AF2",
       height: 300
     }
   ];
 
   return (
     <>
-      {/* SECTION 05: A DAY IN THE LIFE (EXACT 1:1 INFOGRAPHIC TIMELINE WITH GRAPH GRID BG MATCHING IMG) */}
+      {/* SECTION 05: A DAY IN THE LIFE */}
       <section style={{ padding: "90px 0", background: "#FFFFFF", position: "relative", overflow: "hidden" }}>
 
-        {/* Graph Grid Pattern Background Overlay matching img 100% */}
+        {/* Graph Grid Pattern Background Overlay */}
         <div
           style={{
             position: "absolute",
@@ -177,7 +177,7 @@ export default function PartnersDayInLife() {
           }}
         />
 
-        <div className="container" style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 24px", position: "relative", zIndex: 5 }}>
+        <div className="container" style={{ maxWidth: "1280px", width: "100%", margin: "0 auto", padding: "0 24px", position: "relative", zIndex: 5 }}>
 
           {/* Section Header */}
           <div style={{ textAlign: "center", marginBottom: "64px" }}>
@@ -197,17 +197,15 @@ export default function PartnersDayInLife() {
               <div style={{ width: "32px", height: "3px", background: "#5B2E91", borderRadius: "2px" }} />
             </div>
 
-            <h2 style={{ fontFamily: "var(--font-headings), sans-serif", fontSize: "clamp(32px, 4vw, 48px)", fontWeight: "900", color: "#0B1F3A", letterSpacing: "-0.02em", marginBottom: "14px" }}>
+            <h2 style={{ fontFamily: "var(--font-headings), sans-serif", fontSize: "clamp(28px, 4vw, 48px)", fontWeight: "900", color: "#0B1F3A", letterSpacing: "-0.02em", marginBottom: "14px" }}>
               A Glimpse Inside the CEL Environment
             </h2>
-            <p style={{ fontSize: "16px", color: "#64748B", maxWidth: "720px", margin: "0 auto", lineHeight: "1.7" }}>
+            <p style={{ fontSize: "clamp(14px, 1.4vw, 16px)", color: "#64748B", maxWidth: "720px", margin: "0 auto", lineHeight: "1.7" }}>
               This is what learning actually feels like when built around real corporate execution.
             </p>
           </div>
 
-          {/* ============================================================ */}
-          {/* VERTICAL TIMELINE INFOGRAPHIC (EXACT 1:1 MATCH FOR IMG1) */}
-          {/* ============================================================ */}
+          {/* VERTICAL TIMELINE INFOGRAPHIC */}
           <div
             style={{
               position: "relative",
@@ -217,7 +215,7 @@ export default function PartnersDayInLife() {
             }}
             className="day-in-life-timeline"
           >
-            {/* Central Vertical Line Axis matching img1 */}
+            {/* Central Vertical Line Axis */}
             <div
               style={{
                 position: "absolute",
@@ -232,10 +230,10 @@ export default function PartnersDayInLife() {
               className="timeline-center-line"
             />
 
-            {/* Alternating Left / Right Timeline Items matching img1 */}
+            {/* Alternating Left / Right Timeline Items */}
             <div style={{ display: "flex", flexDirection: "column", gap: "54px" }}>
               {dailySchedule.map((slot, idx) => {
-                const isRight = idx % 2 === 0; // Odd steps right, Even steps left
+                const isRight = idx % 2 === 0;
                 const IconComp = slot.icon;
 
                 return (
@@ -252,7 +250,7 @@ export default function PartnersDayInLife() {
                     className={`timeline-row ${isRight ? "row-right" : "row-left"}`}
                   >
 
-                    {/* Center Circle Concentric Node on Central Line matching img1 */}
+                    {/* Center Circle Concentric Node */}
                     <div
                       style={{
                         position: "absolute",
@@ -275,7 +273,7 @@ export default function PartnersDayInLife() {
                       <div style={{ width: "10px", height: "10px", borderRadius: "50%", background: slot.color }} />
                     </div>
 
-                    {/* Content Block matching img1 */}
+                    {/* Content Block */}
                     <motion.div
                       initial={{ opacity: 0, x: isRight ? 30 : -30 }}
                       whileInView={{ opacity: 1, x: 0 }}
@@ -291,12 +289,12 @@ export default function PartnersDayInLife() {
                       className="timeline-content-card"
                     >
 
-                      {/* Line Vector Icon above Step Number matching img1 */}
+                      {/* Icon */}
                       <div style={{ marginBottom: "6px", color: slot.color }}>
                         <IconComp size={32} color={slot.color} strokeWidth={1.75} />
                       </div>
 
-                      {/* Big Bold Step Number (e.g. 01 / 02) + Clock Badge matching img1 */}
+                      {/* Step Number + Clock Badge */}
                       <div
                         style={{
                           display: "flex",
@@ -338,7 +336,7 @@ export default function PartnersDayInLife() {
                         </span>
                       </div>
 
-                      {/* Filled Rectangular Colored Title Box matching img1 */}
+                      {/* Title Box */}
                       <div
                         style={{
                           background: slot.color,
@@ -356,7 +354,7 @@ export default function PartnersDayInLife() {
                         {slot.title}
                       </div>
 
-                      {/* Text Paragraph Description matching img1 */}
+                      {/* Description Paragraph */}
                       <p
                         style={{
                           fontSize: "13.5px",
@@ -376,7 +374,7 @@ export default function PartnersDayInLife() {
               })}
             </div>
 
-            {/* Bottom Vertical Arrow Endpoint & Philosophy Base matching img1 */}
+            {/* Bottom Arrow Endpoint */}
             <div
               style={{
                 position: "relative",
@@ -387,7 +385,6 @@ export default function PartnersDayInLife() {
                 zIndex: 10
               }}
             >
-              {/* Downward Arrow Icon Base matching img1 bottom arrow */}
               <div
                 style={{
                   width: "40px",
@@ -405,7 +402,6 @@ export default function PartnersDayInLife() {
                 <ArrowDown size={22} color="#FFFFFF" strokeWidth={2.5} />
               </div>
 
-              {/* Bottom Rectangular Title Box matching img1 endpoint */}
               <div
                 style={{
                   background: "#2563EB",
@@ -423,7 +419,6 @@ export default function PartnersDayInLife() {
                 THE DAILY PHILOSOPHY
               </div>
 
-              {/* 5 Daily Philosophy Pillars */}
               <div
                 style={{
                   display: "flex",
@@ -459,9 +454,9 @@ export default function PartnersDayInLife() {
         </div>
       </section>
 
-      {/* SECTION 06: HOW CEL CHANGES A STUDENT OVER TIME (FULL WIDTH 1:1 ASCENDING STAIRCASE GRAPHIC MATCH) */}
+      {/* SECTION 06: STUDENT TRANSFORMATION */}
       <section style={{ padding: "90px 0", background: "#F8FAFC", borderTop: "1px solid #E2E8F0", overflow: "hidden" }}>
-        <div style={{ maxWidth: "1440px", margin: "0 auto", padding: "0 120px" }}>
+        <div className="staircase-container" style={{ maxWidth: "1440px", margin: "0 auto", padding: "0 120px" }}>
 
           {/* Section Header */}
           <div style={{ textAlign: "center", marginBottom: "60px" }}>
@@ -481,17 +476,15 @@ export default function PartnersDayInLife() {
               <div style={{ width: "32px", height: "3px", background: "#5B2E91", borderRadius: "2px" }} />
             </div>
 
-            <h2 style={{ fontFamily: "var(--font-headings), sans-serif", fontSize: "clamp(30px, 3.8vw, 46px)", fontWeight: "900", color: "#0B1F3A", letterSpacing: "-0.02em", marginBottom: "14px" }}>
+            <h2 style={{ fontFamily: "var(--font-headings), sans-serif", fontSize: "clamp(26px, 3.8vw, 46px)", fontWeight: "900", color: "#0B1F3A", letterSpacing: "-0.02em", marginBottom: "14px" }}>
               How CEL Changes a Student Over Time
             </h2>
-            <p style={{ fontSize: "16px", color: "#64748B", maxWidth: "720px", margin: "0 auto", lineHeight: "1.7", fontStyle: "italic" }}>
+            <p style={{ fontSize: "clamp(14px, 1.4vw, 16px)", color: "#64748B", maxWidth: "720px", margin: "0 auto", lineHeight: "1.7", fontStyle: "italic" }}>
               Growth You Can Feel. Progress You Can See.
             </p>
           </div>
 
-          {/* ============================================================ */}
-          {/* ASCENDING STAIRCASE STEP INFOGRAPHIC (FULL WIDTH 1:1 MATCH FOR IMG) */}
-          {/* ============================================================ */}
+          {/* ASCENDING STAIRCASE STEP INFOGRAPHIC */}
           <div
             style={{
               width: "100%",
@@ -532,7 +525,7 @@ export default function PartnersDayInLife() {
                     }}
                   >
 
-                    {/* Top Content Block above Pillar (Connected by Dashed Line matching img) */}
+                    {/* Top Content Block */}
                     <div
                       style={{
                         marginBottom: "16px",
@@ -541,7 +534,6 @@ export default function PartnersDayInLife() {
                         borderLeft: `2px dashed ${stage.color}`
                       }}
                     >
-                      {/* Step Header Label (e.g. STEP 1 / STEP 2 matching img) */}
                       <div
                         style={{
                           fontSize: "12px",
@@ -555,7 +547,6 @@ export default function PartnersDayInLife() {
                         {stage.step}
                       </div>
 
-                      {/* Underline Bar Accent matching img */}
                       <div
                         style={{
                           width: "32px",
@@ -566,7 +557,6 @@ export default function PartnersDayInLife() {
                         }}
                       />
 
-                      {/* Title Quote */}
                       <h3
                         style={{
                           fontFamily: "var(--font-headings), sans-serif",
@@ -580,7 +570,6 @@ export default function PartnersDayInLife() {
                         {stage.title}
                       </h3>
 
-                      {/* Description Paragraph */}
                       <p
                         style={{
                           fontSize: "12px",
@@ -593,7 +582,7 @@ export default function PartnersDayInLife() {
                       </p>
                     </div>
 
-                    {/* Flag Marker or Victorious Character on Top of Step Pillar matching img */}
+                    {/* Flag Marker */}
                     <div
                       style={{
                         display: "flex",
@@ -605,7 +594,6 @@ export default function PartnersDayInLife() {
                       }}
                     >
                       {isFinalStage ? (
-                        /* Victorious Student Avatar at Peak Step (Matching img rightmost figure) */
                         <div
                           style={{
                             display: "flex",
@@ -624,7 +612,6 @@ export default function PartnersDayInLife() {
                           <span>VICTORIOUS!</span>
                         </div>
                       ) : (
-                        /* Flag Pole Marker resting on step (Matching img flags) */
                         <div
                           style={{
                             display: "flex",
@@ -638,7 +625,7 @@ export default function PartnersDayInLife() {
                       )}
                     </div>
 
-                    {/* Ascending Staircase Solid Pillar Block matching img */}
+                    {/* Ascending Staircase Solid Pillar Block */}
                     <motion.div
                       whileHover={{ scaleY: 1.03 }}
                       style={{
@@ -654,7 +641,6 @@ export default function PartnersDayInLife() {
                         transition: "all 0.25s ease"
                       }}
                     >
-                      {/* White Label Base Text inside Pillar matching img bottom numbers */}
                       <span
                         style={{
                           color: "#FFFFFF",

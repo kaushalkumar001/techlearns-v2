@@ -209,9 +209,9 @@ export default function AboutHero() {
               transition={{ duration: 0.5, delay: 0.35 }}
               style={{
                 position: "absolute",
-                top: "-34px",
-                left: "50%",
-                transform: "translateX(-50%)",
+                top: "-62px",
+                left: "58%",
+                transform: "translateX(-20%)",
                 width: "220px",
                 height: "115px",
                 zIndex: 25,
@@ -240,10 +240,10 @@ export default function AboutHero() {
                 style={{
                   position: "relative",
                   zIndex: 2,
-                  padding: "8px 16px 22px 16px",
+                  padding: "12px 18px 24px 18px",
                   fontSize: "12px",
                   fontWeight: "900",
-                  color: "#ffffffff",
+                  color: "#5B2E91",
                   lineHeight: "1.35",
                   fontStyle: "italic",
                   letterSpacing: "-0.01em"

@@ -19,11 +19,11 @@ export default function PartnersDifference() {
 
   return (
     <>
-      {/* SECTION 07: THE TECHLEARNS DIFFERENCE (EXACT 1:1 MATCH FOR IMG THE RAZOR DIFFERENCE) */}
+      {/* SECTION 07: THE TECHLEARNS DIFFERENCE */}
       <section style={{ padding: "90px 0", background: "#FFFFFF", overflow: "hidden" }}>
-        <div style={{ maxWidth: "1380px", margin: "0 auto", padding: "0 32px" }}>
+        <div className="container" style={{ maxWidth: "1380px", width: "100%", margin: "0 auto", padding: "0 24px" }}>
 
-          {/* 2-Column Split Grid: Left Title Block vs Right Divided Grid matching img 100% */}
+          {/* 2-Column Split Grid */}
           <div
             style={{
               display: "grid",
@@ -34,257 +34,255 @@ export default function PartnersDifference() {
             }}
             className="difference-grid-container"
           >
-              {/* Left Column: Eyebrow + Huge Title + Description + Arrow CTAs matching img1 */}
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                  paddingRight: "16px"
-                }}
-              >
-                <div>
-                  <div style={{ display: "inline-flex", flexDirection: "column", marginBottom: "16px" }}>
-                    <div
-                      style={{
-                        fontSize: "clamp(11px, 1.2vw, 12.5px)",
-                        fontWeight: "700",
-                        color: "#5B2E91",
-                        letterSpacing: "0.08em",
-                        textTransform: "uppercase",
-                        marginBottom: "6px"
-                      }}
-                    >
-                      /Why Techlearns?
-                    </div>
-                    <div style={{ width: "32px", height: "3px", background: "#5B2E91", borderRadius: "2px" }} />
-                  </div>
-
-                  <h2
+            {/* Left Column */}
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                paddingRight: "16px"
+              }}
+            >
+              <div>
+                <div style={{ display: "inline-flex", flexDirection: "column", marginBottom: "16px" }}>
+                  <div
                     style={{
-                      fontFamily: "var(--font-headings), sans-serif",
-                      fontSize: "clamp(34px, 4.2vw, 56px)",
-                      fontWeight: "900",
-                      color: "#1E140F",
-                      lineHeight: "1.08",
-                      letterSpacing: "-0.02em",
-                      marginBottom: "20px"
+                      fontSize: "clamp(11px, 1.2vw, 12.5px)",
+                      fontWeight: "700",
+                      color: "#5B2E91",
+                      letterSpacing: "0.08em",
+                      textTransform: "uppercase",
+                      marginBottom: "6px"
                     }}
                   >
-                    The Techlearns<br />
-                    Difference
-                  </h2>
-
-                  <p style={{ fontSize: "15px", color: "#524B46", lineHeight: "1.7", marginBottom: "28px" }}>
-                    Because we are not trying to become another training academy. We solve the <strong style={{ color: "#5B2E91" }}>Experience Gap between Education and Employment.</strong>
-                  </p>
+                    /Why Techlearns?
+                  </div>
+                  <div style={{ width: "32px", height: "3px", background: "#5B2E91", borderRadius: "2px" }} />
                 </div>
 
-                {/* Left CTAs with Right Arrow matching img1 Call Now > Book Free Estimate > */}
-                <div style={{ display: "flex", gap: "24px", flexWrap: "wrap", paddingTop: "12px" }}>
-                  <a
-                    href="#cel-promise"
-                    style={{
-                      display: "inline-flex",
-                      alignItems: "center",
-                      gap: "6px",
-                      fontSize: "14px",
-                      fontWeight: "800",
-                      color: "#991B1B",
-                      textDecoration: "none"
-                    }}
-                  >
-                    <span>The CEL™ Promise</span>
-                    <ArrowRight size={16} color="#991B1B" />
-                  </a>
+                <h2
+                  style={{
+                    fontFamily: "var(--font-headings), sans-serif",
+                    fontSize: "clamp(30px, 4.2vw, 56px)",
+                    fontWeight: "900",
+                    color: "#1E140F",
+                    lineHeight: "1.08",
+                    letterSpacing: "-0.02em",
+                    marginBottom: "20px"
+                  }}
+                >
+                  The Techlearns<br />
+                  Difference
+                </h2>
 
-                  <a
-                    href="#shifts"
-                    style={{
-                      display: "inline-flex",
-                      alignItems: "center",
-                      gap: "6px",
-                      fontSize: "14px",
-                      fontWeight: "800",
-                      color: "#991B1B",
-                      textDecoration: "none"
-                    }}
-                  >
-                    <span>9 Transformation Shifts</span>
-                    <ArrowRight size={16} color="#991B1B" />
-                  </a>
+                <p style={{ fontSize: "clamp(14px, 1.4vw, 15px)", color: "#524B46", lineHeight: "1.7", marginBottom: "28px" }}>
+                  Because we are not trying to become another training academy. We solve the <strong style={{ color: "#5B2E91" }}>Experience Gap between Education and Employment.</strong>
+                </p>
+              </div>
+
+              {/* Left CTAs */}
+              <div style={{ display: "flex", gap: "24px", flexWrap: "wrap", paddingTop: "12px" }}>
+                <a
+                  href="#cel-promise"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "6px",
+                    fontSize: "14px",
+                    fontWeight: "800",
+                    color: "#991B1B",
+                    textDecoration: "none"
+                  }}
+                >
+                  <span>The CEL™ Promise</span>
+                  <ArrowRight size={16} color="#991B1B" />
+                </a>
+
+                <a
+                  href="#shifts"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "6px",
+                    fontSize: "14px",
+                    fontWeight: "800",
+                    color: "#991B1B",
+                    textDecoration: "none"
+                  }}
+                >
+                  <span>9 Transformation Shifts</span>
+                  <ArrowRight size={16} color="#991B1B" />
+                </a>
+              </div>
+
+            </div>
+
+            {/* Right Column */}
+            <div
+              style={{
+                borderLeft: "1px solid #E5E7EB",
+                paddingLeft: "48px",
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr",
+                gap: "0 40px"
+              }}
+              className="difference-subgrid"
+            >
+              {/* Column 1 of Subgrid */}
+              <div style={{ display: "flex", flexDirection: "column" }}>
+
+                {/* Feature Item 1 */}
+                <div
+                  style={{
+                    paddingBottom: "32px",
+                    marginBottom: "32px",
+                    borderBottom: "1px solid #E5E7EB"
+                  }}
+                >
+                  <div style={{ display: "flex", gap: "16px", alignItems: "flex-start" }}>
+                    <div
+                      style={{
+                        width: "44px",
+                        height: "44px",
+                        borderRadius: "10px",
+                        background: "#FEF3C7",
+                        color: "#D97706",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        flexShrink: 0
+                      }}
+                    >
+                      <Zap size={22} color="#D97706" />
+                    </div>
+                    <div>
+                      <div style={{ fontSize: "11px", fontWeight: "900", color: "#64748B", letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: "4px" }}>
+                        TRADITIONAL ACADEMY MODEL
+                      </div>
+                      <h3 style={{ fontSize: "17px", fontWeight: "900", color: "#1E140F", marginBottom: "6px" }}>
+                        Content & Certificate
+                      </h3>
+                      <p style={{ fontSize: "13.5px", color: "#524B46", lineHeight: "1.55", margin: 0 }}>
+                        Trainer &rarr; Content &rarr; Assignment &rarr; Certificate. Focused strictly on static video watching and rote submissions.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Feature Item 2 */}
+                <div style={{ paddingBottom: "12px" }}>
+                  <div style={{ display: "flex", gap: "16px", alignItems: "flex-start" }}>
+                    <div
+                      style={{
+                        width: "44px",
+                        height: "44px",
+                        borderRadius: "10px",
+                        background: "#FEF3C7",
+                        color: "#D97706",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        flexShrink: 0
+                      }}
+                    >
+                      <ShieldCheck size={22} color="#D97706" />
+                    </div>
+                    <div>
+                      <div style={{ fontSize: "11px", fontWeight: "900", color: "#5B2E91", letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: "4px" }}>
+                        PROBLEM OWNERSHIP
+                      </div>
+                      <h3 style={{ fontSize: "17px", fontWeight: "900", color: "#1E140F", marginBottom: "6px" }}>
+                        Workplace Mindset
+                      </h3>
+                      <p style={{ fontSize: "13.5px", color: "#524B46", lineHeight: "1.55", margin: 0 }}>
+                        Move from classroom passive listening to active problem ownership, agile sprints, and corporate execution.
+                      </p>
+                    </div>
+                  </div>
                 </div>
 
               </div>
 
-              {/* Right Column: 2-Subgrid with Vertical Divider & Horizontal Lines matching img1 */}
-              <div
-                style={{
-                  borderLeft: "1px solid #E5E7EB",
-                  paddingLeft: "48px",
-                  display: "grid",
-                  gridTemplateColumns: "1fr 1fr",
-                  gap: "0 40px"
-                }}
-                className="difference-subgrid"
-              >
-                {/* Column 1 of Subgrid */}
-                <div style={{ display: "flex", flexDirection: "column" }}>
+              {/* Column 2 of Subgrid */}
+              <div style={{ display: "flex", flexDirection: "column", borderLeft: "1px solid #F1F5F9", paddingLeft: "32px" }}>
 
-                  {/* Feature Item 1 (Top Left) */}
-                  <div
-                    style={{
-                      paddingBottom: "32px",
-                      marginBottom: "32px",
-                      borderBottom: "1px solid #E5E7EB"
-                    }}
-                  >
-                    <div style={{ display: "flex", gap: "16px", alignItems: "flex-start" }}>
-                      <div
-                        style={{
-                          width: "44px",
-                          height: "44px",
-                          borderRadius: "10px",
-                          background: "#FEF3C7",
-                          color: "#D97706",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          flexShrink: 0
-                        }}
-                      >
-                        <Zap size={22} color="#D97706" />
+                {/* Feature Item 3 */}
+                <div
+                  style={{
+                    paddingBottom: "32px",
+                    marginBottom: "32px",
+                    borderBottom: "1px solid #E5E7EB"
+                  }}
+                >
+                  <div style={{ display: "flex", gap: "16px", alignItems: "flex-start" }}>
+                    <div
+                      style={{
+                        width: "44px",
+                        height: "44px",
+                        borderRadius: "10px",
+                        background: "#F5F0FF",
+                        color: "#5B2E91",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        flexShrink: 0
+                      }}
+                    >
+                      <CheckCircle2 size={22} color="#5B2E91" />
+                    </div>
+                    <div>
+                      <div style={{ fontSize: "11px", fontWeight: "900", color: "#5B2E91", letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: "4px" }}>
+                        TECHLEARNS CEL™ MODEL
                       </div>
-                      <div>
-                        <div style={{ fontSize: "11px", fontWeight: "900", color: "#64748B", letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: "4px" }}>
-                          TRADITIONAL ACADEMY MODEL
-                        </div>
-                        <h3 style={{ fontSize: "17px", fontWeight: "900", color: "#1E140F", marginBottom: "6px" }}>
-                          Content & Certificate
-                        </h3>
-                        <p style={{ fontSize: "13.5px", color: "#524B46", lineHeight: "1.55", margin: 0 }}>
-                          Trainer &rarr; Content &rarr; Assignment &rarr; Certificate. Focused strictly on static video watching and rote submissions.
-                        </p>
-                      </div>
+                      <h3 style={{ fontSize: "17px", fontWeight: "900", color: "#1E140F", marginBottom: "6px" }}>
+                        Corporate Experience
+                      </h3>
+                      <p style={{ fontSize: "13.5px", color: "#524B46", lineHeight: "1.55", margin: 0 }}>
+                        Mentor &rarr; Practice &rarr; Teamwork &rarr; Projects &rarr; Reviews &rarr; Proof. Designed to feel like your very first tech workplace.
+                      </p>
                     </div>
                   </div>
-
-                  {/* Feature Item 2 (Bottom Left) */}
-                  <div style={{ paddingBottom: "12px" }}>
-                    <div style={{ display: "flex", gap: "16px", alignItems: "flex-start" }}>
-                      <div
-                        style={{
-                          width: "44px",
-                          height: "44px",
-                          borderRadius: "10px",
-                          background: "#FEF3C7",
-                          color: "#D97706",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          flexShrink: 0
-                        }}
-                      >
-                        <ShieldCheck size={22} color="#D97706" />
-                      </div>
-                      <div>
-                        <div style={{ fontSize: "11px", fontWeight: "900", color: "#5B2E91", letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: "4px" }}>
-                          PROBLEM OWNERSHIP
-                        </div>
-                        <h3 style={{ fontSize: "17px", fontWeight: "900", color: "#1E140F", marginBottom: "6px" }}>
-                          Workplace Mindset
-                        </h3>
-                        <p style={{ fontSize: "13.5px", color: "#524B46", lineHeight: "1.55", margin: 0 }}>
-                          Move from classroom passive listening to active problem ownership, agile sprints, and corporate execution.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
                 </div>
 
-                {/* Column 2 of Subgrid (Separated by Vertical Line on left) */}
-                <div style={{ display: "flex", flexDirection: "column", borderLeft: "1px solid #F1F5F9", paddingLeft: "32px" }}>
-
-                  {/* Feature Item 3 (Top Right) */}
-                  <div
-                    style={{
-                      paddingBottom: "32px",
-                      marginBottom: "32px",
-                      borderBottom: "1px solid #E5E7EB"
-                    }}
-                  >
-                    <div style={{ display: "flex", gap: "16px", alignItems: "flex-start" }}>
-                      <div
-                        style={{
-                          width: "44px",
-                          height: "44px",
-                          borderRadius: "10px",
-                          background: "#F5F0FF",
-                          color: "#5B2E91",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          flexShrink: 0
-                        }}
-                      >
-                        <CheckCircle2 size={22} color="#5B2E91" />
+                {/* Feature Item 4 */}
+                <div style={{ paddingBottom: "12px" }}>
+                  <div style={{ display: "flex", gap: "16px", alignItems: "flex-start" }}>
+                    <div
+                      style={{
+                        width: "44px",
+                        height: "44px",
+                        borderRadius: "10px",
+                        background: "#FEF3C7",
+                        color: "#D97706",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        flexShrink: 0
+                      }}
+                    >
+                      <Award size={22} color="#D97706" />
+                    </div>
+                    <div>
+                      <div style={{ fontSize: "11px", fontWeight: "900", color: "#5B2E91", letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: "4px" }}>
+                        VERIFIED CAPABILITY
                       </div>
-                      <div>
-                        <div style={{ fontSize: "11px", fontWeight: "900", color: "#5B2E91", letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: "4px" }}>
-                          TECHLEARNS CEL™ MODEL
-                        </div>
-                        <h3 style={{ fontSize: "17px", fontWeight: "900", color: "#1E140F", marginBottom: "6px" }}>
-                          Corporate Experience
-                        </h3>
-                        <p style={{ fontSize: "13.5px", color: "#524B46", lineHeight: "1.55", margin: 0 }}>
-                          Mentor &rarr; Practice &rarr; Teamwork &rarr; Projects &rarr; Reviews &rarr; Proof. Designed to feel like your very first tech workplace.
-                        </p>
-                      </div>
+                      <h3 style={{ fontSize: "17px", fontWeight: "900", color: "#1E140F", marginBottom: "6px" }}>
+                        Proof of Skills
+                      </h3>
+                      <p style={{ fontSize: "13.5px", color: "#524B46", lineHeight: "1.55", margin: 0 }}>
+                        Graduates leave with visible GitHub proof, CEL Skill Passport™, live product demos, and recruiter evidence.
+                      </p>
                     </div>
                   </div>
-
-                  {/* Feature Item 4 (Bottom Right) */}
-                  <div style={{ paddingBottom: "12px" }}>
-                    <div style={{ display: "flex", gap: "16px", alignItems: "flex-start" }}>
-                      <div
-                        style={{
-                          width: "44px",
-                          height: "44px",
-                          borderRadius: "10px",
-                          background: "#FEF3C7",
-                          color: "#D97706",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          flexShrink: 0
-                        }}
-                      >
-                        <Award size={22} color="#D97706" />
-                      </div>
-                      <div>
-                        <div style={{ fontSize: "11px", fontWeight: "900", color: "#5B2E91", letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: "4px" }}>
-                          VERIFIED CAPABILITY
-                        </div>
-                        <h3 style={{ fontSize: "17px", fontWeight: "900", color: "#1E140F", marginBottom: "6px" }}>
-                          Proof of Skills
-                        </h3>
-                        <p style={{ fontSize: "13.5px", color: "#524B46", lineHeight: "1.55", margin: 0 }}>
-                          Graduates leave with visible GitHub proof, CEL Skill Passport™, live product demos, and recruiter evidence.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
                 </div>
 
               </div>
 
             </div>
 
-          {/* ============================================================ */}
-          {/* 9 CORE TRANSFORMATION SHIFTS (EXACT 1:1 DUAL SEMI-CIRCLE MATCH FOR IMG) */}
-          {/* ============================================================ */}
+          </div>
+
+          {/* 9 CORE TRANSFORMATION SHIFTS */}
           <div id="shifts" style={{ marginTop: "48px", paddingTop: "44px", borderTop: "1px solid rgba(0, 0, 0, 0.08)" }}>
             
             {/* Header */}
@@ -305,15 +303,15 @@ export default function PartnersDifference() {
                 <div style={{ width: "32px", height: "3px", background: "#5B2E91", borderRadius: "2px" }} />
               </div>
 
-              <h2 style={{ fontFamily: "var(--font-headings), sans-serif", fontSize: "clamp(30px, 3.8vw, 44px)", fontWeight: "900", color: "#0B1F3A", letterSpacing: "-0.02em", marginBottom: "12px" }}>
+              <h2 style={{ fontFamily: "var(--font-headings), sans-serif", fontSize: "clamp(26px, 3.8vw, 44px)", fontWeight: "900", color: "#0B1F3A", letterSpacing: "-0.02em", marginBottom: "12px" }}>
                 9 Core Transformation Shifts
               </h2>
-              <p style={{ fontSize: "16px", color: "#64748B", maxWidth: "700px", margin: "0 auto", fontStyle: "italic" }}>
+              <p style={{ fontSize: "clamp(14px, 1.4vw, 16px)", color: "#64748B", maxWidth: "700px", margin: "0 auto", fontStyle: "italic" }}>
                 From Traditional Academy Classroom to Verified Corporate Capability.
               </p>
             </div>
 
-            {/* DUAL SEMI-CIRCLE GRAPHIC & CALLOUTS CONTAINER (EXACT MATCH FOR IMG) */}
+            {/* DUAL SEMI-CIRCLE GRAPHIC & CALLOUTS CONTAINER */}
             <div
               style={{
                 display: "grid",
@@ -325,8 +323,7 @@ export default function PartnersDifference() {
               }}
               className="shifts-graphic-container"
             >
-
-              {/* Left Column: 9 TECHLEARNS CEL™ MODEL (GREEN / DO ✓) CALLOUTS */}
+              {/* Left Column: GREEN CALLOUTS */}
               <div style={{ display: "flex", flexDirection: "column", gap: "12px", textAlign: "right" }}>
                 <div style={{ fontSize: "12px", fontWeight: "900", color: "#059669", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "6px" }}>
                   TECHLEARNS CEL™ MODEL (WHAT YOU GET)
@@ -350,12 +347,12 @@ export default function PartnersDifference() {
                     }}
                   >
                     <span>{shift.to}</span>
-                    <span style={{ width: "20px", height: "20px", borderRadius: "50%", background: "#10B981", color: "#FFFFFF", display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: "11px", fontWeight: "900" }}>✓</span>
+                    <span style={{ width: "20px", height: "20px", borderRadius: "50%", background: "#10B981", color: "#FFFFFF", display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: "11px", fontWeight: "900", flexShrink: 0 }}>✓</span>
                   </div>
                 ))}
               </div>
 
-              {/* Center Column: Dual Semi-Circle Graphic with Checkmark & Crossmark Hubs matching img 100% */}
+              {/* Center Column: Dual Semi-Circle Graphic */}
               <div
                 style={{
                   display: "flex",
@@ -366,7 +363,6 @@ export default function PartnersDifference() {
                 }}
                 className="center-dual-arcs"
               >
-                {/* Left Semi-Circle Hub (Green Checkmark ✓ matching img left circle) */}
                 <div
                   style={{
                     position: "relative",
@@ -397,7 +393,6 @@ export default function PartnersDifference() {
                   </div>
                 </div>
 
-                {/* Right Semi-Circle Hub (Red Crossmark ✕ matching img right circle) */}
                 <div
                   style={{
                     position: "relative",
@@ -429,7 +424,7 @@ export default function PartnersDifference() {
                 </div>
               </div>
 
-              {/* Right Column: 9 TRADITIONAL ACADEMY MODEL (RED / DON'T ✕) CALLOUTS */}
+              {/* Right Column: RED CALLOUTS */}
               <div style={{ display: "flex", flexDirection: "column", gap: "12px", textAlign: "left" }}>
                 <div style={{ fontSize: "12px", fontWeight: "900", color: "#DC2626", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "6px" }}>
                   TRADITIONAL ACADEMY (WHAT WE ELIMINATE)
@@ -451,7 +446,7 @@ export default function PartnersDifference() {
                       gap: "10px"
                     }}
                   >
-                    <span style={{ width: "20px", height: "20px", borderRadius: "50%", background: "#EF4444", color: "#FFFFFF", display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: "11px", fontWeight: "900" }}>✕</span>
+                    <span style={{ width: "20px", height: "20px", borderRadius: "50%", background: "#EF4444", color: "#FFFFFF", display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: "11px", fontWeight: "900", flexShrink: 0 }}>✕</span>
                     <span style={{ textDecoration: "line-through", opacity: 0.85 }}>{shift.from}</span>
                   </div>
                 ))}
@@ -464,11 +459,10 @@ export default function PartnersDifference() {
         </div>
       </section>
 
-      {/* THE CEL PROMISE SECTION (UNBOXED + LIGHT BLACK SEPARATION LINE) */}
+      {/* THE CEL PROMISE SECTION */}
       <section id="cel-promise" style={{ padding: "64px 0", background: "#FFFFFF", borderTop: "1px solid rgba(0, 0, 0, 0.08)", overflow: "hidden" }}>
-        <div style={{ maxWidth: "1040px", margin: "0 auto", padding: "0 24px", textAlign: "center" }}>
+        <div style={{ maxWidth: "1040px", width: "100%", margin: "0 auto", padding: "0 24px", textAlign: "center" }}>
 
-          {/* Eyebrow tag with Purple Dot • THE CEL PROMISE */}
           <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "6px", marginBottom: "16px" }}>
             <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#5B2E91" }} />
             <span style={{ fontSize: "12px", fontWeight: "900", color: "#5B2E91", letterSpacing: "0.1em", textTransform: "uppercase" }}>
@@ -476,11 +470,10 @@ export default function PartnersDifference() {
             </span>
           </div>
 
-          {/* Headline */}
           <h2
             style={{
               fontFamily: "var(--font-headings), sans-serif",
-              fontSize: "clamp(34px, 4.4vw, 54px)",
+              fontSize: "clamp(28px, 4.4vw, 54px)",
               fontWeight: "900",
               color: "#0B1F3A",
               lineHeight: "1.15",
@@ -491,12 +484,10 @@ export default function PartnersDifference() {
             Experience Before <span style={{ fontFamily: "serif", fontStyle: "italic", fontWeight: "400", color: "#5B2E91" }}>Employment™️</span>
           </h2>
 
-          {/* Subtitle Paragraph */}
-          <p style={{ fontSize: "16px", color: "#475569", lineHeight: "1.75", maxWidth: "780px", margin: "0 auto 32px" }}>
+          <p style={{ fontSize: "clamp(14px, 1.4vw, 16px)", color: "#475569", lineHeight: "1.75", maxWidth: "780px", margin: "0 auto 32px" }}>
             Before a Techlearns learner enters their first organisation, they should already understand what it means to <strong style={{ color: "#5B2E91", fontWeight: "700" }}>Learn, Build, Collaborate, Communicate, Deliver, Review, Improve, Compete, Present, and Take Ownership.</strong>
           </p>
 
-          {/* 5 Promise Pills */}
           <div style={{ display: "flex", justifyContent: "center", gap: "10px", flexWrap: "wrap", marginBottom: "36px" }}>
             {["Learn the Technology.", "Live the Environment.", "Build the Experience.", "Prove Your Capability.", "Enter Corporate Life Ready."].map((p, i) => (
               <div key={i} style={{ background: "#F5F0FF", border: "1px solid #E4D7FF", padding: "10px 22px", borderRadius: "9999px", fontSize: "13.5px", fontWeight: "800", color: "#5B2E91", boxShadow: "0 2px 8px rgba(91, 46, 145, 0.05)" }}>
@@ -505,10 +496,10 @@ export default function PartnersDifference() {
             ))}
           </div>
 
-          {/* Centered Brand Purple Pill CTA Button */}
           <div style={{ display: "flex", justifyContent: "center" }}>
             <Link
               href="/programs"
+              className="partners-promise-btn"
               style={{
                 display: "inline-flex",
                 alignItems: "center",

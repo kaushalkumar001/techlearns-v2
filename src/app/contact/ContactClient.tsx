@@ -1,17 +1,18 @@
 "use client";
 
+import React, { useState } from "react";
+import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { useState } from "react";
+import { Phone, MapPin, Mail, ArrowRight, CheckCircle2 } from "lucide-react";
 
 export default function ContactClient() {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
-    email: "",
     phone: "",
-    userType: "Student",
-    interest: "Book a Free Career Diagnostic",
+    email: "",
+    inquiryType: "",
     message: ""
   });
 
@@ -20,160 +21,492 @@ export default function ContactClient() {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setFormSubmitted(true);
   };
 
   return (
-    <>
+    <div style={{ background: "#FFFFFF", color: "#0B1F3A", fontFamily: "var(--font-sans), sans-serif", overflowX: "hidden" }}>
       <Header />
+
       <main>
-        <div className="container" style={{ maxWidth: "800px", paddingTop: "24px" }}>
-
-          {/* Header */}
-          <div style={{ textAlign: "center", marginBottom: "50px" }}>
-            <span style={{ color: "#CB6CE6", fontSize: "12px", fontWeight: 700, fontFamily: "monospace", letterSpacing: "0.15em", textTransform: "uppercase" }}>
-              CONTACT &amp; ENQUIRY
-            </span>
-            <h1 className="fade-in-up" style={{ fontSize: "44px", color: "var(--foreground)", marginTop: "8px", fontWeight: 800 }}>
-              Ready to stop learning in theory?
+        {/* ============================================================ */}
+        {/* 1. HERO BREADCRUMB HEADER */}
+        {/* ============================================================ */}
+        <section
+          style={{
+            background: "linear-gradient(180deg, #FAF8FE 0%, #FFFFFF 100%)",
+            padding: "60px 20px 48px",
+            textAlign: "center",
+            borderBottom: "1px solid rgba(0, 0, 0, 0.05)"
+          }}
+        >
+          <div className="container" style={{ maxWidth: "1280px", margin: "0 auto" }}>
+            <h1
+              style={{
+                fontFamily: "var(--font-headings), sans-serif",
+                fontSize: "clamp(36px, 4.5vw, 54px)",
+                fontWeight: "900",
+                color: "#0B1F3A",
+                letterSpacing: "-0.02em",
+                marginBottom: "12px",
+                lineHeight: "1.1"
+              }}
+            >
+              Contact
             </h1>
-            <p className="fade-in-up" style={{ color: "var(--foreground-muted)", margin: "12px auto 0", fontSize: "16px", maxWidth: "600px", lineHeight: "1.6" }}>
-              Talk to a program advisor, take a free diagnostic, or explore SkillOS.
-            </p>
-          </div>
 
-          <div className="grid-split" style={{ gap: "40px", marginBottom: "60px" }}>
-            {/* Form */}
-            <div className="glass-card" style={{ padding: "30px", background: "var(--card-bg)" }}>
-              {formSubmitted ? (
-                <div style={{ textAlign: "center", padding: "40px 0", display: "flex", flexDirection: "column", gap: "16px", alignItems: "center" }}>
-                  <div style={{ width: "60px", height: "60px", borderRadius: "50%", background: "rgba(39, 201, 63, 0.15)", border: "2px solid #27C93F", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "30px" }}>✓</div>
-                  <h2 style={{ fontSize: "20px", color: "var(--foreground)" }}>Request Received</h2>
-                  <p style={{ fontSize: "13px", color: "var(--foreground-muted)", maxWidth: "300px" }}>
-                    Thank you. A program advisor or representative will follow up via email in 24 hours.
-                  </p>
-                  <button onClick={() => setFormSubmitted(false)} className="glow-btn-secondary" style={{ marginTop: "10px" }}>
-                    Submit New Form
-                  </button>
+            {/* Breadcrumb */}
+            <div
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "8px",
+                fontSize: "14px",
+                fontWeight: "600",
+                color: "#64748B"
+              }}
+            >
+              <Link href="/" style={{ color: "#5B2E91", textDecoration: "none" }}>
+                Home
+              </Link>
+              <span>&gt;</span>
+              <span style={{ color: "#0B1F3A" }}>Contact</span>
+            </div>
+          </div>
+        </section>
+
+        {/* ============================================================ */}
+        {/* 2. FULL-WIDTH MAP BANNER SECTION */}
+        {/* ============================================================ */}
+        <section style={{ width: "100%", height: "400px", position: "relative", background: "#E2E8F0", overflow: "hidden" }}>
+          <iframe
+            title="TechLearns Location Map"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.75123456789!2d77.6200!3d12.9350!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae144e0b000000%3A0x123456789abcdef!2sKoramangala%2C%20Bengaluru%2C%20Karnataka!5e0!3m2!1sen!2sin!4v1600000000000!5m2!1sen!2sin"
+            width="100%"
+            height="100%"
+            style={{ border: 0, filter: "contrast(1.05) saturate(0.95)" }}
+            allowFullScreen={false}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+        </section>
+
+        {/* ============================================================ */}
+        {/* 3. GET IN TOUCH & SENT A MESSAGE SECTION */}
+        {/* ============================================================ */}
+        <section style={{ padding: "80px 0 100px", background: "#FFFFFF" }}>
+          <div className="container" style={{ maxWidth: "1280px", width: "100%", margin: "0 auto", padding: "0 24px" }}>
+            
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "1fr 1.3fr",
+                gap: "56px",
+                alignItems: "start"
+              }}
+              className="contact-split-grid"
+            >
+              {/* LEFT COLUMN: GET IN TOUCH INFO CARDS */}
+              <div style={{ display: "flex", flexDirection: "column" }}>
+                
+                {/* Eyebrow */}
+                <div style={{ display: "inline-flex", flexDirection: "column", marginBottom: "16px" }}>
+                  <span
+                    style={{
+                      fontSize: "12px",
+                      fontWeight: "700",
+                      color: "#5B2E91",
+                      letterSpacing: "0.08em",
+                      textTransform: "uppercase",
+                      marginBottom: "6px"
+                    }}
+                  >
+                    / Contact Us
+                  </span>
+                  <div style={{ width: "32px", height: "3px", background: "#5B2E91", borderRadius: "2px" }} />
                 </div>
-              ) : (
-                <form onSubmit={handleFormSubmit} style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-                  <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-                    <label style={{ fontSize: "11px", fontWeight: 700, color: "var(--foreground-muted)" }}>FULL NAME</label>
-                    <input
-                      type="text"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleInputChange}
-                      required
-                      style={{ padding: "10px 14px", borderRadius: "6px", fontSize: "13px" }}
-                    />
-                  </div>
-                  <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-                    <label style={{ fontSize: "11px", fontWeight: 700, color: "var(--foreground-muted)" }}>EMAIL ADDRESS</label>
-                    <input
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      required
-                      style={{ padding: "10px 14px", borderRadius: "6px", fontSize: "13px" }}
-                    />
-                  </div>
-                  <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-                    <label style={{ fontSize: "11px", fontWeight: 700, color: "var(--foreground-muted)" }}>PHONE NUMBER</label>
-                    <input
-                      type="tel"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleInputChange}
-                      required
-                      style={{ padding: "10px 14px", borderRadius: "6px", fontSize: "13px" }}
-                    />
-                  </div>
 
-                  <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-                    <label style={{ fontSize: "11px", fontWeight: 700, color: "var(--foreground-muted)" }}>I AM A:</label>
-                    <select
-                      name="userType"
-                      value={formData.userType}
-                      onChange={handleInputChange}
-                      style={{ padding: "10px 14px", borderRadius: "6px", fontSize: "13px" }}
+                {/* Headline */}
+                <h2
+                  style={{
+                    fontFamily: "var(--font-headings), sans-serif",
+                    fontSize: "clamp(30px, 3.8vw, 42px)",
+                    fontWeight: "900",
+                    color: "#0B1F3A",
+                    letterSpacing: "-0.02em",
+                    lineHeight: "1.15",
+                    marginBottom: "16px"
+                  }}
+                >
+                  Get In Touch
+                </h2>
+
+                {/* Supporting description */}
+                <p
+                  style={{
+                    fontSize: "14.5px",
+                    color: "#64748B",
+                    lineHeight: "1.7",
+                    marginBottom: "36px",
+                    maxWidth: "480px"
+                  }}
+                >
+                  A creative tech learning ecosystem. We bridge the experience gap between education and employment with real-world sprints, live mentorship, and verifiable project telemetry.
+                </p>
+
+                {/* 3 Info Cards */}
+                <div style={{ display: "flex", flexDirection: "column", gap: "18px" }}>
+                  
+                  {/* Card 1: Phone Number */}
+                  <div
+                    style={{
+                      background: "#FFFFFF",
+                      border: "1px solid #E2E8F0",
+                      borderRadius: "16px",
+                      padding: "20px 24px",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "20px",
+                      boxShadow: "0 4px 16px rgba(0, 0, 0, 0.03)",
+                      transition: "transform 0.25s ease, boxShadow 0.25s ease"
+                    }}
+                    className="contact-info-card"
+                  >
+                    <div
+                      style={{
+                        width: "48px",
+                        height: "48px",
+                        borderRadius: "12px",
+                        background: "#FEF3C7",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        flexShrink: 0
+                      }}
                     >
-                      <option value="Student">Student / Fresher</option>
-                      <option value="Professional">Working Professional</option>
-                      <option value="College">College / Institution Partner</option>
-                      <option value="Employer">Employer / Recruiter</option>
-                    </select>
+                      <Phone size={22} color="#D97706" />
+                    </div>
+                    <div>
+                      <div style={{ fontSize: "11px", fontWeight: "800", color: "#64748B", letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: "4px" }}>
+                        Phone Number
+                      </div>
+                      <div style={{ fontSize: "16px", fontWeight: "900", color: "#0B1F3A" }}>
+                        +91 98765 43210
+                      </div>
+                    </div>
                   </div>
 
-                  <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-                    <label style={{ fontSize: "11px", fontWeight: 700, color: "var(--foreground-muted)" }}>AREA OF INTEREST</label>
-                    <select
-                      name="interest"
-                      value={formData.interest}
-                      onChange={handleInputChange}
-                      style={{ padding: "10px 14px", borderRadius: "6px", fontSize: "13px" }}
+                  {/* Card 2: Address */}
+                  <div
+                    style={{
+                      background: "#FFFFFF",
+                      border: "1px solid #E2E8F0",
+                      borderRadius: "16px",
+                      padding: "20px 24px",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "20px",
+                      boxShadow: "0 4px 16px rgba(0, 0, 0, 0.03)",
+                      transition: "transform 0.25s ease, boxShadow 0.25s ease"
+                    }}
+                    className="contact-info-card"
+                  >
+                    <div
+                      style={{
+                        width: "48px",
+                        height: "48px",
+                        borderRadius: "12px",
+                        background: "#FEF3C7",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        flexShrink: 0
+                      }}
                     >
-                      <option>Book a Free Career Diagnostic</option>
-                      <option>Request a Techlearns-in-Campus Proposal</option>
-                      <option>Join the Advisory Council / Submit a Brief</option>
-                      <option>Contact the Techlearns Team</option>
-                    </select>
+                      <MapPin size={22} color="#D97706" />
+                    </div>
+                    <div>
+                      <div style={{ fontSize: "11px", fontWeight: "800", color: "#64748B", letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: "4px" }}>
+                        Address
+                      </div>
+                      <div style={{ fontSize: "15px", fontWeight: "900", color: "#0B1F3A", lineHeight: "1.4" }}>
+                        TechLearns Academy, Koramangala, Bengaluru, India
+                      </div>
+                    </div>
                   </div>
 
-                  <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-                    <label style={{ fontSize: "11px", fontWeight: 700, color: "var(--foreground-muted)" }}>MESSAGE (OPTIONAL)</label>
-                    <textarea
-                      name="message"
-                      value={formData.message}
-                      onChange={handleInputChange}
-                      rows={3}
-                      style={{ padding: "10px 14px", borderRadius: "6px", fontSize: "13px" }}
-                    />
+                  {/* Card 3: Enter Email */}
+                  <div
+                    style={{
+                      background: "#FFFFFF",
+                      border: "1px solid #E2E8F0",
+                      borderRadius: "16px",
+                      padding: "20px 24px",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "20px",
+                      boxShadow: "0 4px 16px rgba(0, 0, 0, 0.03)",
+                      transition: "transform 0.25s ease, boxShadow 0.25s ease"
+                    }}
+                    className="contact-info-card"
+                  >
+                    <div
+                      style={{
+                        width: "48px",
+                        height: "48px",
+                        borderRadius: "12px",
+                        background: "#FEF3C7",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        flexShrink: 0
+                      }}
+                    >
+                      <Mail size={22} color="#D97706" />
+                    </div>
+                    <div>
+                      <div style={{ fontSize: "11px", fontWeight: "800", color: "#64748B", letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: "4px" }}>
+                        Enter Email
+                      </div>
+                      <div style={{ fontSize: "16px", fontWeight: "900", color: "#0B1F3A" }}>
+                        admissions@techlearns.com
+                      </div>
+                    </div>
                   </div>
 
-                  <button type="submit" className="glow-btn-primary" style={{ justifyContent: "center", padding: "12px", marginTop: "8px" }}>
-                    Submit
-                  </button>
-                </form>
-              )}
+                </div>
+
+              </div>
+
+              {/* RIGHT COLUMN: SENT A MESSAGE FORM CARD */}
+              <div
+                style={{
+                  background: "#FFFFFF",
+                  border: "1px solid #E2E8F0",
+                  borderRadius: "24px",
+                  padding: "44px 40px",
+                  boxShadow: "0 10px 30px rgba(91, 46, 145, 0.06)"
+                }}
+                className="contact-form-card"
+              >
+                <h3
+                  style={{
+                    fontFamily: "var(--font-headings), sans-serif",
+                    fontSize: "clamp(24px, 3vw, 32px)",
+                    fontWeight: "900",
+                    color: "#0B1F3A",
+                    letterSpacing: "-0.01em",
+                    marginBottom: "28px"
+                  }}
+                >
+                  Sent A Message
+                </h3>
+
+                {formSubmitted ? (
+                  <div style={{ textAlign: "center", padding: "40px 20px" }}>
+                    <div
+                      style={{
+                        width: "64px",
+                        height: "64px",
+                        borderRadius: "50%",
+                        background: "#F0FDF4",
+                        border: "2px solid #10B981",
+                        color: "#10B981",
+                        display: "inline-flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        marginBottom: "16px"
+                      }}
+                    >
+                      <CheckCircle2 size={36} color="#10B981" />
+                    </div>
+                    <h4 style={{ fontSize: "20px", fontWeight: "800", color: "#0B1F3A", marginBottom: "8px" }}>
+                      Message Received!
+                    </h4>
+                    <p style={{ fontSize: "14px", color: "#64748B", lineHeight: "1.6", maxWidth: "360px", margin: "0 auto 24px" }}>
+                      Thank you for reaching out. A TechLearns admissions representative will connect with you within 24 hours.
+                    </p>
+                    <button
+                      onClick={() => setFormSubmitted(false)}
+                      style={{
+                        background: "#5B2E91",
+                        color: "#FFFFFF",
+                        border: "none",
+                        padding: "12px 28px",
+                        borderRadius: "9999px",
+                        fontSize: "13.5px",
+                        fontWeight: "700",
+                        cursor: "pointer"
+                      }}
+                    >
+                      Send Another Message
+                    </button>
+                  </div>
+                ) : (
+                  <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+                    
+                    {/* Row 1: Your Name & Phone */}
+                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }} className="contact-form-row">
+                      <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+                        <label style={{ fontSize: "13px", fontWeight: "800", color: "#0B1F3A" }}>Your Name</label>
+                        <input
+                          type="text"
+                          name="name"
+                          placeholder="Enter your name"
+                          value={formData.name}
+                          onChange={handleInputChange}
+                          required
+                          style={{
+                            height: "50px",
+                            padding: "0 16px",
+                            borderRadius: "12px",
+                            border: "1px solid #E2E8F0",
+                            background: "#FAF8FE",
+                            fontSize: "14px",
+                            color: "#0B1F3A",
+                            outline: "none"
+                          }}
+                        />
+                      </div>
+
+                      <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+                        <label style={{ fontSize: "13px", fontWeight: "800", color: "#0B1F3A" }}>Phone</label>
+                        <input
+                          type="tel"
+                          name="phone"
+                          placeholder="Phone number"
+                          value={formData.phone}
+                          onChange={handleInputChange}
+                          required
+                          style={{
+                            height: "50px",
+                            padding: "0 16px",
+                            borderRadius: "12px",
+                            border: "1px solid #E2E8F0",
+                            background: "#FAF8FE",
+                            fontSize: "14px",
+                            color: "#0B1F3A",
+                            outline: "none"
+                          }}
+                        />
+                      </div>
+                    </div>
+
+                    {/* Row 2: Email & Property / Inquiry Type */}
+                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }} className="contact-form-row">
+                      <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+                        <label style={{ fontSize: "13px", fontWeight: "800", color: "#0B1F3A" }}>Email</label>
+                        <input
+                          type="email"
+                          name="email"
+                          placeholder="Enter your email"
+                          value={formData.email}
+                          onChange={handleInputChange}
+                          required
+                          style={{
+                            height: "50px",
+                            padding: "0 16px",
+                            borderRadius: "12px",
+                            border: "1px solid #E2E8F0",
+                            background: "#FAF8FE",
+                            fontSize: "14px",
+                            color: "#0B1F3A",
+                            outline: "none"
+                          }}
+                        />
+                      </div>
+
+                      <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+                        <label style={{ fontSize: "13px", fontWeight: "800", color: "#0B1F3A" }}>Inquiry Type</label>
+                        <select
+                          name="inquiryType"
+                          value={formData.inquiryType}
+                          onChange={handleInputChange}
+                          style={{
+                            height: "50px",
+                            padding: "0 16px",
+                            borderRadius: "12px",
+                            border: "1px solid #E2E8F0",
+                            background: "#FAF8FE",
+                            fontSize: "14px",
+                            color: formData.inquiryType ? "#0B1F3A" : "#94A3B8",
+                            outline: "none"
+                          }}
+                        >
+                          <option value="">Choose type</option>
+                          <option value="TLET Admissions">TLET Entrance Test / Admissions</option>
+                          <option value="Corporate Partnership">Corporate Partnership</option>
+                          <option value="Campus Integration">College / Institution Integration</option>
+                          <option value="General Support">General Enquiry</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    {/* Row 3: Message */}
+                    <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+                      <label style={{ fontSize: "13px", fontWeight: "800", color: "#0B1F3A" }}>Message</label>
+                      <textarea
+                        name="message"
+                        rows={4}
+                        placeholder="your message"
+                        value={formData.message}
+                        onChange={handleInputChange}
+                        required
+                        style={{
+                          padding: "14px 16px",
+                          borderRadius: "16px",
+                          border: "1px solid #E2E8F0",
+                          background: "#FAF8FE",
+                          fontSize: "14px",
+                          color: "#0B1F3A",
+                          outline: "none",
+                          resize: "vertical"
+                        }}
+                      />
+                    </div>
+
+                    {/* Primary Submit Button matching img (View More -> / Submit) */}
+                    <div style={{ paddingTop: "8px" }}>
+                      <button
+                        type="submit"
+                        style={{
+                          display: "inline-flex",
+                          alignItems: "center",
+                          gap: "10px",
+                          background: "linear-gradient(135deg, #5B2E91 0%, #7E3AF2 100%)",
+                          color: "#FFFFFF",
+                          padding: "16px 42px",
+                          borderRadius: "9999px",
+                          fontSize: "14px",
+                          fontWeight: "900",
+                          letterSpacing: "0.04em",
+                          border: "none",
+                          cursor: "pointer",
+                          boxShadow: "0 10px 25px rgba(91, 46, 145, 0.35)",
+                          transition: "all 0.25s ease"
+                        }}
+                        className="contact-submit-btn"
+                      >
+                        <span>View More</span>
+                        <ArrowRight size={16} color="#FFFFFF" />
+                      </button>
+                    </div>
+
+                  </form>
+                )}
+
+              </div>
+
             </div>
 
-            {/* Quick Info Grid */}
-            <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-              <div className="glass-card" style={{ padding: "24px" }}>
-                <h3 style={{ fontSize: "15px", color: "#FFFFFF", fontWeight: 700, marginBottom: "8px" }}>👤 Individuals</h3>
-                <p style={{ fontSize: "13px", color: "var(--foreground-muted)", margin: 0, lineHeight: "1.4" }}>
-                  Schedule your free aptitude vectors diagnostic to maps target career roles.
-                </p>
-              </div>
-              <div className="glass-card" style={{ padding: "24px" }}>
-                <h3 style={{ fontSize: "15px", color: "#FFFFFF", fontWeight: 700, marginBottom: "8px" }}>🏫 Colleges</h3>
-                <p style={{ fontSize: "13px", color: "var(--foreground-muted)", margin: 0, lineHeight: "1.4" }}>
-                  Integrate weekly coding practice and Future Skills League qualifiers directly inside your institution.
-                </p>
-              </div>
-              <div className="glass-card" style={{ padding: "24px" }}>
-                <h3 style={{ fontSize: "15px", color: "#FFFFFF", fontWeight: 700, marginBottom: "8px" }}>💼 Employers</h3>
-                <p style={{ fontSize: "13px", color: "var(--foreground-muted)", margin: 0, lineHeight: "1.4" }}>
-                  Join the council or contribute real problems to the challenge briefs repository.
-                </p>
-              </div>
-              <div className="glass-card" style={{ padding: "24px" }}>
-                <h3 style={{ fontSize: "15px", color: "#FFFFFF", fontWeight: 700, marginBottom: "8px" }}>📡 Partnerships</h3>
-                <p style={{ fontSize: "13px", color: "var(--foreground-muted)", margin: 0, lineHeight: "1.4" }}>
-                  Get in touch for content distribution or general business queries.
-                </p>
-              </div>
-            </div>
           </div>
+        </section>
 
-        </div>
       </main>
+
       <Footer />
-    </>
+    </div>
   );
 }
